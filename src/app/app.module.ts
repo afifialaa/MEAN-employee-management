@@ -10,11 +10,16 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchEmployeeComponent } from './search-employee/search-employee.component';
+import { SigninComponent } from './signin/signin.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes:Routes = [
   {path:'create', component:CreateEmployeeComponent},
   {path:'search', component: SearchEmployeeComponent},
-  {path:'employee-details/:email', component: EmployeeDetailsComponent}
+  {path:'employee-details/:email', component: EmployeeDetailsComponent},
+  {path: 'signin', component: SigninComponent},
+  { path: '',   redirectTo: '/create', pathMatch: 'full' },
+  {path:'**', component: PageNotFoundComponent}
 ]
 
 @NgModule({
@@ -22,7 +27,9 @@ const appRoutes:Routes = [
     AppComponent,
     CreateEmployeeComponent,
     EmployeeDetailsComponent,
-    SearchEmployeeComponent
+    SearchEmployeeComponent,
+    SigninComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

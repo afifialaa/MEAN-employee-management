@@ -74,6 +74,6 @@ export class SearchEmployeeComponent implements OnInit {
 
   viewProfile(email:string){
     console.log('details button was pressed');
-    this.router.navigate(['employee-details', email]);
+    this.router.navigate(['/employee-details', email]);
   }
 }

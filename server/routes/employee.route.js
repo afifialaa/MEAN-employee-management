@@ -55,4 +55,42 @@ router.post('/addEmp', function(req, res){
     });
 })
 
+router.post('/updateEmployee', function(req, res){
+    console.log('update emp was touched');
+
+    var employeeObj = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        jobTitle: req.body.jobTitle
+    };
+
+    Employee.updateOne({email: req.body.email}, employeeObj, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('employee updated');
+        }
+    })
+})
+
+router.post('/deleteEmployee', function(req, res){
+    console.log('delete employee was touched');
+
+    var employee = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        jobTitle: req.body.jobTitle
+    }
+
+    Employee.findOneAndDelete({email: req.body.email}, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('employee was deleted');
+        }
+    })
+})
+
 module.exports = router;

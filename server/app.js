@@ -1,8 +1,6 @@
 var express = require('express');
 var app = express();
 
-var Employee = require('./models/employee.model');
-
 var bodyParser = require('body-parser');
 
 const cors = require('cors');
