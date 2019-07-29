@@ -20,6 +20,10 @@ export class EmployeeDetailsComponent implements OnInit {
 	firstName = new FormControl();
 	lastName = new FormControl();
 	email = new FormControl();
+	phoneNumber = new FormControl();
+	country = new FormControl();
+	governorate = new FormControl();
+	gender = new FormControl();
 	jobTitle = new FormControl();
 
 	isShown: boolean = false;
@@ -35,6 +39,10 @@ export class EmployeeDetailsComponent implements OnInit {
 			firstName: this.firstName,
 			lastName: this.lastName,
 			email: this.email,
+			phoneNumber: this.phoneNumber,
+			country: this.country,
+			governorate: this.governorate,
+			gender: this.gender,
 			jobTitle: this.jobTitle
 		})
 
@@ -52,6 +60,10 @@ export class EmployeeDetailsComponent implements OnInit {
 				this.employee.firstName,
 				this.employee.lastName,
 				this.employee.email,
+				this.employee.phoneNumber,
+				this.employee.country,
+				this.employee.governorate,
+				this.employee.gender,
 				this.employee.jobTitle
 			]
 
@@ -59,6 +71,10 @@ export class EmployeeDetailsComponent implements OnInit {
 			this.firstName.setValue(this.employee.firstName);
 			this.lastName.setValue(this.employee.lastName);
 			this.email.setValue(this.employee.email);
+			this.phoneNumber.setValue(this.employee.phoneNumber);
+			this.country.setValue(this.employee.country);
+			this.governorate.setValue(this.employee.governorate);
+			this.gender.setValue(this.employee.gender);
 			this.jobTitle.setValue(this.employee.jobTitle);
 		}), error => {
 
@@ -77,11 +93,19 @@ export class EmployeeDetailsComponent implements OnInit {
 
 	saveBtn(){
 
+		//
+		this.isShown = false;
+		this.editEmployeeForm.disable()
+
 		//populate new data array
 		this.newData = [
 			this.firstName.value,
 			this.lastName.value,
 			this.email.value,
+			this.phoneNumber.value,
+			this.country.value,
+			this.governorate.value,
+			this.gender.value,
 			this.jobTitle.value
 		]
 
@@ -106,7 +130,11 @@ export class EmployeeDetailsComponent implements OnInit {
 				firstName: this.newData[0],
 				lastName: this.newData[1],
 				email: this.newData[2],
-				jobTitle: this.newData[3]
+				phoneNumber: this.newData[3],
+				country: this.newData[4],
+				governorate: this.newData[5],
+				gender: this.newData[6],
+				jobTitle: this.newData[7]
 			}
 
 			this.sendData(targetEmp);
