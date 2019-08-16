@@ -16,8 +16,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-	{ path: 'signin', component: SigninComponent },
-	{ path: 'admin', component: AdminComponent, children:[
+	{ path: 'signin',  component: SigninComponent },
+	{ path: 'admin', canActivate:[AuthGuard], component: AdminComponent, children:[
 		{ path: 'search', component: SearchEmployeeComponent },
 		{ path: 'create', component: CreateEmployeeComponent },
 		{ path: 'employee-details/:email', component: EmployeeDetailsComponent },
