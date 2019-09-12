@@ -6,11 +6,11 @@ mongoose.connect(mongoDB, {useNewUrlParser: true});
 var db = mongoose.connection;
 
 db.on('open', function(){
-    console.log('dbConfig says: connection established');
+    console.log('dbConfig#open: connection established');
 })
 
 db.on('error', function(){
-    console.log('dbConfig says: connection failed');
+    console.log('dbConfig#error: connection failed');
 })
 
 module.exports = db;

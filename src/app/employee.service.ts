@@ -19,7 +19,7 @@ export class EmployeeService {
 
 	searchById(id: string) {
 		let params = new HttpParams().set('id', id);
-		return this.http.get('http://localhost:8080/searchById', { params: params });
+		return this.http.get('http://localhost:8080/employee/searchById', { params: params });
 	}
 
 	searchByEmail(email: string) {

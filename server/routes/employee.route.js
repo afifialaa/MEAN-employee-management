@@ -55,6 +55,7 @@ router.post('/addEmp', function(req, res){
     });
 })
 
+//update employee
 router.post('/updateEmployee', function(req, res){
     console.log('update emp was touched');
 
@@ -74,6 +75,7 @@ router.post('/updateEmployee', function(req, res){
     })
 })
 
+//delete employee
 router.post('/deleteEmployee', function(req, res){
     console.log('delete employee was touched');
 

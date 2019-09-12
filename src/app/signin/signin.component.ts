@@ -26,6 +26,7 @@ export class SigninComponent implements OnInit {
 	login(){
 		console.log('login button was pressed');
 		this.router.navigateByUrl('/admin');
+		console.log(this.router.navigateByUrl('/admin'));
 	}
 
 }

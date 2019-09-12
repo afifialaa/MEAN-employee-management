@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const dbConfig = require('../config/dbConfig');
+const jwt = require('jsonwebtoken');
+
+const bc = require('bcrypt');
+var saltRounds = 10;
 
 const Schema = mongoose.Schema;
 
@@ -23,6 +27,22 @@ const EmployeeSchema = new Schema({
     gender: String,
     jobTitle: String
 });
+
+EmployeeSchema.pre('save', function(next){
+    var employee = this;
+
+    bc.genSalt(saltRounds, function(err, salt){
+        if(err) return next(err);
+
+        bc.hash(employee.password, salt, function(err, hash){
+            //create hashed password
+            if(err) return next(err);
+
+            employee.password = hash;
+            next();
+        })
+    })
+})
 
 var Employee = mongoose.model('Employee', EmployeeSchema);
 
