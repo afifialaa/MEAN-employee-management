@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form name="search" [formGroup]="searchEmployeeForm" (ngSubmit)="searchEmployee()" class="col-md-6">
+            <div class="form-group">
+                <label for="field">Search By </label>
+                <select id="field" class="form-control" [formControl]="field">
+                    <option *ngFor="let field of fields" [ngValue]="field"> {{field}}</option>
+                </select>
+                <br>
+                <input type="text" name="email" id="email" formControlName="empEmail" class="form-control" required>
+            </div>
+
+            <div *ngIf="empEmail.invalid && (empEmail.dirty || empEmail.touched)" class="alert alert-danger">
+                <div *ngIf="empEmail.errors.email">
+                    not an email!
+                </div>
+                <div *ngIf="empEmail.errors.required">
+                    required!
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!searchEmployeeForm.valid">Search</button>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <!-- employee card -->
+    <div class="col-md-8">
+        <div *ngIf="targetEmployee" class="col-md-6 card">
+            <div class="card-body">
+                <h4 class="card-title">{{targetEmployee.firstName}} {{targetEmployee.lastName}}</h4>
+                <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                <button class="btn btn-primary" (click)="viewProfile(targetEmployee.email)">See profile</button>
+                <a [routerLink]="['/admin/employee-details', targetEmployee.email]" class="btn btn-success">profile link</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

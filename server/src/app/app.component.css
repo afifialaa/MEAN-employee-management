@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+nav{
+    padding-top: 10px;
+}
+
+nav ul li{
+    list-style-type: none;
+    display: inline;
+}
+
+nav ul li:not(:first-child){
+    margin-left: 20px;
+}
+
+nav a:hover{
+    text-decoration: none;
+    
+}
