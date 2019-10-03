@@ -3,24 +3,57 @@ const router = express.Router();
 
 const User = require('../models/user.model');
 
+const bcrypt = require('bcrypt');
+
+const jwt = require('jsonwebtoken');
+var secret_key = require('../config/secretKey');
+
 //signin route
 router.post('/signin', function(req, res){
-    var user = {
+
+    if(req.body == null || req.body == ' '){
+        console.log('body is empty');
+    }
+
+    let userObj = {
         email: req.body.email,
         password: req.body.password
     };
 
-    console.log('email: ' + user.email);
-    console.log('password: ' + user.password);
-
-    Employee.findOne({email:user.email, password: user.password}, function(err, user){
+    User.findOne({email:userObj.email}, function(err, user){
         if(err) console.log(err);
 
-        console.log('found employee:' + user);
-        res.send('hello');
-        console.log('after send ');
+        bcrypt.compare(userObj.password, user.password, function(err, result){
+            if(err) console.log(err);
+
+            if(result == true){
+                //generate jwt
+                const token = jwt.sign({user:user.email}, secret_key);
+                console.log(token);
+                res.json({
+                    token: token,
+                    email: user.email
+                });
+            }else if(result == false){
+                console.log('failed to auth');
+                res.json({msg: 'failed to auth'});
+            }
+        })
     });
-})
+});
+
+//test route
+router.get('/test', function(req, res){
+    console.log('test was touched');
+
+    var token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, secret_key, function(err, decoded){
+        if(err) console.log(err);
+
+        console.log('decoded data: ' + decoded);
+        res.json({user:decoded});
+    })
+});
 
 //signup route
 router.post('/signup', function(req, res){
@@ -31,7 +64,7 @@ router.post('/signup', function(req, res){
         password: req.body.password
     };
 
-    //validate data
+    //****validate data
     //save to db
     var user = new User(userObj);
 
@@ -39,7 +72,7 @@ router.post('/signup', function(req, res){
         if(err) console.log(err);
 
         console.log('user was created');
-        res.send('user was created');
+        res.json({msg: 'user was created'});
     });
 })
 

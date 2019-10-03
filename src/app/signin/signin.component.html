@@ -3,6 +3,8 @@
         <div class="col-md-8">
             <div class="col-md-6">
                 <form [formGroup]="signinForm">
+                    <h3>Signin form</h3>
+                    <br>
                     <div class="form-gourp">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" [formControl]="email" class="form-control">
@@ -13,6 +15,12 @@
                     <div class="form-gourp">
                         <label for="passwor">Password</label>
                         <input type="password" name="password" id="password" [formControl]="password" class="form-control">
+                    </div>
+
+                    <br>
+
+                    <div *ngIf="message" class="alert alert-danger">
+                        {{message}}
                     </div>
 
                     <br>
