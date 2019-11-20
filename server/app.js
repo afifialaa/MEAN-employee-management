@@ -6,13 +6,12 @@ var bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 80;
 
+const morgan = require('morgan');
+
 var employeeRoute = require('./routes/employee.route');
 var userRoute = require('./routes/user.route');
 
-app.use(function(req, res, next){
-	console.log('new Request at ' + new Data());
-});
-
+app.use(morgan());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())

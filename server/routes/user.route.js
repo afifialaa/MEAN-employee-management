@@ -6,11 +6,11 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
-var secret_key = require('../config/secretKey');
+var secret_key = 'my_secret';
 
 //signin route
 router.post('/signin', function(req, res){
-
+    console.log('sigin in was touched');
     if(req.body == null || req.body == ' '){
         console.log('body is empty');
     }
@@ -57,7 +57,7 @@ router.get('/test', function(req, res){
 
 //signup route
 router.post('/signup', function(req, res){
-    var userObj = {
+    let userObj = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -69,9 +69,9 @@ router.post('/signup', function(req, res){
     var user = new User(userObj);
 
     user.save(function(err, user){
+        console.log('saving user');
         if(err) console.log(err);
 
-        console.log('user was created');
         res.json({msg: 'user was created'});
     });
 })

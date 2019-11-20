@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { NavComponent } from './nav/nav.component';
+import { SignupComponent } from './signup/signup.component';
 
 const appRoutes: Routes = [
 	{ path: 'signin',  component: SigninComponent },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
 		SigninComponent,
 		PageNotFoundComponent,
 		AdminComponent,
-		NavComponent
+		NavComponent,
+		SignupComponent
 	],
 	imports: [
 		BrowserModule,
