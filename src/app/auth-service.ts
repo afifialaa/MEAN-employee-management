@@ -9,6 +9,7 @@ export class AuthService {
 
     loggedIn:boolean = false;
     userEmail:string = null;
+    token:string = null;
     status:string = null
 
     constructor(private httpClient:HttpClient, private router:Router){}
@@ -25,9 +26,12 @@ export class AuthService {
                 this.loggedIn = false;
                 return;
             }else{
-                console.log(res['token']);
+                //reading json reposne
                 this.loggedIn = true;
+                this.token = res['token'];
                 this.userEmail = res['email'];
+                localStorage.setItem('user', this.userEmail);
+                localStorage.setItem('secret', this.token);
                 this.router.navigate(['/admin'])
                 return;
             }
@@ -38,19 +42,14 @@ export class AuthService {
     }
 
     signup(user){
-        this.httpClient.post('http://localhost:8080/user/signup', user).subscribe(res => {
+        return this.httpClient.post('http://localhost:8080/user/signup', user).subscribe(res => {
             if(res == false){
                 console.log('failed to signup');
                 this.status = 'Failed to create user';
-                return;
             }else{
-                console.log('create user successfully');
-                this.status = 'User was created successfully';
-                return;
             }
         }, err => {
             console.log(err);
-            return;
         })
     }
 

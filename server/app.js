@@ -1,17 +1,20 @@
 var express = require('express');
 var app = express();
 
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const cors = require('cors');
 const port = 80;
 
 const morgan = require('morgan');
 
-var employeeRoute = require('./routes/employee.route');
-var userRoute = require('./routes/user.route');
+const employeeRoute = require('./routes/employee.route');
+const userRoute = require('./routes/user.route');
 
-app.use(morgan());
+app.use(morgan('common', {
+    stream: fs.createWriteStream('./access.log', {flags: 'a'})
+}));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())

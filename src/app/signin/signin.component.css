@@ -1,3 +1,21 @@
 .content{
     margin-top: 40px;
 }
+
+form input{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.reset{
+    position: relative;
+    left: 370px;
+    top: 5px;
+}
+
+.reset:hover{
+    cursor: pointer;
+}
+
+.reset:active:after{
+    -moz-transform:rotate(360deg);
+}

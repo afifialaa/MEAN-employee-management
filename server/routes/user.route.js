@@ -6,39 +6,47 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
-var secret_key = 'my_secret';
+let secret_key = 'my_secret';
 
 //signin route
 router.post('/signin', function(req, res){
     console.log('sigin in was touched');
-    if(req.body == null || req.body == ' '){
-        console.log('body is empty');
-    }
-
-    let userObj = {
+    var userObj = {
         email: req.body.email,
         password: req.body.password
     };
-
-    User.findOne({email:userObj.email}, function(err, user){
+    
+    User.findOne({email:userObj.email}, (err, user)=>{
         if(err) console.log(err);
+        
+        if(user === null){
+            //user was not found
+            //wrong email
+            res.send(false);
+        }else{
+            bcrypt.compare(userObj.password, user.password, (err, result)=>{
+                if(err){
+                    console.log(err);
+                    res.send(false);
+                }
 
-        bcrypt.compare(userObj.password, user.password, function(err, result){
-            if(err) console.log(err);
+                //result: boolean
+                if(result == true){
+                    //generate jwt
+                    const token = jwt.sign({user:user.email}, secret_key);
+                    console.log(token);
+                    res.json({
+                        token: token,
+                        email: user.email
+                    });
+                }else if(result == false){
 
-            if(result == true){
-                //generate jwt
-                const token = jwt.sign({user:user.email}, secret_key);
-                console.log(token);
-                res.json({
-                    token: token,
-                    email: user.email
-                });
-            }else if(result == false){
-                console.log('failed to auth');
-                res.json({msg: 'failed to auth'});
-            }
-        })
+                    //passwords didnot match
+                    console.log('failed to auth');
+                    res.send(false);
+                }
+            })
+        }
     });
 });
 
@@ -47,7 +55,7 @@ router.get('/test', function(req, res){
     console.log('test was touched');
 
     var token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, secret_key, function(err, decoded){
+    jwt.verify(token, secret_key, (err, decoded)=>{
         if(err) console.log(err);
 
         console.log('decoded data: ' + decoded);
@@ -56,7 +64,7 @@ router.get('/test', function(req, res){
 });
 
 //signup route
-router.post('/signup', function(req, res){
+router.post('/signup', (req, res)=>{
     let userObj = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -68,7 +76,7 @@ router.post('/signup', function(req, res){
     //save to db
     var user = new User(userObj);
 
-    user.save(function(err, user){
+    user.save((err, user)=>{
         console.log('saving user');
         if(err) console.log(err);
 

@@ -35,6 +35,16 @@ export class SigninComponent implements OnInit {
 			password: this.signinForm.value.password
 		}
 
+		if(user.email === null || user.password === null){
+			console.log('empty fields');
+			return false;
+		}
+
+		if(user.email.length < 4){
+			console.log('not a valid email');
+			return false;
+		}
+
 		//log user in
 		this.authService.login(user);
 		if(this.authService.loggedIn == false){
