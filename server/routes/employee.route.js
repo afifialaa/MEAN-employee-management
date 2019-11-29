@@ -2,6 +2,7 @@ const express = require('express')
 var router = express.Router();
 
 const Employee = require('../models/employee.model');
+const validateToken = require('../validation/token.validate');
 
 //testing route
 router.get('/test', function(req, res){
@@ -9,7 +10,7 @@ router.get('/test', function(req, res){
 })
 
 //search by email
-router.get('/searchByEmail', function(req, res){
+router.get('/searchByEmail', validateToken, function(req, res){
     console.log('search email was touched');
     console.log(req.query.email);
 
@@ -28,7 +29,7 @@ router.get('/searchById', function(req, res){
 })
 
 //add employee
-router.post('/addEmp', function(req, res){
+router.post('/addEmp', validateToken, function(req, res){
     console.log('addEmp was touched');
     console.log(req.body);
     var employeeObj = {
@@ -56,7 +57,7 @@ router.post('/addEmp', function(req, res){
 })
 
 //update employee
-router.post('/updateEmployee', function(req, res){
+router.post('/updateEmployee', validateToken, function(req, res){
     console.log('update emp was touched');
 
     var employeeObj = {
@@ -76,7 +77,7 @@ router.post('/updateEmployee', function(req, res){
 })
 
 //delete employee
-router.post('/deleteEmployee', function(req, res){
+router.post('/deleteEmployee', validateToken, function(req, res){
     console.log('delete employee was touched');
 
     var employee = {

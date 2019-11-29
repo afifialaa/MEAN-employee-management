@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {AuthGuard} from '../auth.guard';
 import { Router } from '@angular/router';
-import {AuthService} from '../auth-service';
+import {AuthService} from '../services/auth-service';
+import {LoginService} from '../services/login.service';
 
 @Component({
 	selector: 'app-signin',
@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
 	flag:boolean;
 	message:string = '';
 	
-	constructor(private fb:FormBuilder, private auth:AuthGuard, private router:Router, private authService:AuthService) { }
+	constructor(private fb:FormBuilder, private loginService:LoginService, private router:Router, private authService:AuthService) { }
 
 	ngOnInit() {
 		this.signinForm = new FormGroup({
@@ -29,28 +29,38 @@ export class SigninComponent implements OnInit {
 
 	//button handler
 	login(){
-		console.log('login button was pressed');
 		var user = {
 			email: this.signinForm.value.email,
 			password: this.signinForm.value.password
 		}
 
-		if(user.email === null || user.password === null){
-			console.log('empty fields');
+		//empty field validation
+		if(user.email.length == 0 || user.password.length == 0){
+			this.message = 'Please fill empty fields';
 			return false;
 		}
 
+		//validate email
 		if(user.email.length < 4){
-			console.log('not a valid email');
+			this.message = 'invalid email';
 			return false;
 		}
 
 		//log user in
-		this.authService.login(user);
-		if(this.authService.loggedIn == false){
-			this.message = 'Wrong email or password';
-			this.signinForm.reset();
-		}
+		this.loginService.loginUser(user).subscribe((data)=>{
+			if(data['msg']){
+				//failed to login
+				console.log(data['msg']);
+				this.signinForm.reset();
+				this.message = data['msg'];
+			}else if(data['token']){
+				//login successfully
+				console.log(data['token']);
+				localStorage.setItem('token', data['token']);
+				localStorage.setItem('email', data['email']);
+				//redirect user
+				this.router.navigate(['/admin']);
+			}
+		})
 	}
-
 }

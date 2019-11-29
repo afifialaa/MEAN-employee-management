@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {AuthService} from '../auth-service';
+import {SignupService} from '../services/signup.service';
 
 @Component({
 	selector: 'app-signup',
@@ -9,7 +9,7 @@ import {AuthService} from '../auth-service';
 })
 export class SignupComponent implements OnInit {
 
-	constructor(private authService:AuthService) { }
+	constructor(private signupService:SignupService) { }
 
 	signupForm: FormGroup;
 	firstName: FormControl = new FormControl();
@@ -17,7 +17,8 @@ export class SignupComponent implements OnInit {
 	email: FormControl = new FormControl();
 	password: FormControl = new FormControl();
 
-	status:string = null
+	status:string = null;
+	token:string = null;
 
 	ngOnInit() {
 		this.signupForm = new FormGroup({
@@ -55,9 +56,16 @@ export class SignupComponent implements OnInit {
 			return false;
 		}
 
-		this.authService.signup(user);
-		//status of user creation
-		status = this.authService.status;
+		this.signupService.signupUser(user).subscribe((data)=>{
+			if(data['token']){
+				//user created peacefully
+				console.log('user was created');
+			}else if(data['msg']){
+				//failed to create user
+				console.log(data['msg']);
+				return false;
+			}
+		})
 	}
 }
 

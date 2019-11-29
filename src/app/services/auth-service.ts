@@ -15,7 +15,7 @@ export class AuthService {
     constructor(private httpClient:HttpClient, private router:Router){}
 
     isAuthenticated():boolean{
-        return true;
+        return this.loggedIn;
     }
 
     //log user in
