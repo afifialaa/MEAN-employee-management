@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     firstName: {
         type: String,
         required: true
-    }, 
+    },
     lastName: {
         type: String,
         require: true
@@ -26,14 +26,14 @@ const UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('save', function(next){
+UserSchema.pre('save', function (next) {
     var user = this;
 
-    bc.genSalt(saltRounds, function(err, salt){
-        if(err) return next(err);
+    bc.genSalt(saltRounds, function (err, salt) {
+        if (err) return next(err);
 
-        bc.hash(user.password, salt, function(err, hash){
-            if(err) return next(err);
+        bc.hash(user.password, salt, function (err, hash) {
+            if (err) return next(err);
 
             user.password = hash;
             next();

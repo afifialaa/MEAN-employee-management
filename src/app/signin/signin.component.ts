@@ -29,7 +29,7 @@ export class SigninComponent implements OnInit {
 
 	//button handler
 	login(){
-		var user = {
+		let user = {
 			email: this.signinForm.value.email,
 			password: this.signinForm.value.password
 		}
@@ -50,15 +50,13 @@ export class SigninComponent implements OnInit {
 		this.loginService.loginUser(user).subscribe((data)=>{
 			if(data['msg']){
 				//failed to login
-				console.log(data['msg']);
 				this.signinForm.reset();
 				this.message = data['msg'];
 			}else if(data['token']){
 				//login successfully
-				console.log(data['token']);
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
-				//redirect user
+				//redirect 
 				this.router.navigate(['/admin']);
 			}
 		})

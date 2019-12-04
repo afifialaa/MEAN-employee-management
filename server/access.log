@@ -224,3 +224,14 @@
 ::1 - - [29/Nov/2019:21:40:35 +0000] "GET /test HTTP/1.1" 404 143
 ::1 - - [29/Nov/2019:21:41:01 +0000] "GET /user/test HTTP/1.1" 500 2025
 ::1 - - [29/Nov/2019:21:42:20 +0000] "GET /user/test HTTP/1.1" 200 12
+::1 - - [01/Dec/2019:11:58:28 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::1 - - [01/Dec/2019:11:59:52 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::1 - - [01/Dec/2019:12:01:11 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::1 - - [01/Dec/2019:12:01:11 +0000] "POST /user/signin HTTP/1.1" 200 179
+::1 - - [01/Dec/2019:12:01:46 +0000] "OPTIONS /user/signin HTTP/1.1" 204 0
+::1 - - [01/Dec/2019:12:01:46 +0000] "POST /user/signin HTTP/1.1" 200 179
+::1 - - [01/Dec/2019:12:06:47 +0000] "GET /employee/searchByEmail?email=omneya@gmail.com HTTP/1.1" 500 2052
+::1 - - [01/Dec/2019:12:06:48 +0000] "GET /employee/searchByEmail?email=omneya@gmail.com HTTP/1.1" 500 2052
+::1 - - [01/Dec/2019:18:47:55 +0000] "OPTIONS /user/signup HTTP/1.1" 204 0
+::1 - - [01/Dec/2019:18:47:56 +0000] "POST /user/signup HTTP/1.1" 200 17
+::1 - - [01/Dec/2019:18:47:57 +0000] "POST /user/signup HTTP/1.1" 200 17

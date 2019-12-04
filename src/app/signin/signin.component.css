@@ -2,10 +2,6 @@
     margin-top: 40px;
 }
 
-form input{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
 .reset{
     position: relative;
     left: 370px;
@@ -16,6 +12,12 @@ form input{
     cursor: pointer;
 }
 
-.reset:active:after{
-    -moz-transform:rotate(360deg);
+.input-container{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    background-color: #5cb85c; 
+    color: white;
 }

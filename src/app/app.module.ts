@@ -17,6 +17,8 @@ import { AuthGuard } from './auth.guard';
 import { NavComponent } from './nav/nav.component';
 import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule, MatButtonModule } from '@angular/material';
 
 const appRoutes: Routes = [
 	{ path: 'signin',  component: SigninComponent },
@@ -48,7 +50,10 @@ const appRoutes: Routes = [
 		RouterModule.forRoot(appRoutes),
 		FormsModule,
 		HttpClientModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		BrowserAnimationsModule,
+		MatInputModule,
+		MatButtonModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

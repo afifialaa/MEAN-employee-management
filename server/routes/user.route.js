@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/user.model');
-
 const bcrypt = require('bcrypt');
 
 const jwt = require('jsonwebtoken');
+const token = require('../authentication/token.auth');
 
-const validateToken = require('../validation/token.validate');
+const createUser = require('../helpers/createUser');
 
 //signin route
 router.post('/signin', function(req, res){
-    console.log('user.route #router.post');
     var userObj = {
         email: req.body.email,
         password: req.body.password
@@ -35,11 +33,10 @@ router.post('/signin', function(req, res){
                 //result: boolean
                 if(result == true){
                     //generate jwt
-                    const token = jwt.sign({user:user.email}, secret_key);
-                    console.log(token);
+                    const jwtoken = token.generateToken(user); 
                     //success
                     res.json({
-                        token: token,
+                        token: jwtoken,
                         email: user.email
                     });
                 }else if(result == false){
@@ -53,7 +50,7 @@ router.post('/signin', function(req, res){
 });
 
 //testing route
-router.get('/test', validateToken, (req, res)=>{
+router.get('/test', token.validateToken, (req, res)=>{
     console.log('passed token validation');
     res.send('wasaaap user');
 })
@@ -70,16 +67,7 @@ router.post('/signup', (req, res)=>{
 
     //validate data
     //save to db
-    var user = new User(userObj);
-
-    user.save((err, user)=>{
-        if(err) console.log(err);
-
-        //creating a token
-
-        console.log('user was created');
-        res.json({token: 'user was created'});
-    });
+	createUser(res, userObj);
 })
 
 module.exports = router;

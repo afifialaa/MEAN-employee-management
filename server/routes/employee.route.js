@@ -1,8 +1,8 @@
 const express = require('express')
-var router = express.Router();
+const router = express.Router();
 
 const Employee = require('../models/employee.model');
-const validateToken = require('../validation/token.validate');
+const token = require('../authentication/token.auth');
 
 //testing route
 router.get('/test', function(req, res){
@@ -10,7 +10,7 @@ router.get('/test', function(req, res){
 })
 
 //search by email
-router.get('/searchByEmail', validateToken, function(req, res){
+router.get('/searchByEmail', token.validateToken, (req, res)=>{
     console.log('search email was touched');
     console.log(req.query.email);
 
@@ -22,17 +22,17 @@ router.get('/searchByEmail', validateToken, function(req, res){
 })
 
 //search by id
-router.get('/searchById', function(req, res){
+router.get('/searchById', token.validateToken,  (req, res)=>{
     console.log('search by id was recieved');
     console.log(req.query.id);
     res.send();
 })
 
 //add employee
-router.post('/addEmp', validateToken, function(req, res){
+router.post('/addEmp', token.validateToken, (req, res)=>{
     console.log('addEmp was touched');
     console.log(req.body);
-    var employeeObj = {
+    let employeeObj = {
         empId: req.body.empId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -44,7 +44,7 @@ router.post('/addEmp', validateToken, function(req, res){
         jobTitle: req.body.jobTitle
     }
     
-    var employee = new Employee(employeeObj);
+    let employee = new Employee(employeeObj);
 
     employee.save(function(err, employee){
         if(err) console.log(err);
@@ -57,7 +57,7 @@ router.post('/addEmp', validateToken, function(req, res){
 })
 
 //update employee
-router.post('/updateEmployee', validateToken, function(req, res){
+router.post('/updateEmployee', token.validateToken, (req, res)=>{
     console.log('update emp was touched');
 
     var employeeObj = {
@@ -70,14 +70,14 @@ router.post('/updateEmployee', validateToken, function(req, res){
     Employee.updateOne({email: req.body.email}, employeeObj, function(err){
         if(err){
             console.log(err);
-        }else{
-            console.log('employee updated');
         }
+        console.log('employee updated');
+        res.json({'msg':'data was updated'});
     })
 })
 
 //delete employee
-router.post('/deleteEmployee', validateToken, function(req, res){
+router.post('/deleteEmployee', token.validateToken, (req, res)=>{
     console.log('delete employee was touched');
 
     var employee = {

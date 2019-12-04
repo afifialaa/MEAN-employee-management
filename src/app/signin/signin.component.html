@@ -6,27 +6,29 @@
                 <form [formGroup]="signinForm">
                     <h3>Signin form</h3>
                     <br>
-                    <div class="form-gourp">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" [formControl]="email" class="form-control">
-                    </div>
+
+                    <div class="input-container">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" name="email" [formControl]="email">
+                        </mat-form-field>
                 
-                    <br>
+                        <br>
 
-                    <div class="form-gourp">
-                        <label for="passwor">Password</label>
-                        <input type="password" name="password" id="password" [formControl]="password" class="form-control">
+                        <mat-form-field>
+                            <input matInput placeholder="Password" type="password" [formControl]="password">
+                        </mat-form-field>
                     </div>
 
                     <br>
 
+                    <!-- message -->
                     <div *ngIf="message" class="alert alert-danger">
                         {{message}}
                     </div>
 
                     <br>
 
-                    <button type="submit" class="btn btn-success" (click)="login()">login</button>
+                    <button mat-raised-button type="submit" (click)="login()">login</button>
                     <span class="glyphicon reset" (click)="signinForm.reset()">&#xe031;</span>
                 </form>
             </div>
