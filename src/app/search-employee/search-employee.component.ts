@@ -20,6 +20,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	ngOnInit() {
 		this.searchEmployeeForm = new FormGroup({
+			field: this.field,
 			empEmail: this.empEmail
 		})
 	}
@@ -34,10 +35,11 @@ export class SearchEmployeeComponent implements OnInit {
 
 		if (this.searchEmployeeForm.valid == true) {
 			//logging search option
-			let option = this.field.value;
+			let option = this.searchEmployeeForm.value.field;
 
 			//seach by email
 			if (option == 'email') {
+				console.log('option was email');
 				let email = this.empEmail.value;
 				this.empService.searchByEmail(email).subscribe(result => {
 					this.targetEmployee = result;

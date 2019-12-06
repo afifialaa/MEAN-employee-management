@@ -19,6 +19,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material';
+import {MatSelectModule} from '@angular/material';
 
 const appRoutes: Routes = [
 	{ path: 'signin',  component: SigninComponent },
@@ -53,7 +55,9 @@ const appRoutes: Routes = [
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		MatInputModule,
-		MatButtonModule
+		MatButtonModule,
+		MatRadioModule,
+		MatSelectModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

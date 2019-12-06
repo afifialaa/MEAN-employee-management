@@ -23,6 +23,7 @@ export class EmployeeService {
 	}
 
 	searchByEmail(email: string) {
+		console.log('searching by email');
 		let params = new HttpParams().set('email', email);
 		return this.http.get('http://localhost:8080/employee/searchByEmail', { params: params });
 	}

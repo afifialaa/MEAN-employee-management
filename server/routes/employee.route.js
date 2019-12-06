@@ -10,7 +10,7 @@ router.get('/test', function(req, res){
 })
 
 //search by email
-router.get('/searchByEmail', token.validateToken, (req, res)=>{
+router.get('/searchByEmail', (req, res)=>{
     console.log('search email was touched');
     console.log(req.query.email);
 
@@ -29,7 +29,7 @@ router.get('/searchById', token.validateToken,  (req, res)=>{
 })
 
 //add employee
-router.post('/addEmp', token.validateToken, (req, res)=>{
+router.post('/addEmp', (req, res)=>{
     console.log('addEmp was touched');
     console.log(req.body);
     let employeeObj = {

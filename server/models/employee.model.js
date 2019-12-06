@@ -28,13 +28,14 @@ const EmployeeSchema = new Schema({
     jobTitle: String
 });
 
-EmployeeSchema.pre('save', function(next){
-    var employee = this;
+/*EmployeeSchema.pre('save', function(next){
+    let employee = this;
 
-    bc.genSalt(saltRounds, function(err, salt){
+    bc.genSalt(saltRounds, (err, saltRounds)=>{
         if(err) return next(err);
 
-        bc.hash(employee.password, salt, function(err, hash){
+
+        bc.hash(employee.password, saltRounds, (err, hash)=>{
             //create hashed password
             if(err) return next(err);
 
@@ -42,7 +43,7 @@ EmployeeSchema.pre('save', function(next){
             next();
         })
     })
-})
+})*/
 
 var Employee = mongoose.model('Employee', EmployeeSchema);
 

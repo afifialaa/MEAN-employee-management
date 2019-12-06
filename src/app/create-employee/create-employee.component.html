@@ -1,124 +1,70 @@
 <div class="container content">
     <div class="row">
-        <div class="col-md-4">
-            <form [formGroup]="createEmployeeForm"  (ngSubmit)="createEmployee()">
+        <div class="col-md-12">
 
-                <!--id control-->
-                <div class="form-group">
-                    <label for="id">Id</label>
-                    <input type="text" id="id" name="id" [formControl]="id" class="form-control"  [readOnly]="true">
-                </div>
+            <form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployee()">
 
-                <!-- first name control -->
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" id="firstName" [formControl]="firstName"  class="form-control" requried>
-                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="input-container">
+                            <mat-form-field>
+                                <input matNativeControl placeholder="id" type="text" [formControl]="id"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="First Name" type="text" [formControl]="firstName"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Last Name" type="text" [formControl]="lastName"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Email" type="text" [formControl]="email"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Phone Number" type="text"
+                                    [formControl]="phoneNumber" [readOnly]="true">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-5">
+                        <div class="input-container">
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Country" type="text" [formControl]="country"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Governorate" type="text"
+                                    [formControl]="governorate" [readOnly]="true">
+                            </mat-form-field>
+                            <br>
+                            <mat-radio-group aria-placeholder="Gender" aria-label="Select gender">
+                                <mat-radio-button value="male">Male</mat-radio-button>
+                                <mat-radio-button value="female">Female</mat-radio-button>
+                            </mat-radio-group>
+                            <br>
+                            <mat-form-field>
+                                <input matNativeControl placeholder="Job Title" type="text" [formControl]="jobTitle"
+                                    [readOnly]="true">
+                            </mat-form-field>
+                            <br>
 
-                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-                    <div *ngIf="firstName.errors.required">
-                        first name is required.
+                            <button mat-raised-button type="submit" [disabled]="!createEmployeeForm.valid">Save</button>
+                        </div>
+
                     </div>
                 </div>
-                
-                <!-- last name control -->
-                <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" id="lastName" [formControl]="lastName" class="form-control" required>
-                </div>
-
-                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-                    <div *ngIf="lastName.errors.required">
-                        last name is required.
-                    </div>
-                </div>
-
-                <!-- email control -->
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" [formControl]="email" class="form-control">
-                </div>
-
-                <div *ngIf="email.invalid && (email.dirty || email.touched) && email.errors.validEmail" class="alert alert-danger">
-                    <div *ngIf="email.errors.required">
-                        email is required.
-                    </div>
-                    <div *ngIf="email.errors.test">
-                        invalid email
-                    </div>
-                </div>
-
-                <!-- phone number control -->
-                <div class="form-group">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input type="text" name="phoneNumber" id="phoneNumber" [formControl]="phoneNumber" class="form-control">
-                </div>
-
-                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger">
-                    <div *ngIf="phoneNumber.errors.required">
-                        phoneNumber is required.
-                    </div>
-                </div>
-
-                <!-- country control -->
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" name="country" id="country" [formControl]="country" class="form-control">
-                </div>
-
-                <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert alert-danger">
-                    <div *ngIf="country.errors.required">
-                        country is required.
-                    </div>
-                </div>
-
-                <!-- governorate control-->
-                <div class="form-group">
-                    <label for="governorate">Governorate</label>
-                    <input type="text" name="governorate" id="governorate" [formControl]="governorate" class="form-control">
-                </div>
-                
-                <div *ngIf="governorate.invalid && (governorate.dirty || governorate.touched)" class="alert alert-danger">
-                    <div *ngIf="governorate.errors.required">
-                        governorate is required.
-                    </div>
-                </div>
-
-                <!-- gender control-->
-                <div class="form-group">
-                    <label>Gender</label>
-                    <br>
-                    <label for="gender" class="radio-inline"> <input type="radio" name="gender" [formControl]="gender" value="male"> male</label>
-                    <label for="gender" class="radio-inline"> <input type="radio" name="gender" [formControl]="gender" value="female"> female</label>
-                </div>
-
-                <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
-                    <div *ngIf="gender.errors.required">
-                        gender is required.
-                    </div>
-                </div>
-                <!-- job title control -->
-                <div class="form-group">
-                    <label for="jobTitle">Job Title</label>
-                    <input type="text" name="jobTitle" id="jobTitle" [formControl]="jobTitle" class="form-control">
-                </div>
-
-                <div *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" class="alert alert-danger">
-                    <div *ngIf="jobTitle.errors.required">
-                        *job title is required.
-                    </div>
-                    <div *ngIf="jobTitle.errors.minLength">
-                        *min length error
-                    </div>
-                </div>
-                <!-- submit button -->
-                <button type="submit" class="btn btn-primary" [disabled]="!createEmployeeForm.valid">Save</button>
-                <p *ngIf="status">{{updateMsg}}</p>
-
             </form>
         </div>
 
-        <div class="col-md-8"></div>
     </div>
 </div>
 
