@@ -9,8 +9,8 @@ const port = 80;
 
 const morgan = require('morgan');
 
-const employeeRoute = require('./routes/employee.route');
-const userRoute = require('./routes/user.route');
+const employeeRoute = require('./routes/employee.controller');
+const userRoute = require('./routes/user.controller');
 
 app.use(morgan('common', {
     stream: fs.createWriteStream('./access.log', {flags: 'a'})

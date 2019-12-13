@@ -4,13 +4,9 @@ const router = express.Router();
 const Employee = require('../models/employee.model');
 const token = require('../authentication/token.auth');
 
-//testing route
-router.get('/test', function(req, res){
-    console.log('test works fine');
-})
-
 //search by email
-router.get('/searchByEmail', (req, res)=>{
+// /searchByEmail
+function searchByEmail(req, res){
     console.log('search email was touched');
     console.log(req.query.email);
 
@@ -19,17 +15,19 @@ router.get('/searchByEmail', (req, res)=>{
         console.log(employee);
         res.json(employee);
     })
-})
+}
 
 //search by id
-router.get('/searchById', token.validateToken,  (req, res)=>{
+// /searchById
+function searchById(req, res){
     console.log('search by id was recieved');
     console.log(req.query.id);
     res.send();
-})
+}
 
 //add employee
-router.post('/addEmp', (req, res)=>{
+// /addEmp
+function addEmp(req, res){
     console.log('addEmp was touched');
     console.log(req.body);
     let employeeObj = {
@@ -54,10 +52,11 @@ router.post('/addEmp', (req, res)=>{
         }
         res.send();
     });
-})
+}
 
 //update employee
-router.post('/updateEmployee', token.validateToken, (req, res)=>{
+//// /updateEmployee
+function updateEmployee(req, res){
     console.log('update emp was touched');
 
     var employeeObj = {
@@ -74,10 +73,10 @@ router.post('/updateEmployee', token.validateToken, (req, res)=>{
         console.log('employee updated');
         res.json({'msg':'data was updated'});
     })
-})
+}
 
-//delete employee
-router.post('/deleteEmployee', token.validateToken, (req, res)=>{
+// /deleteEmployee
+function deleteEmployee(req, res){
     console.log('delete employee was touched');
 
     var employee = {
@@ -92,8 +91,16 @@ router.post('/deleteEmployee', token.validateToken, (req, res)=>{
             console.log(err);
         }else{
             console.log('employee was deleted');
+            res.send('employee was deleted');
         }
     })
-})
+}
 
-module.exports = router;
+module.exports = {
+    searchByEmail,
+    searchById,
+    addEmp,
+    deleteEmployee,
+    updateEmployee,
+};
+

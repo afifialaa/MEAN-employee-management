@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {validateEmail} from '../shared/validator-email';
+import {CountryService} from '../country.service'; 
+
 
 @Component({
-	selector: 'app-create-employee',
-	templateUrl: './create-employee.component.html',
-	styleUrls: ['./create-employee.component.css']
+	  selector: 'app-create-employee',
+	  templateUrl: './create-employee.component.html',
+	  styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
 
@@ -23,7 +25,9 @@ export class CreateEmployeeComponent implements OnInit {
 	gender = new FormControl('', Validators.required);
 	jobTitle = new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(10)]);
 
-	constructor(private empService: EmployeeService, private fb: FormBuilder) {
+		countries:any[];
+
+	constructor(private empService: EmployeeService, private fb: FormBuilder, private countryService:CountryService) {
 	}
 
 	generateIdControl() {
@@ -31,6 +35,11 @@ export class CreateEmployeeComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+			//load countries list
+			this.countries = this.countryService.countries;
+
+			//generate id
 		this.generateIdControl();
 
 		this.createEmployeeForm = this.fb.group({
@@ -46,12 +55,9 @@ export class CreateEmployeeComponent implements OnInit {
 		})
 	}
 
-	//mock data
-	/***************** */
-
 	//form button handler
 	createEmployee(): void {
-		console.log(this.id.value);
+			console.log('button was pressed');
 
 		let employee: Employee = {
 			empId: this.id.value,
@@ -65,10 +71,17 @@ export class CreateEmployeeComponent implements OnInit {
 			jobTitle: this.createEmployeeForm.value.jobTitle
 		}
 
-		//form status
-		console.log(this.createEmployeeForm.valid);
+			//logging form field values
+			console.log(this.createEmployeeForm.value.firstName);
+			console.log(this.createEmployeeForm.value.lastName);
+			console.log(this.createEmployeeForm.value.email);
+			console.log(this.createEmployeeForm.value.phoneNumber);
+			console.log(this.createEmployeeForm.value.country);
+			console.log(this.createEmployeeForm.value.governorate);
+			console.log(this.createEmployeeForm.value.gender);
+			console.log(this.createEmployeeForm.value.jobTitle);
 
-		//touch endpoint
+
 		if (this.createEmployeeForm.valid == true) {
 			this.empService.addEmployee(employee);
 			//reset form
