@@ -21,6 +21,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material';
+import { KnowledgeManagementModule } from './knowledge-management/knowledge-management.module';
+import { CreateKnowledgeComponent} from './knowledge-management/create-knowledge/create-knowledge.component';
+
+import {QuillModule} from 'ngx-quill';
 
 const appRoutes: Routes = [
 	{ path: 'signin',  component: SigninComponent },
@@ -28,6 +32,7 @@ const appRoutes: Routes = [
 		{ path: 'search', component: SearchEmployeeComponent },
 		{ path: 'create', component: CreateEmployeeComponent },
 		{ path: 'employee-details/:email', component: EmployeeDetailsComponent },
+		{path: 'knowledge', component: CreateKnowledgeComponent}
 	] },
 	{ path: '', redirectTo: '/signin', pathMatch: 'full' },
 	{ path: '**', component: PageNotFoundComponent }
@@ -44,7 +49,7 @@ const appRoutes: Routes = [
 		AdminComponent,
 		NavComponent,
 		SignupComponent,
-		HeaderComponent
+		HeaderComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -57,7 +62,9 @@ const appRoutes: Routes = [
 		MatInputModule,
 		MatButtonModule,
 		MatRadioModule,
-		MatSelectModule
+		MatSelectModule,
+			KnowledgeManagementModule,
+			QuillModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

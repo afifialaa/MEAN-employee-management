@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 
@@ -9,17 +8,18 @@ const createUser = require('../helpers/createUser');
 
 //signin route
 function signin(req, res){
-    var userObj = {
+    let userObj = {
         email: req.body.email,
         password: req.body.password
     };
-    
+
+    console.log(userObj.email);
+
     User.findOne({email:userObj.email}, (err, user)=>{
         //mongoose error
         if(err) console.log(err);
         
         if(user === null){
-            //user was not found
             //wrong email
             res.json({msg: 'email does not exist'});
         }else{
@@ -33,14 +33,12 @@ function signin(req, res){
                 if(result == true){
                     //generate jwt
                     const jwtoken = token.generateToken(user); 
-                    //success
                     res.json({
                         token: jwtoken,
                         email: user.email
                     });
                 }else if(result == false){
                     //passwords did not match
-                    console.log('failed to auth');
                     res.json({msg:'wrong password or email'});
                 }
             })

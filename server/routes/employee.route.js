@@ -8,5 +8,6 @@ router.get('/searchById', empController.searchById);
 router.post('/addEmp', empController.addEmp);
 router.post('/updateEmployee', empController.updateEmployee);
 router.post('/deleteEmployee', empController.deleteEmployee);
+router.get('/searchByGender', empController.searchByGender);
 
 module.exports = router;

@@ -1,35 +1,23 @@
-const express = require('express')
-const router = express.Router();
-
 const Employee = require('../models/employee.model');
-const token = require('../authentication/token.auth');
 
 //search by email
-// /searchByEmail
 function searchByEmail(req, res){
-    console.log('search email was touched');
-    console.log(req.query.email);
-
     Employee.findOne({email:req.query.email}, function(err, employee){
         if(err) console.log(err);
-        console.log(employee);
         res.json(employee);
     })
 }
 
 //search by id
-// /searchById
 function searchById(req, res){
-    console.log('search by id was recieved');
-    console.log(req.query.id);
-    res.send();
+    Employee.findOne({empId:req.query.empId}, function(err, emp){
+        if(err) console.log(err);
+        res.json(emp);
+    })
 }
 
 //add employee
-// /addEmp
 function addEmp(req, res){
-    console.log('addEmp was touched');
-    console.log(req.body);
     let employeeObj = {
         empId: req.body.empId,
         firstName: req.body.firstName,
@@ -55,9 +43,7 @@ function addEmp(req, res){
 }
 
 //update employee
-//// /updateEmployee
 function updateEmployee(req, res){
-    console.log('update emp was touched');
 
     var employeeObj = {
         firstName: req.body.firstName,
@@ -70,27 +56,25 @@ function updateEmployee(req, res){
         if(err){
             console.log(err);
         }
-        console.log('employee updated');
         res.json({'msg':'data was updated'});
     })
 }
 
-// /deleteEmployee
+//searching by gender
+function searchByGender(req, res){
+    Employee.find({gender:req.query.gender}, (err, emp)=>{
+        if(err) console.log(err);
+
+        res.json(emp);
+    })
+}
+
+// delete employee
 function deleteEmployee(req, res){
-    console.log('delete employee was touched');
-
-    var employee = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        jobTitle: req.body.jobTitle
-    }
-
     Employee.findOneAndDelete({email: req.body.email}, function(err){
         if(err){
             console.log(err);
         }else{
-            console.log('employee was deleted');
             res.send('employee was deleted');
         }
     })
@@ -102,5 +86,6 @@ module.exports = {
     addEmp,
     deleteEmployee,
     updateEmployee,
+    searchByGender
 };
 

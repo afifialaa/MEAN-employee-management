@@ -34,6 +34,8 @@ export class SigninComponent implements OnInit {
 			password: this.signinForm.value.password
 		}
 
+		console.log(user.email);
+
 		//empty field validation
 		if(user.email.length == 0 || user.password.length == 0){
 			this.message = 'Please fill empty fields';

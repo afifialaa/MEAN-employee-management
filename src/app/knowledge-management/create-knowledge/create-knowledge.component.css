@@ -1,0 +1,42 @@
+.tags-controls{
+    display: flex;
+    align-items: center;
+}
+
+.tags-controls i{
+    cursor: pointer;
+}
+
+.tags-controls input{
+    margin-right: 20px;
+}
+
+.tags-container{
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		width: auto;
+		flex-wrap: row wrap;
+}
+
+.tag {
+		border: 1px solid black;
+		border-radius: 3px;
+		padding-left: 5px;
+		padding-right: 5px;
+		margin: 10px;
+		display: flex;
+		background-color: #c1c1c1;
+}
+
+.tag span{
+		padding-left: 10px;
+		padding-right: 10px;
+}
+
+.tag i{
+}
+
+.editor{
+		height: 500px;
+}

@@ -9,8 +9,9 @@ const port = 80;
 
 const morgan = require('morgan');
 
-const employeeRoute = require('./routes/employee.controller');
-const userRoute = require('./routes/user.controller');
+const employeeRoute = require('./routes/employee.route');
+const userRoute = require('./routes/user.route');
+const knowledgeRoute = require('./routes/knowledge/knowledge.route');
 
 app.use(morgan('common', {
     stream: fs.createWriteStream('./access.log', {flags: 'a'})
@@ -21,5 +22,6 @@ app.use(bodyParser.json())
 
 app.use('/employee', employeeRoute);
 app.use('/user', userRoute);
+app.use('/knowledge', knowledgeRoute);
 
 module.exports = app;
