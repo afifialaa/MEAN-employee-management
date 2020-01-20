@@ -2,6 +2,10 @@ router-outlet{
     margin-top: 40px;
 }
 
+.active{
+    color: red;
+}
+
 .header{
     height: 70px;
     background-color: #5cb85c;

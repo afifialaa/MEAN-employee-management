@@ -1,17 +1,22 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.snow.min.css">
-<div class="container">
+<div class="container content">
 	<div class="row">
 		<div class="col-md-5">
+
 			<form [formGroup]="createKnowledgeForm" (submit)="createKnowledge()">
-				<h3>Create Knowledge</h3>
-				<br>
-				<input type="text" [formControl]="title" class="form-control" placeholder="title">
+
+				<mat-form-field>
+					<input matNativeControl placeholder="title" type="text" [formControl]="title">
+				</mat-form-field>
 				<br>
 				<!-- adding tags -->
+
 				<div class="tags-controls">
-					<input type="text" [formControl]="tags" class="form-control" placeholder="tags">
-					<i class="material-icons" (click)="addTag()" >add_circle_outline</i>
+					<mat-form-field>
+						<input matNativeControl placeholder="tags" type="text" [formControl]="tags">
+					</mat-form-field>
+					<i class="material-icons" (click)="addTag()">add_circle_outline</i>
 				</div>
 				<br>
 
@@ -24,7 +29,8 @@
 					</div>
 				</div>
 				<br>
-				<textarea type="text" [formControl]="description" class="form-control" placeholder="description"></textarea>
+				<textarea type="text" [formControl]="description" class="form-control"
+					placeholder="description"></textarea>
 				<br>
 
 				<quill-editor class="editor" [formControl]="editor"> </quill-editor>
@@ -34,6 +40,7 @@
 
 			</form>
 		</div>
+		<div class="col-md-2"></div>
 		<div class="col-md-5"></div>
 	</div>
 </div>

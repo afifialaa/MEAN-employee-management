@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-seek-knowledge',
-  templateUrl: './seek-knowledge.component.html',
-  styleUrls: ['./seek-knowledge.component.css']
+	selector: 'app-seek-knowledge',
+	templateUrl: './seek-knowledge.component.html',
+	styleUrls: ['./seek-knowledge.component.css']
 })
 export class SeekKnowledgeComponent implements OnInit {
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit() {
-  }
+	fields:String[] = [
+		'title',
+		'tags',
+		'author',
+		'keywords'
+	]
+
+	ngOnInit() {
+	}
 
 }

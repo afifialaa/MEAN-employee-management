@@ -1,6 +1,14 @@
+content{
+	margin-top: 50px;
+}
+
+mat-form-field{
+	width: 100%;
+}
+
 .tags-controls{
     display: flex;
-    align-items: center;
+	align-items: center;
 }
 
 .tags-controls i{
@@ -12,21 +20,20 @@
 }
 
 .tags-container{
-		padding: 20px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		width: auto;
-		flex-wrap: row wrap;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	flex-wrap: row wrap;
 }
 
 .tag {
-		border: 1px solid black;
-		border-radius: 3px;
-		padding-left: 5px;
-		padding-right: 5px;
-		margin: 10px;
-		display: flex;
-		background-color: #c1c1c1;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin: 10px;
+	display: flex;
+	background-color: #c1c1c1;
 }
 
 .tag span{
@@ -34,9 +41,6 @@
 		padding-right: 10px;
 }
 
-.tag i{
-}
-
 .editor{
-		height: 500px;
+	height: 500px;
 }
