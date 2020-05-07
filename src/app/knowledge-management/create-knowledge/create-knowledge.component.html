@@ -12,28 +12,11 @@
 				<br>
 				<!-- adding tags -->
 
-				<div class="tags-controls">
-					<mat-form-field>
-						<input matNativeControl placeholder="tags" type="text" [formControl]="tags">
-					</mat-form-field>
-					<i class="material-icons" (click)="addTag()">add_circle_outline</i>
-				</div>
-				<br>
-
-				<br>
-				<!-- tags -->
-				<div class="tags-container">
-					<div class="tag" *ngFor="let tag of tagsList">
-						<span> {{tag}}</span>
-						<i>X</i>
-					</div>
-				</div>
-				<br>
 				<textarea type="text" [formControl]="description" class="form-control"
 					placeholder="description"></textarea>
 				<br>
 
-				<quill-editor class="editor" [formControl]="editor"> </quill-editor>
+				<quill-editor class="editor" class="height: 90px;" [formControl]="editor"> </quill-editor>
 
 				<input type="submit" class="btn btn-success">
 

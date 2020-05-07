@@ -6,7 +6,7 @@ const token = require('../authentication/token.auth');
 
 const createUser = require('../helpers/createUser');
 
-//signin route
+// Signin route
 function signin(req, res){
     let userObj = {
         email: req.body.email,
@@ -16,11 +16,11 @@ function signin(req, res){
     console.log(userObj.email);
 
     User.findOne({email:userObj.email}, (err, user)=>{
-        //mongoose error
+        // Mongoose error
         if(err) console.log(err);
         
         if(user === null){
-            //wrong email
+            // Wrong email
             res.json({msg: 'email does not exist'});
         }else{
             bcrypt.compare(userObj.password, user.password, (err, result)=>{
@@ -31,14 +31,14 @@ function signin(req, res){
 
                 //result: boolean
                 if(result == true){
-                    //generate jwt
+                    // Generate JWT
                     const jwtoken = token.generateToken(user); 
                     res.json({
                         token: jwtoken,
                         email: user.email
                     });
                 }else if(result == false){
-                    //passwords did not match
+                    // Passwords do not match
                     res.json({msg:'wrong password or email'});
                 }
             })
@@ -46,7 +46,7 @@ function signin(req, res){
     });
 };
 
-//signup route
+// Signup route
 function signup(req, res){
 
     let userObj = {
@@ -56,8 +56,8 @@ function signup(req, res){
         password: req.body.password
     };
 
-    //validate data
-    //save to db
+    // Validate data
+    // Save to db
 	createUser(res, userObj);
 }
 

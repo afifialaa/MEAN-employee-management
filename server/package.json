@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/afifialaa/MEAN-crud-operations#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "elasticsearch": "^16.7.1",
+    "express": "^4.17.1",
+    "pdf-creator-node": "^1.4.1",
+    "validator": "^13.0.0"
   }
 }

@@ -1,53 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {ElementRef, ViewChild} from '@angular/core';
+import {KnowledgeService} from '../services/knowledge.service';
 
 @Component({
-		selector: 'app-create-knowledge',
-		templateUrl: './create-knowledge.component.html',
-		styleUrls: ['./create-knowledge.component.css']
+	  selector: 'app-create-knowledge',
+	  templateUrl: './create-knowledge.component.html',
+	  styleUrls: ['./create-knowledge.component.css']
 })
 export class CreateKnowledgeComponent implements OnInit {
 
 	createKnowledgeForm:FormGroup;
 	title:FormControl = new FormControl('');
 	description:FormControl = new FormControl('');
-	tags:FormControl = new FormControl('');
-		editor:FormControl = new FormControl(null);
+    editor:FormControl = new FormControl(null);
 
-	tagsList: string[] = [];
-
-	constructor() { 
+	constructor(private knowledgeService:KnowledgeService) { 
 	}
 
 	ngOnInit() {
 		this.createKnowledgeForm = new FormGroup({
 			title: this.title,
-			tags: this.tags,
-				description: this.description,
-				editor: this.editor
+			description: this.description,
+			editor: this.editor
 		})
-	}
-
-	//add tage button handler
-	addTag(){
-		console.log(this.createKnowledgeForm.value.tags);
-		let tag = this.createKnowledgeForm.value.tags 
-		this.tagsList.push(tag);
-		this.tags.setValue(' ');
-
-			//focus tags element
 	}
 
 	//form submit handler
 	createKnowledge(){
+		console.log('button was pressed');
 		let knowledge = {
+			email: 'alaa@gmail.com', 
 			title: this.createKnowledgeForm.value.title,
-			description: this.createKnowledgeForm.value.description,
-			tags: this.tagsList
+			content: this.createKnowledgeForm.value.description,
 		}
 
 		//post knowledge to server
+		this.knowledgeService.createKnowledge(knowledge).subscribe(res => {
+			console.log(res);
+		}, err => {
+			console.log(err);
+		})
 	}
 
 }

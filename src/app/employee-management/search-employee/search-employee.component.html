@@ -1,0 +1,75 @@
+<div class="container">
+	  <div class="row content">
+		    <div class="col-md-5">
+				<form name="search" [formGroup]="searchEmployeeForm" (ngSubmit)="searchEmployee()">
+					  <mat-form-field>
+						    <mat-label>Search By </mat-label>
+						    <mat-select [formControl]="field">
+								<mat-option *ngFor="let field of fields" [value]="field">
+									  {{field}}
+								</mat-option>
+						    </mat-select>
+					  </mat-form-field>
+					  <br>
+					  <mat-form-field>
+						    <input matInput type="text" [formControl]="empEmail" required>
+					  </mat-form-field>
+
+					  <div *ngIf="empEmail.invalid && (empEmail.dirty || empEmail.touched)" class="alert alert-danger">
+						    <div *ngIf="empEmail.errors.email">
+								not an email!
+						    </div>
+						    <div *ngIf="empEmail.errors.required">
+								required!
+						    </div>
+					  </div>
+					  <br>
+					  <button class="btn btn-success" type="submit" [disabled]="!searchEmployeeForm.valid">Search</button>
+				</form>
+		    </div>
+		    <div class="col-md-5"></div>
+		    <div class="col-md-2"></div>
+	  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<div class="container">
+	  <div class="row">
+		    <!-- employee card -->
+		    <div class="col-md-8">
+				<h4> {{errMsg}} </h4>
+					<table *ngIf="targetEmployee || singleEmployee" id="employees">
+						<tr>
+							<th>First Name</th>
+							<th>Last Name </th>
+							<th>Email</th>
+							<th>View</th>
+						</tr>
+						<tr *ngIf="singleEmployee">
+							<td>{{singleEmployee.first_name}}</td>
+							<td>{{singleEmployee.last_name}}</td>
+							<td>{{singleEmployee.email}}</td>
+							<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
+						</tr>
+						<tr *ngFor="let employee of targetEmployee">
+							<td>{{employee.first_name}}</td>
+							<td>{{employee.last_name}}</td>
+							<td>{{employee.email}}</td>
+							<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
+						</tr>
+					</table>
+				<!--<div class="col-md-6 card">
+					<div *ngFor="let employee of targetEmployee" class="card-body">
+						<p>{{employee.first_name}} {{employee.last_name}}</p>
+						<button class="btn btn-primary" (click)="viewProfile(targetEmployee.email)">See profile</button>
+						<a [routerLink]="['/admin/employee-details', targetEmployee.email]" class="btn btn-success">profile link</a>
+					</div>
+				</div>-->
+		    </div>
+		    <div class="col-md-4"></div>
+	  </div>
+</div>
+

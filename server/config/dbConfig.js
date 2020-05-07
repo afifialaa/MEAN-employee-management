@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://localhost:27017/private';
+const mongoDB = 'mongodb://localhost:27017/employee_management';
 
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 
-var db = mongoose.connection;
+let db = mongoose.connection;
 
 db.on('open', function(){
-    console.log('dbConfig#open: connection established');
+    console.log('connection to database is established');
 })
 
 db.on('error', function(){
-    console.log('dbConfig#error: connection failed');
+    console.log('failed to connect to database');
 })
 
 module.exports = db;

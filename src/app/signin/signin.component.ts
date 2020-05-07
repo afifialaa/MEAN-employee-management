@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import {AuthService} from '../services/auth-service';
-import {LoginService} from '../services/login.service';
+import { AuthService } from '../services/auth-service';
+import { LoginService } from '../services/login.service';
 
 @Component({
 	selector: 'app-signin',
@@ -15,8 +15,9 @@ export class SigninComponent implements OnInit {
 	email:FormControl = new FormControl('');
 	password: FormControl = new FormControl('');
 
-	flag:boolean;
+	currentUser:boolean;
 	message:string = '';
+
 	
 	constructor(private fb:FormBuilder, private loginService:LoginService, private router:Router, private authService:AuthService) { }
 
@@ -27,40 +28,40 @@ export class SigninComponent implements OnInit {
 		})
 	}
 
-	//button handler
+	// Login button handler
 	login(){
 		let user = {
 			email: this.signinForm.value.email,
 			password: this.signinForm.value.password
 		}
 
-		console.log(user.email);
-
-		//empty field validation
+		// Empty field validation
 		if(user.email.length == 0 || user.password.length == 0){
 			this.message = 'Please fill empty fields';
 			return false;
 		}
 
-		//validate email
+		// Validating email
 		if(user.email.length < 4){
 			this.message = 'invalid email';
 			return false;
 		}
 
-		//log user in
+		// Logging user in
 		this.loginService.loginUser(user).subscribe((data)=>{
 			if(data['msg']){
-				//failed to login
+				// Failed to login
 				this.signinForm.reset();
 				this.message = data['msg'];
 			}else if(data['token']){
-				//login successfully
+				// Login successfully
+				// Store JWT
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
-				//redirect 
+				// Redirect 
 				this.router.navigate(['/admin']);
 			}
 		})
+
 	}
 }

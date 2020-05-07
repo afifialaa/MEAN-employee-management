@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): boolean {
 			if(localStorage.getItem('token') != null){
+				console.log('access granted');
 				return true;
 			}else{
 				return false;

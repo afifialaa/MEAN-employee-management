@@ -17,6 +17,27 @@ export class EmployeeService {
 		})
 	}
 
+	searchByJobTitle(jobTitle:string){
+		let params = new HttpParams().set('jobTitle', jobTitle);
+		return this.http.get('http://localhost:8080/employee/searchByJobTitel', {params:params});
+	}
+
+	searchByFirstName(firstName: string){
+		let params = new HttpParams().set('firstName', firstName);
+		return this.http.get('http://localhost:8080/employee/searchByFirstName', {params:params})
+	}
+
+	searchByLastName(lastName: string){
+		let params = new HttpParams().set('lastName', lastName);
+		return this.http.get('http://localhost:8080/employee/searchByLastName', {params:params})
+	}
+
+	searchByGender(gender: string){
+		console.log('service gender: ' + gender);
+		let params = new HttpParams().set('gender', gender);
+		return this.http.get('http://localhost:8080/employee/searchByGender', {params:params})
+	}
+
 	searchById(id: string) {
 		let params = new HttpParams().set('id', id);
 		return this.http.get('http://localhost:8080/employee/searchById', { params: params });

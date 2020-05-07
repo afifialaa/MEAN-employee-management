@@ -9,6 +9,7 @@
                 <li><a routerLink="/admin/employee" routerLinkActive="active current">Employee</a></li>
                 <li><a routerLink="/admin/knowledge" routerLinkActive="active current">Knowledge</a></li>
                 <li><a routerLink="/admin" routerLinkActive="active current">Dashboard</a></li>
+                <li *ngIf="currentUser"><a class="nav-item nav-link" (click)="logout()">Logout</a></li>
             </ul>
         </div>
     </div>

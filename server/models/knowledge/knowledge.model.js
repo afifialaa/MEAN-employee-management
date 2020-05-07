@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const KnowledgeSchema = new Schema({
-		title: {
-				type:String,
-				required: true,
-				unique: true
-		},
-
-		tags: {
-				type: [String],
-				required: true
-		},
-		description: {
-				type: String,
-				required: true
-		}
+	email: {
+		type: String,
+		required: true
+	},
+	title: {
+		type: String,
+		required: true,
+	},
+	content: {
+		type: String,
+		required: true
+	}
+},{
+	collection: 'knowledge'
 });
 
 const Knowledge = mongoose.model('Knowledge', KnowledgeSchema);

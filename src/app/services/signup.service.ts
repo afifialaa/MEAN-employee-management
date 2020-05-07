@@ -11,6 +11,6 @@ export class SignupService {
 	signupUrl = 'http://localhost:8080/user/signup';
 	
 	signupUser(user){
-		return this.httpClient.post(this.signupUrl, user);
+		return this.httpClient.post(this.signupUrl, JSON.stringify(user));
 	}
 }

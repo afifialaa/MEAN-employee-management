@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const dbConfig = require('../config/dbConfig');
 const bc = require('bcrypt');
@@ -27,7 +27,7 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function (next) {
-    var user = this;
+    let user = this;
 
     bc.genSalt(saltRounds, function (err, salt) {
         if (err) return next(err);
@@ -41,6 +41,6 @@ UserSchema.pre('save', function (next) {
     })
 })
 
-var User = mongoose.model('User', UserSchema);
+let User = mongoose.model('User', UserSchema);
 
 module.exports = User;
