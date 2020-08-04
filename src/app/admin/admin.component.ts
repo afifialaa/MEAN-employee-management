@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
 
 @Component({
 	selector: 'app-admin',
@@ -10,7 +9,7 @@ export class AdminComponent implements OnInit {
 
 	currentUser: string;
 	
-	constructor(private loginService:LoginService) { 
+	constructor() { 
 		this.currentUser = localStorage.getItem('email');
 	}
 

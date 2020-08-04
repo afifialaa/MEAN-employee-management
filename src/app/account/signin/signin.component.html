@@ -1,0 +1,41 @@
+<app-header></app-header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="container content">
+    <div class="row">
+        <div class="col-md-5">
+            <form [formGroup]="signinForm">
+
+                <h2>LOGIN</h2>
+
+                <br>
+
+                <div class="form-gourp">
+                    <input placeholder="Email" name="email" [formControl]="email" class="form-control" required>
+                </div>
+
+                <br> 
+
+                <div class="form-group">
+                    <input placeholder="Password" type="password" [formControl]="password" class="form-control"
+                        required>
+                </div>
+
+                <!-- message -->
+                <div *ngIf="message" class="alert alert-danger">
+                    {{message}}
+                </div>
+
+                <br>
+
+                <!-- Signin button -->
+                <button type="submit" (click)="login()" class="btn btn-success">login</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+
+        <div class="col-md-5">
+            <app-signup></app-signup>
+        </div>
+    </div>
+</div>
+

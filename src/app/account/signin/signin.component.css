@@ -1,0 +1,9 @@
+.content{
+    margin-top: 40px;
+}
+
+button{
+    background-color: #5cb85c; 
+    color: white;
+    width: 100%;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../employee';
 import { HttpClient } from '@angular/common/http';
-import { EmployeeService } from '../../employee.service';
+import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../../shared/validator-email';
 import { CountryService } from '../../country.service';
