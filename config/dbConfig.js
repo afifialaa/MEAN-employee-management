@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://localhost:27017/employee_management';
+const mongoDB = process.env.MONGO_DB;
 
 mongoose.connect(mongoDB, {useNewUrlParser: true, useCreateIndex:true});
 
