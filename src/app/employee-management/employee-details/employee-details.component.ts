@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { EmployeeService } from '../../employee.service';
-import { Employee } from '../../employee';
-import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { EmployeeService } from '../services/employee.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({

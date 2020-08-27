@@ -1,9 +1,0 @@
-.input-container{
-    display: flex;
-    flex-direction: column;
-}
-
-button{
-    background-color: #5cb85c; 
-    color: white;
-}

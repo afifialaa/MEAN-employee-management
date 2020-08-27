@@ -12,7 +12,8 @@ export class AccountService {
 	constructor(private httpClient:HttpClient) { }
 
 	signupUser(user) {
-		return this.httpClient.post(this.signupUrl, JSON.stringify(user));
+		console.log('creating user');
+		return this.httpClient.post(this.signupUrl, user);
 	}
 
 	loginUser(user){

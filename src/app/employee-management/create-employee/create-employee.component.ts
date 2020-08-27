@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../../shared/validator-email';
-import { CountryService } from '../../country.service';
+import { CountryService } from '../../services/country.service';
 
 
 @Component({
