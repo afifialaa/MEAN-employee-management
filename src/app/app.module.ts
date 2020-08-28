@@ -14,7 +14,6 @@ import { SigninComponent } from './account/signin/signin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
-import { NavComponent } from './nav/nav.component';
 import { SignupComponent } from './account/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,7 +48,6 @@ const appRoutes: Routes = [
 		SigninComponent,
 		PageNotFoundComponent,
 		AdminComponent,
-		NavComponent,
 		SignupComponent,
 		HeaderComponent,
 	],
