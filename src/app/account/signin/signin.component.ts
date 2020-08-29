@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth-service';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class SigninComponent implements OnInit {
 	message: string = '';
 
 
-	constructor(private fb: FormBuilder, private accountSrvc: AccountService, private router: Router, private authService: AuthService) { }
+	constructor(private fb: FormBuilder, private accountSrvc: AccountService, private router: Router) { }
 
 	ngOnInit() {
 		this.signinForm = new FormGroup({
@@ -32,6 +31,7 @@ export class SigninComponent implements OnInit {
 		})
 	}
 
+	// Getters
 	get email(){
 		return this.signinForm.get('email');
 	}
@@ -45,18 +45,6 @@ export class SigninComponent implements OnInit {
 		let user = {
 			email: this.signinForm.value.email,
 			password: this.signinForm.value.password
-		}
-
-		// Empty field validation
-		if (user.email.length == 0 || user.password.length == 0) {
-			this.message = 'Please fill empty fields';
-			return false;
-		}
-
-		// Validating email
-		if (user.email.length < 4) {
-			this.message = 'invalid email';
-			return false;
 		}
 
 		// Logging user in

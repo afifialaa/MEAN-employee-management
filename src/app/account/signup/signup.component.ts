@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {AccountService} from '../services/account.service';
 
 @Component({
@@ -12,24 +12,45 @@ export class SignupComponent implements OnInit {
 	constructor(private accountSrvc:AccountService) { }
 
 	signupForm: FormGroup;
-	firstName: FormControl = new FormControl();
-	lastName: FormControl = new FormControl();
-	email: FormControl = new FormControl();
-	password: FormControl = new FormControl();
-
-	status:string = null;
 	token:string = null;
 
 	ngOnInit() {
 		this.signupForm = new FormGroup({
-			firstName: this.firstName,
-			lastName: this.lastName,
-			email: this.email,
-			password: this.password
+			firstName: new FormControl('', [
+				Validators.required,
+				Validators.minLength(3)
+			]),
+			lastName: new FormControl('', [
+				Validators.required,
+				Validators.minLength(3)
+			]),
+			email: new FormControl('', [
+				Validators.required,
+				Validators.minLength(11),
+				Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+			]),
+			password: new FormControl('', [
+				Validators.required,
+				Validators.minLength(6),
+			])
 		})
 	}
 
-	ans:any;
+	get firstName(){
+		return this.signupForm.get('firstName');
+	}
+
+	get lastName(){
+		return this.signupForm.get('lastName');
+	}
+
+	get email(){
+		return this.signupForm.get('email');
+	}
+
+	get password(){
+		return this.signupForm.get('password');
+	}
 
 	signup(){
 		let user = {
@@ -37,23 +58,6 @@ export class SignupComponent implements OnInit {
 			lastName: this.signupForm.value.lastName,
 			password: this.signupForm.value.password,
 			email: this.signupForm.value.email
-		}
-
-		//form field validation
-		if(user.firstName === null || user.lastName === null || user.email === null || user.password === null){
-			console.log('empty fields');
-			return false;
-		}
-
-		if(user.firstName.length < 3 || user.lastName.length < 3){
-			console.log('not a valid name');
-			this.signupForm.reset();
-			return false;
-		}
-
-		if(user.password.length < 8){
-			console.log('password is too short');
-			return false;
 		}
 
 		this.accountSrvc.signupUser(user).subscribe((data)=>{
