@@ -28,9 +28,9 @@ import { EmployeeComponent } from './employee-management/employee/employee.compo
 const appRoutes: Routes = [
 	{ path: 'signin', component: SigninComponent },
 	{
-		path: 'admin', canActivate: [AuthGuard], component: AdminComponent, children: [
+		path: 'admin',  component: AdminComponent, children: [
 			{
-				path: 'employee', canActivate: [AuthGuard], component: EmployeeComponent, children: [
+				path: 'employee', component: EmployeeComponent, children: [
 					{ path: 'search', component: SearchEmployeeComponent },
 					{ path: 'create', component: CreateEmployeeComponent },
 					{ path: 'employee-details', component: CreateEmployeeComponent },
