@@ -6,14 +6,13 @@ function searchByEmail(req, res){
 	  Employee.findOne({email:req.query.email}, function(err, employee){
 		    if(err) {
 				console.log(err);
-				res.json({msg: "database is currently offline"});
+				return res.json({err: "database is currently offline"});
 		    }
-		    console.log(employee);
 		    if (employee == null){
 				console.log('not employee found with this email');
-				res.json({msg: "no employee found with this email"});
+				return res.json({msg: "no employee found with this email"});
 		    }else{
-				res.json(employee);
+				return res.json(employee);
 		    }
 	  })
 }
@@ -29,26 +28,23 @@ function searchById(req, res){
 // Add employee.
 function addEmp(req, res){
     let employeeObj = {
-        empId: req.body.empId,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
         email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
+        phone_number: req.body.phoneNumber,
         country: req.body.country,
-        governorate: req.body.governorate,
         gender: req.body.gender,
-        jobTitle: req.body.jobTitle
+        job_title: req.body.jobTitle
     }
     
     let employee = new Employee(employeeObj);
 
     employee.save(function(err, employee){
-        if(err) console.log(err);
-        else{
-            console.log('employee was added');
-            res.send();
+        if(err) {
+            console.log(err);
+            return res.json({err: 'failed to add employee'});
         }
-        res.send();
+        return res.json({msg: 'empployee was added successfully'});
     });
 }
 

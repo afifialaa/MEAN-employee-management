@@ -3,6 +3,7 @@ export class Employee {
     lastName:string;
     email:string;
     phoneNumber: string;
+    country: string;
     gender:string;
     jobTitle:string;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../employee';
+import { Employee } from '../../models/employee';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -84,6 +84,7 @@ export class CreateEmployeeComponent implements OnInit {
 			lastName: this.createEmployeeForm.value.lastName,
 			email: this.createEmployeeForm.value.email,
 			phoneNumber: this.createEmployeeForm.value.phoneNumber,
+			country: this.createEmployeeForm.value.country,
 			gender: this.createEmployeeForm.value.gender,
 			jobTitle: this.createEmployeeForm.value.jobTitle
 		}

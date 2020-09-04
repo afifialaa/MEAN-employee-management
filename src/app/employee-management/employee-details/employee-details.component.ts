@@ -38,7 +38,6 @@ export class EmployeeDetailsComponent implements OnInit {
 			email: this.email,
 			phoneNumber: this.phoneNumber,
 			country: this.country,
-			governorate: this.governorate,
 			gender: this.gender,
 			jobTitle: this.jobTitle
 		})
@@ -48,33 +47,30 @@ export class EmployeeDetailsComponent implements OnInit {
 
 		//get email
 		let email = this.route.snapshot.paramMap.get('email');
-		//get employee 
+		// Get employee 
 		this.empService.searchByEmail(email).subscribe((result) => {
 			this.employee = result;
 
-			//populate old data array
+			// populate old data array
 			this.oldData = [
-				this.employee.firstName,
-				this.employee.lastName,
+				this.employee.first_name,
+				this.employee.last_name,
 				this.employee.email,
-				this.employee.phoneNumber,
+				this.employee.phone_number,
 				this.employee.country,
-				this.employee.governorate,
 				this.employee.gender,
-				this.employee.jobTitle
+				this.employee.job_title
 			]
 
-			//setting form value with employee data
-			this.firstName.setValue(this.employee.firstName);
-			this.lastName.setValue(this.employee.lastName);
+			// Setting form value with employee data
+			this.firstName.setValue(this.employee.first_name);
+			this.lastName.setValue(this.employee.last_name);
 			this.email.setValue(this.employee.email);
-			this.phoneNumber.setValue(this.employee.phoneNumber);
+			this.phoneNumber.setValue(this.employee.phone_number);
 			this.country.setValue(this.employee.country);
-			this.governorate.setValue(this.employee.governorate);
 			this.gender.setValue(this.employee.gender);
-			this.jobTitle.setValue(this.employee.jobTitle);
+			this.jobTitle.setValue(this.employee.job_title);
 		}), error => {
-
 			//error
 			console.log('something went horribly wrong');
 			console.log(error);

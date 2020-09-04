@@ -26,7 +26,11 @@ const EmployeeSchema = new Schema({
         type:String,
         required: true
     },
-    phone_Number: {
+    country: {
+        type: String,
+        required: true
+    },
+    phone_number: {
         type:String,
         required: true
     },

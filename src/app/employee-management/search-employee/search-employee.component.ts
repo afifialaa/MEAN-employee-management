@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Employee } from 'src/app/employee';
+import { Employee } from 'src/app/models/employee';
 
 @Component({
 	selector: 'app-search-employee',
@@ -46,9 +46,9 @@ export class SearchEmployeeComponent implements OnInit {
 			if (option == 'Email') {
 				let email = this.empEmail.value;
 				this.empService.searchByEmail(email).subscribe(result => {
-					  if (result["msg"]){
+					  if (result["err"]){
 						    this.targetEmployee = null;
-						    this.errMsg = result["msg"];
+						    this.errMsg = result["err"];
 						    return;
 					  }else{
 						    this.errMsg = "";
@@ -115,8 +115,7 @@ export class SearchEmployeeComponent implements OnInit {
 		}
 	}
 
-	viewProfile(email: string) {
-		console.log('details button was pressed');
-		this.router.navigate(['/admin/employee-details', email]);
+	viewProfile(email:string) {
+		this.router.navigate(['/admin/employee/employee-details', {email: email}]);
 	}
 }

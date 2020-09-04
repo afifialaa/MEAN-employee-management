@@ -33,7 +33,7 @@ const appRoutes: Routes = [
 				path: 'employee', component: EmployeeComponent, children: [
 					{ path: 'search', component: SearchEmployeeComponent },
 					{ path: 'create', component: CreateEmployeeComponent },
-					{ path: 'employee-details', component: CreateEmployeeComponent },
+					{ path: 'employee-details', component: EmployeeDetailsComponent },
 				]
 			},
 		]

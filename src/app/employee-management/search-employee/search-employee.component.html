@@ -52,7 +52,7 @@
 							<td>{{singleEmployee.first_name}}</td>
 							<td>{{singleEmployee.last_name}}</td>
 							<td>{{singleEmployee.email}}</td>
-							<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
+							<td> <button class="btn btn-primary" (click)="viewProfile(singleEmployee.email)">View</button></td>
 						</tr>
 						<tr *ngFor="let employee of targetEmployee">
 							<td>{{employee.first_name}}</td>
