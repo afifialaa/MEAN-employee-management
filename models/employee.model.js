@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const dbConfig = require('../config/dbConfig');
-const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 

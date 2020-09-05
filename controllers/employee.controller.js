@@ -39,7 +39,7 @@ function addEmp(req, res){
     
     let employee = new Employee(employeeObj);
 
-    employee.save(function(err, employee){
+    employee.save((err, employee)=>{
         if(err) {
             console.log(err);
             return res.json({err: 'failed to add employee'});
@@ -58,9 +58,10 @@ function updateEmployee(req, res){
         jobTitle: req.body.jobTitle
     };
 
-    Employee.updateOne({email: req.body.email}, employeeObj, function(err){
+    Employee.updateOne({email: req.body.email}, employeeObj, (err) => {
         if(err){
             console.log(err);
+            return res.json({err: 'failed to update employee'});
         }
         res.json({'msg':'data was updated'});
     })
@@ -70,10 +71,11 @@ function updateEmployee(req, res){
 function searchByGender(req, res){
     let gender = req.query.gender;
     Employee.find({gender:gender}, (err, emp)=>{
-        if(err) console.log(err);
-
-        console.log(emp);
-        res.json(emp);
+        if(err) {
+            console.log(err);
+            return res.json({err :'failed to search for employee'});
+        }
+        return res.json(emp);
     })
 }
 
@@ -81,9 +83,11 @@ function searchByGender(req, res){
 function searchByFirstName(req, res){
     let firstName = req.query.firstName;
     Employee.find({first_name:firstName}, (err, emp)=>{
-        if(err) console.log(err);
-
-        res.json(emp);
+        if(err) {
+            console.log(err);
+            return res.json({err:'failed to search for employee'});
+        }
+        return res.json(emp);
     })
 }
 
@@ -91,19 +95,22 @@ function searchByFirstName(req, res){
 function searchByLastName(req, res){
     let lastName = req.query.lastName;
     Employee.find({last_name:lastName}, (err, emp)=>{
-        if(err) console.log(err);
-
-        res.json(emp);
+        if(err) {
+            console.log(err);
+            return res.json({err: 'failed to search for employee'});
+        }
+        return res.json(emp);
     })
 }
 
 // Delete employee
 function deleteEmployee(req, res){
-    Employee.findOneAndDelete({email: req.body.email}, function(err){
+    Employee.findOneAndDelete({email: req.body.email}, (err)=>{
         if(err){
             console.log(err);
+            return res.json({err :'failed to delete employee'});
         }else{
-            res.send('employee was deleted');
+            return res.json({msg: 'employee was deleted'});
         }
     })
 }
@@ -111,11 +118,12 @@ function deleteEmployee(req, res){
 function searchByJobTitle(req, res){
     let jobTitle = req.query.jobTitle;
 
-    Employee.find({job_title:jobTItle}, function(err, emp){
+    Employee.find({job_title:jobTitle}, (err, emp)=>{
         if (err){
             console.log(err);
+            return res.json({err :'failed to search for empliyee'});
         }else{
-            res.json(emp);
+            return res.json(emp);
         }
     })
 }
