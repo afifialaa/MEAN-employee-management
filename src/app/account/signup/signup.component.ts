@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import {AccountService} from '../services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-signup',
@@ -9,10 +10,11 @@ import {AccountService} from '../services/account.service';
 })
 export class SignupComponent implements OnInit {
 
-	constructor(private accountSrvc:AccountService) { }
+	constructor(private accountSrvc:AccountService, private router:Router) { }
 
 	signupForm: FormGroup;
 	token:string = null;
+	errMsg: string;
 
 	ngOnInit() {
 		this.signupForm = new FormGroup({
@@ -63,8 +65,10 @@ export class SignupComponent implements OnInit {
 		this.accountSrvc.signupUser(user).subscribe((data)=>{
 			if(data['token']){
 				console.log('user was created');
-			}else if(data['msg']){
-				console.log(data['msg']);
+				this.router.navigate(['/admin']);
+			}else if(data['err']){
+				console.log(data['err']);
+				this.errMsg = data['err'];
 				return false;
 			}
 		})

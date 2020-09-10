@@ -15,7 +15,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { SignupComponent } from './account/signup/signup.component';
-import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
@@ -25,10 +24,12 @@ import { EmployeeModule } from './employee-management/employee-management.module
 import { QuillModule } from 'ngx-quill';
 import { EmployeeComponent } from './employee-management/employee/employee.component';
 
+import { AccountModule } from './account/account.module';
+
 const appRoutes: Routes = [
 	{ path: 'signin', component: SigninComponent },
 	{
-		path: 'admin',  component: AdminComponent, children: [
+		path: 'admin', canActivate:[AuthGuard], component: AdminComponent, children: [
 			{
 				path: 'employee', component: EmployeeComponent, children: [
 					{ path: 'search', component: SearchEmployeeComponent },
@@ -45,13 +46,11 @@ const appRoutes: Routes = [
 @NgModule({
 	declarations: [
 		AppComponent,
-		SigninComponent,
 		PageNotFoundComponent,
 		AdminComponent,
-		SignupComponent,
-		HeaderComponent,
 	],
 	imports: [
+		AccountModule,
 		BrowserModule,
 		AppRoutingModule,
 		RouterModule.forRoot(appRoutes),

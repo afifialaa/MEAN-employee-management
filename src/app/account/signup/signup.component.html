@@ -51,5 +51,8 @@
             Password must be at least 6 characters long.
         </div>
     </div>
+    <div *ngIf="errMsg" class="alert alert-danger">
+        {{errMsg}}
+    </div>
     <button type="submit" class="btn btn-success" [disabled]="!signupForm.valid">Signup</button>
 </form>

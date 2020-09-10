@@ -55,9 +55,7 @@ export class SigninComponent implements OnInit {
 				this.message = data['msg'];
 			} else if (data['token']) {
 				// Login successfully
-				// Store JWT
 				localStorage.setItem('token', data['token']);
-				localStorage.setItem('email', data['email']);
 				// Redirect 
 				this.router.navigate(['/admin']);
 			}

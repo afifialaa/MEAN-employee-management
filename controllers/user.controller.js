@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const token = require('../authentication/token.auth');
 
 // Signin route
-function signin(req, res){
+function signin(req, res) {
     let userObj = {
         email: req.body.email,
         password: req.body.password
@@ -12,40 +12,40 @@ function signin(req, res){
 
     console.log(userObj.email);
 
-    User.findOne({email:userObj.email}, (err, user)=>{
+    User.findOne({ email: userObj.email }, (err, user) => {
         // Mongoose error
-        if(err) {
+        if (err) {
             console.log(err);
-            return res.json({msg: 'database error'});
+            return res.json({ msg: 'database error' });
         }
-        
-        if(user === null){
+
+        if (user === null) {
             // Wrong email
-            return res.json({err: 'email does not exist'});
-        }else{
-            bcrypt.compare(userObj.password, user.password, (err, result)=>{
-                if(err){
+            return res.json({ err: 'email does not exist' });
+        } else {
+            bcrypt.compare(userObj.password, user.password, (err, result) => {
+                if (err) {
                     console.log(err);
-                    return res.json({err: 'failed to authenticate user'});
+                    return res.json({ err: 'failed to authenticate user' });
                 }
 
-                if(result == true){
+                if (result == true) {
                     // Generate JWT
-                    const jwtoken = token.generateToken(user); 
+                    const jwtoken = token.generateToken(user);
                     return res.json({
                         token: jwtoken,
                         email: user.email
                     });
-                }else if(result == false){
+                } else if (result == false) {
                     // Passwords do not match
-                    return res.json({msg:'wrong password or email'});
+                    return res.json({ err: 'Wrong password or email.' });
                 }
             })
         }
     });
 };
 
-function signup(req, res){
+function signup(req, res) {
 
     let userObj = {
         firstName: req.body.firstName,
@@ -56,14 +56,17 @@ function signup(req, res){
 
     let user = new User(userObj);
 
-    user.save((err, user)=>{
-        if(err) {
+    user.save((err, user) => {
+        if (err && err.code == 11000) {
+            return res.json({ err: 'User already exists.'});
+        }
+        if (err) {
             console.log(err);
-            return res.json({err: 'failed to create user'});
+            return res.json({ err: 'Failed to create user.' });
         }
 
-        console.log('user was created');
-        return res.json({msg: 'user was created'});
+        let jwtoken = token.generateToken(user);
+        return res.json({ token: jwtoken, msg: 'User was created.' });
     })
 }
 
