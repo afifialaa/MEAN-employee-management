@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h4>Title</h4>
+                    <input type="text" class="form-control" [formControl]="title">
+                </div>
+
+                <br>
+
+                <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
+
+                <br>
+
+                <button type="button" class="btn btn-success" (click)="post()">Post!</button>
+            </div>
+            <div class="col-md-2"></div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-const Knowledge = require('../../models/knowledge/knowledge.model');
+const Knowledge = require('../models/knowledge.model');
 
 function createKnowledge(req, res) {
 	let knowledgeObj = {
@@ -8,15 +8,16 @@ function createKnowledge(req, res) {
 		content: req.body.content
 	}
 
+	console.log(knowledgeObj);
 	let knowledge = new Knowledge(knowledgeObj);
+
 	knowledge.save(function (err, knowledge) {
-		let msg = "";
 		if (err) {
 			console.log(err);
-			msg = 'failed to save id db';
+			return res.json({err: 'Failed to save post.'});
 		}
-		msg = 'knowledge was created';
-		res.json({msg});
+
+		return res.json({msg: 'Post was created.'});
 	})
 }
 

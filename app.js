@@ -10,7 +10,7 @@ const cors = require('cors');
 
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
-const knowledgeRoute = require('./routes/knowledge/knowledge.route');
+const knowledgeRoute = require('./routes/knowledge.route');
 
 const jwtAuth = require('./authentication/token.auth');
 

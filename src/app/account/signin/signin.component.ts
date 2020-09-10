@@ -56,6 +56,7 @@ export class SigninComponent implements OnInit {
 			} else if (data['token']) {
 				// Login successfully
 				localStorage.setItem('token', data['token']);
+				localStorage.setItem('email', data['email']);
 				// Redirect 
 				this.router.navigate(['/admin']);
 			}

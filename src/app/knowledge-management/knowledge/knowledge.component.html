@@ -1,11 +1,9 @@
-<mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Create">
-        <app-create-knowledge></app-create-knowledge>
-    </mat-tab>
+<div class="container-fluid nav-container">
+    <div class="container">
+        <ul class="nav">
+            <li><a routerLink="/admin/knowledge/create">Create</a></li>
+        </ul>
+    </div>
+</div>
 
-    <mat-tab label="Seek">
-        <app-seek-knowledge></app-seek-knowledge>
-    </mat-tab>
-
-
-</mat-tab-group>
+<router-outlet></router-outlet>

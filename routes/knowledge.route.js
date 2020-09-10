@@ -1,4 +1,4 @@
-const knowledgeController = require('../../controllers/knowledge/knowledge.controller');
+const knowledgeController = require('../controllers/knowledge.controller');
 
 const express = require('express');
 const router = express.Router();
