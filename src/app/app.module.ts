@@ -28,6 +28,7 @@ import { KnowledgeComponent } from './knowledge-management/knowledge/knowledge.c
 import { AccountModule } from './account/account.module';
 import { KnowledgeManagementModule } from './knowledge-management/knowledge-management.module';
 import { CreateKnowledgeComponent } from './knowledge-management/create-knowledge/create-knowledge.component';
+import { FetchKnowledgeComponent } from './knowledge-management/fetch-knowledge/fetch-knowledge.component';
 
 const appRoutes: Routes = [
 	{ path: 'signin', component: SigninComponent },
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
 			{
 				path: 'knowledge', component: KnowledgeComponent, children: [
 					{ path: 'create', component: CreateKnowledgeComponent},
+					{ path: 'fetch', component: FetchKnowledgeComponent},
 				],
 
 			},

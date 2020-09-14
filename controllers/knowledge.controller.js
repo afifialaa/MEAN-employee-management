@@ -1,8 +1,11 @@
 const Knowledge = require('../models/knowledge.model');
 
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+
 function createKnowledge(req, res) {
 	let knowledgeObj = {
-		// Fetch email from token i.e (knowledge creator creator)
+		// Fetch email from token i.e (knowledge creator)
 		email: req.body.email,
 		title: req.body.title,
 		content: req.body.content
@@ -11,12 +14,11 @@ function createKnowledge(req, res) {
 	console.log(knowledgeObj);
 	let knowledge = new Knowledge(knowledgeObj);
 
-	knowledge.save(function (err, knowledge) {
+	knowledge.save((err, knowledge) => {
 		if (err) {
 			console.log(err);
 			return res.json({err: 'Failed to save post.'});
 		}
-
 		return res.json({msg: 'Post was created.'});
 	})
 }
@@ -24,33 +26,19 @@ function createKnowledge(req, res) {
 function seekKnowledge(req, res){
 }
 
-function displayKnowledge(req, res){
+function fetchKnowledge(req, res){
 	Knowledge.find({}, function(err, result){
 		if(err){
 			console.log(err);
+			return res.json({err: 'Failed to fetch knowledge'});
 		}else{
-			res.json(result);
+			result[1].content = entities.decode(result[1].content);
+			return res.json({knowledge:result});
 		}
 	})
-
-}
-
-// Validate knowledge input
-function validateKnowledge(knowledgeObj) {
-
-	if (knowledge.title == "") {
-		return false;
-	}
-	if (knowledgeObj.tags.length == 0) {
-		return false;
-	}
-
-	if (knowledgeObj.content == "") {
-		return false;
-	}
-	return true;
 }
 
 module.exports = {
-	createKnowledge
+	createKnowledge,
+	fetchKnowledge
 }

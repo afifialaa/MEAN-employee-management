@@ -9,9 +9,10 @@ import { KnowledgeComponent } from './knowledge/knowledge.component';
 import { MatInputModule, MatButtonModule, MatTabsModule, MatRadioModule, MatSelectModule} from '@angular/material';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { RouterModule, Routes } from '@angular/router';
+import { FetchKnowledgeComponent } from './fetch-knowledge/fetch-knowledge.component';
 
 @NgModule({
-	declarations: [CreateKnowledgeComponent, SeekKnowledgeComponent, KnowledgeComponent],
+	declarations: [CreateKnowledgeComponent, SeekKnowledgeComponent, KnowledgeComponent, FetchKnowledgeComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -28,7 +29,8 @@ import { RouterModule, Routes } from '@angular/router';
 	exports: [
 		KnowledgeComponent,
 		CreateKnowledgeComponent,
-		CreateKnowledgeComponent
+		CreateKnowledgeComponent,
+		FetchKnowledgeComponent
 	]
 })
 export class KnowledgeManagementModule { }

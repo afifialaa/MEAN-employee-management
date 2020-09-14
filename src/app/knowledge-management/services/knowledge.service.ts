@@ -12,5 +12,9 @@ export class KnowledgeService {
 		return this.http.post('http://localhost:8080/knowledge/createKnowledge', knowledge)
 	}
 
+	fetchKnowledge(){
+		return this.http.get('http://localhost:8080/knowledge/fetchKnowledge');
+	}
+
 
 }

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div *ngFor="let know of knowledge, let i = index">
+                <h2 class="title" (click)="toggleShow(i)"> {{ know.title }} </h2>
+                <div *ngIf="isShown" class="content" [innerHTML]="know.content">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5"></div>
+    </div>
+</div>

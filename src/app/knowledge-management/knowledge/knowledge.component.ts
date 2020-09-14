@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+import { KnowledgeService } from '../services/knowledge.service';
 
 
 @Component({
@@ -10,21 +9,9 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 })
 export class KnowledgeComponent implements OnInit {
 
-	data:string;
-	constructor() { }
-
-	public Editor = ClassicEditor;
+	constructor(private knowSrvc: KnowledgeService) { }
 
 	ngOnInit() {
 	}
-
-	public onChange( { editor }: ChangeEvent ) {
-       	this.data = editor.getData();
-	}
 	
-	post(){
-		console.log(this.data);
-		console.log(localStorage.getItem('email'));
-	}
-
 }
