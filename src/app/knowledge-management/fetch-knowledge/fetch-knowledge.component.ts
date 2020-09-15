@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { KnowledgeService } from '../services/knowledge.service';
+import { ElementRef } from '@angular/core';
 
 @Component({
 	selector: 'app-fetch-knowledge',
@@ -9,7 +10,7 @@ import { KnowledgeService } from '../services/knowledge.service';
 })
 export class FetchKnowledgeComponent implements OnInit {
 
-	constructor(private knowSrvc:KnowledgeService) { }
+	constructor(private knowSrvc: KnowledgeService, private elementRef: ElementRef) { }
 
 	knowledge: any[];
 
@@ -17,15 +18,21 @@ export class FetchKnowledgeComponent implements OnInit {
 		this.fetch();
 	}
 
-	fetch(){
+	fetch() {
 		this.knowSrvc.fetchKnowledge().subscribe(data => {
 			this.knowledge = data['knowledge'];
 		})
 	}
 
 	isShown:boolean = true;
-	toggleShow(){
-		this.isShown = !this.isShown;
+	toggleShow(el){
+		if(this.isShown){
+			el.nextElementSibling.style.display = 'none';
+			this.isShown = !this.isShown;
+		}else{
+			el.nextElementSibling.style.display = 'block';
+			this.isShown = !this.isShown;
+		}
 	}
 
 }

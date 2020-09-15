@@ -1,4 +1,22 @@
 .title{
     text-transform: capitalize;
     margin-top: 30px;
+    cursor: pointer;
+}
+
+.content{
+    display: none;
+}
+
+.show{
+    display: 'block';
+}
+
+.hide{
+    display: 'none';
+}
+
+.moreImg{
+    width: 20px;
+    float: left;
 }
