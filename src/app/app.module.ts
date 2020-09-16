@@ -23,12 +23,8 @@ import { EmployeeModule } from './employee-management/employee-management.module
 
 import { QuillModule } from 'ngx-quill';
 import { EmployeeComponent } from './employee-management/employee/employee.component';
-import { KnowledgeComponent } from './knowledge-management/knowledge/knowledge.component';
 
 import { AccountModule } from './account/account.module';
-import { KnowledgeManagementModule } from './knowledge-management/knowledge-management.module';
-import { CreateKnowledgeComponent } from './knowledge-management/create-knowledge/create-knowledge.component';
-import { FetchKnowledgeComponent } from './knowledge-management/fetch-knowledge/fetch-knowledge.component';
 
 const appRoutes: Routes = [
 	{ path: 'signin', component: SigninComponent },
@@ -39,14 +35,6 @@ const appRoutes: Routes = [
 					{ path: 'search', component: SearchEmployeeComponent },
 					{ path: 'create', component: CreateEmployeeComponent },
 					{ path: 'employee-details', component: EmployeeDetailsComponent },
-				],
-
-			},
-
-			{
-				path: 'knowledge', component: KnowledgeComponent, children: [
-					{ path: 'create', component: CreateKnowledgeComponent},
-					{ path: 'fetch', component: FetchKnowledgeComponent},
 				],
 
 			},
@@ -77,7 +65,6 @@ const appRoutes: Routes = [
 		MatSelectModule,
 		EmployeeModule,
 		QuillModule,
-		KnowledgeManagementModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

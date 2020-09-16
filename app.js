@@ -10,7 +10,6 @@ const cors = require('cors');
 
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
-const knowledgeRoute = require('./routes/knowledge.route');
 
 const jwtAuth = require('./authentication/token.auth');
 
@@ -20,6 +19,5 @@ app.use(bodyParser.json())
 
 app.use('/employee', jwtAuth.verifyToken, employeeRoute);
 app.use('/user', userRoute);
-app.use('/knowledge', knowledgeRoute);
 
 module.exports = app;
