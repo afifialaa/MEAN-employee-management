@@ -45,6 +45,9 @@ export class CreateEmployeeComponent implements OnInit {
 			country: new FormControl('', [
 				Validators.required
 			]),
+			address: new FormControl('', [
+				Validators.required
+			]),
 			gender: new FormControl('', [
 				Validators.required,
 				Validators.minLength(4)

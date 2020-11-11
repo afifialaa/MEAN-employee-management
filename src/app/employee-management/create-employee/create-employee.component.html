@@ -35,7 +35,10 @@
 									</mat-option>
 								</mat-select>
 							</mat-form-field>
-							<br>
+							<div class="form-group">
+								<label>Address:</label>
+								<input type="text" class="form-control" formControlName="address" required>
+							</div>
 							<mat-radio-group aria-placeholder="Gender" formControlName="gender" aria-label="Select gender">
 								<mat-radio-button value="male">Male</mat-radio-button>
 								<mat-radio-button value="female">Female</mat-radio-button>
@@ -92,6 +95,8 @@
 									Job title is required.
 								</div>
 							</div>
+
+							<br>
 
 							<!-- Submit button -->
 							<button class="btn btn-success" type="submit">Save</button>
