@@ -20,7 +20,6 @@ import { MatRadioModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { EmployeeModule } from './employee-management/employee-management.module';
 import { QuillModule } from 'ngx-quill';
-import {NgHttpLoaderModule} from 'ng-http-loader';
 
 // Components
 import { EmployeeComponent } from './employee-management/employee/employee.component';
@@ -68,7 +67,6 @@ const appRoutes: Routes = [
 		EmployeeModule,
 		QuillModule,
 		PartialsModule,
-		NgHttpLoaderModule.forRoot(),
 	],
 	providers: [],
 	bootstrap: [AppComponent]

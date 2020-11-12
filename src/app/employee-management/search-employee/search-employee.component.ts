@@ -12,8 +12,10 @@ import { Employee } from 'src/app/models/employee';
 })
 export class SearchEmployeeComponent implements OnInit {
 
-	errMsg:string;
+	errMsg: string;
 	singleEmployee: any;
+
+	looking: boolean = false;
 
 	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title'];
 	searchEmployeeForm: FormGroup;
@@ -37,6 +39,7 @@ export class SearchEmployeeComponent implements OnInit {
 	//search button handler
 	searchEmployee() {
 		console.log('button was pressed');
+		this.looking = true;
 
 		if (this.searchEmployeeForm.valid == true) {
 			//logging search option
@@ -46,20 +49,21 @@ export class SearchEmployeeComponent implements OnInit {
 			if (option == 'Email') {
 				let email = this.empEmail.value;
 				this.empService.searchByEmail(email).subscribe(result => {
-					  if (result["err"]){
-						    this.targetEmployee = null;
-						    this.errMsg = result["err"];
-						    return;
-					  }else{
-						    this.errMsg = "";
-							this.singleEmployee = result;
-						    //avatar-based gender
-						    /*if (this.targetEmployee.gender == 'female') {
-							    this.img = this.femaleAvatar;
-						  } else {
-							    this.img = this.maleAvatar;
-						  }*/
-					  }
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.errMsg = "";
+						this.looking = false;
+						this.singleEmployee = result;
+						//avatar-based gender
+						/*if (this.targetEmployee.gender == 'female') {
+							this.img = this.femaleAvatar;
+					  } else {
+							this.img = this.maleAvatar;
+					  }*/
+					}
 				});
 			} else if (option == 'id') {
 				let id = this.empEmail.value;
@@ -69,41 +73,41 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 					this.targetEmployee = result;
 				})
-			}else if(option == 'Gender'){
+			} else if (option == 'Gender') {
 				let gender = this.empEmail.value;
 				this.empService.searchByGender(gender).subscribe(result => {
-					if (result["mgs"]){
+					if (result["mgs"]) {
 						this.targetEmployee = null;
 						this.errMsg = result["msg"];
 						return;
-					}else{
-						console.log(result);
+					} else {
+						this.looking = false;
 						this.errMsg = null;
 						this.targetEmployee = result;
 					}
 				})
-			}else if(option == 'First Name'){
+			} else if (option == 'First Name') {
 				let firstName = this.empEmail.value;
 				this.empService.searchByFirstName(firstName).subscribe(result => {
-					if (result["mgs"]){
+					if (result["mgs"]) {
 						this.targetEmployee = null;
 						this.errMsg = result["msg"];
 						return;
-					}else{
-						console.log(result);
+					} else {
+						this.looking = false;
 						this.errMsg = null;
 						this.targetEmployee = result;
 					}
 				})
-			}else if(option == 'Last Name'){
+			} else if (option == 'Last Name') {
 				let lastName = this.empEmail.value;
 				this.empService.searchByLastName(lastName).subscribe(result => {
-					if (result["mgs"]){
+					if (result["mgs"]) {
 						this.targetEmployee = null;
 						this.errMsg = result["msg"];
 						return;
-					}else{
-						console.log(result);
+					} else {
+						this.looking = false;
 						this.errMsg = null;
 						this.targetEmployee = result;
 					}
@@ -115,7 +119,64 @@ export class SearchEmployeeComponent implements OnInit {
 		}
 	}
 
-	viewProfile(email:string) {
-		this.router.navigate(['/admin/employee/employee-details', {email: email}]);
+	viewProfile(email: string) {
+		this.router.navigate(['/admin/employee/employee-details', { email: email }]);
+	}
+
+	// Filter controls
+	showFirstName: boolean = true;
+	showLastName: boolean = true;
+	showEmail: boolean = true;
+	showCountry: boolean = false;
+	showCity: boolean = false;
+	showPhoneNumber: boolean = false;
+	showGender:boolean = false;
+	showJobTitle: boolean = false;
+	showUniversity:boolean = false;
+	showDepartment: boolean = false;
+	showSalary: boolean = false;
+
+	firstNameChkbx(event) {
+		this.showFirstName = event.currentTarget.checked;
+	}
+
+	lastNameChkbx(event) {
+		this.showLastName = event.currentTarget.checked;
+	}
+
+	emailChkbx(event) {
+		this.showEmail = event.currentTarget.checked;
+	}
+
+	countryChkbx(event) {
+		this.showCountry = event.currentTarget.checked;
+	}
+
+	cityChkbx(event) {
+		this.showCity = event.currentTarget.checked;
+	}
+
+	phoneNumberChkbx(event){
+		this.showPhoneNumber = event.currentTarget.checked;
+	}
+
+	genderChkbx(event) {
+		this.showGender = event.currentTarget.checked;
+	}
+
+	salaryChkbx(event) {
+		this.showSalary = event.currentTarget.checked;
+	}
+
+	showUniversityChkbx(event){
+		this.showUniversity = event.currentTarget.checked;
+	}
+
+	showDepartmentChkbx(event){
+		this.showDepartment = event.currentTarget.checked;
+	}
+
+	showSalaryChkbx(event){
+		this.showSalary = event.currentTarget.checked;
 	}
 }
