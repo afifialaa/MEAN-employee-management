@@ -16,6 +16,10 @@ const EmployeeSchema = new Schema({
         required: true,
         unique: true
     },
+    phone_number: {
+        type:String,
+        required: true
+    },
     gender: {
         type:String,
         required: true
@@ -24,14 +28,30 @@ const EmployeeSchema = new Schema({
         type:String,
         required: true
     },
+    department: {
+        type:String,
+        required: false
+    },
     country: {
         type: String,
         required: true
     },
-    phone_number: {
+    city: {
         type:String,
-        required: true
+        required:false
     },
+    street_address: {
+        type:String,
+        required: false
+    },
+    university: {
+        type:String,
+        required: false
+    },
+    salary: {
+        type: Number,
+        required: false
+    }
 });
 
 const Employee = mongoose.model('employees', EmployeeSchema);

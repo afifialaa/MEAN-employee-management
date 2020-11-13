@@ -92,7 +92,7 @@
 				<label class="form-check-label" for="universityChkbx">University</label>
 			</div>
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="checkbox" id="salaryChkbx" (change)="universityChkbx($event)" value="salary">
+				<input class="form-check-input" type="checkbox" id="salaryChkbx" (change)="salaryChkbx($event)" value="salary">
 				<label class="form-check-label" for="salaryChkbx">Salary</label>
 			</div>
 		</div>
@@ -107,6 +107,14 @@
 					<th *ngIf="showFirstName">First Name</th>
 					<th *ngIf="showLastName">Last Name </th>
 					<th *ngIf="showEmail">Email</th>
+					<th *ngIf="showGender">Gender</th>
+					<th *ngIf="showJobTitle">Job Title</th>
+					<th *ngIf="showDepartment">Department</th>
+					<th *ngIf="showCountry">Country</th>
+					<th *ngIf="showCity">City</th>
+					<th *ngIf="showAddress">Address</th>
+					<th *ngIf="showPhoneNumber">Phone #</th>
+					<th *ngIf="showSalary">Salary</th>
 					<th>View</th>
 				</tr>
 				<tr *ngIf="singleEmployee">
@@ -119,6 +127,14 @@
 					<td *ngIf="showFirstName">{{employee.first_name}}</td>
 					<td *ngIf="showLastName">{{employee.last_name}}</td>
 					<td *ngIf="showEmail">{{employee.email}}</td>
+					<td *ngIf="showGender">{{employee.gender}}</td>
+					<td *ngIf="showJobTitle">{{employee.job_title}}</td>
+					<td *ngIf="showDepartment">{{employee.department}}</td>
+					<td *ngIf="showCountry">{{employee.country}}</td>
+					<td *ngIf="showCity">{{employee.city}}</td>
+					<td *ngIf="showAddress">{{employee.street_address}}</td>
+					<td *ngIf="showPhoneNumber">{{employee.phone_number}}</td>
+					<td *ngIf="showSalary">{{employee.salary}}</td>
 					<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
 				</tr>
 			</table>

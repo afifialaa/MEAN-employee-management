@@ -17,7 +17,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	looking: boolean = false;
 
-	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title'];
+	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'University'];
 	searchEmployeeForm: FormGroup;
 	field = new FormControl('');
 	empEmail = new FormControl('', [Validators.required]);
@@ -36,7 +36,7 @@ export class SearchEmployeeComponent implements OnInit {
 	femaleAvatar = '../../assets/avatar/femaleEmp.png';
 	img: string;
 
-	//search button handler
+	// Search button handler
 	searchEmployee() {
 		console.log('button was pressed');
 		this.looking = true;
@@ -119,6 +119,7 @@ export class SearchEmployeeComponent implements OnInit {
 		}
 	}
 
+	// View profile button handler
 	viewProfile(email: string) {
 		this.router.navigate(['/admin/employee/employee-details', { email: email }]);
 	}
@@ -168,15 +169,15 @@ export class SearchEmployeeComponent implements OnInit {
 		this.showSalary = event.currentTarget.checked;
 	}
 
-	showUniversityChkbx(event){
+	universityChkbx(event){
 		this.showUniversity = event.currentTarget.checked;
 	}
 
-	showDepartmentChkbx(event){
+	departmentChkbx(event){
 		this.showDepartment = event.currentTarget.checked;
 	}
 
-	showSalaryChkbx(event){
-		this.showSalary = event.currentTarget.checked;
+	jobTitleChkbx(event){
+		this.showJobTitle = event.currentTarget.checked;
 	}
 }
