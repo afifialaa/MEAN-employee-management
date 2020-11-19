@@ -17,7 +17,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	looking: boolean = false;
 
-	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'University'];
+	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'Country', 'City', 'Street', 'University'];
 	searchEmployeeForm: FormGroup;
 	field = new FormControl('');
 	empEmail = new FormControl('', [Validators.required]);

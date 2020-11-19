@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const token = require('../authentication/token.auth');
 
+
 // Signin route
 function signin(req, res) {
     let userObj = {
@@ -45,11 +46,10 @@ function signin(req, res) {
     });
 };
 
+// Create user 
 function signup(req, res) {
 
     let userObj = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password
     };
@@ -65,9 +65,16 @@ function signup(req, res) {
             return res.json({ err: 'Failed to create user.' });
         }
 
-        let jwtoken = token.generateToken(user);
-        return res.json({ token: jwtoken, msg: 'User was created.' });
+        return res.json({ msg: 'User was created.' });
     })
+}
+
+function updateUserPassword(req, res){
+	return res.json({});
+}
+
+function deleteUser(req, res){
+	return res.json({});
 }
 
 module.exports = {

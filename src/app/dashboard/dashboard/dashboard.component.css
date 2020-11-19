@@ -1,0 +1,19 @@
+.content{
+    margin-top: 50px;
+}
+
+.flex-container{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flex-container > .card{
+    font-size: 20pt;
+    width: 300px;
+    height: fit-content;
+}
+

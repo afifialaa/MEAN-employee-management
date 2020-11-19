@@ -58,7 +58,7 @@ export class SigninComponent implements OnInit {
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
 				// Redirect 
-				this.router.navigate(['/admin']);
+				this.router.navigate(['/admin/dashboard']);
 			}
 		})
 

@@ -19,9 +19,13 @@ export class EmployeeDetailsComponent implements OnInit {
 	email = new FormControl();
 	phoneNumber = new FormControl();
 	country = new FormControl();
-	governorate = new FormControl();
+	city = new FormControl();
+	street = new FormControl();
 	gender = new FormControl();
 	jobTitle = new FormControl();
+	department = new FormControl();
+	salary = new FormControl();
+	university = new FormControl();
 
 	isShown: boolean = false;
 	oldData;
@@ -37,15 +41,20 @@ export class EmployeeDetailsComponent implements OnInit {
 			lastName: this.lastName,
 			email: this.email,
 			phoneNumber: this.phoneNumber,
-			country: this.country,
 			gender: this.gender,
-			jobTitle: this.jobTitle
+			country: this.country,
+			city: this.city,
+			street: this.street,
+			jobTitle: this.jobTitle,
+			department: this.department,
+			university: this.university,
+			salary: this.salary
 		})
 
-		//disable form controls
+		// Disable form controls
 		this.editEmployeeForm.disable();
 
-		//get email
+		// Get email
 		let email = this.route.snapshot.paramMap.get('email');
 		// Get employee 
 		this.empService.searchByEmail(email).subscribe((result) => {
@@ -58,8 +67,12 @@ export class EmployeeDetailsComponent implements OnInit {
 				this.employee.email,
 				this.employee.phone_number,
 				this.employee.country,
-				this.employee.gender,
-				this.employee.job_title
+				this.employee.city,
+				this.employee.street,
+				this.employee.jobTitle,
+				this.employee.department,
+				this.employee.university,
+				this.employee.salary
 			]
 
 			// Setting form value with employee data
@@ -68,16 +81,21 @@ export class EmployeeDetailsComponent implements OnInit {
 			this.email.setValue(this.employee.email);
 			this.phoneNumber.setValue(this.employee.phone_number);
 			this.country.setValue(this.employee.country);
+			this.city.setValue(this.employee.city);
+			this.street.setValue(this.employee.street_address);
 			this.gender.setValue(this.employee.gender);
 			this.jobTitle.setValue(this.employee.job_title);
+			this.department.setValue(this.employee.department);
+			this.university.setValue(this.employee.university);
+			this.salary.setValue(this.employee.salary);
 		}), error => {
-			//error
+			// Error
 			console.log('something went horribly wrong');
 			console.log(error);
 		}
 	}
 
-	//button handler
+	// Button handler
 	editEmployee() {
 		console.log(Object.keys(this.employee));
 		this.isShown = true;
@@ -90,19 +108,23 @@ export class EmployeeDetailsComponent implements OnInit {
 		this.isShown = false;
 		this.editEmployeeForm.disable()
 
-		//populate new data array
+		// populate new data array
 		this.newData = [
 			this.firstName.value,
 			this.lastName.value,
 			this.email.value,
 			this.phoneNumber.value,
 			this.country.value,
-			this.governorate.value,
+			this.city.value,
+			this.street.value,
 			this.gender.value,
-			this.jobTitle.value
+			this.jobTitle.value,
+			this.department.value,
+			this.university.value,
+			this.salary.value,
 		]
 
-		//compare arrays
+		// Compare arrays
 		var dataFields:number = this.oldData.length;
 		var unchangedFields:number = 0;
 		for(var i=0; i<this.oldData.length; i++){
@@ -112,14 +134,14 @@ export class EmployeeDetailsComponent implements OnInit {
 		}
 
 		if(unchangedFields == dataFields){
-			//nothing changed
+			// Nothing changed
 			console.log('nothing changed');
 		}else{
-			//there was a change
+			// There was a change
 			console.log('sending data to server');
 
-			//updating old employee
-			var targetEmp = {
+			// Updating old employee
+			let targetEmp = {
 				firstName: this.newData[0],
 				lastName: this.newData[1],
 				email: this.newData[2],
@@ -139,15 +161,14 @@ export class EmployeeDetailsComponent implements OnInit {
 		this.empService.updateEmployee(targetEmp);
 	}
 
-	//cancel button handler
+	// Cancel button handler
 	cancelEdit() {
 		this.editEmployeeForm.disable();
 		this.isShown = false;
 	}
 
 	deleteEmployee(){
-		console.log('button was pressed');
-		var employee = this.employee;
+		let employee = this.employee;
 		this.empService.deleteEmployee(employee);
 	}
 

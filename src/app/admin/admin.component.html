@@ -1,16 +1,15 @@
 <div class="container-fluid header">
     <div class="row">
-        <div class="col-md-2 logo">LOGO</div>
+        <div class="col-md-2 logo" (click)="goHome()">LOGO</div>
         <div class="col-md-6">
-            <span class="glyphicon glyphicon-user">{{user}}</span>
         </div>
         <div class="col-md-4 menu">
             <ul>
-                <li><a routerLink="employee/search">Employee</a></li>
-                <li><a routerLink="projects">Projects</a></li>
             </ul>
         </div>
     </div>
 </div>
+
+
 
 <router-outlet></router-outlet>

@@ -102,6 +102,7 @@
 		<!-- employee card -->
 		<div class="col-md-8">
 			<h4> {{errMsg}} </h4>
+			<h4 *ngIf="targetEmployee || singleEmployee"> Showing {{ targetEmployee.length }} results</h4>
 			<table *ngIf="targetEmployee || singleEmployee" id="employees">
 				<tr>
 					<th *ngIf="showFirstName">First Name</th>
@@ -114,6 +115,7 @@
 					<th *ngIf="showCity">City</th>
 					<th *ngIf="showAddress">Address</th>
 					<th *ngIf="showPhoneNumber">Phone #</th>
+					<th *ngIf="showUniversity">University</th>
 					<th *ngIf="showSalary">Salary</th>
 					<th>View</th>
 				</tr>
@@ -134,6 +136,7 @@
 					<td *ngIf="showCity">{{employee.city}}</td>
 					<td *ngIf="showAddress">{{employee.street_address}}</td>
 					<td *ngIf="showPhoneNumber">{{employee.phone_number}}</td>
+					<td *ngIf="showUniversity">{{employee.university}}</td>
 					<td *ngIf="showSalary">{{employee.salary}}</td>
 					<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
 				</tr>

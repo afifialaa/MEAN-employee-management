@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {PartialsModule} from '../partials/partials.module';
 
+import { RouterModule, Routes } from '@angular/router';
+
 @NgModule({
     declarations: [SigninComponent, SignupComponent],
     imports: [
@@ -13,6 +15,7 @@ import {PartialsModule} from '../partials/partials.module';
         FormsModule,
         ReactiveFormsModule,
         PartialsModule,
+        RouterModule
     ],
     exports: [
         SignupComponent,
