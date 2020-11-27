@@ -42,9 +42,11 @@ export class CreateEmployeeComponent implements OnInit {
 				Validators.required,
 				Validators.minLength(11)
 			]),
+			university: new FormControl(''),
 			country: new FormControl('', [
 				Validators.required
 			]),
+			city: new FormControl(''),
 			address: new FormControl('', [
 				Validators.required
 			]),
@@ -55,7 +57,8 @@ export class CreateEmployeeComponent implements OnInit {
 			jobTitle: new FormControl('', [
 				Validators.required,
 				Validators.minLength(3)
-			])
+			]),
+			department: new FormControl(''),
 		})
 	}
 
@@ -86,10 +89,14 @@ export class CreateEmployeeComponent implements OnInit {
 			firstName: this.createEmployeeForm.value.firstName,
 			lastName: this.createEmployeeForm.value.lastName,
 			email: this.createEmployeeForm.value.email,
-			phoneNumber: this.createEmployeeForm.value.phoneNumber,
-			country: this.createEmployeeForm.value.country,
 			gender: this.createEmployeeForm.value.gender,
-			jobTitle: this.createEmployeeForm.value.jobTitle
+			phoneNumber: this.createEmployeeForm.value.phoneNumber,
+			university: this.createEmployeeForm.value.university,
+			country: this.createEmployeeForm.value.country,
+			city: this.createEmployeeForm.value.city,
+			address: this.createEmployeeForm.value.address,
+			jobTitle: this.createEmployeeForm.value.jobTitle,
+			department: this.createEmployeeForm.value.department,
 		}
 
 		if (this.createEmployeeForm.valid == true) {

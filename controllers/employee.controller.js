@@ -32,9 +32,13 @@ function addEmp(req, res){
         last_name: req.body.lastName,
         email: req.body.email,
         phone_number: req.body.phoneNumber,
+        university: req.body.university,
         country: req.body.country,
+        city: req.body.city,
+        street_address: req.body.address,
         gender: req.body.gender,
-        job_title: req.body.jobTitle
+        job_title: req.body.jobTitle,
+        department: req.body.department
     }
     
     let employee = new Employee(employeeObj);
