@@ -64,7 +64,7 @@ export class EmployeeService {
 
 	searchByJobTitle(jobTitle: string) {
 		let params = new HttpParams().set('jobTitle', jobTitle);
-		return this.http.get('http://localhost:8080/employee/searchByJobTitel', { params: params });
+		return this.http.get('http://localhost:8080/employee/searchByJobTitle', { params: params });
 	}
 
 	searchByCountry(country: string) {

@@ -19,7 +19,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'Country', 'City', 'Street', 'University'];
 	searchEmployeeForm: FormGroup;
-	
+
 	field = new FormControl('');
 	fieldValue = new FormControl('', [Validators.required]);
 
@@ -103,6 +103,86 @@ export class SearchEmployeeComponent implements OnInit {
 				// Search by gender
 				let gender = this.fieldValue.value;
 				this.empService.searchByGender(gender).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'Job Title') {
+				// Search by gender
+				let jobTitle = this.fieldValue.value;
+				this.empService.searchByJobTitle(jobTitle).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'Country') {
+				// Search by gender
+				let country = this.fieldValue.value;
+				this.empService.searchByCountry(country).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'City') {
+				// Search by gender
+				let city = this.fieldValue.value;
+				this.empService.searchByCity(city).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'Department') {
+				// Search by gender
+				let department = this.fieldValue.value;
+				this.empService.searchByDepartment(department).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'University') {
+				// Search by gender
+				let university = this.fieldValue.value;
+				this.empService.searchByUniversity(university).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
