@@ -4,13 +4,18 @@ const router = express.Router();
 
 const empController = require('../controllers/employee.controller');
 
-router.get('/searchByEmail', empController.searchByEmail);
-router.get('/searchById', empController.searchById);
+
 router.post('/addEmp', empController.addEmp);
 router.post('/updateEmployee', empController.updateEmployee);
 router.post('/deleteEmployee', empController.deleteEmployee);
-router.get('/searchByGender', empController.searchByGender);
+
+
+router.get('/searchById', empController.searchById);
 router.get('/searchByFirstName', empController.searchByFirstName);
 router.get('/searchByLastName', empController.searchByLastName);
+router.get('/searchByEmail', empController.searchByEmail);
+router.get('/searchByGender', empController.searchByGender);
+router.get('/searchByJobTitle', empController.searchByJobTitle);
+
 
 module.exports = router;

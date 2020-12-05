@@ -19,15 +19,16 @@ export class SearchEmployeeComponent implements OnInit {
 
 	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'Country', 'City', 'Street', 'University'];
 	searchEmployeeForm: FormGroup;
+	
 	field = new FormControl('');
-	empEmail = new FormControl('', [Validators.required]);
+	fieldValue = new FormControl('', [Validators.required]);
 
 	constructor(private http: HttpClient, private empService: EmployeeService, private fb: FormBuilder, private router: Router) { }
 
 	ngOnInit() {
 		this.searchEmployeeForm = new FormGroup({
 			field: this.field,
-			empEmail: this.empEmail
+			fieldValue: this.fieldValue
 		})
 	}
 
@@ -38,25 +39,58 @@ export class SearchEmployeeComponent implements OnInit {
 
 	// Search button handler
 	searchEmployee() {
-		console.log('button was pressed');
 		this.looking = true;
 
 		if (this.searchEmployeeForm.valid == true) {
-			//logging search option
+			
 			let option = this.searchEmployeeForm.value.field;
 
-			//seach by email
-			if (option == 'Email') {
-				let email = this.empEmail.value;
+			if (option == 'First Name') {
+				// Search by first name
+				let firstName = this.fieldValue.value;
+				this.empService.searchByFirstName(firstName).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'Last Name') {
+				// Search by last name
+				let lastName = this.fieldValue.value;
+				this.empService.searchByLastName(lastName).subscribe(result => {
+					if (result["err"]) {
+						this.targetEmployee = null;
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
+						return;
+					} else {
+						this.looking = false;
+						this.errMsg = null;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
+					}
+				})
+			} else if (option == 'Email') {
+				// Search by email
+				let email = this.fieldValue.value;
 				this.empService.searchByEmail(email).subscribe(result => {
 					if (result["err"]) {
+						this.singleEmployee = null;
 						this.targetEmployee = null;
 						this.errMsg = result["err"];
 						return;
 					} else {
 						this.errMsg = "";
 						this.looking = false;
-						this.singleEmployee = result;
+						this.targetEmployee = null;
+						this.singleEmployee = result['emp'];
 						//avatar-based gender
 						/*if (this.targetEmployee.gender == 'female') {
 							this.img = this.femaleAvatar;
@@ -65,54 +99,23 @@ export class SearchEmployeeComponent implements OnInit {
 					  }*/
 					}
 				});
-			} else if (option == 'id') {
-				let id = this.empEmail.value;
-				this.empService.searchById(id).subscribe(result => {
-					if (!result) {
-						return;
-					}
-					this.targetEmployee = result;
-				})
 			} else if (option == 'Gender') {
-				let gender = this.empEmail.value;
+				// Search by gender
+				let gender = this.fieldValue.value;
 				this.empService.searchByGender(gender).subscribe(result => {
-					if (result["mgs"]) {
+					if (result["err"]) {
 						this.targetEmployee = null;
-						this.errMsg = result["msg"];
+						this.singleEmployee = null;
+						this.errMsg = result["err"];
 						return;
 					} else {
 						this.looking = false;
 						this.errMsg = null;
-						this.targetEmployee = result;
+						this.singleEmployee = null;
+						this.targetEmployee = result['emp'];
 					}
 				})
-			} else if (option == 'First Name') {
-				let firstName = this.empEmail.value;
-				this.empService.searchByFirstName(firstName).subscribe(result => {
-					if (result["mgs"]) {
-						this.targetEmployee = null;
-						this.errMsg = result["msg"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.targetEmployee = result;
-					}
-				})
-			} else if (option == 'Last Name') {
-				let lastName = this.empEmail.value;
-				this.empService.searchByLastName(lastName).subscribe(result => {
-					if (result["mgs"]) {
-						this.targetEmployee = null;
-						this.errMsg = result["msg"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.targetEmployee = result;
-					}
-				})
-			}
+			} 
 
 		} else {
 			return;

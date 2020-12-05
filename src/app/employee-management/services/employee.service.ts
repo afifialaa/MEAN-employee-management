@@ -17,43 +17,6 @@ export class EmployeeService {
 		})
 	}
 
-	searchByJobTitle(jobTitle: string) {
-		let params = new HttpParams().set('jobTitle', jobTitle);
-		return this.http.get('/employee/searchByJobTitel', { params: params });
-	}
-
-	searchByFirstName(firstName: string) {
-		let params = new HttpParams().set('firstName', firstName);
-		return this.http.get('/employee/searchByFirstName', { params: params })
-	}
-
-	searchByLastName(lastName: string) {
-		let params = new HttpParams().set('lastName', lastName);
-		return this.http.get('/employee/searchByLastName', { params: params })
-	}
-
-	searchByGender(gender: string) {
-		console.log('service gender: ' + gender);
-		let params = new HttpParams().set('gender', gender);
-		return this.http.get('/employee/searchByGender', { params: params })
-	}
-
-	searchById(id: string) {
-		let params = new HttpParams().set('id', id);
-		return this.http.get('/employee/searchById', { params: params });
-	}
-
-	searchByEmail(email: string) {
-		console.log('searching by email');
-		let params = new HttpParams().set('email', email);
-		return this.http.get('/employee/searchByEmail', { params: params });
-	}
-
-	generateId(): number {
-		let id = Math.floor(Date.now() / 100);
-		return id;
-	}
-
 	updateEmployee(employee) {
 		this.http.post('/employee/updateEmployee', employee).subscribe(res => {
 			console.log('employee info was updated');
@@ -69,5 +32,67 @@ export class EmployeeService {
 			console.log(err);
 		})
 	}
+
+	// ----------- Search services ------------
+
+	searchById(id: string) {
+		let params = new HttpParams().set('id', id);
+		return this.http.get('http://localhost:8080/employee/searchById', { params: params });
+	}
+
+	searchByFirstName(firstName: string) {
+		let params = new HttpParams().set('firstName', firstName);
+		return this.http.get('http://localhost:8080/employee/searchByFirstName', { params: params })
+	}
+
+	searchByLastName(lastName: string) {
+		let params = new HttpParams().set('lastName', lastName);
+		return this.http.get('http://localhost:8080/employee/searchByLastName', { params: params })
+	}
+
+	searchByEmail(email: string) {
+		console.log('searching by email');
+		let params = new HttpParams().set('email', email);
+		return this.http.get('http://localhost:8080/employee/searchByEmail', { params: params });
+	}
+
+	searchByGender(gender: string) {
+		console.log('service gender: ' + gender);
+		let params = new HttpParams().set('gender', gender);
+		return this.http.get('http://localhost:8080/employee/searchByGender', { params: params })
+	}
+
+	searchByJobTitle(jobTitle: string) {
+		let params = new HttpParams().set('jobTitle', jobTitle);
+		return this.http.get('http://localhost:8080/employee/searchByJobTitel', { params: params });
+	}
+
+	searchByCountry(country: string) {
+		let params = new HttpParams().set('country', country);
+		return this.http.get('http://localhost:8080/employee/searchByCountry', { params: params });
+	}
+
+	searchByCity(city: string) {
+		let params = new HttpParams().set('city', city);
+		return this.http.get('http://localhost:8080/employee/searchByCity', { params: params });
+	}
+
+	searchByDepartment(department: string) {
+		let params = new HttpParams().set('department', department);
+		return this.http.get('http://localhost:8080/employee/searchByDepartment', { params: params });
+	}
+
+	searchByUniversity(university: string) {
+		let params = new HttpParams().set('university', university);
+		return this.http.get('http://localhost:8080/employee/searchByUniversity', { params: params });
+	}
+
+
+	generateId(): number {
+		let id = Math.floor(Date.now() / 100);
+		return id;
+	}
+
+	
 
 }

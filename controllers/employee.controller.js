@@ -1,30 +1,5 @@
 const Employee = require('../models/employee.model');
 
-// Search by email.
-function searchByEmail(req, res){
-	  console.log('searching my email');
-	  Employee.findOne({email:req.query.email}, function(err, employee){
-		    if(err) {
-				console.log(err);
-				return res.json({err: "database is currently offline"});
-		    }
-		    if (employee == null){
-				console.log('not employee found with this email');
-				return res.json({msg: "no employee found with this email"});
-		    }else{
-				return res.json(employee);
-		    }
-	  })
-}
-
-// Search by id.
-function searchById(req, res){
-    Employee.findOne({empId:req.query.empId}, function(err, emp){
-        if(err) console.log(err);
-        res.json(emp);
-    })
-}
-
 // Add employee.
 function addEmp(req, res){
     let employeeObj = {
@@ -52,7 +27,7 @@ function addEmp(req, res){
     });
 }
 
-//update employee
+// Update employee
 function updateEmployee(req, res){
 
     let employeeObj = {
@@ -71,42 +46,6 @@ function updateEmployee(req, res){
     })
 }
 
-// Searching by gender
-function searchByGender(req, res){
-    let gender = req.query.gender;
-    Employee.find({gender:gender}, (err, emp)=>{
-        if(err) {
-            console.log(err);
-            return res.json({err :'failed to search for employee'});
-        }
-        return res.json(emp);
-    })
-}
-
-// Searching by firstName
-function searchByFirstName(req, res){
-    let firstName = req.query.firstName;
-    Employee.find({first_name:firstName}, (err, emp)=>{
-        if(err) {
-            console.log(err);
-            return res.json({err:'failed to search for employee'});
-        }
-        return res.json(emp);
-    })
-}
-
-// Searching by firstName
-function searchByLastName(req, res){
-    let lastName = req.query.lastName;
-    Employee.find({last_name:lastName}, (err, emp)=>{
-        if(err) {
-            console.log(err);
-            return res.json({err: 'failed to search for employee'});
-        }
-        return res.json(emp);
-    })
-}
-
 // Delete employee
 function deleteEmployee(req, res){
     Employee.findOneAndDelete({email: req.body.email}, (err)=>{
@@ -119,27 +58,149 @@ function deleteEmployee(req, res){
     })
 }
 
-function searchByJobTitle(req, res){
-    let jobTitle = req.query.jobTitle;
 
-    Employee.find({job_title:jobTitle}, (err, emp)=>{
+
+// Search by id.
+function searchById(req, res){
+    Employee.findOne({empId:req.query.empId}, (err, emp)=>{
+        if(err) {
+            console.log(err);
+            return res.json({err: 'Failed to search for employee.'})
+        }else{
+            return res.json({emp});
+        }
+    })
+}
+// Searching by firstName
+function searchByFirstName(req, res){
+    let firstName = req.query.firstName;
+    Employee.find({first_name:firstName}, (err, emp)=>{
+        if(err) {
+            console.log(err);
+            return res.json({err:'Failed to search for employee.'});
+        }
+        return res.json({emp});
+    })
+}
+
+// Searching by firstName
+function searchByLastName(req, res){
+    let lastName = req.query.lastName;
+    Employee.find({last_name:lastName}, (err, emp)=>{
+        if(err) {
+            console.log(err);
+            return res.json({err: 'Failed to search for employee.'});
+        }
+        return res.json({emp});
+    })
+}
+
+// Search by email.
+function searchByEmail(req, res){
+      console.log('searching my email');
+      Employee.findOne({email:req.query.email}, (err, emp)=>{
+            if(err) {
+                console.log(err);
+                return res.json({err: "Database is currently offline."});
+            }
+            if (emp == null){
+                console.log('no employee found with this email');
+                return res.json({err: "No employee found with this email."});
+            }else{
+                return res.json({emp});
+            }
+      })
+}
+
+// Searching by gender
+function searchByGender(req, res){
+    Employee.find({gender:req.query.gender}, (err, emp)=>{
+        if(err) {
+            console.log(err);
+            return res.json({err :'Failed to search for employee.'});
+        }
+        return res.json({emp});
+    })
+}
+
+
+// Search by job title
+function searchByJobTitle(req, res){
+    Employee.find({job_title:req.query.jobTitle}, (err, emp)=>{
         if (err){
             console.log(err);
-            return res.json({err :'failed to search for empliyee'});
+            return res.json({err :'Failed to search for empliyee.'});
         }else{
-            return res.json(emp);
+            return res.json({emp});
+        }
+    })
+}
+
+function searchByCountry(req, res){
+    Employee.find({country:req.query.country}, (err, emp)=>{
+        if (err){
+            console.log(err);
+            return res.json({err :'Failed to search for empliyee.'});
+        }else{
+            return res.json({emp});
+        }
+    })
+}
+
+
+// Search by city
+function searchByCity(req, res){
+    Employee.find({city:req.query.city}, (err, emp)=>{
+        if (err){
+            console.log(err);
+            return res.json({err :'Failed to search for employee.'});
+        }else{
+            return res.json({emp});
+        }
+    })
+}
+
+
+// Search by department
+function searchByDepartment(req, res){
+    Employee.find({department:req.query.department}, (err, emp)=>{
+        if (err){
+            console.log(err);
+            return res.json({err :'Failed to search for employee.'});
+        }else{
+            return res.json({emp});
+        }
+    })
+}
+
+
+// Search by university
+function searchByUniversity(req, res){
+    Employee.find({university:req.query.university}, (err, emp)=>{
+        if (err){
+            console.log(err);
+            return res.json({err :'Failed to search for employee.'});
+        }else{
+            return res.json({emp});
         }
     })
 }
 
 module.exports = {
-    searchByEmail,
-    searchById,
+    
     addEmp,
     deleteEmployee,
     updateEmployee,
-    searchByGender,
+
+    searchById,
     searchByFirstName,
-    searchByLastName
+    searchByLastName,
+    searchByEmail,
+    searchByGender,
+    searchByJobTitle,
+    searchByCountry,
+    searchByCity,
+    searchByDepartment,
+    searchByUniversity
 };
 

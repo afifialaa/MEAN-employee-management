@@ -12,14 +12,14 @@
 				</mat-form-field>
 				<br>
 				<mat-form-field>
-					<input matInput type="text" [formControl]="empEmail" required>
+					<input matInput type="text" [formControl]="fieldValue" required>
 				</mat-form-field>
 
-				<div *ngIf="empEmail.invalid && (empEmail.dirty || empEmail.touched)" class="alert alert-danger">
-					<div *ngIf="empEmail.errors.email">
+				<div *ngIf="fieldValue.invalid && (fieldValue.dirty || fieldValue.touched)" class="alert alert-danger">
+					<div *ngIf="fieldValue.errors.email">
 						not an email!
 					</div>
-					<div *ngIf="empEmail.errors.required">
+					<div *ngIf="fieldValue.errors.required">
 						required!
 					</div>
 				</div>
