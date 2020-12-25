@@ -6,8 +6,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AccountService {
 
-	private signupUrl: string = '/user/signup';
-	private loginUrl: string = '/user/signin';
+	private signupUrl: string = 'http://localhost:8080/user/signup';
+	private loginUrl: string = 'http://localhost:8080/user/login';
 
 	constructor(private httpClient:HttpClient) { }
 

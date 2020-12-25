@@ -23,7 +23,7 @@ function addEmp(req, res){
             console.log(err);
             return res.json({err: 'failed to add employee'});
         }
-        return res.json({msg: 'empployee was added successfully'});
+        return res.json({msg: 'employee was added successfully'});
     });
 }
 
@@ -42,7 +42,7 @@ function updateEmployee(req, res){
             console.log(err);
             return res.json({err: 'failed to update employee'});
         }
-        res.json({'msg':'data was updated'});
+        return res.json({'msg':'data was updated'});
     })
 }
 
@@ -52,10 +52,9 @@ function deleteEmployee(req, res){
         if(err){
             console.log(err);
             return res.json({err :'failed to delete employee'});
-        }else{
-            return res.json({msg: 'employee was deleted'});
         }
-    })
+        return res.json({msg: 'employee was deleted'});
+    });
 }
 
 
@@ -66,33 +65,30 @@ function searchById(req, res){
         if(err) {
             console.log(err);
             return res.json({err: 'Failed to search for employee.'})
-        }else{
-            return res.json({emp});
         }
+        return res.json({emp});
     })
 }
 // Searching by firstName
 function searchByFirstName(req, res){
-    let firstName = req.query.firstName;
-    Employee.find({first_name:firstName}, (err, emp)=>{
+    Employee.find({first_name:req.query.firstName}, (err, emp)=>{
         if(err) {
             console.log(err);
             return res.json({err:'Failed to search for employee.'});
         }
         return res.json({emp});
-    })
+    });
 }
 
 // Searching by firstName
 function searchByLastName(req, res){
-    let lastName = req.query.lastName;
-    Employee.find({last_name:lastName}, (err, emp)=>{
+    Employee.find({last_name:req.query.lastName}, (err, emp)=>{
         if(err) {
             console.log(err);
             return res.json({err: 'Failed to search for employee.'});
         }
         return res.json({emp});
-    })
+    });
 }
 
 // Search by email.
@@ -106,10 +102,9 @@ function searchByEmail(req, res){
             if (emp == null){
                 console.log('no employee found with this email');
                 return res.json({err: "No employee found with this email."});
-            }else{
-                return res.json({emp});
             }
-      })
+            return res.json({emp});
+      });
 }
 
 // Searching by gender
@@ -120,7 +115,7 @@ function searchByGender(req, res){
             return res.json({err :'Failed to search for employee.'});
         }
         return res.json({emp});
-    })
+    });
 }
 
 
@@ -130,10 +125,9 @@ function searchByJobTitle(req, res){
         if (err){
             console.log(err);
             return res.json({err :'Failed to search for empliyee.'});
-        }else{
-            return res.json({emp});
         }
-    })
+        return res.json({emp});
+    });
 }
 
 function searchByCountry(req, res){
@@ -141,10 +135,9 @@ function searchByCountry(req, res){
         if (err){
             console.log(err);
             return res.json({err :'Failed to search for empliyee.'});
-        }else{
-            return res.json({emp});
         }
-    })
+        return res.json({emp});
+    });
 }
 
 
@@ -154,10 +147,9 @@ function searchByCity(req, res){
         if (err){
             console.log(err);
             return res.json({err :'Failed to search for employee.'});
-        }else{
-            return res.json({emp});
         }
-    })
+        return res.json({emp});
+    });
 }
 
 
@@ -167,10 +159,9 @@ function searchByDepartment(req, res){
         if (err){
             console.log(err);
             return res.json({err :'Failed to search for employee.'});
-        }else{
-            return res.json({emp});
         }
-    })
+        return res.json({emp});
+    });
 }
 
 
@@ -180,10 +171,9 @@ function searchByUniversity(req, res){
         if (err){
             console.log(err);
             return res.json({err :'Failed to search for employee.'});
-        }else{
-            return res.json({emp});
         }
-    })
+        return res.json({emp});
+    });
 }
 
 module.exports = {

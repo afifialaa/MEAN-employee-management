@@ -1,30 +1,25 @@
 const mongoose = require('mongoose');
 
 const bc = require('bcrypt');
-var saltRounds = 10;
+let saltRounds = 10;
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        require: true
-    },
     email: {
         type: String,
-        required: true,
-        unique: true
+        required: [true, "Email can't be blank"],
+        unique: true,
+        index: true,
+        lowercase: true
     },
     password: {
         type: String,
-        required: true
+        required: [true, "Password can't be blank"],
     }
-});
+}, {timestamps:true});
 
+// Hash passwords before save event
 UserSchema.pre('save', function (next) {
     let user = this;
 

@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Employee } from 'src/app/models/employee';
+import { Iemployee } from '../../models/iemployee';
 
 @Component({
 	selector: 'app-search-employee',

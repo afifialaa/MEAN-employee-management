@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DashboardServicesService} from '../services/dashboard-services.service';
+import {DashboardServices} from '../services/dashboard.service';
 import { HostListener  } from "@angular/core";
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EmployeeCardComponent implements OnInit {
 
-	constructor(private dashServ:DashboardServicesService, private router:Router) { }
+	constructor(private dashServ:DashboardServices, private router:Router) { }
 
 	empNum:number;
 

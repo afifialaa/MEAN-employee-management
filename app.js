@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const dbConfig = require('./config/dbConfig');
+require('./config/db.config');
 
 const bodyParser = require('body-parser');
 const fs = require('fs');

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account.service';
 
+import {Iuser} from '../../models/iuser';
+
 @Component({
 	selector: 'app-signin',
 	templateUrl: './signin.component.html',
@@ -11,7 +13,7 @@ import { AccountService } from '../services/account.service';
 export class SigninComponent implements OnInit {
 
 	signinForm: FormGroup;
-		currentUser: boolean;
+	currentUser: boolean;
 	message: string = '';
 
 
@@ -32,27 +34,27 @@ export class SigninComponent implements OnInit {
 	}
 
 	// Getters
-	get email(){
+	get email() {
 		return this.signinForm.get('email');
 	}
 
-	get password(){
+	get password() {
 		return this.signinForm.get('password');
 	}
 
 	// Login button handler
 	login() {
-		let user = {
+		let user:Iuser = {
 			email: this.signinForm.value.email,
 			password: this.signinForm.value.password
 		}
 
 		// Logging user in
 		this.accountSrvc.loginUser(user).subscribe((data) => {
-			if (data['msg']) {
+			if (data['err']) {
 				// Failed to login
 				this.signinForm.reset();
-				this.message = data['msg'];
+				this.message = data['err'];
 			} else if (data['token']) {
 				// Login successfully
 				localStorage.setItem('token', data['token']);

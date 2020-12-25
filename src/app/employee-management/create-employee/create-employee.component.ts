@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../models/employee';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../../shared/validator-email';
 import { CountryService } from '../../services/country.service';
+
+import {Iemployee} from '../../models/iemployee';
 
 
 @Component({
@@ -85,7 +86,7 @@ export class CreateEmployeeComponent implements OnInit {
 	// Form button handler
 	createEmployee(): void {
 
-		let employee: Employee = {
+		let employee: Iemployee = {
 			firstName: this.createEmployeeForm.value.firstName,
 			lastName: this.createEmployeeForm.value.lastName,
 			email: this.createEmployeeForm.value.email,
