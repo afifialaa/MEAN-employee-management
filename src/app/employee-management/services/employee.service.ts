@@ -1,36 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Iemployee } from '../../models/iemployee';
+import {environment} from '../../../environments/environment.dev';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class EmployeeService {
 
-	private createEmpURL:string = "http://localhost:8080/employee/addEmp";
-	private updateEmpURL:string = "http://localhost:8080/employee/updateEmployee";
-	private deleteEmpURL:string = "http://localhost:8080/employee/deleteEmployee";
-
-
-	private searchByFirstNameURL:string = "http://localhost:8080/employee/searchByFirstName";
-	private searchByLastNameURL:string = "http://localhost:8080/employee/searchByLastName";
-	private searchByGenderURL:string = "http://localhost:8080/employee/searchByGender";
-	private searchByEmailURL:string = "http://localhost:8080/employee/searchByEmail";
-	private searchByJobTitleURL:string = "http://localhost:8080/employee/searchByJobTitle";
-	private searchByDepartmentURL:string = "http://localhost:8080/employee/searchByDepartmentURL";
-	private searchByCountryURL:string = "http://localhost:8080/employee/searchByCountry";
-	private searchByCityURL:string = "http://localhost:8080/employee/searchByCity";
-	private searchByUniversityURL:string = "http://localhost:8080/employee/searchByUniversity";
-
 	constructor(private http: HttpClient) { }
 
 	addEmployee(employee: Iemployee) {
 		console.log(employee.country);
-		return this.http.post(this.createEmpURL, employee);
+		return this.http.post(environment.createEmpURL, employee);
 	}
 
 	updateEmployee(employee:Iemployee) {
-		this.http.post(this.updateEmpURL, employee).subscribe(res => {
+		this.http.post(environment.updateEmpURL, employee).subscribe(res => {
 			console.log('employee info was updated');
 		}, err => {
 			console.log(err);
@@ -38,7 +24,7 @@ export class EmployeeService {
 	}
 
 	deleteEmployee(employee:Iemployee) {
-		this.http.post(this.deleteEmpURL, employee).subscribe(res => {
+		this.http.post(environment.deleteEmpURL, employee).subscribe(res => {
 			console.log('employee was deleted');
 		}, err => {
 			console.log(err);
@@ -54,49 +40,49 @@ export class EmployeeService {
 
 	searchByFirstName(firstName: string) {
 		let params = new HttpParams().set('firstName', firstName);
-		return this.http.get(this.searchByFirstNameURL, { params: params })
+		return this.http.get(environment.searchByFirstNameURL, { params: params })
 	}
 
 	searchByLastName(lastName: string) {
 		let params = new HttpParams().set('lastName', lastName);
-		return this.http.get(this.searchByLastNameURL, { params: params })
+		return this.http.get(environment.searchByLastNameURL, { params: params })
 	}
 
 	searchByEmail(email: string) {
 		console.log('searching by email');
 		let params = new HttpParams().set('email', email);
-		return this.http.get(this.searchByEmailURL, { params: params });
+		return this.http.get(environment.searchByEmailURL, { params: params });
 	}
 
 	searchByGender(gender: string) {
 		console.log('service gender: ' + gender);
 		let params = new HttpParams().set('gender', gender);
-		return this.http.get(this.searchByGenderURL, { params: params })
+		return this.http.get(environment.searchByGenderURL, { params: params })
 	}
 
 	searchByJobTitle(jobTitle: string) {
 		let params = new HttpParams().set('jobTitle', jobTitle);
-		return this.http.get(this.searchByJobTitleURL, { params: params });
+		return this.http.get(environment.searchByJobTitleURL, { params: params });
 	}
 
 	searchByCountry(country: string) {
 		let params = new HttpParams().set('country', country);
-		return this.http.get(this.searchByCountryURL, { params: params });
+		return this.http.get(environment.searchByCountryURL, { params: params });
 	}
 
 	searchByCity(city: string) {
 		let params = new HttpParams().set('city', city);
-		return this.http.get(this.searchByCityURL, { params: params });
+		return this.http.get(environment.searchByCityURL, { params: params });
 	}
 
 	searchByDepartment(department: string) {
 		let params = new HttpParams().set('department', department);
-		return this.http.get(this.searchByDepartmentURL, { params: params });
+		return this.http.get(environment.searchByDepartmentURL, { params: params });
 	}
 
 	searchByUniversity(university: string) {
 		let params = new HttpParams().set('university', university);
-		return this.http.get(this.searchByUniversityURL, { params: params });
+		return this.http.get(environment.searchByUniversityURL, { params: params });
 	}
 
 

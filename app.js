@@ -18,6 +18,10 @@ const jwtAuth = require('./authentication/token.auth');
 // Serve static files....
 app.use(express.static(__dirname + '/dist/emp-crud'));
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())

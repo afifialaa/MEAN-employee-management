@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment.dev';
 
 @Injectable({
 	providedIn: 'root'
@@ -8,19 +9,15 @@ export class DashboardServices{
 
 	constructor(private httpClient:HttpClient) { }
 
-	private getEmployeesNumUrl: string = 'http://localhost:8080/dashboard/getEmployeesNum';
-	private getUsersNumUrl: string = 'http://localhost:8080/dashboard/getUsersNum';
-	private getDepartmentsNumUrl: string = 'http://localhost:8080/dashboard/getDepartmentsNum';
-
 	getEmployeesNum(){
-		return this.httpClient.get(this.getEmployeesNumUrl);
+		return this.httpClient.get(environment.getEmployeesNumUrl);
 	}
 	
 	getUsersNum(){
-		return this.httpClient.get(this.getUsersNumUrl);
+		return this.httpClient.get(environment.getUsersNumUrl);
 	}
 
 	getDepartmentsNum(){
-		return this.httpClient.get(this.getDepartmentsNumUrl);
+		return this.httpClient.get(environment.getDepartmentsNumUrl);
 	}
 }
