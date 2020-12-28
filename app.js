@@ -7,12 +7,16 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 
 const cors = require('cors');
+const path = require('path');
 
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
 const dashboardRoute = require('./routes/dashboard.route');
 
 const jwtAuth = require('./authentication/token.auth');
+
+// Serve static files....
+app.use(express.static(__dirname + '/dist/emp-crud'));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
