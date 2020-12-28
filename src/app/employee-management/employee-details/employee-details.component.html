@@ -2,78 +2,71 @@
     <div class="row">
         <div class="col-md-2-"></div>
         <div class="col-md-8">
-            <div class="col-md-6">
-                <form [formGroup]="editEmployeeForm">
-                    <table class="table table-stripped">
-                        <tbody>
-                            <tr>
-                                <th>First Name</th>
-                                <th><input type="text" name="firstName" [formControl]="firstName" id="firstName"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Last Name</th>
-                                <th> <input type="text" name="lastName" id="lastName" [formControl]="lastName"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <th> <input type="email" name="email" id="email" [formControl]="email"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Phone number</th>
-                                <th> <input type="text" name="jobTitle" [formControl]="phoneNumber"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Country</th>
-                                <th> <input type="text" name="country"  [formControl]="country"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>City</th>
-                                <th> <input type="text" name="city"  [formControl]="city"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Street</th>
-                                <th> <input type="text" name="street"  [formControl]="street"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Job Title</th>
-                                <th> <input type="text"  name="jobTitle" [formControl]="jobTitle"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Department</th>
-                                <th> <input type="text"  name="department" [formControl]="department"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Gender</th>
-                                <th> <input type="text" name="gender" [formControl]="gender"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>University</th>
-                                <th> <input type="text"  name="university" [formControl]="university"
-                                        class="form-control"> </th>
-                            </tr>
-                            <tr>
-                                <th>Salary</th>
-                                <th> <input type="text"  name="jobTitle" [formControl]="salary"
-                                        class="form-control"> </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button type="button" (click)="editEmployee()" class="btn btn-success"> Edit </button>
-                    <button type="button" (click)="deleteEmployee()" class="btn btn-danger">Delete</button>
-                    <button type="button" *ngIf="isShown" (click)="saveBtn()" class="btn btn-success"> Save </button>
-                    <button type="button" *ngIf="isShown" (click)="cancelEdit()" class="btn btn-success"> Canel</button>
-                </form>
-            </div>
+            <form [formGroup]="editEmployeeForm">
+                <table class="table table-stripped">
+                    <tbody>
+                        <tr>
+                            <th>First Name</th>
+                            <th><input type="text" name="firstName" formControlName="firstName" id="firstName"
+                                    class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <th> <input type="text" name="lastName" id="lastName" formControlName="lastName"
+                                    class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <th> <input type="email" name="email" id="email" formControlName="email"
+                                    class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>Phone number</th>
+                            <th> <input type="text" name="jobTitle" formControlName="phoneNumber" class="form-control">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <th> <input type="text" name="country" formControlName="country" class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>City</th>
+                            <th> <input type="text" name="city" formControlName="city" class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>Street</th>
+                            <th> <input type="text" name="street" formControlName="street" class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>Job Title</th>
+                            <th> <input type="text" name="jobTitle" formControlName="jobTitle" class="form-control">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Department</th>
+                            <th> <input type="text" name="department" formControlName="department" class="form-control">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <th> <input type="text" name="gender" formControlName="gender" class="form-control"> </th>
+                        </tr>
+                        <tr>
+                            <th>University</th>
+                            <th> <input type="text" name="university" formControlName="university" class="form-control">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Salary</th>
+                            <th> <input type="text" name="jobTitle" formControlName="salary" class="form-control"> </th>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" (click)="editEmployee()" class="btn btn-success"> Edit </button>
+                <button type="button" (click)="deleteEmployee()" class="btn btn-danger">Delete</button>
+                <button type="button" *ngIf="isShown" (click)="saveBtn()" class="btn btn-success"> Save </button>
+                <button type="button" *ngIf="isShown" (click)="cancelEdit()" class="btn btn-success"> Canel</button>
+            </form>
         </div>
         <div class="col-md-2"></div>
     </div>

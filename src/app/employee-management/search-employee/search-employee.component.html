@@ -101,7 +101,9 @@
 	<div class="row">
 		<!-- employee card -->
 		<div class="col-md-8">
-			<h4> {{errMsg}} </h4>
+			<div *ngIf="errMsg" class="alert alert-danger" role="alert">
+				<h4> {{errMsg}} </h4>
+			</div>
 			<h4 *ngIf="targetEmployee"> Showing {{ targetEmployee.length }} results</h4>
 			<h4 *ngIf="singleEmployee"> Showing 1 result</h4>
 			<table *ngIf="targetEmployee || singleEmployee" id="employees">
@@ -133,7 +135,8 @@
 					<td *ngIf="showPhoneNumber">{{singleEmployee.phone_number}}</td>
 					<td *ngIf="showUniversity">{{singleEmployee.university}}</td>
 					<td *ngIf="showSalary">{{singleEmployee.salary}}</td>
-					<td> <button class="btn btn-primary" (click)="viewProfile(singleEmployee.email)">View</button></td>
+					<td class="w3-xlarge"><i class="fa fa-eye" (click)="viewProfile(singleEmployee.email)"></i></td>
+					<!-- <td> <button class="btn btn-primary" (click)="viewProfile(singleEmployee.email)">View</button></td> -->
 				</tr>
 				<tr *ngFor="let employee of targetEmployee">
 					<td *ngIf="showFirstName">{{employee.first_name}}</td>
@@ -148,7 +151,8 @@
 					<td *ngIf="showPhoneNumber">{{employee.phone_number}}</td>
 					<td *ngIf="showUniversity">{{employee.university}}</td>
 					<td *ngIf="showSalary">{{employee.salary}}</td>
-					<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>
+					<td class="w3-xlarge"><i class="view-icon fa fa-eye" (click)="viewProfile(employee.email)"></i></td>
+					<!--<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>-->
 				</tr>
 			</table>
 			<!--<div class="col-md-6 card">

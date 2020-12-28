@@ -40,3 +40,7 @@ form{
 .spinner{
     text-align: center;
 }
+
+.view-icon{
+    cursor: pointer;
+}

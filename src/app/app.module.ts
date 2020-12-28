@@ -35,28 +35,6 @@ import {PartialsModule} from './partials/partials.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {UserManagementModule} from './user-management/user-management.module';
 
-const appRoutes: Routes = [
-	{ path: 'signin', component: SigninComponent },
-	{
-		path: 'admin', canActivate:[AuthGuard], component: AdminComponent, children: [
-			{
-				path: 'employee', component: EmployeeComponent, children: [
-					{ path: 'search', component: SearchEmployeeComponent },
-					{ path: 'create', component: CreateEmployeeComponent },
-					{ path: 'employee-details', component: EmployeeDetailsComponent },
-				],
-			},
-			{ path: 'dashboard', component: DashboardComponent },
-			{ path: 'user', component: UserComponent, children: [
-				{ path: 'create', component: CreateUserComponent },
-				{ path: 'search', component: SearchUserComponent },
-			]},
-		]
-	},
-	{ path: '', redirectTo: '/signin', pathMatch: 'full' },
-	{ path: '**', component: PageNotFoundComponent }
-]
-
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -67,7 +45,6 @@ const appRoutes: Routes = [
 		AccountModule,
 		BrowserModule,
 		AppRoutingModule,
-		RouterModule.forRoot(appRoutes),
 		FormsModule,
 		HttpClientModule,
 		ReactiveFormsModule,

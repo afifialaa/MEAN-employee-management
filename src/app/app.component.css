@@ -5,6 +5,7 @@
 body{
     margin: 0px;
     padding: 0px;
+    background-color: #F3F7F7;
 }
 
 nav{
@@ -22,7 +23,6 @@ nav ul li:not(:first-child){
 
 nav a:hover{
     text-decoration: none;
-    
 }
 
 .ck-editor__editable_inline {

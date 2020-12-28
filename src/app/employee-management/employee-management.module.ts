@@ -16,13 +16,14 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { SearchEmployeeComponent } from './search-employee/search-employee.component';
 import { EmployeeComponent } from './employee/employee.component';
 
+import {EmployeeRoutingModule} from './employee-routing.module';
+
 @NgModule({
 	declarations: [
 		CreateEmployeeComponent,
 		EmployeeDetailsComponent,
 		SearchEmployeeComponent,
 		EmployeeComponent,
-		
 	],
 	imports: [
 		CommonModule,
@@ -36,7 +37,8 @@ import { EmployeeComponent } from './employee/employee.component';
 		MatCardModule,
 		MatIconModule,
 		RouterModule,
-		MatProgressSpinnerModule
+		MatProgressSpinnerModule,
+		EmployeeRoutingModule
 	],
 	exports: [
 		EmployeeComponent

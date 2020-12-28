@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../../shared/validator-email';
-import { CountryService } from '../../services/country.service';
 
+// Models & Services
+import { CountryService } from '../../services/country.service';
+import {JobsService} from '../../services/jobs.service';
 import {Iemployee} from '../../models/iemployee';
 
 
@@ -17,14 +19,19 @@ export class CreateEmployeeComponent implements OnInit {
 
 	createEmployeeForm: FormGroup;
 	countries: any[];
+	jobs: any[];
 
-	constructor(private empService: EmployeeService, private fb: FormBuilder, private countryService: CountryService) {
+	errMsg:string;
+	msg: string;
+
+	constructor(private empService: EmployeeService, private fb: FormBuilder, private countryService: CountryService, private jobsService:JobsService) {
 	}
 
 	ngOnInit() {
 
 		// Load countries list
 		this.countries = this.countryService.countries;
+		this.jobs = this.jobsService.jobs;
 
 		this.createEmployeeForm = new FormGroup({
 			firstName: new FormControl('', [
@@ -45,11 +52,9 @@ export class CreateEmployeeComponent implements OnInit {
 			]),
 			university: new FormControl(''),
 			country: new FormControl('', [
-				Validators.required
 			]),
 			city: new FormControl(''),
 			address: new FormControl('', [
-				Validators.required
 			]),
 			gender: new FormControl('', [
 				Validators.required,
@@ -101,8 +106,17 @@ export class CreateEmployeeComponent implements OnInit {
 		}
 
 		if (this.createEmployeeForm.valid == true) {
-			this.empService.addEmployee(employee);
-			//reset form
+			this.empService.addEmployee(employee).subscribe((data) => {
+				if(data['err']){
+					this.msg = '';
+					this.errMsg = data['err'];
+					return;
+				}else if (data['msg']){
+					this.errMsg = '';
+					this.msg = data['msg'];
+				}
+			})
+			// Reset form
 			this.createEmployeeForm.reset();
 		} else {
 			console.log('form is invalid');

@@ -37,19 +37,19 @@ export class EmployeeDetailsComponent implements OnInit {
 	ngOnInit() {
 		//form group
 		this.editEmployeeForm = new FormGroup({
-			firstName: this.firstName,
-			lastName: this.lastName,
-			email: this.email,
-			phoneNumber: this.phoneNumber,
-			gender: this.gender,
-			country: this.country,
-			city: this.city,
-			street: this.street,
-			jobTitle: this.jobTitle,
-			department: this.department,
-			university: this.university,
-			salary: this.salary
-		})
+			firstName: new FormControl(''),
+			lastName: new FormControl(''),
+			email: new FormControl(''),
+			phoneNumber: new FormControl(''),
+			gender: new FormControl(''),
+			country: new FormControl(''),
+			city: new FormControl(''),
+			street: new FormControl(''),
+			jobTitle: new FormControl(''),
+			department: new FormControl(''),
+			university: new FormControl(''),
+			salary: new FormControl('') 
+		});
 
 		// Disable form controls
 		this.editEmployeeForm.disable();
@@ -57,37 +57,26 @@ export class EmployeeDetailsComponent implements OnInit {
 		// Get email
 		let email = this.route.snapshot.paramMap.get('email');
 		// Get employee 
-		this.empService.searchByEmail(email).subscribe((result) => {
-			this.employee = result;
+		this.empService.searchByEmail(email).subscribe((data) => {
+			this.employee = data['emp'];
 
-			// populate old data array
-			this.oldData = [
-				this.employee.first_name,
-				this.employee.last_name,
-				this.employee.email,
-				this.employee.phone_number,
-				this.employee.country,
-				this.employee.city,
-				this.employee.street,
-				this.employee.jobTitle,
-				this.employee.department,
-				this.employee.university,
-				this.employee.salary
-			]
+			// Populate old data array
+			this.oldData = data['emp'];
 
 			// Setting form value with employee data
-			this.firstName.setValue(this.employee.first_name);
-			this.lastName.setValue(this.employee.last_name);
-			this.email.setValue(this.employee.email);
-			this.phoneNumber.setValue(this.employee.phone_number);
-			this.country.setValue(this.employee.country);
-			this.city.setValue(this.employee.city);
-			this.street.setValue(this.employee.street_address);
-			this.gender.setValue(this.employee.gender);
-			this.jobTitle.setValue(this.employee.job_title);
-			this.department.setValue(this.employee.department);
-			this.university.setValue(this.employee.university);
-			this.salary.setValue(this.employee.salary);
+			this.editEmployeeForm.controls.firstName.setValue(data['emp'].first_name);
+			this.editEmployeeForm.controls.lastName.setValue(data['emp'].last_name);
+			this.editEmployeeForm.controls.email.setValue(data['emp'].email);
+			this.editEmployeeForm.controls.gender.setValue(data['emp'].gender);
+			this.editEmployeeForm.controls.phoneNumber.setValue(data['emp'].phone_number);
+			this.editEmployeeForm.controls.university.setValue(data['emp'].university);
+			this.editEmployeeForm.controls.country.setValue(data['emp'].country);
+			this.editEmployeeForm.controls.city.setValue(data['emp'].city);
+			this.editEmployeeForm.controls.street.setValue(data['emp'].street_address);
+			this.editEmployeeForm.controls.jobTitle.setValue(data['emp'].job_title);
+			this.editEmployeeForm.controls.department.setValue(data['emp'].department);
+			this.editEmployeeForm.controls.salary.setValue(data['emp'].salary);
+
 		}), error => {
 			// Error
 			console.log('something went horribly wrong');

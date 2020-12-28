@@ -17,7 +17,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	looking: boolean = false;
 
-	fields = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'Country', 'City', 'Street', 'University'];
+	fields:string[] = ['First Name', 'Last Name', 'Email', 'Gender', 'Job Title', 'Department', 'Country', 'City', 'Street', 'University'];
 	searchEmployeeForm: FormGroup;
 
 	field = new FormControl('');
@@ -52,6 +52,7 @@ export class SearchEmployeeComponent implements OnInit {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -68,6 +69,7 @@ export class SearchEmployeeComponent implements OnInit {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -84,6 +86,7 @@ export class SearchEmployeeComponent implements OnInit {
 					if (result["err"]) {
 						this.singleEmployee = null;
 						this.targetEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -106,6 +109,7 @@ export class SearchEmployeeComponent implements OnInit {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -116,12 +120,13 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 				})
 			} else if (option == 'Job Title') {
-				// Search by gender
+				// Search by job title
 				let jobTitle = this.fieldValue.value;
 				this.empService.searchByJobTitle(jobTitle).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -132,12 +137,13 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 				})
 			} else if (option == 'Country') {
-				// Search by gender
+				// Search by country
 				let country = this.fieldValue.value;
 				this.empService.searchByCountry(country).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -148,12 +154,13 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 				})
 			} else if (option == 'City') {
-				// Search by gender
+				// Search by city
 				let city = this.fieldValue.value;
 				this.empService.searchByCity(city).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -164,12 +171,13 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 				})
 			} else if (option == 'Department') {
-				// Search by gender
+				// Search by department
 				let department = this.fieldValue.value;
 				this.empService.searchByDepartment(department).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {
@@ -180,12 +188,13 @@ export class SearchEmployeeComponent implements OnInit {
 					}
 				})
 			} else if (option == 'University') {
-				// Search by gender
+				// Search by university
 				let university = this.fieldValue.value;
 				this.empService.searchByUniversity(university).subscribe(result => {
 					if (result["err"]) {
 						this.targetEmployee = null;
 						this.singleEmployee = null;
+						this.looking = false;
 						this.errMsg = result["err"];
 						return;
 					} else {

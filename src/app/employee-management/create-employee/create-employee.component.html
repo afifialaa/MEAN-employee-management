@@ -52,10 +52,14 @@
 								<mat-radio-button value="male">Male</mat-radio-button>
 								<mat-radio-button value="female">Female</mat-radio-button>
 							</mat-radio-group>
-							<div class="form-group">
-								<label>*Job TItle:</label>
-								<input class="form-control" type="text" formControlName="jobTitle" required>
-							</div>
+							<mat-form-field>
+								<mat-label>*Job Title </mat-label>
+								<mat-select formControlName="jobTitle">
+									<mat-option *ngFor="let job of jobs" [value]="job">
+										{{job}}
+									</mat-option>
+								</mat-select>
+							</mat-form-field>
 
 							<div class="form-group">
 								<label>Department:</label>
@@ -110,6 +114,12 @@
 								</div>
 							</div>
 
+							<div *ngIf="errMsg" class="alert alert-danger" role="alert">
+								{{errMsg}}
+							</div>
+							<div *ngIf="msg" class="alert alert-success" role="alert">
+								{{msg}}
+							</div>
 							<br>
 
 							<!-- Submit button -->

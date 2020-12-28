@@ -47,7 +47,7 @@ const EmployeeSchema = new Schema({
         type: String,
         enum: countries,
         required: true,
-        lowercase: true
+        // removed lowercase validator
     },
     city: {
         type:String,

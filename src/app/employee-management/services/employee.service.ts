@@ -9,7 +9,7 @@ export class EmployeeService {
 
 	private createEmpURL:string = "http://localhost:8080/employee/addEmp";
 	private updateEmpURL:string = "http://localhost:8080/employee/updateEmployee";
-	private deleteEmpURL:string = "http://localhost:8080/employee/deleteEmp";
+	private deleteEmpURL:string = "http://localhost:8080/employee/deleteEmployee";
 
 
 	private searchByFirstNameURL:string = "http://localhost:8080/employee/searchByFirstName";
@@ -25,11 +25,8 @@ export class EmployeeService {
 	constructor(private http: HttpClient) { }
 
 	addEmployee(employee: Iemployee) {
-		this.http.post(this.createEmpURL, employee).subscribe(res => {
-			console.log('employee was added');
-		}, err => {
-			console.log(err);
-		})
+		console.log(employee.country);
+		return this.http.post(this.createEmpURL, employee);
 	}
 
 	updateEmployee(employee:Iemployee) {
@@ -107,7 +104,5 @@ export class EmployeeService {
 		let id = Math.floor(Date.now() / 100);
 		return id;
 	}
-
-	
 
 }
