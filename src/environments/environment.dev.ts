@@ -6,9 +6,9 @@ export const environment = {
 	loginUrl: 'http://localhost:8080/user/login',
 
 	// Dashboard api
-	getEmployeesNumUrl: 'http://localhost:8080/dashboard/getEmployeesNum',
-	getUsersNumUrl: 'http://localhost:8080/dashboard/getUsersNum',
-	getDepartmentsNumUrl: 'http://localhost:8080/dashboard/getDepartmentsNum',
+	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
+	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
+	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
 
 	createEmpURL: "http://localhost:8080/employee/addEmp",
 	updateEmpURL: "http://localhost:8080/employee/updateEmployee",
