@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
-// Return JWT
-function generateToken(email) {
-	return jwt.sign({ email: email }, process.env.SECRET_KEY);
+/* Generte JWT token */
+function generateToken(email, role) {
+	return jwt.sign({ email: email, role:role}, process.env.SECRET_KEY);
 }
 
 function verifyToken(req, res, next){
@@ -11,8 +11,11 @@ function verifyToken(req, res, next){
 
 	jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
 		if (err) {
-            return res.json({err: "missing or invalid jwt"});
+            return res.json({err: "Missing or invalid jwt"});
         }else{
+            // Setting request variables
+            req.role = decoded.role;
+            req.email = decoded.email;
             next();
         }
     });

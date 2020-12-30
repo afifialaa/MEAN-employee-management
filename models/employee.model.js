@@ -13,29 +13,29 @@ const EmployeeSchema = new Schema({
     },
     last_name: {
         type: String,
-        required: [true, "First name cannot be empty"],
+        required: [true, "Last name cannot be empty"],
         lowercase: true
     },
     email: {
         type: String,
         unique: true,
-        required: [true, "First name cannot be empty"],
+        required: [true, "Email cannot be empty"],
         lowercase: true
     },
     phone_number: {
         type:String,
         unique: true,
-        required: [true, "First name cannot be empty"],
+        required: [true, "Phone number cannot be empty"],
         lowercase: true
     },
     gender: {
         type:String,
-        required: [true, "First name cannot be empty"],
+        required: [true, "Gender cannot be empty"],
     },
     job_title: {
         type:String,
         enum: jobs,
-        required: [true, "First name cannot be empty"],
+        required: [true, "Job title cannot be empty"],
         lowercase: true
     },
     department: {

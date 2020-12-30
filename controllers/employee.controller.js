@@ -107,7 +107,7 @@ function searchByEmail(req, res){
       });
 }
 
-// Searching by gender
+/* Searching by gender */
 function searchByGender(req, res){
     Employee.find({gender:req.query.gender}, (err, emp)=>{
         if(err) {

@@ -4,6 +4,7 @@ const bc = require('bcrypt');
 let saltRounds = 10;
 
 const Schema = mongoose.Schema;
+const roles = require('../models/roles');
 
 const UserSchema = new Schema({
     email: {
@@ -16,6 +17,10 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: [true, "Password can't be blank"],
+    },
+    role: {
+        type: String,
+        enum: roles
     }
 }, {timestamps:true});
 

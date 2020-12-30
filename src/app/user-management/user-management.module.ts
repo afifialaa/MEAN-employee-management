@@ -7,6 +7,10 @@ import {PartialsModule} from '../partials/partials.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MatInputModule, MatButtonModule, MatTabsModule, MatCardModule, MatIconModule} from '@angular/material';
+import { MatRadioModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+
 @NgModule({
 	  declarations: [CreateUserComponent, SearchUserComponent, UserComponent],
 	  imports: [
@@ -14,7 +18,9 @@ import { RouterModule, Routes } from '@angular/router';
 		    PartialsModule,
 		    FormsModule,
 		    ReactiveFormsModule,
-		    RouterModule
+			RouterModule,
+			MatInputModule,
+			MatSelectModule
 	  ],
 	  exports: [
 		    UserComponent,

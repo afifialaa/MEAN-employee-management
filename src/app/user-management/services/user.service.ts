@@ -10,13 +10,13 @@ export class UserService {
 
 	constructor(private http:HttpClient) { }
 
-	// Create user
+	/* Create user */
 	create(user:Iuser){
 		return this.http.post(environment.createUserUrl, user);
 	}
 
-	// Search user by email
-	search(email:string){
+	/* Search by email */
+	searchByEmail(email:string){
 		let params = new HttpParams().set('email', email);
 		return this.http.get(environment.searchUserUrl, {params:params});
 	}

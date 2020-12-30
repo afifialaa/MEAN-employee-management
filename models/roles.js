@@ -1,4 +1,4 @@
 module.exports = [
     'admin', 
-    'user',
+    'normal',
 ]

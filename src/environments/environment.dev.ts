@@ -1,11 +1,11 @@
 export const environment = {
 	production: false,
 
-	// Account api
+	/* Account api */
 	signupUrl: 'http://localhost:8080/user/signup',
 	loginUrl: 'http://localhost:8080/user/login',
 
-	// Dashboard api
+	/* Dashboard api */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
 	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
 	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
@@ -15,7 +15,7 @@ export const environment = {
 	deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
 
 
-	// Search employee api
+	/* Search employee api */
 	searchByFirstNameURL: "http://localhost:8080/employee/searchByFirstName",
 	searchByLastNameURL: "http://localhost:8080/employee/searchByLastName",
 	searchByGenderURL: "http://localhost:8080/employee/searchByGender",
