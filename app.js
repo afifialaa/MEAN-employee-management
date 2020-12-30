@@ -15,13 +15,12 @@ const dashboardRoute = require('./routes/dashboard.route');
 
 
 // Serve static files....
-/*app.use(express.static(__dirname + '/dist/emp-crud'));
+app.use(express.static(__dirname + '/dist/emp-crud'));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-*/
 
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');

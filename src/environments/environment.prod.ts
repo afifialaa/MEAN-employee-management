@@ -1,32 +1,33 @@
 export const environment = {
 	production: true,
 
-	// Account api
-	signupUrl: '/user/signup',
-	loginUrl: '/user/login',
-
-	// Dashboard api
-	getEmployeesNumURL: '/dashboard/getEmployeesNum',
-	getUsersNumURL: '/dashboard/getUsersNum',
-	getDepartmentsNumURL: '/dashboard/getDepartmentsNum',
-
-	createEmpURL: "/employee/addEmp",
-	updateEmpURL: "/employee/updateEmployee",
-	deleteEmpURL: "/employee/deleteEmployee",
-
-	// Search employee
-	searchByFirstNameURL: "/employee/searchByFirstName",
-	searchByLastNameURL: "/employee/searchByLastName",
-	searchByGenderURL: "/employee/searchByGender",
-	searchByEmailURL: "/employee/searchByEmail",
-	searchByJobTitleURL: "/employee/searchByJobTitle",
-	searchByDepartmentURL: "/employee/searchByDepartmentURL",
-	searchByCountryURL: "/employee/searchByCountry",
-	searchByCityURL: "/employee/searchByCity",
-	searchByUniversityURL: "/employee/searchByUniversity",
-
-	// User api
-	createUserUrl: '/user/createUser',
-	searchUserUrl: '/user/searchUser',
+		/* Account api */
+		signupUrl: 'http://localhost:8080/user/signup',
+		loginUrl: 'http://localhost:8080/user/login',
+	
+		/* Dashboard api */
+		getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
+		getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
+		getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
+	
+		createEmpURL: "http://localhost:8080/employee/addEmp",
+		updateEmpURL: "http://localhost:8080/employee/updateEmployee",
+		deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
+	
+	
+		/* Search employee api */
+		searchByFirstNameURL: "http://localhost:8080/employee/searchByFirstName",
+		searchByLastNameURL: "http://localhost:8080/employee/searchByLastName",
+		searchByGenderURL: "http://localhost:8080/employee/searchByGender",
+		searchByEmailURL: "http://localhost:8080/employee/searchByEmail",
+		searchByJobTitleURL: "http://localhost:8080/employee/searchByJobTitle",
+		searchByDepartmentURL: "http://localhost:8080/employee/searchByDepartmentURL",
+		searchByCountryURL: "http://localhost:8080/employee/searchByCountry",
+		searchByCityURL: "http://localhost:8080/employee/searchByCity",
+		searchByUniversityURL: "http://localhost:8080/employee/searchByUniversity",
+	
+		// User api
+		createUserUrl: 'http://localhost:8080/user/createUser',
+		searchUserUrl: 'http://localhost:8080/user/searchUser',
 
 };
