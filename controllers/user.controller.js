@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 
 const jwtAuth = require('../authentication/token.auth');
 
+/* Debugging */
+let debugLogin = require('debug')('worker:userLogin');
+let debugCreateUser = require('debug')('worker:createUser');
+let debugUpdateUser = require('debug')('worker:updateUser');
+let debugDeleteUser = require('debug')('worker:deleteUser');
+
 /* Search by email */
 function searchByEmail(req, res){
     User.findOne({email: req.query.email}, (err, user)=>{
@@ -29,39 +35,43 @@ function searchByRole(req, res){
 
 /* Log user in */
 function login(req, res) {
-    console.log('trying to log in');
+    debugLogin('user is logging in');
     let userObj = {
         email: req.body.email,
         password: req.body.password
     };
 
+    debugLogin('userObj: ', userObj);
+
     User.findOne({ email: userObj.email }, (err, user) => {
         // Mongoose error
         if (err) {
-            console.log(err);
+            debugLogin('Database error');
             return res.json({ err: 'Database error' });
         }
 
         if (!user || user == null) {
             // Wrong email
+            debugLogin('Email does not exist');
             return res.json({ err: 'Email does not exist' });
         } else {
             bcrypt.compare(userObj.password, user.password, (err, result) => {
                 if (err) {
-                    console.log(err);
+                    debugLogin('Failed to authenticate user');
                     return res.json({ err: 'Failed to authenticate user' });
                 }
 
                 if (result == true) {
                     // Generate JWT
                     const jwtoken = jwtAuth.generateToken(user.email, user.role);
-                    console.log('logging in');
+                    debugLogin('User was found, and token was generated');
                     return res.json({
                         token: jwtoken,
                         email: user.email,
                     });
                 } else {
                     // Passwords do not match
+                    debugLogin('Wrong email or password');
                     return res.json({ err: 'Wrong password or email.' });
                 }
             })
@@ -71,51 +81,61 @@ function login(req, res) {
 
 /* Create user */
 function createUser(req, res) {
-
+    debugCreateUser('Creating user');
     let userObj = {
         email: req.body.email,
         password: req.body.password,
         role: req.body.role
     };
 
+    debugCreateUser('userObj: ', userObj);
+
     let user = new User(userObj);
 
     user.save((err, user) => {
         if (err && err.code == 11000) {
+            debugCreateUser('User already exists');
             return res.json({ err: 'User already exists.'});
         }
         if (err) {
-            console.log(err);
+            debugCreateUser('Failed to create user');
             return res.json({ err: 'Failed to create user.' });
         }
-        return res.json({ msg: 'User was created.' });
+        debugCreateUser('User was created successfully');
+        return res.json({ msg: 'User was created successfully.' });
     })
 }
 
 /* Update user */
 /* Update role */
 function updateUser(req, res){
+    debugUpdateUser('updating user');
     let user = {
         email: req.body.email,
         password: req.body.password
     }
 
+    debugUpdateUser('user: ', user);
+
     User.updateOne({email: req.body.email}, user, (err) => {
         if(err){
-            console.log(err);
+            debugUpdateUser('Failed to update user');
             return res.json({err: 'Failed to update user'});
         }
+        debugUpdateUser('User was updated successfully');
         return res.json({msg:'User was updated'});
     })
 }
 
 /* Delete user */
 function deleteUser(req, res){
+    debugDeleteUser('Deleting user');
     User.findOneAndDelete({email: req.body.email}, (err)=>{
         if(err){
-            console.log(err);
+            debugDeleteUser('Failed to delete user');
             return res.json({err :'Failed to delete user'});
         }
+        debugDeleteUser('User was deleted successfully');
         return res.json({msg: 'User was deleted successfully'});
     });
 }

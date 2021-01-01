@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
+import {environment} from '../../../environments/environment.dev';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,7 +10,7 @@ export class DashboardServices{
 	constructor(private httpClient:HttpClient) { }
 
 	getEmployeesNum(){
-		return this.httpClient.get(environment.getEmployeesNumURL, {responseType: 'json'});
+		return this.httpClient.get(environment.getEmployeesNumURL);
 	}
 	
 	getUsersNum(){

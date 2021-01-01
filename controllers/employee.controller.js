@@ -1,7 +1,12 @@
 const Employee = require('../models/employee.model');
 
+/* Debugging */
+let debugAddEmp = require('debug')('worker:addEmp');
+let debugUpdateEmp = require('debug')('worker:updateEmp');
+
 // Add employee.
 function addEmp(req, res){
+    debugAddEmp('Adding employee');
     let employeeObj = {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
@@ -15,14 +20,17 @@ function addEmp(req, res){
         job_title: req.body.jobTitle,
         department: req.body.department
     }
+
+    debugAddEmp('EmployeeObj: ', employeeObj);
     
     let employee = new Employee(employeeObj);
 
     employee.save((err, employee)=>{
         if(err) {
-            console.log(err);
+            debugAddEmp(err);
             return res.json({err: 'failed to add employee'});
         }
+        debugAddEmp('Employee was added successfully');
         return res.json({msg: 'employee was added successfully'});
     });
 }
@@ -30,12 +38,17 @@ function addEmp(req, res){
 // Update employee
 function updateEmployee(req, res){
 
+    debugUpdateEmp('Updating employee');
+
     let employeeObj = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         jobTitle: req.body.jobTitle
     };
+
+    debugUpdateEmp('employeeObj: ',employeeObj);
+
 
     Employee.updateOne({email: req.body.email}, employeeObj, (err) => {
         if(err){

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
+import {environment} from '../../../environments/environment.dev';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,6 +15,7 @@ export class AccountService {
 	}
 
 	loginUser(user){
+		console.log('loggin user in');
 		return this.httpClient.post(environment.loginUrl, user, {responseType: 'json'});
 	}
 }
