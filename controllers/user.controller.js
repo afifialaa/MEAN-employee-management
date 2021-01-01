@@ -29,6 +29,7 @@ function searchByRole(req, res){
 
 /* Log user in */
 function login(req, res) {
+    console.log('trying to log in');
     let userObj = {
         email: req.body.email,
         password: req.body.password
@@ -54,6 +55,7 @@ function login(req, res) {
                 if (result == true) {
                     // Generate JWT
                     const jwtoken = jwtAuth.generateToken(user.email, user.role);
+                    console.log('logging in');
                     return res.json({
                         token: jwtoken,
                         email: user.email,

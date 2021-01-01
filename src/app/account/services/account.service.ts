@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
+import {environment} from '../../../environments/environment.dev';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,10 +11,10 @@ export class AccountService {
 
 	signupUser(user) {
 		console.log('creating user');
-		return this.httpClient.post(environment.signupUrl, user);
+		return this.httpClient.post(environment.signupUrl, user, {responseType: 'json'});
 	}
 
 	loginUser(user){
-		return this.httpClient.post(environment.loginUrl, user);
+		return this.httpClient.post(environment.loginUrl, user, {responseType: 'json'});
 	}
 }
