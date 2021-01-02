@@ -3,7 +3,7 @@ export const environment = {
 
 	/* Account api */
 	signupUrl: 'http://localhost:8080/user/signup',
-	loginUrl: 'http://localhost:8080/user/login',
+	loginUrl: 'http://localhost:8080/account/login',
 
 	/* Dashboard api */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
@@ -27,6 +27,6 @@ export const environment = {
 	searchByUniversityURL: "http://localhost:8080/employee/searchByUniversity",
 
 	// User api
-	createUserUrl: 'http://localhost:8080/user/createUser',
+	createUserUrl: 'http://localhost:8080/user/signup',
 	searchUserUrl: 'http://localhost:8080/user/searchUser',
 };

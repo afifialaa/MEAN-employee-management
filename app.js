@@ -15,11 +15,13 @@ const dashboardRoute = require('./routes/dashboard.route');
 
 
 // Serve static files....
+/*
 app.use(express.static(__dirname + '/dist/emp-crud'));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
+*/
 
 
 /* Middlwares */
@@ -31,7 +33,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
 
 app.use('/employee', jwtAuth.verifyToken, isAdmin, employeeRoute);
-app.use('/user', jwtAuth.verifyToken, userRoute);
+app.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
 app.use('/dashboard', jwtAuth.verifyToken, isAdmin, dashboardRoute);
 app.use('/account', userRoute);
 

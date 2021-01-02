@@ -2,8 +2,8 @@ export const environment = {
 	production: true,
 
 		/* Account api */
+		loginUrl: '/account/login',
 		signupUrl: '/user/signup',
-		loginUrl: '/user/login',
 	
 		/* Dashboard api */
 		getEmployeesNumURL: '/dashboard/getEmployeesNum',
