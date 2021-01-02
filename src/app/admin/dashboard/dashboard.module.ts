@@ -6,7 +6,7 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { PayrollCardComponent } from './payroll-card/payroll-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import {PartialsModule} from '../partials/partials.module';
+import {PartialsModule} from '../../partials/partials.module';
 
 @NgModule({
 	declarations: [DepartmentCardComponent, UserCardComponent, EmployeeCardComponent, PayrollCardComponent, DashboardComponent],

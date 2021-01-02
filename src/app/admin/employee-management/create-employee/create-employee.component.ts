@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { validateEmail } from '../../shared/validator-email';
+import { validateEmail } from '../../../shared/validator-email';
 
 // Models & Services
-import { CountryService } from '../../services/country.service';
-import {JobsService} from '../../services/jobs.service';
-import {Iemployee} from '../../models/iemployee';
+import { CountryService } from '../../../services/country.service';
+import {JobsService} from '../../../services/jobs.service';
+import {Iemployee} from '../../../models/iemployee';
 
 
 @Component({

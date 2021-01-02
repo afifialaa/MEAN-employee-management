@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-import {RoleService} from '../../services/role.service';
-import {Iuser} from '../../models/iuser';
+import {RoleService} from '../../../services/role.service';
+import {Iuser} from '../../../models/iuser';
 import {UserService} from '../services/user.service';
 
 @Component({
