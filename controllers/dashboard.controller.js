@@ -8,11 +8,13 @@ function getEmployeesNum(req, res){
 	Employee.countDocuments({}, (err, result)=>{
 		if(err) {
 			DebugDashboard(err);
+			res.setHeader('Content-Type', 'application/json');
 			return res.json({err : 'There was an error'});
 		}
 
 		DebugDashboard('Returning employee count');
-		return res.json({number : result});
+		res.setHeader('Content-Type', 'application/json');
+		return res.json({"number" : result});
 	});
 }
 
@@ -21,10 +23,12 @@ function getUsersNum(req, res){
 	User.countDocuments({}, (err, result)=>{
 		if(err) {
 			DebugDashboard(err);
+			res.setHeader('Content-Type', 'application/json');
 			return res.json({err : 'there was an error'});
 		}
 
 		DebugDashboard('Returning user count');
+		res.setHeader('Content-Type', 'application/json');
 		return res.json({number:result});
 	});
 }
