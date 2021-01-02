@@ -1,12 +1,11 @@
 const Employee = require('../models/employee.model');
 
 /* Debugging */
-let debugAddEmp = require('debug')('worker:addEmp');
-let debugUpdateEmp = require('debug')('worker:updateEmp');
+let debugEmp = require('debug')('worker:updateEmp');
 
 // Add employee.
 function addEmp(req, res){
-    debugAddEmp('Adding employee');
+    debugEmp('Adding employee');
     let employeeObj = {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
@@ -21,16 +20,16 @@ function addEmp(req, res){
         department: req.body.department
     }
 
-    debugAddEmp('EmployeeObj: ', employeeObj);
+    debugEmp('EmployeeObj: ', employeeObj);
     
     let employee = new Employee(employeeObj);
 
     employee.save((err, employee)=>{
         if(err) {
-            debugAddEmp(err);
+            debugEmp(err);
             return res.json({err: 'failed to add employee'});
         }
-        debugAddEmp('Employee was added successfully');
+        debugEmp('Employee was added successfully');
         return res.json({msg: 'employee was added successfully'});
     });
 }
@@ -38,7 +37,7 @@ function addEmp(req, res){
 // Update employee
 function updateEmployee(req, res){
 
-    debugUpdateEmp('Updating employee');
+    debugEmp('Updating employee');
 
     let employeeObj = {
         firstName: req.body.firstName,
@@ -47,25 +46,28 @@ function updateEmployee(req, res){
         jobTitle: req.body.jobTitle
     };
 
-    debugUpdateEmp('employeeObj: ',employeeObj);
+    debugEmp('employeeObj: ',employeeObj);
 
 
     Employee.updateOne({email: req.body.email}, employeeObj, (err) => {
         if(err){
-            console.log(err);
-            return res.json({err: 'failed to update employee'});
+            debugEmp(err);
+            return res.json({err: 'Failed to update employee'});
         }
-        return res.json({'msg':'data was updated'});
+        debugEmp('User was updated');
+        return res.json({msg:'user was updated'});
     })
 }
 
 // Delete employee
 function deleteEmployee(req, res){
+    debugEmp('Deleting user');
     Employee.findOneAndDelete({email: req.body.email}, (err)=>{
         if(err){
-            console.log(err);
+            debugEmp('User was updated');
             return res.json({err :'failed to delete employee'});
         }
+        debugEmp('User was updated');
         return res.json({msg: 'employee was deleted'});
     });
 }
@@ -122,11 +124,14 @@ function searchByEmail(req, res){
 
 /* Searching by gender */
 function searchByGender(req, res){
+    debugEmp('Searching by gender');
     Employee.find({gender:req.query.gender}, (err, emp)=>{
         if(err) {
-            console.log(err);
+            debugEmp(err);
             return res.json({err :'Failed to search for employee.'});
         }
+
+        debugEmp('Return results');
         return res.json({emp});
     });
 }
@@ -176,7 +181,6 @@ function searchByDepartment(req, res){
         return res.json({emp});
     });
 }
-
 
 // Search by university
 function searchByUniversity(req, res){

@@ -1,12 +1,15 @@
 /* Admin role authorization */
+let debugAdmin = require('debug')('worker:adminMid'); 
+
 function isAdmin(req, res, next){
-    console.log('role found is ', req.role);
+    debugAdmin('Check if role is admin');
+    debugAdmin('Role in request: ', req.role);
     if(req.role === 'admin'){
-        console.log('user is admin');
+        debugAdmin('User is an admin');
         next();
     }else{
-        console.log('user is not admin');
-        return res.json({err: 'User is not admin'});
+        debugAdmin('User is not an admin');
+        return res.json({err: 'User is not an admin'});
     }
 }
 
