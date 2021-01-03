@@ -21,7 +21,6 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
 });
 
-
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');
 const isAdmin = require('./middlewares/admin.mid');

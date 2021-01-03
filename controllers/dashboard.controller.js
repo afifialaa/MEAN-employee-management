@@ -14,7 +14,7 @@ function getEmployeesNum(req, res){
 
 		DebugDashboard('Returning employee count');
 		res.setHeader('Content-Type', 'application/json');
-		return res.json({"number" : result});
+		return res.send({number : result});
 	});
 }
 

@@ -15,7 +15,6 @@ export class AccountService {
 	}
 
 	loginUser(user){
-		console.log('loggin user in');
 		return this.httpClient.post(environment.loginUrl, user, {responseType: 'json'});
 	}
 }
