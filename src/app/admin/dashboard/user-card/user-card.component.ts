@@ -17,7 +17,7 @@ export class UserCardComponent implements OnInit {
 	ngOnInit() {
 		console.log('user card init');
 		this.dashSrvc.getUsersNum().subscribe( (data)=>{
-			consolel.log('user subscribe call back')
+			console.log('user subscribe call back')
 			console.log(data);
 			this.userNum = data['number']
 		})
