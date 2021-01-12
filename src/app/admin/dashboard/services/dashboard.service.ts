@@ -10,12 +10,12 @@ export class DashboardServices{
 	constructor(private httpClient:HttpClient) { }
 
 	getEmployeesNum(){
-		console.log('emp num service');
+		console.log('get employee number service')
 		return this.httpClient.get(environment.getEmployeesNumURL, {responseType:'text'});
 	}
 	
 	getUsersNum(){
-		console.log('user num service');
+		console.log('get user number service');
 		return this.httpClient.get(environment.getUsersNumURL, {responseType: 'json'});
 	}
 

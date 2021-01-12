@@ -17,7 +17,8 @@ export class EmployeeCardComponent implements OnInit {
 	ngOnInit() {
 		console.log('emp card init');
 		this.dashServ.getEmployeesNum().subscribe( (data)=>{
-			console.log('subscrible cb ', data);
+			console.log('employee subscribe callback');
+			console.log(data);
 			this.empNum = data['number']
 		})
 	}
