@@ -14,13 +14,7 @@ const userRoute = require('./routes/user.route');
 const dashboardRoute = require('./routes/dashboard.route');
 
 
-// Serve static files....
-app.use(express.static(__dirname + '/dist/emp-crud'));
 
-/*app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
-});
-*/
 
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');
@@ -35,4 +29,10 @@ app.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
 app.use('/dashboard', jwtAuth.verifyToken, isAdmin, dashboardRoute);
 app.use('/account', userRoute);
 
+// Serve static files....
+app.use(express.static(__dirname + '/dist/emp-crud'));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
+});
 module.exports = app;
