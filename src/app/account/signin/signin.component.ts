@@ -55,10 +55,11 @@ export class SigninComponent implements OnInit {
 				// Failed to login
 				this.signinForm.reset();
 				this.message = data['err'];
-			} else if (data['token']) {
+			} else if (data['token'] && data['role']) {
 				// Login successfully
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
+				localStorage.setItem('role', data['role']);
 				// Redirect 
 				this.router.navigate(['/admin/dashboard']);
 			}

@@ -9,12 +9,10 @@ const fs = require('fs');
 const cors = require('cors');
 const path = require('path');
 
+/* Routes */
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
 const dashboardRoute = require('./routes/dashboard.route');
-
-
-
 
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');

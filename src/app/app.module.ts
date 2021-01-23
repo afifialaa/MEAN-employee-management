@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeDetailsComponent } from './admin/employee-management/employee-details/employee-details.component';
 import { HttpClientModule} from '@angular/common/http';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';

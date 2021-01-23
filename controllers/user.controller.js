@@ -68,6 +68,7 @@ function login(req, res) {
                     return res.json({
                         token: jwtoken,
                         email: user.email,
+                        role: user.role
                     });
                 } else {
                     // Passwords do not match

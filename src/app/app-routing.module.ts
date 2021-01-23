@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import {AdminGuard} from './guards/admin.guard';
 
 import { EmployeeComponent } from './admin/employee-management/employee/employee.component';
 import { CreateEmployeeComponent } from './admin/employee-management/create-employee/create-employee.component';
@@ -21,17 +22,17 @@ const appRoutes: Routes = [
 	{
 		path: 'admin', canActivate: [AuthGuard], component: AdminComponent, children: [
 			{
-				path: 'employee', component: EmployeeComponent, children: [
-					{ path: 'create', component: CreateEmployeeComponent },
-					{ path: 'search', component: SearchEmployeeComponent },
-					{ path: 'employee-details', component: EmployeeDetailsComponent }
+				path: 'employee', canActivate: [AuthGuard, AdminGuard], component: EmployeeComponent, children: [
+					{ path: 'create',canActivate: [AuthGuard, AdminGuard], component: CreateEmployeeComponent },
+					{ path: 'search', canActivate: [AuthGuard, AdminGuard], component: SearchEmployeeComponent },
+					{ path: 'employee-details', canActivate: [AuthGuard, AdminGuard], component: EmployeeDetailsComponent }
 				]
 			},
 			{ path: 'dashboard', component: DashboardComponent },
 			{
-				path: 'user', component: UserComponent, children: [
-					{ path: 'create', component: CreateUserComponent },
-					{ path: 'search', component: SearchUserComponent },
+				path: 'user', canActivate: [AuthGuard, AdminGuard], component: UserComponent, children: [
+					{ path: 'create', canActivate: [AuthGuard, AdminGuard], component: CreateUserComponent },
+					{ path: 'search', canActivate: [AuthGuard, AdminGuard], component: SearchUserComponent },
 				]
 			},
 		]
