@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const jobs = require('../models/jobs');
-const countries = require('../models/countries');
+const addressSchema = require('./address.schema');
+const contractSchema = require('./contract.schema');
 
 const Schema = mongoose.Schema;
 
@@ -43,30 +44,14 @@ const EmployeeSchema = new Schema({
         required: false,
         lowercase: true
     },
-    country: {
-        type: String,
-        enum: countries,
-        required: true,
-        // removed lowercase validator
-    },
-    city: {
-        type:String,
-        required:false,
-        lowercase: true,
-    },
-    street_address: {
-        type:String,
-        required: false,
-        lowercase: true,
-    },
+
+    address: {addressSchema},
+
     university: {
         type:String,
         required: false
     },
-    salary: {
-        type: Number,
-        required: false
-    }
+    contract: contractSchema
 });
 
 const Employee = mongoose.model('employees', EmployeeSchema);

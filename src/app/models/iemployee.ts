@@ -7,8 +7,14 @@ export interface Iemployee {
     jobTitle:string;
     department?: string;
     university?: string;
+
     country: string;
     city?: string;
-    address?: string;
+    street?: string;
+
+    hiringDate?: Date;
+    terminatingDate?: Date;
+    bank?: string;
+    bankAccount?: string;
     salary?:number;
 }

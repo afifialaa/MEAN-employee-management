@@ -6,7 +6,7 @@ const empController = require('../controllers/employee.controller');
 
 
 router.post('/addEmp', empController.addEmp);
-router.post('/updateEmployee', empController.updateEmployee);
+router.put('/updateEmployee', empController.updateEmployee);
 router.post('/deleteEmployee', empController.deleteEmployee);
 
 

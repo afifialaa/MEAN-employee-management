@@ -100,7 +100,7 @@ export class CreateEmployeeComponent implements OnInit {
 			university: this.createEmployeeForm.value.university,
 			country: this.createEmployeeForm.value.country,
 			city: this.createEmployeeForm.value.city,
-			address: this.createEmployeeForm.value.address,
+			street: this.createEmployeeForm.value.address,
 			jobTitle: this.createEmployeeForm.value.jobTitle,
 			department: this.createEmployeeForm.value.department,
 		}

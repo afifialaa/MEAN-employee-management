@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
+import {Iemployee} from '../../../models/iemployee';
+
 @Component({
 	selector: 'app-employee-details',
 	templateUrl: './employee-details.component.html',
@@ -12,24 +14,12 @@ export class EmployeeDetailsComponent implements OnInit {
 
 	employee;
 
-	//form controls
+	// Employee form
 	editEmployeeForm: FormGroup;
-	firstName = new FormControl();
-	lastName = new FormControl();
-	email = new FormControl();
-	phoneNumber = new FormControl();
-	country = new FormControl();
-	city = new FormControl();
-	street = new FormControl();
-	gender = new FormControl();
-	jobTitle = new FormControl();
-	department = new FormControl();
-	salary = new FormControl();
-	university = new FormControl();
 
 	isShown: boolean = false;
 	oldData;
-	newData;
+	newEmpData:Iemployee;
 
 	constructor(private route: ActivatedRoute, private router: Router, private empService: EmployeeService) {
 	}
@@ -42,13 +32,21 @@ export class EmployeeDetailsComponent implements OnInit {
 			email: new FormControl(''),
 			phoneNumber: new FormControl(''),
 			gender: new FormControl(''),
-			country: new FormControl(''),
-			city: new FormControl(''),
-			street: new FormControl(''),
 			jobTitle: new FormControl(''),
 			department: new FormControl(''),
 			university: new FormControl(''),
-			salary: new FormControl('') 
+
+			// Address controls
+			country: new FormControl(''),
+			city: new FormControl(''),
+			street: new FormControl(''),
+
+			// Contract controls
+			hiringDate: new FormControl(''),
+			terminatingDate: new FormControl(''),
+			bank: new FormControl(''),
+			bankAccount: new FormControl(''),
+			salary: new FormControl('')
 		});
 
 		// Disable form controls
@@ -70,83 +68,62 @@ export class EmployeeDetailsComponent implements OnInit {
 			this.editEmployeeForm.controls.gender.setValue(data['emp'].gender);
 			this.editEmployeeForm.controls.phoneNumber.setValue(data['emp'].phone_number);
 			this.editEmployeeForm.controls.university.setValue(data['emp'].university);
+			this.editEmployeeForm.controls.jobTitle.setValue(data['emp'].job_title);
+
 			this.editEmployeeForm.controls.country.setValue(data['emp'].country);
 			this.editEmployeeForm.controls.city.setValue(data['emp'].city);
 			this.editEmployeeForm.controls.street.setValue(data['emp'].street_address);
-			this.editEmployeeForm.controls.jobTitle.setValue(data['emp'].job_title);
-			this.editEmployeeForm.controls.department.setValue(data['emp'].department);
+
+			this.editEmployeeForm.controls.hiringDate.setValue(data['emp'].hiringDate);
+			this.editEmployeeForm.controls.terminatingDate.setValue(data['emp'].terminatingDate);
+			this.editEmployeeForm.controls.bank.setValue(data['emp'].bank);
+			this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].bankAccount);
 			this.editEmployeeForm.controls.salary.setValue(data['emp'].salary);
 
 		}), error => {
 			// Error
-			console.log('something went horribly wrong');
 			console.log(error);
 		}
 	}
 
 	// Button handler
 	editEmployee() {
-		console.log(Object.keys(this.employee));
 		this.isShown = true;
 		this.editEmployeeForm.enable();
 	}
 
-	saveBtn(){
+	saveBtn() {
 
-		//
 		this.isShown = false;
 		this.editEmployeeForm.disable()
 
-		// populate new data array
-		this.newData = [
-			this.firstName.value,
-			this.lastName.value,
-			this.email.value,
-			this.phoneNumber.value,
-			this.country.value,
-			this.city.value,
-			this.street.value,
-			this.gender.value,
-			this.jobTitle.value,
-			this.department.value,
-			this.university.value,
-			this.salary.value,
-		]
+		// Populate new data array
+		this.newEmpData = {
+			firstName: this.editEmployeeForm.value.firstName,
+			lastName: this.editEmployeeForm.value.lastName,
+			email: this.editEmployeeForm.value.email,
+			phoneNumber: this.editEmployeeForm.value.phoneNumber,
+			gender: this.editEmployeeForm.value.gender,
+			jobTitle: this.editEmployeeForm.value.jobTitle,
+			department: this.editEmployeeForm.value.department,
+			university: this.editEmployeeForm.value.university,
 
-		// Compare arrays
-		var dataFields:number = this.oldData.length;
-		var unchangedFields:number = 0;
-		for(var i=0; i<this.oldData.length; i++){
-			if(this.oldData[i] == this.newData[i]){
-				unchangedFields += 1;	
-			}
+			country: this.editEmployeeForm.value.country,
+			city: this.editEmployeeForm.value.city,
+			street: this.editEmployeeForm.value.street,
+
+			hiringDate: this.editEmployeeForm.value.hiringDate,
+			terminatingDate: this.editEmployeeForm.value.terminatingDate,
+			bank: this.editEmployeeForm.value.bank,
+			bankAccount: this.editEmployeeForm.value.bankAccount,
+			salary: this.editEmployeeForm.value.salary,
 		}
 
-		if(unchangedFields == dataFields){
-			// Nothing changed
-			console.log('nothing changed');
-		}else{
-			// There was a change
-			console.log('sending data to server');
+		this.updateEmployee(this.newEmpData);
 
-			// Updating old employee
-			let targetEmp = {
-				firstName: this.newData[0],
-				lastName: this.newData[1],
-				email: this.newData[2],
-				phoneNumber: this.newData[3],
-				country: this.newData[4],
-				governorate: this.newData[5],
-				gender: this.newData[6],
-				jobTitle: this.newData[7]
-			}
-
-			this.sendData(targetEmp);
-
-		}
 	}
 
-	sendData(targetEmp){
+	updateEmployee(targetEmp) {
 		this.empService.updateEmployee(targetEmp);
 	}
 
@@ -156,7 +133,7 @@ export class EmployeeDetailsComponent implements OnInit {
 		this.isShown = false;
 	}
 
-	deleteEmployee(){
+	deleteEmployee() {
 		let employee = this.employee;
 		this.empService.deleteEmployee(employee);
 	}

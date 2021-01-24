@@ -1,7 +1,7 @@
 const Employee = require('../models/employee.model');
 
 /* Debugging */
-let debugEmp = require('debug')('worker:updateEmp');
+let debugEmp = require('debug')('worker:debugEmp');
 
 // Add employee.
 function addEmp(req, res){
@@ -43,13 +43,28 @@ function updateEmployee(req, res){
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        jobTitle: req.body.jobTitle
+        gender: req.body.gender,
+        phone_number: req.body.phoneNumber,
+        jobTitle: req.body.jobTitle,
+        department: req.body.department,
+        university: req.body.university,
+
+        country: req.body.country,
+        city: req.body.city,
+        street_address: req.body.street,
+
+        hiring_date: req.body.hiringDate,
+        terminating_date: req.body.terminatingDate,
+        bank: req.body.bank,
+        bank_account: req.body.bankAccount,
+        salary: req.body.salary
     };
+
 
     debugEmp('employeeObj: ',employeeObj);
 
 
-    Employee.updateOne({email: req.body.email}, employeeObj, (err) => {
+    Employee.updateOne({email: employeeObj.email}, employeeObj, (err) => {
         if(err){
             debugEmp(err);
             return res.json({err: 'Failed to update employee'});
@@ -71,8 +86,6 @@ function deleteEmployee(req, res){
         return res.json({msg: 'employee was deleted'});
     });
 }
-
-
 
 // Search by id.
 function searchById(req, res){
@@ -108,7 +121,7 @@ function searchByLastName(req, res){
 
 // Search by email.
 function searchByEmail(req, res){
-      console.log('searching my email');
+      debugEmp('searching by email');
       Employee.findOne({email:req.query.email}, (err, emp)=>{
             if(err) {
                 console.log(err);
@@ -118,6 +131,7 @@ function searchByEmail(req, res){
                 console.log('no employee found with this email');
                 return res.json({err: "No employee found with this email."});
             }
+            debugEmp(emp);
             return res.json({emp});
       });
 }

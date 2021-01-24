@@ -16,7 +16,7 @@ export class EmployeeService {
 	}
 
 	updateEmployee(employee:Iemployee) {
-		this.http.post(environment.updateEmpURL, employee).subscribe(res => {
+		this.http.put(environment.updateEmpURL, employee).subscribe(res => {
 			console.log('employee info was updated');
 		}, err => {
 			console.log(err);
