@@ -11,7 +11,7 @@ export class DashboardServices{
 
 	getEmployeesNum(){
 		console.log('get employee number service')
-		return this.httpClient.get(environment.getEmployeesNumURL, {responseType:'text'});
+		return this.httpClient.get(environment.getEmployeesNumURL, {responseType:'json'});
 	}
 	
 	getUsersNum(){

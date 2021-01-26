@@ -46,25 +46,32 @@ export class CreateEmployeeComponent implements OnInit {
 				Validators.required,
 				Validators.minLength(11)
 			]),
+			gender: new FormControl('', [
+				Validators.required,
+				Validators.minLength(4)
+			]),
 			phoneNumber: new FormControl('', [
 				Validators.required,
 				Validators.minLength(11)
 			]),
 			university: new FormControl(''),
-			country: new FormControl('', [
-			]),
-			city: new FormControl(''),
-			address: new FormControl('', [
-			]),
-			gender: new FormControl('', [
-				Validators.required,
-				Validators.minLength(4)
-			]),
 			jobTitle: new FormControl('', [
 				Validators.required,
 				Validators.minLength(3)
 			]),
 			department: new FormControl(''),
+
+			country: new FormControl('', []),
+			city: new FormControl(''),
+			address: new FormControl('', []),
+			
+
+			hiringDate: new FormControl(''),
+			terminatingDate: new FormControl(''),
+			bank: new FormControl(''),
+			bankAccount: new FormControl(''),
+			salary: new FormControl(''),
+
 		})
 	}
 
@@ -98,11 +105,18 @@ export class CreateEmployeeComponent implements OnInit {
 			gender: this.createEmployeeForm.value.gender,
 			phoneNumber: this.createEmployeeForm.value.phoneNumber,
 			university: this.createEmployeeForm.value.university,
+			jobTitle: this.createEmployeeForm.value.jobTitle,
+			department: this.createEmployeeForm.value.department,
+
 			country: this.createEmployeeForm.value.country,
 			city: this.createEmployeeForm.value.city,
 			street: this.createEmployeeForm.value.address,
-			jobTitle: this.createEmployeeForm.value.jobTitle,
-			department: this.createEmployeeForm.value.department,
+
+			hiringDate: this.createEmployeeForm.value.hiringDate,
+			terminatingDate: this.createEmployeeForm.value.terminatingDate,
+			bank: this.createEmployeeForm.value.bank,
+			bankAccount: this.createEmployeeForm.value.bankAccount,
+			salary: this.createEmployeeForm.value.salary,
 		}
 
 		if (this.createEmployeeForm.valid == true) {

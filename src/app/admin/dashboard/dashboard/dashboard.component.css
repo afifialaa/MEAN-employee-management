@@ -12,6 +12,7 @@
 }
 
 .flex-container > .card{
+    cursor: pointer;
     font-size: 20pt;
     width: 300px;
     height: fit-content;

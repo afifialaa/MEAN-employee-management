@@ -4,7 +4,7 @@ const countries = require('../models/countries');
 
 const addressSchema = new Schema({
     country: {
-        type: Date,
+        type: String,
         enum: countries,
         required: true       
     },

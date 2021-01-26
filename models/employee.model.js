@@ -45,7 +45,7 @@ const EmployeeSchema = new Schema({
         lowercase: true
     },
 
-    address: {addressSchema},
+    address: addressSchema,
 
     university: {
         type:String,

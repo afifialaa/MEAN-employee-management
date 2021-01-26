@@ -2,132 +2,179 @@
 	<div class="row">
 		<div class="col-md-12">
 			<form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployee()">
+
+				<legend>Employee info.</legend>
 				<div class="row">
-					<div class="col-md-5">
-						<div class="input-container">
-							<br>
-							<div class="form-group">
-								<label>*First Name:</label>
-								<input class="form-control" type="text" formControlName="firstName" required>
-							</div>
-							<div class="form-group">
-								<label>*Last Name:</label>
-								<input class="form-control" type="text" formControlName="lastName" required>
-							</div>
-							<div class="form-group">
-								<label>*Email:</label>
-								<input class="form-control" type="text" formControlName="email" required>
-							</div>
-							<div class="form-group">
-								<label>*Phone Number:</label>
-								<input class="form-control" type="text" formControlName="phoneNumber" required>
-							</div>
-
-							<div class="form-group">
-								<label>University:</label>
-								<input type="text" class="form-control" formControlName="university" >
-							</div>
-						</div>
+					<div class="col">
+						<label>First name:</label>
+						<input class="form-control" type="text" formControlName="firstName" required>
 					</div>
-					<div class="col-md-2"></div>
-					<div class="col-md-5">
-						<div class="input-container">
-							<mat-form-field>
-								<mat-label>*Country </mat-label>
-								<mat-select formControlName="country">
-									<mat-option *ngFor="let country of countries" [value]="country.name">
-										{{country.name}}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-							<div class="form-group">
-								<label>City:</label>
-								<input type="text" class="form-control" formControlName="city" required>
-							</div>
-							<div class="form-group">
-								<label>*Address:</label>
-								<input type="text" class="form-control" formControlName="address" required>
-							</div>
-							<mat-radio-group aria-placeholder="Gender" formControlName="gender" aria-label="Select gender">
-								<mat-radio-button value="male">Male</mat-radio-button>
-								<mat-radio-button value="female">Female</mat-radio-button>
-							</mat-radio-group>
-							<mat-form-field>
-								<mat-label>*Job Title </mat-label>
-								<mat-select formControlName="jobTitle">
-									<mat-option *ngFor="let job of jobs" [value]="job">
-										{{job}}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-
-							<div class="form-group">
-								<label>Department:</label>
-								<input type="text" class="form-control" formControlName="department">
-							</div>
-
-							<!-- Validation messages -->
-							<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
-								<div *ngIf="firstName.errors.minLength">
-									First name must be at least 3 characters long.
-								</div>
-								<div *ngIf="firstName.errors.required">
-									First name is required.
-								</div>
-							</div>
-							<div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
-								<div *ngIf="lastName.errors.required">
-									Last name is required.
-								</div>
-								<div *ngIf="lastName.errors.minLength">
-									Last name must be at least 3 characters long.
-								</div>
-							</div>
-
-							<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-								<div *ngIf="email.errors.minLength">
-									Email must be at least 11 characters long.
-								</div>
-								<div *ngIf="email.errors.required">
-									Email is required.
-								</div>
-							</div>
-							<div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger">
-								<div *ngIf="phoneNumber.errors.minLength">
-									Phone number must be at least 11 characters long.
-								</div>
-								<div *ngIf="phoneNumber.errors.required">
-									Phone number is required.
-								</div>
-							</div>
-							<div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
-								<div *ngIf="gender.errors.required">
-									Gender is required.
-								</div>
-							</div>
-							<div *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" class="alert alert-danger">
-								<div *ngIf="jobTitle.errors.minLength">
-									Job titel must be at least 3 characters long.
-								</div>
-								<div *ngIf="jobTitle.errors.required">
-									Job title is required.
-								</div>
-							</div>
-
-							<div *ngIf="errMsg" class="alert alert-danger" role="alert">
-								{{errMsg}}
-							</div>
-							<div *ngIf="msg" class="alert alert-success" role="alert">
-								{{msg}}
-							</div>
-							<br>
-
-							<!-- Submit button -->
-							<button class="btn btn-success" type="submit">Save</button>
-						</div>
-
+					<div class="col">
+						<label>Last name</label>
+						<input class="form-control" type="text" formControlName="lastName" required>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col">
+						<label>Email:</label>
+						<input class="form-control" type="text" formControlName="email" required>
+					</div>
+					<div class="col">
+						<label>Gender: </label>
+						<br>
+						<mat-radio-group aria-placeholder="Gender" formControlName="gender" aria-label="Select gender">
+							<mat-radio-button value="male">Male</mat-radio-button>
+							<mat-radio-button value="female">Female</mat-radio-button>
+						</mat-radio-group>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label>Phone number:</label>
+						<input class="form-control" type="text" formControlName="phoneNumber" required>
+					</div>
+					<div class="col">
+						<label>University:</label>
+						<input type="text" class="form-control" formControlName="university">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+						<mat-form-field class="country-control">
+							<mat-label>*Job Title </mat-label>
+							<mat-select formControlName="jobTitle" >
+								<mat-option *ngFor="let job of jobs" [value]="job">
+									{{job}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div class="col">
+						<label>Department</label>
+						<input type="text" class="form-control" formControlName="department">
+					</div>
+				</div>
+
+				<hr>
+				<br>
+				<legend>Address info.</legend>
+				<div class="row">
+					<div class="col">
+						<mat-form-field class="country-control">
+							<mat-label>*Country </mat-label>
+							<mat-select formControlName="country" >
+								<mat-option *ngFor="let country of countries" [value]="country.name">
+									{{country.name}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div class="col">
+						<label>City:</label>
+						<input type="text" class="form-control" formControlName="city" required>
+					</div>
+
+					<div class="col">
+						<label>Street:</label>
+						<input type="text" class="form-control" formControlName="address" required>
+					</div>
+				</div>
+
+					
+
+				<hr>
+				<br>
+				<legend>Contract info.</legend>
+				<div class="row">
+					<div class="col">
+						<label>Hiring date:</label>
+						<input type="date" class="form-control" formControlName="hiringDate">
+					</div>
+					<div class="col">
+						<label>Terminating date:</label>
+						<input type="date" class="form-control" formControlName="terminatingDate">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label>Bank:</label>
+						<input type="text" class="form-control" formControlName="bank">
+					</div>
+					<div class="col">
+						<label>Bank account:</label>
+						<input type="text" class="form-control" formControlName="bankAccount">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label>Salary</label>
+						<input type="text" class="form-control" formControlName="salary">
+					</div>
+					<div class="col">
+					</div>
+				</div>
+
+				<!-- Validation messages -->
+				<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+					<div *ngIf="firstName.errors.minLength">
+						First name must be at least 3 characters long.
+					</div>
+					<div *ngIf="firstName.errors.required">
+						First name is required.
+					</div>
+				</div>
+				<div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+					<div *ngIf="lastName.errors.required">
+						Last name is required.
+					</div>
+					<div *ngIf="lastName.errors.minLength">
+						Last name must be at least 3 characters long.
+					</div>
+				</div>
+
+				<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+					<div *ngIf="email.errors.minLength">
+						Email must be at least 11 characters long.
+					</div>
+					<div *ngIf="email.errors.required">
+						Email is required.
+					</div>
+				</div>
+				<div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+					class="alert alert-danger">
+					<div *ngIf="phoneNumber.errors.minLength">
+						Phone number must be at least 11 characters long.
+					</div>
+					<div *ngIf="phoneNumber.errors.required">
+						Phone number is required.
+					</div>
+				</div>
+				<div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
+					<div *ngIf="gender.errors.required">
+						Gender is required.
+					</div>
+				</div>
+				<div *ngIf="jobTitle.invalid && (jobTitle.dirty || jobTitle.touched)" class="alert alert-danger">
+					<div *ngIf="jobTitle.errors.minLength">
+						Job titel must be at least 3 characters long.
+					</div>
+					<div *ngIf="jobTitle.errors.required">
+						Job title is required.
+					</div>
+				</div>
+
+				<div *ngIf="errMsg" class="alert alert-danger" role="alert">
+					{{errMsg}}
+				</div>
+				<div *ngIf="msg" class="alert alert-success" role="alert">
+					{{msg}}
+				</div>
+				<br>
+
+				<!-- Submit button -->
+				<button class="btn btn-success" type="submit">Save</button>
+
 			</form>
 		</div>
 

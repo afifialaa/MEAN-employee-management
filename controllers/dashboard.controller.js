@@ -1,40 +1,40 @@
 const Employee = require('../models/employee.model');
 const User = require('../models/user.model');
 
-let DebugDashboard = require('debug')('worker:dashboard');
+let debugDashboard = require('debug')('worker:dashboard');
 
 function getEmployeesNum(req, res){
-	DebugDashboard('Getting employees count');
+	debugDashboard('Getting employees count');
 	Employee.countDocuments({}, (err, result)=>{
 		if(err) {
-			DebugDashboard(err);
+			debugDashboard(err);
 			res.setHeader('Content-Type', 'application/json');
 			return res.json({err : 'There was an error'});
 		}
 
-		DebugDashboard('Returning employee count');
+		debugDashboard('Returning employee count');
 		res.setHeader('Content-Type', 'application/json');
 		return res.send({number : result});
 	});
 }
 
 function getUsersNum(req, res){
-	DebugDashboard('Getting user count');
+	debugDashboard('Getting user count');
 	User.countDocuments({}, (err, result)=>{
 		if(err) {
-			DebugDashboard(err);
+			debugDashboard(err);
 			res.setHeader('Content-Type', 'application/json');
 			return res.json({err : 'there was an error'});
 		}
 
-		DebugDashboard('Returning user count');
+		debugDashboard('Returning user count');
 		res.setHeader('Content-Type', 'application/json');
 		return res.json({number:result});
 	});
 }
 
 function getDepartmentsNum(req, res){
-	DebugDashboard('Returning department count');
+	debugDashboard('Returning department count');
     return res.json({number:2});
 }
 
