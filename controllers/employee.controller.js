@@ -58,19 +58,22 @@ function updateEmployee(req, res) {
         job_title: req.body.jobTitle,
         department: req.body.department,
         university: req.body.university,
-        country: req.body.country,
-        city: req.body.city,
-        street_address: req.body.street,
-        hiring_date: req.body.hiringDate,
-        terminating_date: req.body.terminatingDate,
-        bank: req.body.bank,
-        bank_account: req.body.bankAccount,
-        salary: req.body.salary
+        address: {
+            country: req.body.country,
+            city: req.body.city,
+            street_address: req.body.street,
+        },
+        contract: {
+            hiring_date: req.body.hiringDate,
+            terminating_date: req.body.terminatingDate,
+            bank: req.body.bank,
+            bank_account: req.body.bankAccount,
+            salary: req.body.salary
+        }
+
     };
 
-    console.log(employeeObj);
-
-    const update = {
+    /*const update = {
         "$set": {
             first_name: req.body.firstName,
             last_name: req.body.lastName,
@@ -81,25 +84,27 @@ function updateEmployee(req, res) {
             department: req.body.department,
             university: req.body.university,
 
-            country: req.body.country,
-            city: req.body.city,
-            street_address: req.body.street,
+            address: {
+                country: req.body.country,
+                city: req.body.city,
+                street_address: req.body.street,
+            },
+            contract: {
+                hiring_date: req.body.hiringDate,
+                terminating_date: req.body.terminatingDate,
+                bank: req.body.bank,
+                bank_account: req.body.bankAccount,
+                salary: req.body.salary
+            }
 
-            hiring_date: req.body.hiringDate,
-            terminating_date: req.body.terminatingDate,
-            bank: req.body.bank,
-            bank_account: req.body.bankAccount,
-            salary: req.body.salary
         }
-    };
+    };*/
 
     debugEmp('employeeObj: ', employeeObj);
 
-
-    Employee.findOneAndUpdate({ email: employeeObj.email }, employeeObj, (err) => {
+    Employee.updateOne({ email: employeeObj.email }, employeeObj, (err) => {
         if (err) {
             debugEmp(err);
-            console.log(err);
             return res.json({ err: 'Failed to update employee' });
         }
         debugEmp('User was updated');

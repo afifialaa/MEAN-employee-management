@@ -56,6 +56,7 @@ export class EmployeeDetailsComponent implements OnInit {
 		let email = this.route.snapshot.paramMap.get('email');
 		// Get employee 
 		this.empService.searchByEmail(email).subscribe((data) => {
+			console.log(data['emp']);
 			this.employee = data['emp'];
 
 			// Populate old data array
@@ -70,15 +71,15 @@ export class EmployeeDetailsComponent implements OnInit {
 			this.editEmployeeForm.controls.university.setValue(data['emp'].university);
 			this.editEmployeeForm.controls.jobTitle.setValue(data['emp'].job_title);
 
-			this.editEmployeeForm.controls.country.setValue(data['emp'].country);
-			this.editEmployeeForm.controls.city.setValue(data['emp'].city);
-			this.editEmployeeForm.controls.street.setValue(data['emp'].street_address);
+			this.editEmployeeForm.controls.country.setValue(data['emp'].address.country);
+			this.editEmployeeForm.controls.city.setValue(data['emp'].address.city);
+			this.editEmployeeForm.controls.street.setValue(data['emp'].address.street_address);
 
-			this.editEmployeeForm.controls.hiringDate.setValue(data['emp'].hiringDate);
-			this.editEmployeeForm.controls.terminatingDate.setValue(data['emp'].terminatingDate);
-			this.editEmployeeForm.controls.bank.setValue(data['emp'].bank);
-			this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].bankAccount);
-			this.editEmployeeForm.controls.salary.setValue(data['emp'].salary);
+			this.editEmployeeForm.controls.hiringDate.setValue(data['emp'].contract.hiringDate);
+			this.editEmployeeForm.controls.terminatingDate.setValue(data['emp'].contract.terminatingDate);
+			this.editEmployeeForm.controls.bank.setValue(data['emp'].contract.bank);
+			this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].contract.bankAccount);
+			this.editEmployeeForm.controls.salary.setValue(data['emp'].contract.salary);
 
 		}), error => {
 			// Error

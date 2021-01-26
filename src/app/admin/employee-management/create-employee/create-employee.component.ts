@@ -6,8 +6,8 @@ import { validateEmail } from '../../../shared/validator-email';
 
 // Models & Services
 import { CountryService } from '../../../services/country.service';
-import {JobsService} from '../../../services/jobs.service';
-import {Iemployee} from '../../../models/iemployee';
+import { JobsService } from '../../../services/jobs.service';
+import { Iemployee } from '../../../models/iemployee';
 
 
 @Component({
@@ -21,10 +21,10 @@ export class CreateEmployeeComponent implements OnInit {
 	countries: any[];
 	jobs: any[];
 
-	errMsg:string;
+	errMsg: string;
 	msg: string;
 
-	constructor(private empService: EmployeeService, private fb: FormBuilder, private countryService: CountryService, private jobsService:JobsService) {
+	constructor(private empService: EmployeeService, private fb: FormBuilder, private countryService: CountryService, private jobsService: JobsService) {
 	}
 
 	ngOnInit() {
@@ -76,22 +76,22 @@ export class CreateEmployeeComponent implements OnInit {
 	}
 
 	// Getters
-	get firstName(){
+	get firstName() {
 		return this.createEmployeeForm.get('firstName');
 	}
-	get lastName(){
+	get lastName() {
 		return this.createEmployeeForm.get('lastName');
 	}
-	get email(){
+	get email() {
 		return this.createEmployeeForm.get('email');
 	}
-	get phoneNumber(){
+	get phoneNumber() {
 		return this.createEmployeeForm.get('phoneNumber');
 	}
-	get gender(){
+	get gender() {
 		return this.createEmployeeForm.get('gender');
 	}
-	get jobTitle(){
+	get jobTitle() {
 		return this.createEmployeeForm.get('jobTitle');
 	}
 
@@ -119,23 +119,18 @@ export class CreateEmployeeComponent implements OnInit {
 			salary: this.createEmployeeForm.value.salary,
 		}
 
-		if (this.createEmployeeForm.valid == true) {
-			this.empService.addEmployee(employee).subscribe((data) => {
-				if(data['err']){
-					this.msg = '';
-					this.errMsg = data['err'];
-					return;
-				}else if (data['msg']){
-					this.errMsg = '';
-					this.msg = data['msg'];
-				}
-			})
-			// Reset form
-			this.createEmployeeForm.reset();
-		} else {
-			console.log('form is invalid');
-			return;
-		}
+		this.empService.addEmployee(employee).subscribe((data) => {
+			if (data['err']) {
+				this.msg = '';
+				this.errMsg = data['err'];
+				return;
+			} else if (data['msg']) {
+				this.errMsg = '';
+				this.msg = data['msg'];
+			}
+		})
+		// Reset form
+		this.createEmployeeForm.reset();
 	}
 
 	updateMsg: string = '';
