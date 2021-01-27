@@ -33,6 +33,14 @@
 						]
 					},
 					"configurations": {
+						"development": {
+							"fileReplacements": [
+							  {
+								"replace": "src/environments/environment.ts",
+								"with": "src/environments/environment.dev.ts"
+							  }
+							]
+						},
 						"production": {
 							"fileReplacements": [
 								{
@@ -56,15 +64,8 @@
 									"maximumError": "5mb"
 								}
 							]
-						},
-						"development": {
-							"fileReplacements": [
-							  {
-								"replace": "src/environments/environment.ts",
-								"with": "src/environments/environment.dev.ts"
-							  }
-							]
 						}
+						
 					}
 				},
 				"serve": {
@@ -73,6 +74,9 @@
 						"browserTarget": "emp-crud:build"
 					},
 					"configurations": {
+						"development": {
+							"browserTarget": "emp-crud:build:development"
+						},
 						"production": {
 							"browserTarget": "emp-crud:build:production"
 						}

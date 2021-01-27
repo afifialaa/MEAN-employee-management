@@ -2,6 +2,10 @@
     margin-top: 40px;
 }
 
+legend{
+    font-weight: bold;
+}
+
 button{
     background-color: #5cb85c; 
     color: white;

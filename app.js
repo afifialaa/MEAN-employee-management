@@ -22,9 +22,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
 
-app.use('/employee', jwtAuth.verifyToken, isAdmin, employeeRoute);
-app.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
-app.use('/dashboard', jwtAuth.verifyToken, isAdmin, dashboardRoute);
+app.use('/employee', jwtAuth.verifyToken,  employeeRoute);
+app.use('/user', jwtAuth.verifyToken,  userRoute);
+app.use('/dashboard', jwtAuth.verifyToken,  dashboardRoute);
 app.use('/account', userRoute);
 
 // Serve static files....

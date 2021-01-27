@@ -14,6 +14,7 @@ export class SearchEmployeeComponent implements OnInit {
 
 	errMsg: string;
 	singleEmployee: any;
+	isGenderField:boolean;
 
 	looking: boolean = false;
 
@@ -30,6 +31,15 @@ export class SearchEmployeeComponent implements OnInit {
 			field: this.field,
 			fieldValue: this.fieldValue
 		})
+	}
+
+	onFieldChange(field){
+		console.log(field);
+		if(field === 'Gender'){
+			this.isGenderField = true;
+		}else{
+			this.isGenderField = false;
+		}
 	}
 
 	targetEmployee: any;
