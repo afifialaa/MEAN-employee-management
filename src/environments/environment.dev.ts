@@ -4,6 +4,7 @@ export const environment = {
 	/* Account api */
 	signupUrl: 'http://localhost:8080/user/signup',
 	loginUrl: 'http://localhost:8080/account/login',
+	forgotUrl: 'http://localhost:8080/account/forgot',
 
 	/* Dashboard api */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',

@@ -1,34 +1,38 @@
 const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const jwtAuth = require('../authentication/token.auth');
+
+const mailer = require('../mailer/mailer');
 
 /* Debugging */
 let debugLogin = require('debug')('worker:userLogin');
 let debugCreateUser = require('debug')('worker:createUser');
 let debugUpdateUser = require('debug')('worker:updateUser');
 let debugDeleteUser = require('debug')('worker:deleteUser');
+let debugUser = require('debug')('worker:debugUser');
 
 /* Search by email */
-function searchByEmail(req, res){
-    User.findOne({email: req.query.email}, (err, user)=>{
-        if(err){
+function searchByEmail(req, res) {
+    User.findOne({ email: req.query.email }, (err, user) => {
+        if (err) {
             console.log(err);
-            return res.json({err: 'Failed to search for user'});
+            return res.json({ err: 'Failed to search for user' });
         }
 
-        return res.json({user: user});
+        return res.json({ user: user });
     })
 }
 
 /* Search by role */
-function searchByRole(req, res){
-    User.find({role:req.query.role}, (err, user)=>{
-        if(err) {
+function searchByRole(req, res) {
+    User.find({ role: req.query.role }, (err, user) => {
+        if (err) {
             console.log(err);
-            return res.json({err: 'Failed to search for user.'});
+            return res.json({ err: 'Failed to search for user.' });
         }
-        return res.json({user: user});
+        return res.json({ user: user });
     });
 }
 
@@ -96,7 +100,7 @@ function createUser(req, res) {
     user.save((err, user) => {
         if (err && err.code == 11000) {
             debugCreateUser('User already exists');
-            return res.json({ err: 'User already exists.'});
+            return res.json({ err: 'User already exists.' });
         }
         if (err) {
             debugCreateUser('Failed to create user');
@@ -109,7 +113,7 @@ function createUser(req, res) {
 
 /* Update user */
 /* Update role */
-function updateUser(req, res){
+function updateUser(req, res) {
     debugUpdateUser('updating user');
     let user = {
         email: req.body.email,
@@ -118,27 +122,68 @@ function updateUser(req, res){
 
     debugUpdateUser('user: ', user);
 
-    User.updateOne({email: req.body.email}, user, (err) => {
-        if(err){
+    User.updateOne({ email: req.body.email }, user, (err) => {
+        if (err) {
             debugUpdateUser('Failed to update user');
-            return res.json({err: 'Failed to update user'});
+            return res.json({ err: 'Failed to update user' });
         }
         debugUpdateUser('User was updated successfully');
-        return res.json({msg:'User was updated'});
+        return res.json({ msg: 'User was updated' });
     })
 }
 
 /* Delete user */
-function deleteUser(req, res){
+function deleteUser(req, res) {
     debugDeleteUser('Deleting user');
-    User.findOneAndDelete({email: req.body.email}, (err)=>{
-        if(err){
+    User.findOneAndDelete({ email: req.body.email }, (err) => {
+        if (err) {
             debugDeleteUser('Failed to delete user');
-            return res.json({err :'Failed to delete user'});
+            return res.json({ err: 'Failed to delete user' });
         }
         debugDeleteUser('User was deleted successfully');
-        return res.json({msg: 'User was deleted successfully'});
+        return res.json({ msg: 'User was deleted successfully' });
     });
+}
+
+async function forgotPassword(req, res) {
+    debugUser('********* Forgot password controller **********');
+
+    try {
+        let token = await generateResetToken();
+        debugUser(token);
+        debugUser(req.body.email);
+
+        let newUser = await User.findOneAndUpdate({email: req.body.email}, {resetPasswordToken: token}, {returnOriginal: false});
+        debugUser(newUser.first_name);
+
+            let info = await mailer.sendEmail(req.body.email, 'Reseting password');
+        User.updateOne({ email: req.body.email }, { resetPasswordToken: token }, (err) => {
+            if (err) {
+                debugUser('failed to insert reset token');
+                return res.json({ err: 'User is not registered' });
+            }
+            debugUser('token was inserted ');
+            // Send email with token
+            debugUser(info);
+            return res.json({ msg: 'success'});
+        })
+    } catch (err) {
+        debugUser(err);
+        return res.json({err: 'Failed to reset password'});
+    }
+
+}
+
+async function generateResetToken() {
+    return new Promise((resolve, reject) => {
+        crypto.randomBytes(20, (err, buf) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(buf.toString('hex'));
+            }
+        })
+    })
 }
 
 module.exports = {
@@ -147,6 +192,7 @@ module.exports = {
     updateUser,
     deleteUser,
     searchByEmail,
-    searchByEmail
+    searchByEmail,
+    forgotPassword
 };
 

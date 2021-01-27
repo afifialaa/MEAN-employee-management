@@ -17,4 +17,8 @@ export class AccountService {
 	loginUser(user){
 		return this.httpClient.post(environment.loginUrl, user, {responseType: 'json'});
 	}
+
+	forgotUser(user){
+		return this.httpClient.post(environment.forgotUrl, user, {responseType: 'json'});
+	}
 }

@@ -7,9 +7,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {PartialsModule} from '../partials/partials.module';
 
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotComponent } from './forgot/forgot.component';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
-    declarations: [SigninComponent, SignupComponent],
+    declarations: [SigninComponent, SignupComponent, ForgotComponent, ResetComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -19,7 +21,8 @@ import { RouterModule, Routes } from '@angular/router';
     ],
     exports: [
         SignupComponent,
-        SigninComponent
+        SigninComponent,
+        ForgotComponent
     ]
 })
 export class AccountModule { }

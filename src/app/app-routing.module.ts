@@ -15,10 +15,15 @@ import { SearchEmployeeComponent } from './admin/employee-management/search-empl
 import { SigninComponent } from './account/signin/signin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin/admin.component';
+import {ForgotComponent} from './account/forgot/forgot.component';
 
 
 const appRoutes: Routes = [
-	{ path: 'signin', component: SigninComponent },
+
+	{ path: 'account', children: [
+		{ path: 'signin', component: SigninComponent },
+		{ path: 'forgot', component: ForgotComponent },
+	]},
 	{
 		path: 'admin', canActivate: [AuthGuard], component: AdminComponent, children: [
 			{
@@ -37,7 +42,7 @@ const appRoutes: Routes = [
 			},
 		]
 	},
-	{ path: '', redirectTo: '/signin', pathMatch: 'full' },
+	{ path: '', redirectTo: '/account/signin', pathMatch: 'full' },
 	{ path: '**', component: PageNotFoundComponent }
 ]
 
