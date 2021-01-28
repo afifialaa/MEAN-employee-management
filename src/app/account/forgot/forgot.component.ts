@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {AccountService} from '../services/account.service';
+import { AccountService } from '../services/account.service';
 
 @Component({
 	selector: 'app-forgot',
@@ -9,10 +9,10 @@ import {AccountService} from '../services/account.service';
 })
 export class ForgotComponent implements OnInit {
 
-	forgotForm:FormGroup;
+	forgotForm: FormGroup;
 	msg: string;
 	errMsg: string;
-	showForm:boolean;
+	showForm: boolean;
 
 	constructor(private accntSrvc: AccountService) { }
 
@@ -23,17 +23,18 @@ export class ForgotComponent implements OnInit {
 		})
 	}
 
-	forgotPassword(){
+	/* Reset button handler */
+	forgotPassword() {
 		let user = {
 			email: this.forgotForm.value.email
 		}
-		this.accntSrvc.forgotUser(user).subscribe( data => {
-			if(data['err']){
-				this.errMsg = 'Email is not registered';
-			}else{
+		this.accntSrvc.forgotUser(user).subscribe(data => {
+			if (data['err']) {
 				this.showForm = false;
-				this.msg = 'You will recienve and email with link to reset password';
+				this.errMsg = 'Email is not registered';
 			}
+			this.showForm = false;
+			this.msg = 'You will recieve an email with a link to reset password';
 		})
 	}
 

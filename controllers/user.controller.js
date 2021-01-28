@@ -153,23 +153,14 @@ async function forgotPassword(req, res) {
         debugUser(token);
         debugUser(req.body.email);
 
-        let newUser = await User.findOneAndUpdate({email: req.body.email}, {resetPasswordToken: token}, {returnOriginal: false});
-        debugUser(newUser.first_name);
+        let newUser = await User.findOneAndUpdate({ email: req.body.email }, { resetPasswordToken: token }, { returnOriginal: false });
+        debugUser(newUser.email);
 
-            let info = await mailer.sendEmail(req.body.email, 'Reseting password');
-        User.updateOne({ email: req.body.email }, { resetPasswordToken: token }, (err) => {
-            if (err) {
-                debugUser('failed to insert reset token');
-                return res.json({ err: 'User is not registered' });
-            }
-            debugUser('token was inserted ');
-            // Send email with token
-            debugUser(info);
-            return res.json({ msg: 'success'});
-        })
+        await mailer.sendEmail(newUser.email, 'Reseting password', token);
+        return res.json({msg: 'Emai was sent'});
     } catch (err) {
         debugUser(err);
-        return res.json({err: 'Failed to reset password'});
+        return res.json({ err: 'Failed to reset password' });
     }
 
 }
