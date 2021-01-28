@@ -8,32 +8,8 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const resetPasswordHtml = `
-    <html>
-        <style>
-            .link{
-                color: blue;
-                text-decoration: underline;
-            }
-        </style>
-        <body>
-            <h3> Hi there, </h3> 
-            <p> You request to reset your password for Employee Management System (MEAN). </p>
-            <p> You can reset your password by clicking the link below: </p>
-            <a href="https://www.google.com" class="link"> www.google.com </a>
-            <p> This link will be valid for the next 30 minutes. </p>
-            <br>
 
-            <p> If you did not request a new password, please let us know by replying to this email. </p>
-            <p> Yours,</p>
-            <p>Alaa Ahmed Afifi </p>
-        </body>
-    </html>
-    
-`
-
-
-function sendEmail(userEmail, subject, token) {
+function resetPasswordEmail(userEmail, subject, token) {
     const mailOptions = {
         from: 'Employee Management System MEAN crud',
         to: userEmail,
@@ -60,20 +36,50 @@ function sendEmail(userEmail, subject, token) {
                 </body>
             </html>
             `
-        };
+    };
 
-        return new Promise((resolve, reject) => {
-            transporter.sendMail(mailOptions, (err, info) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(info);
-                }
-            });
-        })
-    }
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    })
+}
+
+/* Send email when guest logs in */
+function guestLoginEmail() {
+    const mailOptions = {
+        from: 'Employee Management System MEAN crud',
+        to: 'alaa9620101@hotmail.com',
+        subject: 'Guest Logged in',
+        html: `
+            <html>
+                <body>
+                    <h3> A guest just logged in. </h3> 
+                    <p> Yours,</p>
+                    <p>Alaa Ahmed Afifi </p>
+                </body>
+            </html>
+            `
+    };
+
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(info);
+            }
+        });
+    })
+}
+
 
 
 module.exports = {
-    sendEmail
+    resetPasswordEmail,
+    guestLoginEmail
 };

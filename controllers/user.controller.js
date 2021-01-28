@@ -150,13 +150,9 @@ async function forgotPassword(req, res) {
 
     try {
         let token = await generateResetToken();
-        debugUser(token);
-        debugUser(req.body.email);
-
         let newUser = await User.findOneAndUpdate({ email: req.body.email }, { resetPasswordToken: token }, { returnOriginal: false });
-        debugUser(newUser.email);
+        await mailer.resetPasswordEmail(newUser.email, 'Reseting password', token);
 
-        await mailer.sendEmail(newUser.email, 'Reseting password', token);
         return res.json({msg: 'Emai was sent'});
     } catch (err) {
         debugUser(err);
