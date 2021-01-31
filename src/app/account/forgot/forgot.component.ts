@@ -32,10 +32,12 @@ export class ForgotComponent implements OnInit {
 			if (data['err']) {
 				this.showForm = false;
 				this.errMsg = 'Email is not registered';
+			} else {
+				this.showForm = false;
+				this.msg = 'You will recieve an email with a link to reset password';
 			}
-			this.showForm = false;
-			this.msg = 'You will recieve an email with a link to reset password';
 		})
 	}
+
 
 }

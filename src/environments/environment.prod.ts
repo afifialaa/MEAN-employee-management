@@ -5,8 +5,8 @@ export const environment = {
 		loginUrl: '/account/login',
 		signupUrl: '/user/signup',
 		forgotUrl: '/account/forgot',
-		resetPassword: '/account/reset',
 		checkResetToken: '/account/checkResetToken',
+		resetPassword: '/account/resetPassword',
 	
 		/* Dashboard api */
 		getEmployeesNumURL: '/dashboard/getEmployeesNum',

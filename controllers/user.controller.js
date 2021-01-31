@@ -153,7 +153,7 @@ async function forgotPassword(req, res) {
         let newUser = await User.findOneAndUpdate({ email: req.body.email }, { resetPasswordToken: token }, { returnOriginal: false });
         await mailer.resetPasswordEmail(newUser.email, 'Reseting password', token);
 
-        return res.json({msg: 'Emai was sent'});
+        return res.json({ msg: 'Emai was sent' });
     } catch (err) {
         debugUser(err);
         return res.json({ err: 'Failed to reset password' });
@@ -161,18 +161,56 @@ async function forgotPassword(req, res) {
 
 }
 
-function checkResetToken(req, res){
+function checkResetToken(req, res) {
     let resetToken = req.body.resetToken;
-    User.findOne({resetPasswordToken: resetToken}, (err, user)=> {
-        if(err){
-            return res.json({err: 'Token not valid'});
-        }else if(user == null){
-            return res.json({err: 'Token not valid'});
-        }else{
-            return res.json({msg: 'Token is valid'});
+    User.findOne({ resetPasswordToken: resetToken }, (err, user) => {
+        if (err) {
+            return res.json({ err: 'Failed to validate error' });
+        } else if (user == null) {
+            return res.json({ err: 'Token not valid' });
+        } else {
+            return res.json({ email: user.email });
         }
     })
 }
+
+/* testing hashing password */
+function resetPassword(req, res) {
+    let userObj = {
+        email: req.body.email,
+        password: req.body.password
+    }
+
+    User.findOne({ email: userObj.email }, (err, user) => {
+        if (err) {
+            debugUser(err);
+            return res.json({ err: 'Failed to change password' });
+        } else {
+            user.password = userObj.password;
+            user.resetPasswordToken = undefined;
+            user.save();
+            debugUser('Password is changed');
+            return res.json({ msg: 'Password was changed' });
+        }
+    })
+}
+
+/*function resetPassword(req, res) {
+    let user = {
+        email: req.body.email,
+        password: req.body.password
+    }
+
+    User.findOneAndUpdate({ email: user.email }, { password: user.password }, (err, user) => {
+        if (err) {
+            debugUser(err);
+            return res.json({ err: 'Failed to change password' });
+        } else {
+            debugUser('Password is changed');
+            return res.json({ msg: 'Password was changed' });
+        }
+    })
+}*/
 
 async function generateResetToken() {
     return new Promise((resolve, reject) => {
@@ -186,6 +224,7 @@ async function generateResetToken() {
     })
 }
 
+
 module.exports = {
     login,
     createUser,
@@ -194,6 +233,7 @@ module.exports = {
     searchByEmail,
     searchByEmail,
     forgotPassword,
-    checkResetToken
+    checkResetToken,
+    resetPassword
 };
 
