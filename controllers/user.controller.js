@@ -161,6 +161,19 @@ async function forgotPassword(req, res) {
 
 }
 
+function checkResetToken(req, res){
+    let resetToken = req.body.resetToken;
+    User.findOne({resetPasswordToken: resetToken}, (err, user)=> {
+        if(err){
+            return res.json({err: 'Token not valid'});
+        }else if(user == null){
+            return res.json({err: 'Token not valid'});
+        }else{
+            return res.json({msg: 'Token is valid'});
+        }
+    })
+}
+
 async function generateResetToken() {
     return new Promise((resolve, reject) => {
         crypto.randomBytes(20, (err, buf) => {
@@ -180,6 +193,7 @@ module.exports = {
     deleteUser,
     searchByEmail,
     searchByEmail,
-    forgotPassword
+    forgotPassword,
+    checkResetToken
 };
 

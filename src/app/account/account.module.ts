@@ -9,9 +9,10 @@ import {PartialsModule} from '../partials/partials.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
-    declarations: [SigninComponent, SignupComponent, ForgotComponent, ResetComponent],
+    declarations: [SigninComponent, SignupComponent, ForgotComponent, ResetComponent, ResetPasswordComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -22,7 +23,8 @@ import { ResetComponent } from './reset/reset.component';
     exports: [
         SignupComponent,
         SigninComponent,
-        ForgotComponent
+        ForgotComponent,
+        ResetPasswordComponent
     ]
 })
 export class AccountModule { }

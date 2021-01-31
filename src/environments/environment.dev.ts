@@ -5,6 +5,8 @@ export const environment = {
 	signupUrl: 'http://localhost:8080/user/signup',
 	loginUrl: 'http://localhost:8080/account/login',
 	forgotUrl: 'http://localhost:8080/account/forgot',
+	resetPasswordUrl: 'http://localhost:8080/account/resetPassword',
+	checkResetToken: 'http://localhost:8080/account/checkResetToken',
 
 	/* Dashboard api */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
@@ -14,7 +16,6 @@ export const environment = {
 	createEmpURL: "http://localhost:8080/employee/addEmp",
 	updateEmpURL: "http://localhost:8080/employee/updateEmployee",
 	deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
-
 
 	/* Search employee api */
 	searchByFirstNameURL: "http://localhost:8080/employee/searchByFirstName",

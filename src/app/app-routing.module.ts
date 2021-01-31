@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 
+/* Components */
 import { EmployeeComponent } from './admin/employee-management/employee/employee.component';
 import { CreateEmployeeComponent } from './admin/employee-management/create-employee/create-employee.component';
 import { EmployeeDetailsComponent } from './admin/employee-management/employee-details/employee-details.component';
@@ -16,6 +17,7 @@ import { SigninComponent } from './account/signin/signin.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import {ForgotComponent} from './account/forgot/forgot.component';
+import {ResetPasswordComponent} from './account/reset-password/reset-password.component';
 
 
 const appRoutes: Routes = [
@@ -23,6 +25,7 @@ const appRoutes: Routes = [
 	{ path: 'account', children: [
 		{ path: 'signin', component: SigninComponent },
 		{ path: 'forgot', component: ForgotComponent },
+		{ path: 'resetPassword/:resetToken', component: ResetPasswordComponent },
 	]},
 	{
 		path: 'admin', canActivate: [AuthGuard], component: AdminComponent, children: [

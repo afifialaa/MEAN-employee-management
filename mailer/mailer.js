@@ -26,7 +26,7 @@ function resetPasswordEmail(userEmail, subject, token) {
                 <h3> Hi there, </h3> 
                 <p> You request to reset your password for Employee Management System (MEAN). </p>
                 <p> You can reset your password by clicking the link below: </p>
-                <a href="https://employee-management-mean.herokuapp.com/account/resetPassword/` + token + `" class="link"> employee-management-mean </a>
+                <a href="localhost:4200/account/resetPassword/` + token + `" class="link"> localhost:4200/account/resetPassword/` + token + `</a>
                 <p> This link will be valid for the next 30 minutes. </p>
                 <br>
 
