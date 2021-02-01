@@ -24,7 +24,7 @@ export class AccountService {
 
 	checkResetToken(resetToken){
 		console.log('token is ', resetToken);
-		return this.httpClient.post(environment.checkResetToken, resetToken );
+		return this.httpClient.post(environment.checkResetTokenUrl, resetToken );
 	}
 
 	resetPassword(user){

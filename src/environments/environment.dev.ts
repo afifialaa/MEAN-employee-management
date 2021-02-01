@@ -5,8 +5,8 @@ export const environment = {
 	signupUrl: 'http://localhost:8080/user/signup',
 	loginUrl: 'http://localhost:8080/account/login',
 	forgotUrl: 'http://localhost:8080/account/forgot',
+	checkResetTokenUrl: 'http://localhost:8080/account/checkResetToken',
 	resetPasswordUrl: 'http://localhost:8080/account/resetPassword',
-	checkResetToken: 'http://localhost:8080/account/checkResetToken',
 
 	/* Dashboard api */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
