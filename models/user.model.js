@@ -21,6 +21,12 @@ const UserSchema = new Schema({
     role: {
         type: String,
         enum: roles
+    },
+    resetPasswordToken: {
+        type: String
+    },
+    resetPasswordExpire: {
+        type: Date
     }
 }, {timestamps:true});
 

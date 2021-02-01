@@ -17,4 +17,17 @@ export class AccountService {
 	loginUser(user){
 		return this.httpClient.post(environment.loginUrl, user, {responseType: 'json'});
 	}
+
+	forgotUser(user){
+		return this.httpClient.post(environment.forgotUrl, user, {responseType: 'json'});
+	}
+
+	checkResetToken(resetToken){
+		console.log('token is ', resetToken);
+		return this.httpClient.post(environment.checkResetTokenUrl, resetToken );
+	}
+
+	resetPassword(user){
+		return this.httpClient.post(environment.resetPasswordUrl, user, {responseType: 'json'});
+	}
 }
