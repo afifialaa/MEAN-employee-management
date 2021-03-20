@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EmployeeService } from '../services/employee.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import {Iemployee} from '../../../models/iemployee';
+import {Iemployee} from '../../models/iemployee';
 
 @Component({
 	selector: 'app-employee-details',

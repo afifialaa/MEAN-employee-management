@@ -9,7 +9,7 @@ export class AuthInterceptorService {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
 		const token = localStorage.getItem("token");
-		console.log("Interceptor: found token");
+		token ? console.log('token was found') : console.log('token was not found');
 
 		const headers = new HttpHeaders().set("Authorization", "Bearer " + token);
 

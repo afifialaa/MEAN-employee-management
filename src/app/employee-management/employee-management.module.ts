@@ -8,7 +8,7 @@ import { MatInputModule, MatButtonModule, MatTabsModule, MatCardModule, MatIconM
 import { MatRadioModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
-import {AuthInterceptorService} from '../../interceptors/auth-interceptor.service';
+import {AuthInterceptorService} from '../interceptors/auth-interceptor.service';
 import {MatProgressSpinnerModule} from '@angular/material'
 
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
