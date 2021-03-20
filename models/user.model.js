@@ -6,6 +6,8 @@ let saltRounds = 10;
 const Schema = mongoose.Schema;
 const roles = require('../models/roles');
 
+const TaskSchema = require('./task.schema');
+
 const UserSchema = new Schema({
     email: {
         type: String,
@@ -27,7 +29,8 @@ const UserSchema = new Schema({
     },
     resetPasswordExpire: {
         type: Date
-    }
+    },
+    tasks: [TaskSchema]
 }, {timestamps:true});
 
 // Hash passwords before save event

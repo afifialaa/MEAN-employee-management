@@ -13,6 +13,7 @@ const path = require('path');
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
 const dashboardRoute = require('./routes/dashboard.route');
+const accountRoutes = require('./routes/account.routes');
 
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');
@@ -23,14 +24,15 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
 
 app.use('/employee', jwtAuth.verifyToken, isAdmin, employeeRoute);
-app.use('/user', jwtAuth.verifyToken, isAdmin,  userRoute);
+app.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
 app.use('/dashboard', jwtAuth.verifyToken, isAdmin,  dashboardRoute);
-app.use('/account', userRoute);
+app.use('/account', accountRoutes);
 
 // Serve static files....
-app.use(express.static(__dirname + '/dist/emp-crud'));
+/* app.use(express.static(__dirname + '/dist/emp-crud'));
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
 });
+*/
 module.exports = app;

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const jobs = require('../models/jobs');
 const addressSchema = require('./address.schema');
 const contractSchema = require('./contract.schema');
+const TaskSchema = require('./task.schema');
 
 const Schema = mongoose.Schema;
 
@@ -51,7 +52,9 @@ const EmployeeSchema = new Schema({
         type:String,
         required: false
     },
-    contract: contractSchema
+
+    contract: contractSchema,
+
 });
 
 const Employee = mongoose.model('employees', EmployeeSchema);
