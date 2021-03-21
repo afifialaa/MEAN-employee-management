@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin/admin.component';
 import {ForgotComponent} from './account/forgot/forgot.component';
 import {ResetPasswordComponent} from './account/reset-password/reset-password.component';
+import {TaskComponent} from './task-management/task/task.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
 					{ path: 'search', canActivate: [AuthGuard, AdminGuard], component: SearchUserComponent },
 				]
 			},
+			{ path: 'task', component: TaskComponent}
 		]
 	},
 	{ path: '', redirectTo: '/account/signin', pathMatch: 'full' },

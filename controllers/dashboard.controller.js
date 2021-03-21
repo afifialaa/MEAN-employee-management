@@ -38,8 +38,24 @@ function getDepartmentsNum(req, res){
     return res.json({number:2});
 }
 
+function getTasksNum(req, res){
+	debugDashboard('Getting user count');
+	User.countDocuments({email: req.email}, 'tasks',  (err, result)=>{
+		if(err) {
+			debugDashboard(err);
+			res.setHeader('Content-Type', 'application/json');
+			return res.json({err : 'there was an error'});
+		}
+
+		debugDashboard('Returning user count');
+		res.setHeader('Content-Type', 'application/json');
+		return res.status(200).json({number:result});
+	});
+}
+
 module.exports = {
     getEmployeesNum,
     getDepartmentsNum,
-    getUsersNum
+    getUsersNum,
+	getTasksNum
 }

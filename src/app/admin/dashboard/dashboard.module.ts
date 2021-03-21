@@ -7,12 +7,15 @@ import { PayrollCardComponent } from './payroll-card/payroll-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {PartialsModule} from '../../partials/partials.module';
+import {TaskManagementModule} from '../../task-management/task-management.module';
+import { TaskCardComponent } from './task-card/task-card.component';
 
 @NgModule({
-	declarations: [DepartmentCardComponent, UserCardComponent, EmployeeCardComponent, PayrollCardComponent, DashboardComponent],
+	declarations: [DepartmentCardComponent, UserCardComponent, EmployeeCardComponent, PayrollCardComponent, DashboardComponent, TaskCardComponent],
 	imports: [
 		CommonModule,
-		PartialsModule
+		PartialsModule,
+		TaskManagementModule
 	],
 	exports: [
 		DashboardComponent

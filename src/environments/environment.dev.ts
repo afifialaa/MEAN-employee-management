@@ -2,7 +2,7 @@ export const environment = {
 	production: false,
 
 	/* Account api */
-	signupUrl: 'http://localhost:8080/user/signup',
+	signupUrl: 'http://localhost:8080/account/signup',
 	loginUrl: 'http://localhost:8080/account/login',
 	forgotUrl: 'http://localhost:8080/account/forgot',
 	checkResetTokenUrl: 'http://localhost:8080/account/checkResetToken',
@@ -12,12 +12,13 @@ export const environment = {
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
 	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
 	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
+	getTasksNumURL: 'http://localhost:8080/tasks/num',
 
+	/* Employee api */
 	createEmpURL: "http://localhost:8080/employee/addEmp",
 	updateEmpURL: "http://localhost:8080/employee/updateEmployee",
 	deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
 
-	/* Search employee api */
 	searchByFirstNameURL: "http://localhost:8080/employee/searchByFirstName",
 	searchByLastNameURL: "http://localhost:8080/employee/searchByLastName",
 	searchByGenderURL: "http://localhost:8080/employee/searchByGender",
@@ -29,6 +30,9 @@ export const environment = {
 	searchByUniversityURL: "http://localhost:8080/employee/searchByUniversity",
 
 	// User api
-	createUserUrl: 'http://localhost:8080/user/signup',
+	createUserUrl: 'http://localhost:8080/user/createUser',
 	searchUserUrl: 'http://localhost:8080/user/searchUser',
+
+	/* Task api */
+	taskURL: 'http://localhost:8080/user/tasks',
 };

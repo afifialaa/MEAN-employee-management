@@ -22,4 +22,8 @@ export class DashboardServices{
 	getDepartmentsNum(){
 		return this.httpClient.get(environment.getDepartmentsNumURL);
 	}
+
+	getTasksNum(){
+		return this.httpClient.get(environment.getTasksNumURL);
+	}
 }

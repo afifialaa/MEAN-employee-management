@@ -16,6 +16,7 @@ import { MatRadioModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material';
 import { EmployeeModule } from './employee-management/employee-management.module';
 import { QuillModule } from 'ngx-quill';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 // Components
 import { EmployeeComponent } from './employee-management/employee/employee.component';
@@ -34,6 +35,7 @@ import { AccountModule } from './account/account.module';
 import {PartialsModule} from './partials/partials.module';
 import {DashboardModule} from './admin/dashboard/dashboard.module';
 import {UserManagementModule} from './user-management/user-management.module';
+import {TaskManagementModule} from './task-management/task-management.module';
 
 @NgModule({
 	declarations: [
@@ -57,7 +59,9 @@ import {UserManagementModule} from './user-management/user-management.module';
 		QuillModule,
 		PartialsModule,
 		DashboardModule,
-		UserManagementModule
+		UserManagementModule,
+		TaskManagementModule,
+		MatDatepickerModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

@@ -6,7 +6,8 @@ function createTask(req, res){
     let task = {
         name: req.body.name,
         project: req.body.project,
-        status: 'not done'
+        status: 'not done',
+        dueDate: req.body.dueDate
     }
 
     debugTask('Task is: ', task);
