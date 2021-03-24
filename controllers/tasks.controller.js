@@ -35,10 +35,18 @@ function updateTask(req, res){
 }
 
 function deleteTask(req, res){
-    User.findOneAndUpdate({email: req.email}, {$pull: {tasks: {_id: req.body.id}}}, (err)=>{
+    debugTask('id is ', req.query.taskId);
+    User.updateOne({email: req.email},
+                        {
+                            $pull: {
+                                tasks: {_id: '605a29c5d3ff8a0bf0d3c170'}
+                        }
+                    },  {safe:true}, (err)=>{
         if(err){
+            debugTask('Failed to remove task');
             res.status(402).json({err: 'Failed to remove task'});
         }else{
+            debugTask('Task was removed');
             res.status(200).json({msg: 'Task was removed'});
         }
     })
@@ -49,7 +57,7 @@ function fetchTasks(req, res){
         if(err){
             res.status(402).json({err: 'Failed to fetch tasks'});
         }else{
-            res.status(200).json({tasks: docs});
+            res.status(200).json({tasks: docs[0]});
         }
     })
 }

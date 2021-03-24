@@ -6,18 +6,23 @@
                     <label>Task:</label>
                     <input type="text" formControlName="task" class="form-control" required>
                 </div>
-                <div class="form-group">
-                    <label>Project:</label>
-                    <input type="text" formControlName="project" class="form-control" required>
+
+                <div class="row">
+                    <div class="col">
+                        <label>Project: </label>
+                        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Due date: </label>
+                            <input matInput [matDatepicker]="picker" formControlName="dueDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Due date: </label>
-                    <input matInput [matDatepicker]="picker" formControlName="dueDate">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-
-                </div>
                 <!-- Error messages -->
                 <div *ngIf="errMsg" class="alert alert-danger" role="alert">
                     {{errMsg}}
@@ -29,9 +34,22 @@
                 <button type="submit" class="btn btn-success createBtn"> + </button>
             </form>
 
-
         </div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <ul>
+                <li class="task-item" *ngFor="let task of tasks; let idx = index" (click)="show(idx)">
+                    {{task.name}}
+                    <div class="item-details" *ngIf="showDetails[idx]">
+                        <div class="form-group">
+                            <label>Project</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <span class="delete" (click)=deleteTask(task._id)> x</span>
+                </li>
+
+            </ul>
+        </div>
     </div>
 </div>
 
