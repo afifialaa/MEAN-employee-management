@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col">
                         <label>Project: </label>
-                        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                        <input type="text" class="form-control" placeholder="Personal" aria-label="First name" formControlName="project">
                     </div>
                     <div class="col">
                         <div class="form-group">
@@ -45,7 +45,7 @@
                             <input type="text">
                         </div>
                     </div>
-                    <span class="delete" (click)=deleteTask(task._id)> x</span>
+                    <span class="delete" (click)="deleteTask(task._id, idx)"> x</span>
                 </li>
 
             </ul>

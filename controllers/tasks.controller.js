@@ -1,63 +1,64 @@
 const User = require('../models/user.model');
+const Task = require('../models/tasks.model');
 
 let debugTask = require('debug')('worker:debugTask');
 
-function createTask(req, res){
-    let task = {
+function createTask(req, res) {
+    let taskObj = {
+        user: req.email,
         name: req.body.name,
         project: req.body.project,
         status: 'not done',
         dueDate: req.body.dueDate
     }
 
-    debugTask('Task is: ', task);
+    debugTask('Task is: ', taskObj);
 
-    User.updateOne({ email: req.email}, { $push: { tasks: task } }, (err, result) => {
-        if(err){
-            debugTask('failed to add task');
-            res.status(402).json({err: 'Failed to add task'});
-        }else{
-            debugTask('task inserted');
-            res.status(200).json({msg: 'Task inserted'});
+    let task = new Task(taskObj);
+
+    task.save((err, task) => {
+        if (err) {
+            debugTask('err: failed to add task', err);
+            return res.json({ err: 'Failed to add task' });
+        } else {
+            debugTask('Task as added');
+            return res.json({ msg: 'Task was added' });
         }
     })
 }
 
-function updateTask(req, res){
+function updateTask(req, res) {
     console.log('updating tassk');
-    User.findOneAndUpdate({ email : req.email, 'tasks._id' : req.body.id }, { "tasks.$.name" : req.body.name, "tasks.$.project": req.body.project }, (err)=> {
-        if(err){
-            res.status(402).json({err: 'Failed to update task'});
-        }else{
-            res.status(200).json({msg: 'Task updated'});
+    User.findOneAndUpdate({ email: req.email, 'tasks._id': req.body.id }, { "tasks.$.name": req.body.name, "tasks.$.project": req.body.project }, (err) => {
+        if (err) {
+            res.status(402).json({ err: 'Failed to update task' });
+        } else {
+            res.status(200).json({ msg: 'Task updated' });
         }
     });
 }
 
-function deleteTask(req, res){
+function deleteTask(req, res) {
     debugTask('id is ', req.query.taskId);
-    User.updateOne({email: req.email},
-                        {
-                            $pull: {
-                                tasks: {_id: '605a29c5d3ff8a0bf0d3c170'}
-                        }
-                    },  {safe:true}, (err)=>{
+    Task.findByIdAndRemove(req.query.taskId, err => {
         if(err){
-            debugTask('Failed to remove task');
-            res.status(402).json({err: 'Failed to remove task'});
+            debugTask('Failed to delete task: ', err);
+            return res.json({err: 'Failed to delete task'});
         }else{
-            debugTask('Task was removed');
-            res.status(200).json({msg: 'Task was removed'});
+            debugTask('Task was deleted');
+            return res.json({msg: 'Task was deleted'});
         }
-    })
+    });
 }
 
-function fetchTasks(req, res){
-    User.find({email: req.email}, {tasks: 1}, (err, docs)=>{
-        if(err){
-            res.status(402).json({err: 'Failed to fetch tasks'});
-        }else{
-            res.status(200).json({tasks: docs[0]});
+function fetchTasks(req, res) {
+    Task.find({ user: req.email }, (err, docs) => {
+        if (err) {
+            debugTask('Failed to fetch tasks');
+            res.status(402).json({ err: 'Failed to fetch tasks' });
+        } else {
+            debugTask('Tasks were fetched');
+            res.status(200).json({ tasks: docs });
         }
     })
 }

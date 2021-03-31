@@ -35,4 +35,7 @@ export const environment = {
 
 	/* Task api */
 	taskURL: 'http://localhost:8080/user/tasks',
+
+	/* Chat api */
+	sendMessageURL: 'asdj'
 };

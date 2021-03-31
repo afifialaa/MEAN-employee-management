@@ -30,7 +30,8 @@ export class TaskComponent implements OnInit {
 		});
 
 		this.taskSrvc.fetchTasks().subscribe(data => {
-			this.tasks = data['tasks']['tasks'];
+			this.tasks = data['tasks'];
+			console.log(this.tasks);
 		})
 	}
 
@@ -42,14 +43,13 @@ export class TaskComponent implements OnInit {
 			dueDate: this.taskForm.value.dueDate
 		}
 
-		this.tasks.push(task);
-
 		this.taskSrvc.createTask(task).subscribe(data => {
 			if(data['err']){
 				this.msg = '';
 				this.errMsg = data['err'];
 				this.taskForm.reset();
 			}else{
+				this.tasks.push(task);
 				this.errMsg = '';
 				this.msg = data['msg'];
 				this.taskForm.reset();
@@ -57,9 +57,17 @@ export class TaskComponent implements OnInit {
 		})
 	}
 
-	deleteTask(taskId){
+	deleteTask(taskId, index: number){
 
 		this.taskSrvc.deleteTask(taskId).subscribe(data => {
+			if(data['err']){
+				this.msg = '';
+				this.errMsg = data['err'];
+			}else{
+				this.tasks.splice(index, 1);
+				this.errMsg = '';
+				this.msg = data['msg'];
+			}
 			console.log(data['msg']);
 		})
 	}
