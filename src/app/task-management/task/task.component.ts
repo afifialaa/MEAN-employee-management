@@ -31,7 +31,6 @@ export class TaskComponent implements OnInit {
 
 		this.taskSrvc.fetchTasks().subscribe(data => {
 			this.tasks = data['tasks'];
-			console.log(this.tasks);
 		})
 	}
 
@@ -68,7 +67,6 @@ export class TaskComponent implements OnInit {
 				this.errMsg = '';
 				this.msg = data['msg'];
 			}
-			console.log(data['msg']);
 		})
 	}
 

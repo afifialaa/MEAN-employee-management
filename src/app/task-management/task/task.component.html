@@ -10,7 +10,8 @@
                 <div class="row">
                     <div class="col">
                         <label>Project: </label>
-                        <input type="text" class="form-control" placeholder="Personal" aria-label="First name" formControlName="project">
+                        <input type="text" class="form-control" placeholder="Personal" aria-label="First name"
+                            formControlName="project">
                     </div>
                     <div class="col">
                         <div class="form-group">
@@ -37,12 +38,24 @@
         </div>
         <div class="col-md-6">
             <ul>
-                <li class="task-item" *ngFor="let task of tasks; let idx = index" (click)="show(idx)">
-                    {{task.name}}
+                <li class="task-item" *ngFor="let task of tasks; let idx = index">
+                    <span class="more" (click)="show(idx)">></span>{{task.name}}
                     <div class="item-details" *ngIf="showDetails[idx]">
-                        <div class="form-group">
-                            <label>Project</label>
-                            <input type="text">
+                        <div class="row">
+                            <div class="col">
+                                <label>Project</label>
+                            </div>
+                            <div class="col">
+                                <label>Due Date</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" [(ngModel)]="task.project" readonly>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" [(ngModel)]="task.dueDate" readonly>
+                            </div>
                         </div>
                     </div>
                     <span class="delete" (click)="deleteTask(task._id, idx)"> x</span>
