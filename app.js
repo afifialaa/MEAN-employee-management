@@ -14,6 +14,7 @@ const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.route');
 const dashboardRoute = require('./routes/dashboard.route');
 const accountRoutes = require('./routes/account.routes');
+const blogRoutes = require('./routes/blog.routes');
 
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');
@@ -27,6 +28,7 @@ app.use('/employee', jwtAuth.verifyToken, isAdmin, employeeRoute);
 app.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
 app.use('/dashboard', jwtAuth.verifyToken, isAdmin,  dashboardRoute);
 app.use('/account', accountRoutes);
+app.use('/blog', jwtAuth.verifyToken, blogRoutes);
 
 // Serve static files....
 /* app.use(express.static(__dirname + '/dist/emp-crud'));
