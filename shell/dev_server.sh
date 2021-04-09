@@ -1,0 +1,1 @@
+DEBUG=* nodemon server.js
