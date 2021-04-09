@@ -28,7 +28,6 @@ function createTask(req, res) {
 }
 
 function updateTask(req, res) {
-    console.log('updating tassk');
     User.findOneAndUpdate({ user: req.email, 'tasks._id': req.body.id }, { "tasks.$.name": req.body.name, "tasks.$.project": req.body.project }, (err) => {
         if (err) {
             res.status(402).json({ err: 'Failed to update task' });
