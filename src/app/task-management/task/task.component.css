@@ -31,10 +31,13 @@ ul li:hover {
 }
 
 .more{
+    display: inline-block;
     position: relative;
     left: -4%;
     cursor: pointer;
-    color:red;
+    color:black;
+    font-weight: bold;
+    opacity: 0.4;
 }
 
 .more:focus i{
