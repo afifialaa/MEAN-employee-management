@@ -39,7 +39,7 @@
         <div class="col-md-6">
             <ul>
                 <li class="task-item" *ngFor="let task of tasks; let idx = index">
-                    <span class="more" (click)="show(idx)">></span>{{task.name}}
+                    <span class="more" (click)="show(idx)" [@rotateDetails]="showDetailsAnim[idx] ? 'open' : 'close'" >></span>{{task.name}}
                     <div class="item-details" *ngIf="showDetails[idx]">
                         <div class="row">
                             <div class="col">

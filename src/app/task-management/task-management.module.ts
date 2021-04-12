@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material/';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { TaskComponent } from './task/task.component';
 
@@ -16,7 +19,9 @@ import { TaskComponent } from './task/task.component';
 		FormsModule,
 		ReactiveFormsModule,
 		MatNativeDateModule,
-		MatDatepickerModule
+		MatDatepickerModule,
+		BrowserModule,
+		BrowserAnimationsModule
 	],
 	exports: [
 		TaskComponent
