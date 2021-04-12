@@ -1,27 +1,56 @@
-# EmpCrud
+# emp-crud
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
+This is MEAN stack project built for educational purposes. This is a web application that provides a system to manage employees on a small scale.
+ 
+P.S *This repo is still in development*
 
-## Development server
+This project uses the MEAN stack:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Mongoose.js (MongoDB): database
+* Express.js: backend framework
+* Angular v11.x: frontend framework
+* Node.js v14.x: runtime environment
 
-## Code scaffolding
+## Prerequisites
+1. Install [Node.js](https://nodejs.org/en/) and [MongoDB](https://www.mongodb.com)
+2. Install Angular CLI
+```bash
+npm install -g @angular/cli
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+1. Clone repo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+git clone https://github.com/afifialaa/MEAN-crud-operations.git
+```
+2. Install dependencies
 
-## Running unit tests
+```bash
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Usage
+1. Create a .env file with the following variables
 
-## Running end-to-end tests
+```env
+MONGODB_LOCAL=mongodb://localhost:27017/employee-management
+SECRET_KEY=your_secret_key
+```
+2. Run angular in development mode
+```bash
+ng serve --configuration=development
+```
+and now you can visit the site with the URL http://localhost:4200
+3. Run server
+```bash
+node server.js
+```
+or run server in debug mode
+```bash
+DEBUG=* node server.js
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Contributing
+Pull requests are welcome. For major changes, please open an issue
