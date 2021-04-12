@@ -5,6 +5,7 @@ dev
 # Vim swap files
 *.swp
 *~
+.*.swp
 
 # compiled output
 /dist
