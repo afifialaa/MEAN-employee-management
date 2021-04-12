@@ -1,1 +1,1 @@
-mongo "mongodb+srv://employee-management.w2ztr.mongodb.net/myFirstDatabase" --username admin
+mongo "mongodb+srv://employee-management.w2ztr.mongodb.net/employee-management" --username admin
