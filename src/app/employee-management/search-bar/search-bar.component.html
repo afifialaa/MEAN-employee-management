@@ -1,0 +1,14 @@
+<form [formGroup]="searchForm">
+    <div class="form-row">
+        <div class="form-group col-md-8" >
+            <input type="search" class="form-control" formControlName="email" placeholder="search by email">
+        </div>
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-success" (click)="search()"> Search</button>
+        </div>
+    </div>
+</form>
+
+<div *ngIf="errMsg" class="alert alert-danger">
+    {{errMsg}}
+</div>

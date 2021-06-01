@@ -11,7 +11,6 @@ export class EmployeeService {
 	constructor(private http: HttpClient) { }
 
 	addEmployee(employee: Iemployee) {
-		console.log(employee.country);
 		return this.http.post(environment.createEmpURL, employee);
 	}
 
@@ -24,11 +23,7 @@ export class EmployeeService {
 	}
 
 	deleteEmployee(employee:Iemployee) {
-		this.http.post(environment.deleteEmpURL, employee).subscribe(res => {
-			console.log('employee was deleted');
-		}, err => {
-			console.log(err);
-		})
+		return this.http.post(environment.deleteEmpURL, employee);
 	}
 
 	// ----------- Search services ------------

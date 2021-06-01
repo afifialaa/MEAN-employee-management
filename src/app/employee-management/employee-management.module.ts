@@ -17,6 +17,7 @@ import { SearchEmployeeComponent } from './search-employee/search-employee.compo
 import { EmployeeComponent } from './employee/employee.component';
 
 import {EmployeeRoutingModule} from './employee-routing.module';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
 	declarations: [
@@ -24,6 +25,7 @@ import {EmployeeRoutingModule} from './employee-routing.module';
 		EmployeeDetailsComponent,
 		SearchEmployeeComponent,
 		EmployeeComponent,
+		SearchBarComponent,
 	],
 	imports: [
 		CommonModule,

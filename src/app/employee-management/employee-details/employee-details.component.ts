@@ -21,6 +21,9 @@ export class EmployeeDetailsComponent implements OnInit {
 	oldData;
 	newEmpData:Iemployee;
 
+    errMsg: string;
+    msg: string;
+
 	constructor(private route: ActivatedRoute, private router: Router, private empService: EmployeeService) {
 	}
 
@@ -136,7 +139,17 @@ export class EmployeeDetailsComponent implements OnInit {
 
 	deleteEmployee() {
 		let employee = this.employee;
-		this.empService.deleteEmployee(employee);
+		this.empService.deleteEmployee(employee).subscribe(
+            data => {
+                this.errMsg = '';
+                this.msg = 'Employee updated';
+
+            },
+            error => {
+                this.msg = '';
+                this.errMsg = 'Failed to update employee';
+            }
+        )
 	}
 
 }

@@ -1,15 +1,18 @@
 const nodemailer = require('nodemailer');
 
+let mailerDebug = require('debug')('worker:debugMailer');
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL,
+        user: 'alaaahmedafifi@gmail.com',
         pass: process.env.EMAIL_PASSWORD
     }
 });
 
 
 function resetPasswordEmail(userEmail, subject, token) {
+    mailerDebug('Resetting password');
     const mailOptions = {
         from: 'Employee Management System MEAN crud',
         to: userEmail,
@@ -51,6 +54,7 @@ function resetPasswordEmail(userEmail, subject, token) {
 
 /* Send email when guest logs in */
 function guestLoginEmail() {
+    mailerDebug('Guest login email');
     const mailOptions = {
         from: 'Employee Management System MEAN crud',
         to: 'alaa9620101@hotmail.com',

@@ -5,7 +5,7 @@ const userController = require('../controllers/user.controller');
 
 const isGuest = require('../middlewares/guest.mid');
 
-router.post('/login', userController.login);
+router.post('/login', isGuest, userController.login);
 router.post('/signup', userController.createUser);
 router.post('/forgot', userController.forgotPassword);
 

@@ -24,7 +24,7 @@ export class EmployeeCardComponent implements OnInit {
 	}
 
 	@HostListener("click") onClick(){
-		this.router.navigate(['/admin/employee']);
+		this.router.navigate(['/admin/employee/create']);
 	}
 
 }

@@ -14,22 +14,20 @@ let debugDeleteUser = require('debug')('worker:deleteUser');
 let debugUser = require('debug')('worker:debugUser');
 
 /* Search by email */
-function searchByEmail(req, res) {
+const searchByEmail = (req, res) => {
     User.findOne({ email: req.query.email }, (err, user) => {
         if (err) {
-            console.log(err);
             return res.json({ err: 'Failed to search for user' });
         }
 
-        return res.json({ user: user });
+        return res.status(200).json({ user: user });
     })
 }
 
 /* Search by role */
-function searchByRole(req, res) {
+const searchByRole = (req, res) => {
     User.find({ role: req.query.role }, (err, user) => {
         if (err) {
-            console.log(err);
             return res.json({ err: 'Failed to search for user.' });
         }
         return res.json({ user: user });
@@ -38,7 +36,7 @@ function searchByRole(req, res) {
 
 
 /* Log user in */
-function login(req, res) {
+const login = (req, res) => {
     debugLogin('user is logging in');
     let userObj = {
         email: req.body.email,
@@ -85,7 +83,7 @@ function login(req, res) {
 };
 
 /* Create user */
-function createUser(req, res) {
+const createUser = (req, res) => {
     debugCreateUser('Creating user');
     let userObj = {
         email: req.body.email,
@@ -113,7 +111,7 @@ function createUser(req, res) {
 
 /* Update user */
 /* Update role */
-function updateUser(req, res) {
+const updateUser = (req, res) => {
     debugUpdateUser('updating user');
     let user = {
         email: req.body.email,
@@ -133,7 +131,7 @@ function updateUser(req, res) {
 }
 
 /* Delete user */
-function deleteUser(req, res) {
+const deleteUser = (req, res) => {
     debugDeleteUser('Deleting user');
     User.findOneAndDelete({ email: req.body.email }, (err) => {
         if (err) {
@@ -161,7 +159,7 @@ async function forgotPassword(req, res) {
 
 }
 
-function checkResetToken(req, res) {
+const checkResetToken = (req, res) => {
     let resetToken = req.body.resetToken;
     User.findOne({ resetPasswordToken: resetToken }, (err, user) => {
         if (err) {
@@ -175,7 +173,7 @@ function checkResetToken(req, res) {
 }
 
 /* testing hashing password */
-function resetPassword(req, res) {
+const resetPassword = (req, res) => {
     let userObj = {
         email: req.body.email,
         password: req.body.password

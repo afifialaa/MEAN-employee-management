@@ -24,7 +24,7 @@ export class UserCardComponent implements OnInit {
 	}
 
 	@HostListener("click") onClick(){
-		this.router.navigate(['/admin/user']);
+		this.router.navigate(['/admin/user/create']);
 	}
 
 }

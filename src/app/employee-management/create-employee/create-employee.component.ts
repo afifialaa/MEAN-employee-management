@@ -119,18 +119,22 @@ export class CreateEmployeeComponent implements OnInit {
 			salary: this.createEmployeeForm.value.salary,
 		}
 
-		this.empService.addEmployee(employee).subscribe((data) => {
-			if (data['err']) {
-				this.msg = '';
-				this.errMsg = data['err'];
-				return;
-			} else if (data['msg']) {
-				this.errMsg = '';
-				this.msg = data['msg'];
-			}
-		})
+		this.empService.addEmployee(employee).subscribe(
+            (data) => {
+                this.errMsg = '';
+                this.msg = 'Employee was added';
+            },
+            (error) => {
+                this.msg = '';
+                if(error.status == 409){
+                    this.errMsg = 'Email already exists';
+                }else if(error.status == 500){
+                    this.errMsg = 'Failed to add employee';
+                }
+            }
+        )
 		// Reset form
-		this.createEmployeeForm.reset();
+		// this.createEmployeeForm.reset();
 	}
 
 	updateMsg: string = '';

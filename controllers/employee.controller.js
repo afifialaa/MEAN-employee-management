@@ -4,7 +4,7 @@ const Employee = require('../models/employee.model');
 let debugEmp = require('debug')('worker:debugEmp');
 
 // Add employee.
-function addEmp(req, res) {
+const addEmp = (req, res) => {
     debugEmp('Adding employee');
     let employeeObj = {
         first_name: req.body.firstName,
@@ -37,15 +37,15 @@ function addEmp(req, res) {
     employee.save((err, employee) => {
         if (err) {
             console.log(err);
-            return res.json({ err: 'failed to add employee' });
+            return res.status(409).json({msg: 'Failed'});
         }
         debugEmp('Employee was added successfully');
-        return res.json({ msg: 'employee was added successfully' });
+        return res.status(201).json({msg: 'Employee was created'});
     });
 }
 
 // Update employee
-function updateEmployee(req, res) {
+const updateEmployee = (req, res) => {
 
     debugEmp('Updating employee');
 
@@ -114,34 +114,34 @@ function updateEmployee(req, res) {
 }
 
 // Delete employee
-function deleteEmployee(req, res) {
+const deleteEmployee = (req, res) => {
     debugEmp('Deleting user');
     Employee.findOneAndDelete({ email: req.body.email }, (err) => {
         if (err) {
             debugEmp('User was updated');
-            return res.json({ err: 'failed to delete employee' });
+            return res.status(409).json({ msg: 'failed to delete employee' });
         }
         debugEmp('User was updated');
-        return res.json({ msg: 'employee was deleted' });
+        return res.status(204).json({ msg: 'employee was deleted' });
     });
 }
 
 // Search by id.
-function searchById(req, res) {
+const searchById = (req, res) => {
     Employee.findOne({ empId: req.query.empId }, (err, emp) => {
         if (err) {
             console.log(err);
             return res.json({ err: 'Failed to search for employee.' })
         }
-        return res.json({ emp });
+        return res.status(200).json({ emp });
     })
 }
 // Searching by firstName
-function searchByFirstName(req, res) {
+const searchByFirstName = (req, res) => {
     Employee.find({ first_name: req.query.firstName }, (err, emp) => {
         if (err) {
             console.log(err);
-            return res.json({ err: 'Failed to search for employee.' });
+            return res.status(409).json({ err: 'Failed to search for employee.' });
         }
         return res.json({ emp });
     });
@@ -159,24 +159,24 @@ function searchByLastName(req, res) {
 }
 
 // Search by email.
-function searchByEmail(req, res) {
+const searchByEmail = (req, res) => {
     debugEmp('searching by email');
     Employee.findOne({ email: req.query.email }, (err, emp) => {
         if (err) {
             console.log(err);
-            return res.json({ err: "Database is currently offline." });
+            return res.status(502).json({ err: "Database is currently offline." });
         }
         if (emp == null) {
             console.log('no employee found with this email');
-            return res.json({ err: "No employee found with this email." });
+            return res.status(404).json({ err: "No employee found with this email." });
         }
         debugEmp(emp);
-        return res.json({ emp });
+        return res.status(200).json({ emp });
     });
 }
 
 /* Searching by gender */
-function searchByGender(req, res) {
+const searchByGender = (req, res) => {
     debugEmp('Searching by gender');
     Employee.find({ gender: req.query.gender }, (err, emp) => {
         if (err) {
@@ -191,7 +191,7 @@ function searchByGender(req, res) {
 
 
 // Search by job title
-function searchByJobTitle(req, res) {
+const searchByJobTitle = (req, res) => {
     Employee.find({ job_title: req.query.jobTitle }, (err, emp) => {
         if (err) {
             console.log(err);
@@ -201,7 +201,7 @@ function searchByJobTitle(req, res) {
     });
 }
 
-function searchByCountry(req, res) {
+const searchByCountry = (req, res) => {
     Employee.find({ country: req.query.country }, (err, emp) => {
         if (err) {
             console.log(err);
@@ -213,7 +213,7 @@ function searchByCountry(req, res) {
 
 
 // Search by city
-function searchByCity(req, res) {
+const searchByCity = (req, res) => {
     Employee.find({ city: req.query.city }, (err, emp) => {
         if (err) {
             console.log(err);
@@ -225,7 +225,7 @@ function searchByCity(req, res) {
 
 
 // Search by department
-function searchByDepartment(req, res) {
+const searchByDepartment = (req, res) => {
     Employee.find({ department: req.query.department }, (err, emp) => {
         if (err) {
             console.log(err);
@@ -236,7 +236,7 @@ function searchByDepartment(req, res) {
 }
 
 // Search by university
-function searchByUniversity(req, res) {
+const searchByUniversity = (req, res) => {
     Employee.find({ university: req.query.university }, (err, emp) => {
         if (err) {
             console.log(err);
