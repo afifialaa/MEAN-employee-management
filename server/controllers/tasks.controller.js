@@ -3,7 +3,7 @@ const Task = require('../models/tasks.model');
 
 let debugTask = require('debug')('worker:debugTask');
 
-function createTask(req, res) {
+const createTask = (req, res) => {
     let taskObj = {
         user: req.email,
         name: req.body.name,
@@ -27,7 +27,7 @@ function createTask(req, res) {
     })
 }
 
-function updateTask(req, res) {
+const updateTask = (req, res) => {
     User.findOneAndUpdate({ user: req.email, 'tasks._id': req.body.id }, { "tasks.$.name": req.body.name, "tasks.$.project": req.body.project }, (err) => {
         if (err) {
             res.status(402).json({ err: 'Failed to update task' });
@@ -37,7 +37,7 @@ function updateTask(req, res) {
     });
 }
 
-function deleteTask(req, res) {
+const deleteTask = (req, res) => {
     debugTask('id is ', req.query.taskId);
     Task.findByIdAndRemove(req.query.taskId, err => {
         if(err){
@@ -50,7 +50,7 @@ function deleteTask(req, res) {
     });
 }
 
-function fetchTasks(req, res) {
+const fetchTasks = (req, res) => {
     Task.find({ user: req.email }, (err, docs) => {
         if (err) {
             debugTask('Failed to fetch tasks');

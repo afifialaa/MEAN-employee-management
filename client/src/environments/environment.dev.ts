@@ -12,7 +12,7 @@ export const environment = {
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
 	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
 	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
-	getTasksNumURL: 'http://localhost:8080/tasks/num',
+	getTasksNumURL: 'http://localhost:8080/dashboard/getTasksNum',
 
 	/* Employee api */
 	createEmpURL: "http://localhost:8080/employee/addEmp",
