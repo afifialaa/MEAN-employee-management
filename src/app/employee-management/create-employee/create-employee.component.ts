@@ -94,9 +94,10 @@ export class CreateEmployeeComponent implements OnInit {
 		return this.createEmployeeForm.get('jobTitle');
 	}
 
-	// Form button handler
+    /**
+     * Create button handler
+     */
 	createEmployee(): void {
-
 		let employee: Iemployee = {
 			firstName: this.createEmployeeForm.value.firstName,
 			lastName: this.createEmployeeForm.value.lastName,
@@ -121,7 +122,7 @@ export class CreateEmployeeComponent implements OnInit {
 		this.empService.addEmployee(employee).subscribe(
             (data) => {
                 this.errMsg = '';
-                this.msg = 'Employee was added';
+                this.msg = 'Employee was created';
             },
             (error) => {
                 this.msg = '';

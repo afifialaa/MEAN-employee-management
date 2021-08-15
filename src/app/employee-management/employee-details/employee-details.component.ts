@@ -21,6 +21,7 @@ export class EmployeeDetailsComponent implements OnInit {
     oldData;
     newEmpData: Iemployee;
 
+    // Messages
     errMsg: string;
     msg: string;
 
@@ -80,7 +81,7 @@ export class EmployeeDetailsComponent implements OnInit {
             this.editEmployeeForm.controls.hiringDate.setValue(data['emp'].contract.hiringDate);
             this.editEmployeeForm.controls.terminatingDate.setValue(data['emp'].contract.terminatingDate);
             this.editEmployeeForm.controls.bank.setValue(data['emp'].contract.bank);
-            this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].contract.bankAccount);
+            this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].contract.bank_account);
             this.editEmployeeForm.controls.salary.setValue(data['emp'].contract.salary);
 
         }), error => {
@@ -138,7 +139,15 @@ export class EmployeeDetailsComponent implements OnInit {
      * @param {Employee} targetEmp 
      */
     updateEmployee(targetEmp) {
-        this.empService.updateEmployee(targetEmp);
+        this.empService.updateEmployee(targetEmp).subscribe((data)=>{
+            this.errMsg = '';
+            this.msg = 'Employee was updated';
+        },
+        (error)=>{
+            this.msg = '';
+            this.errMsg = 'Failed to update employee';
+
+        })
     }
 
     /**

@@ -105,6 +105,15 @@
                 </div>
 
                 <br>
+
+                <div *ngIf="errMsg" class="alert alert-danger" role="alert">
+					{{errMsg}}
+				</div>
+				<div *ngIf="msg" class="alert alert-success" role="alert">
+					{{msg}}
+				</div>
+
+                <br>
                 <button type="button" (click)="editEmployee()" class="btn btn-success"> Edit </button>
                 <button type="button" (click)="deleteEmployee()" class="btn btn-danger">Delete</button>
                 <button type="button" *ngIf="isShown" (click)="saveBtn()" class="btn btn-success"> Save </button>
