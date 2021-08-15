@@ -4,7 +4,6 @@ const taskController = require('../controllers/tasks.controller');
 const express = require('express');
 const router = express.Router();
 
-
 router.post('/createUser', userController.createUser);
 router.post('/checkResetToken', userController.checkResetToken);
 router.post('/resetPassword', userController.resetPassword);

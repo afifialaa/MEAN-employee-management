@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 
-require('./config/db.config');
+let db = require('./config/db.config');
+db.connect();
 
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -11,7 +12,7 @@ const path = require('path');
 
 /* Routes */
 const employeeRoute = require('./routes/employee.route');
-const userRoute = require('./routes/user.route');
+const userRoute = require('./routes/user.routes');
 const dashboardRoute = require('./routes/dashboard.route');
 const accountRoutes = require('./routes/account.routes');
 const blogRoutes = require('./routes/blog.routes');
