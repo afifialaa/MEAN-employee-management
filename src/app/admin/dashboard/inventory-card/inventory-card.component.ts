@@ -15,7 +15,7 @@ export class InventoryCardComponent implements OnInit {
     }
 
     @HostListener("click") onClick() {
-        this.router.navigate(['/admin/inventory']);
+        this.router.navigate(['/admin/inventory/create']);
     }
 
 }

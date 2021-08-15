@@ -29,7 +29,7 @@ import {PartialsModule} from './partials/partials.module';
 import {DashboardModule} from './admin/dashboard/dashboard.module';
 import {UserManagementModule} from './user-management/user-management.module';
 import {TaskManagementModule} from './task-management/task-management.module';
-import {InventoryModule} from './inventory/inventory.module';
+import {InventoryModule} from './inventory-management/inventory.module';
 
 @NgModule({
 	declarations: [

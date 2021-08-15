@@ -19,7 +19,11 @@ import { AdminComponent } from './admin/admin/admin.component';
 import {ForgotComponent} from './account/forgot/forgot.component';
 import {ResetPasswordComponent} from './account/reset-password/reset-password.component';
 import {TaskComponent} from './task-management/task/task.component';
-import {CreateItemComponent} from './inventory/create-item/create-item.component';
+
+// Inventory
+import {CreateItemComponent} from './inventory-management/create-item/create-item.component';
+import {SearchItemComponent} from './inventory-management/search-item/search-item.component';
+import {InventoryComponent} from './inventory-management/inventory/inventory.component';
 
 
 const appRoutes: Routes = [
@@ -46,7 +50,10 @@ const appRoutes: Routes = [
 				]
 			},
 			{ path: 'task', component: TaskComponent},
-            { path: 'inventory', component: CreateItemComponent},
+            { path: 'inventory', canActivate: [AuthGuard, AdminGuard], component: InventoryComponent, children: [
+                {path: 'create', component: CreateItemComponent},
+                {path: 'search', component: SearchItemComponent},
+            ]},
 
 		]
 	},

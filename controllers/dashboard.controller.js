@@ -50,7 +50,6 @@ function getTasksNum (req, res){
 		}
 
 		res.setHeader('Content-Type', 'application/json');
-        console.log('result is: ',result);
 		return res.status(200).json({number:result});
 	});
 }

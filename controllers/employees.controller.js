@@ -197,7 +197,6 @@ const searchByEmail = (req, res) => {
             return res.status(502).json({ msg: "Database is currently offline." });
         }
         if (emp == null) {
-            console.log('no employee found with this email');
             return res.status(404).json({ msg: "No employee found with this email." });
         }
         debugEmp(emp);
