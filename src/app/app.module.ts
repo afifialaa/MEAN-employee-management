@@ -58,7 +58,7 @@ import {BlogModule} from './blog/blog.module';
 		TaskManagementModule,
 		MatDatepickerModule,
         InventoryModule,
-        BlogModule
+        BlogModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

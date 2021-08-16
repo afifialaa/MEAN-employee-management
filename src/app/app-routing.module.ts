@@ -27,7 +27,8 @@ import {InventoryComponent} from './inventory-management/inventory/inventory.com
 
 // Blog
 import {BlogComponent} from './blog/blog/blog.component';
-
+import {CreatePostComponent} from './blog/create-post/create-post.component';
+import {PostsComponent} from './blog/posts/posts.component';
 
 const appRoutes: Routes = [
 
@@ -58,6 +59,8 @@ const appRoutes: Routes = [
                 {path: 'search', component: SearchItemComponent},
             ]},
             { path: 'blog', canActivate: [AuthGuard, AdminGuard], component: BlogComponent, children: [
+                {path: 'create', component: CreatePostComponent},
+                {path: 'allBlogs', component: PostsComponent },
             ]}
 
 		]

@@ -44,6 +44,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.1",
     "morgan": "^1.9.1",
+    "ngx-editor": "^10.1.0",
     "ngx-quill": "^7.3.11",
     "nodemailer": "^6.4.17",
     "path": "^0.12.7",

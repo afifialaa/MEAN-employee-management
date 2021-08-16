@@ -1,19 +1,11 @@
-<div class="blog content">
+<div class="container-fluid nav-container">
     <div class="container">
-        <ul *ngFor="let post of allArticles;  let i = index">
-
-            <div class="blog-image">
-                <a [routerLink]="" [queryParams]=""><img src="" height=200px width=200px></a>
-            </div>
-            <a [routerLink]="" [queryParams]="">
-                <h3>{{ post.title }}</h3>
-            </a>
-            <p>Author: {{ post.user }}</p>
-
-            <div class="blog-content">
-                <p [innerHTML]="sdasdadasd"></p>
-                <a class="btn btn-success" [routerLink]="" [queryParams]="">Readmore...</a>
-            </div>
+        <ul class="nav">
+            <li><a routerLink="/admin/blog/create">Create</a></li>
+            <li><a routerLink="/admin/blog/create">My Blog</a></li>
+            <li><a routerLink="/admin/blog/allBlogs">All Blogs</a></li>
         </ul>
     </div>
 </div>
+
+<router-outlet></router-outlet>
