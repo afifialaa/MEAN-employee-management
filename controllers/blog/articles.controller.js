@@ -2,7 +2,7 @@ const Article = require('../../models/article.model');
 
 let debugBlog = require('debug')('worker:debugBlog');
 
-function createArticle(req, res){
+function createArticle(req, res) {
     let articleObj = {
         user: req.email,
         title: req.body.title,
@@ -12,25 +12,25 @@ function createArticle(req, res){
 
     let article = new Article(articleObj)
 
-    article.save( (err, article)=> {
-        if(err){
+    article.save((err, article) => {
+        if (err) {
             debugBlog('Failed to save article', err);
-            return res.status(409).json({err: 'Failed to save article'}).status(403);
-        }else{
+            return res.status(409).json({ err: 'Failed to save article' }).status(403);
+        } else {
             debugBlog('Article was created');
-            return res.json({msg: 'Article was created'}).status(200);
+            return res.status(201).json({ msg: 'Article was created' });
         }
     })
 }
 
-function deleteArticle(req, res){
+function deleteArticle(req, res) {
     Article.findByIdAndRemove(req.query.articleId, err => {
-        if(err){
+        if (err) {
             debugBlog('Failed to delete article');
-            return res.json({err: 'Failed to delete article'});
-        }else{
+            return res.json({ err: 'Failed to delete article' });
+        } else {
             debugBlog('Article was deleted');
-            return res.status(409).json({msg: 'Article was deleted'});
+            return res.status(409).json({ msg: 'Article was deleted' });
         }
     });
 }
@@ -54,8 +54,21 @@ function updateArticle(req, res) {
     });
 }
 
-function fetchArticles(req, res){
+function fetchArticles(req, res) {
     Article.find({ user: req.email }, (err, docs) => {
+        if (err) {
+            debugBlog('Failed to fetch articles');
+            res.status(402).json({ err: 'Failed to fetch tasks' });
+        } else {
+            debugBlog('Articles were fetched');
+            res.status(200).json({ articles: docs });
+        }
+    })
+}
+
+function fetchAllArticles(req, res) {
+
+    Article.find({ }, (err, docs) => {
         if (err) {
             debugBlog('Failed to fetch articles');
             res.status(402).json({ err: 'Failed to fetch tasks' });
@@ -70,5 +83,6 @@ module.exports = {
     createArticle,
     deleteArticle,
     updateArticle,
-    fetchArticles
+    fetchArticles,
+    fetchAllArticles
 }

@@ -40,5 +40,9 @@ export const environment = {
 	createProductURL: 'http://localhost:3000/products',
 
 	/* Chat api */
-	sendMessageURL: 'asdj'
+	sendMessageURL: 'asdj',
+
+    /* Blog api */
+    createPost: 'http://localhost:8080/blog/article',
+    fetchPosts: 'http://localhost:8080/blog/articles',
 };

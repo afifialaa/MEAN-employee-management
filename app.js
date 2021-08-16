@@ -31,6 +31,7 @@ app.use('/dashboard', jwtAuth.verifyToken, isAdmin,  dashboardRoute);
 app.use('/account', accountRoutes);
 app.use('/blog', jwtAuth.verifyToken, blogRoutes);
 
+
 // Serve static files....
 /* app.use(express.static(__dirname + '/dist/emp-crud'));
 

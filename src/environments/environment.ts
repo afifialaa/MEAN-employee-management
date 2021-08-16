@@ -44,6 +44,10 @@ export const environment = {
 
 	/* Chat api */
 	sendMessageURL: 'asdj'
+
+	/* Blog api */
+    createPost: 'http://localhost:8080/blog/post',
+    fetchArticles: 'http://localhost:8080/blog/articles',
 };
 
 /*

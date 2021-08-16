@@ -24,12 +24,13 @@ import { AdminComponent } from './admin/admin/admin.component';
 
 
 // Modules
-import { AccountModule } from './account/account.module';
+import { AccountModule } from './account-management/account.module';
 import {PartialsModule} from './partials/partials.module';
 import {DashboardModule} from './admin/dashboard/dashboard.module';
 import {UserManagementModule} from './user-management/user-management.module';
 import {TaskManagementModule} from './task-management/task-management.module';
 import {InventoryModule} from './inventory-management/inventory.module';
+import {BlogModule} from './blog/blog.module';
 
 @NgModule({
 	declarations: [
@@ -56,7 +57,8 @@ import {InventoryModule} from './inventory-management/inventory.module';
 		UserManagementModule,
 		TaskManagementModule,
 		MatDatepickerModule,
-        InventoryModule
+        InventoryModule,
+        BlogModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

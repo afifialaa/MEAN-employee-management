@@ -25,7 +25,7 @@ function getUsersNum (req, res) {
 		if(err) {
 			debugDashboard(err);
 			res.setHeader('Content-Type', 'application/json');
-			return res.stattus(404).json({err : 'there was an error'});
+			return res.status(404).json({err : 'there was an error'});
 		}
 
 		debugDashboard('Returning user count');
