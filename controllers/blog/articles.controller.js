@@ -15,7 +15,7 @@ function createArticle(req, res) {
     article.save((err, article) => {
         if (err) {
             debugBlog('Failed to save article', err);
-            return res.status(409).json({ err: 'Failed to save article' }).status(403);
+            return res.status(409).json({ err: 'Failed to save article' });
         } else {
             debugBlog('Article was created');
             return res.status(201).json({ msg: 'Article was created' });

@@ -17,4 +17,12 @@ export class BlogService {
     fetchBlogs(){
         return this.http.get(environment.fetchPosts);
     }
+
+    /**
+     * Creates a new post
+     * @returns
+     */
+    createPost(post){
+        return this.http.post(environment.createPost, post);
+    }
 }
