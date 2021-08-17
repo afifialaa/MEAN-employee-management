@@ -2,6 +2,9 @@ const Article = require('../../models/article.model');
 
 let debugBlog = require('debug')('worker:debugBlog');
 
+/**
+ *@returns {JSON} res
+ */
 function createArticle(req, res) {
     let articleObj = {
         user: req.email,
@@ -60,6 +63,7 @@ function fetchArticles(req, res) {
             debugBlog('Failed to fetch articles');
             res.status(402).json({ err: 'Failed to fetch tasks' });
         } else {
+
             debugBlog('Articles were fetched');
             res.status(200).json({ articles: docs });
         }
@@ -68,7 +72,7 @@ function fetchArticles(req, res) {
 
 function fetchAllArticles(req, res) {
 
-    Article.find({ }, (err, docs) => {
+    Article.find({}).sort('-postedOn').exec( (err, docs)=>{
         if (err) {
             debugBlog('Failed to fetch articles');
             res.status(402).json({ err: 'Failed to fetch tasks' });

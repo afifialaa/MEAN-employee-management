@@ -1,4 +1,4 @@
-const mongoDB = process.env.MONGODB_CLOUD;
+const mongoDB = process.env.MONGODB_LOCAL;
 const mongoose = require('mongoose');
 
 function connect(){
