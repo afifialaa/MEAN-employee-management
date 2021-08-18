@@ -36,6 +36,8 @@ export const environment = {
 
     /* Inventory api*/
 	createProductURL: '/products',
+
+    taskURL: '/user/tasks',
     
     /* Blog api */
     createPost: '/blog/article',
