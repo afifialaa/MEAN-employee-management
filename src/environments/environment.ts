@@ -47,7 +47,7 @@ export const environment = {
 
 	/* Blog api */
     createPost: 'http://localhost:8080/blog/post',
-    fetchArticles: 'http://localhost:8080/blog/articles',
+    fetchPosts: 'http://localhost:8080/blog/articles',
 };
 
 /*
