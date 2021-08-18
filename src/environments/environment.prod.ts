@@ -35,4 +35,8 @@ export const environment = {
 	searchUserUrl: '/user/searchUser',
 
 
+    /* Blog api */
+    createPost: 'http://localhost:8080/blog/article',
+    fetchPosts: 'http://localhost:8080/blog/articles',
+
 };
