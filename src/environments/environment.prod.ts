@@ -34,5 +34,11 @@ export const environment = {
 	createUserUrl: '/user/createUser',
 	searchUserUrl: '/user/searchUser',
 
+    /* Inventory api*/
+	createProductURL: '/products',
+    
+    /* Blog api */
+    createPost: '/blog/article',
+    fetchPosts: '/blog/articles',
 
 };
