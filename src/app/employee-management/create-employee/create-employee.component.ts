@@ -130,6 +130,8 @@ export class CreateEmployeeComponent implements OnInit {
                     this.errMsg = 'Email already exists';
                 }else if(error.status == 500){
                     this.errMsg = 'Failed to add employee';
+                }else if(error.status == 429){
+                    this.errMsg = 'Too many requests'
                 }
             }
         )

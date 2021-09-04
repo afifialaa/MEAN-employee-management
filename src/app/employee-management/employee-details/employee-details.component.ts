@@ -87,6 +87,10 @@ export class EmployeeDetailsComponent implements OnInit {
         }), error => {
             // Error
             console.log(error);
+            if(error.status == 429){
+                this.msg = '';
+                this.errMsg = 'Too many delete requests'
+            }
         }
     }
 
@@ -191,7 +195,11 @@ export class EmployeeDetailsComponent implements OnInit {
             },
             error => {
                 this.msg = '';
-                this.errMsg = 'Failed to delete employee';
+                if(error.status == 429){
+                    this.errMsg = 'Too many delete requests, try again in a few minutes';
+                }else{
+                    this.errMsg = 'Failed to delete employee';
+                }
             }
         )
     }

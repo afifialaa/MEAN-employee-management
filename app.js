@@ -10,6 +10,7 @@ const fs = require('fs');
 const cors = require('cors');
 const path = require('path');
 
+
 /* Routes */
 const employeeRoute = require('./routes/employee.route');
 const userRoute = require('./routes/user.routes');
@@ -20,6 +21,7 @@ const blogRoutes = require('./routes/blog.routes');
 /* Middlwares */
 const jwtAuth = require('./authentication/token.auth');
 const isAdmin = require('./middlewares/admin.mid');
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));

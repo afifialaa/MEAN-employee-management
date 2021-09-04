@@ -122,7 +122,7 @@ function createUser (req, res) {
             return res.json({ err: 'Failed to create user.' });
         }
         debugCreateUser('User was created successfully');
-        return res.json({ msg: 'User was created successfully.' });
+        return res.status(201).json({ msg: 'User was created successfully.' });
     })
 }
 
