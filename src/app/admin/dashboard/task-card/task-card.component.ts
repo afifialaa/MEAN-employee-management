@@ -24,8 +24,8 @@ export class TaskCardComponent implements OnInit {
         })
 	}
 
-	@HostListener("click") onClick(){
+	/* @HostListener("click") onClick(){
 		this.router.navigate(['/admin/task']);
-	}
+	} */
 
 }

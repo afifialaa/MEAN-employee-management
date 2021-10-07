@@ -34,11 +34,13 @@ app.use('/account', accountRoutes);
 app.use('/blog', jwtAuth.verifyToken, blogRoutes);
 
 
-// Serve static files....
-/* app.use(express.static(__dirname + '/dist/emp-crud'));
+if(process.env.NODE_ENV == 'production'){
+    // Serve static files....
+     app.use(express.static(__dirname + '/dist/emp-crud'));
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
-});
-*/
+    app.get('/*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'dist/emp-crud/index.html'));
+    });
+}
+
 module.exports = app;

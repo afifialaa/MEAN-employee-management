@@ -2,6 +2,8 @@
 *.txt
 dev
 
+/database/*.seed.js
+
 # Vim swap files
 *.swp
 *~

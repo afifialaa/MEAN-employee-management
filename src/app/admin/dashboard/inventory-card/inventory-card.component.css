@@ -1,7 +1,14 @@
 .card{
     padding: 20px;
-    background-color: #5cb85c;
+    /*background-color: #5cb85c; */
+    background-color: grey;
+
     color: white;
-    cursor: pointer;
+    cursor: default;
     height: 122px;
+}
+
+.item1{
+    font-size: 18px;
+    position: relative;
 }

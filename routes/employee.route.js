@@ -3,15 +3,11 @@ const router = express.Router();
 
 const empController = require('../controllers/employees.controller');
 
-const rateLimit = require('express-rate-limit');
-const employeeLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 4, // Limit each IP to 4 requests
-})
+const limiter = require('../security/req.limiter');
 
-router.post('/addEmp', employeeLimiter, empController.addEmp);
-router.put('/updateEmployee', employeeLimiter, empController.updateEmployee);
-router.post('/deleteEmployee', employeeLimiter, empController.deleteEmployee);
+router.post('/addEmp', limiter.employeeLimiter, empController.addEmp);
+router.put('/updateEmployee', limiter.employeeLimiter, empController.updateEmployee);
+router.post('/deleteEmployee', limiter.employeeLimiter, empController.deleteEmployee);
 
 router.get('/searchById', empController.searchById);
 router.get('/searchByFirstName', empController.searchByFirstName);
