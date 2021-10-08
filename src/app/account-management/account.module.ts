@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {PartialsModule} from '../partials/partials.module';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { ForgotComponent } from './forgot/forgot.component';
 import { ResetComponent } from './reset/reset.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';

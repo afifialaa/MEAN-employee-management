@@ -39,4 +39,11 @@ export const environment = {
     createPost: 'http://localhost:8080/blog/article',
     fetchPosts: 'http://localhost:8080/blog/articles',
 
+    /* Task api */
+    taskURL: 'http://localhost:8080/tasks/tasks',
+
+    /* Inventory api */
+    createProductURL: 'http://localhost:8080/tasks/tasks',
+
+  	sendMessageURL: 'http://localhost:8080/tasks/tasks',
 };
