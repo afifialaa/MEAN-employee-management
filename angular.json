@@ -29,16 +29,15 @@
 							"./node_modules/quill/dist/quill.core.css",
 							"./node_modules/quill/dist/quill.snow.css"
 						],
-						"scripts": [
-						]
+						"scripts": []
 					},
 					"configurations": {
 						"development": {
 							"fileReplacements": [
-							  {
-								"replace": "src/environments/environment.ts",
-								"with": "src/environments/environment.dev.ts"
-							  }
+								{
+									"replace": "src/environments/environment.prod.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
 							]
 						},
 						"production": {
@@ -65,7 +64,6 @@
 								}
 							]
 						}
-						
 					}
 				},
 				"serve": {

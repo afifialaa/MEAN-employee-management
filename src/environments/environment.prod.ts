@@ -36,14 +36,14 @@ export const environment = {
 
 
     /* Blog api */
-    createPost: 'http://localhost:8080/blog/article',
-    fetchPosts: 'http://localhost:8080/blog/articles',
+    createPost: '/blog/article',
+    fetchPosts: '/blog/articles',
 
     /* Task api */
-    taskURL: 'http://localhost:8080/tasks/tasks',
+    taskURL: '/tasks/tasks',
 
     /* Inventory api */
-    createProductURL: 'http://localhost:8080/tasks/tasks',
+    createProductURL: '/tasks/tasks',
 
-  	sendMessageURL: 'http://localhost:8080/tasks/tasks',
+  	sendMessageURL: '/tasks/tasks',
 };
