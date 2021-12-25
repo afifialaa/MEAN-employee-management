@@ -15,16 +15,15 @@ export class PostsComponent implements OnInit {
     constructor(private blogSrvc: BlogService) { }
 
     ngOnInit() {
-        this.fetchAllBlog();
+        this.fetchPosts();
     }
 
-    fetchAllBlog() {
-        this.blogSrvc.fetchBlogs().subscribe((data) => {
+    fetchPosts() {
+        this.blogSrvc.fetchPosts('').subscribe((data) => {
             this.allArticles = data['articles'];
         }, (error) => {
             this.msg = '';
             this.errMsg = 'Failed to fetch articles';
-            console.log('Failed to fetch articles');
         })
 
     }

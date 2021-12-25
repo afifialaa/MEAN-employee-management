@@ -24,11 +24,14 @@ import {TaskComponent} from './task-management/task/task.component';
 import {CreateItemComponent} from './inventory-management/create-item/create-item.component';
 import {SearchItemComponent} from './inventory-management/search-item/search-item.component';
 import {InventoryComponent} from './inventory-management/inventory/inventory.component';
+import {InventoryDashboardComponent} from './inventory-management/inventory-dashboard/inventory-dashboard.component';
 
 // Blog
 import {BlogComponent} from './blog/blog/blog.component';
 import {CreatePostComponent} from './blog/create-post/create-post.component';
 import {PostsComponent} from './blog/posts/posts.component';
+import {MyBlogComponent} from './blog/my-blog/my-blog.component';
+import {PostDetailsComponent} from './blog/post-details/post-details.component';
 
 const appRoutes: Routes = [
 
@@ -55,12 +58,15 @@ const appRoutes: Routes = [
 			},
 			{ path: 'task', component: TaskComponent},
             { path: 'inventory', canActivate: [AuthGuard, AdminGuard], component: InventoryComponent, children: [
+                {path: 'dashboard', component: InventoryDashboardComponent},
                 {path: 'create', component: CreateItemComponent},
                 {path: 'search', component: SearchItemComponent},
             ]},
             { path: 'blog', canActivate: [AuthGuard, AdminGuard], component: BlogComponent, children: [
                 {path: 'create', component: CreatePostComponent},
+                {path: 'myblog', component: MyBlogComponent},
                 {path: 'allBlogs', component: PostsComponent },
+                {path: 'post/:id', component: PostDetailsComponent },
             ]}
 
 		]

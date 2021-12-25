@@ -11,6 +11,9 @@ if(process.env.NODE_ENV == 'production'){
 }
 const mongoose = require('mongoose');
 
+/**
+ * Establishes connection to database
+ */
 function connect(){
     mongoose.connect(mongoDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 

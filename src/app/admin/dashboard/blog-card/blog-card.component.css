@@ -1,11 +1,15 @@
 .card{
     padding: 20px;
-    /* background-color: #5cb85c;*/
-    background-color: grey;
+    background-color: #5cb85c;
+    /* background-color: grey; */
     color: white;
     cursor: default;
     height: 122px;
 } 
+
+.card:hover{
+    cursor: pointer;
+}
 
 .item1{
     font-size: 18px;

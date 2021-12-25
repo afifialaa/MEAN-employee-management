@@ -26,7 +26,6 @@ export class CreatePostComponent implements OnInit {
              }),
             description: new FormControl('', [Validators.required]),
             content: new FormControl('', [Validators.required]),
-            img: new FormControl('')
         })
     }
 
@@ -41,6 +40,13 @@ export class CreatePostComponent implements OnInit {
     get content(){
         return this.createPostForm.get('content');
     }
+
+    submitPost(){
+        console.log(this.createPostForm.value.content);
+    }
+
+
+
     /**
      * Create post btn handler
      * @returns
@@ -50,7 +56,6 @@ export class CreatePostComponent implements OnInit {
             title: this.createPostForm.value.title,
             description: this.createPostForm.value.description,
             content: this.createPostForm.value.content,
-            img: this.createPostForm.value.img
         }
 
         console.log('post is ', post);
@@ -58,6 +63,7 @@ export class CreatePostComponent implements OnInit {
         this.blogSrvc.createPost(post).subscribe((data) => {
             this.errMsg = '';
             this.msg = 'Post was created successfully';
+            this.createPostForm.reset();
         }, (error) => {
             this.msg = '';
             this.errMsg = 'Failed to create post';

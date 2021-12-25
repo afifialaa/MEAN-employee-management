@@ -18,4 +18,8 @@
     background-color: #ddd;
     color: black;
 }
-  
+
+.sticky{
+	position: fixed;
+	top:0px;
+}

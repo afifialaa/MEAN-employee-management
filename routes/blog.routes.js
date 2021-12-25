@@ -1,5 +1,4 @@
-const articlesController = require('../controllers/blog/articles.controller');
-const commentsController = require('../controllers/blog/comments.controller');
+const blog = require('../controllers/blog.controller');
 
 const express = require('express');
 const router = express.Router();
@@ -11,13 +10,12 @@ const blogLimiter = rateLimit({
 })
 
 
-router.post('/article', blogLimiter, articlesController.createArticle);
-router.delete('/article', blogLimiter, articlesController.deleteArticle);
-router.put('/article', blogLimiter, articlesController.updateArticle);
-router.get('/articles', articlesController.fetchAllArticles);
+router.post('/article',  blog.createArticle);
+router.get('/article',  blog.readArticle);
+router.delete('/article', blogLimiter, blog.deleteArticle);
+router.put('/article/{article_id}', blogLimiter, blog.updateArticle);
+router.get('/articles', blog.readAll);
+router.get('/user/articles', blog.readUserArticles);
 
-router.get('/comment', commentsController.fetchComments);
-router.post('/comment', blogLimiter, commentsController.createComment);
-router.delete('/comment', blogLimiter, commentsController.deleteComment);
 
 module.exports = router;

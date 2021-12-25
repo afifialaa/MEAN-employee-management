@@ -1,0 +1,29 @@
+.content{
+    margin-top: 50px;
+}
+
+.flex-container{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*.flex-container > .card{
+    cursor: pointer;
+    font-size: 20pt;
+    width: 300px;
+    height: fit-content;
+}*/
+
+.flex-container > .card{
+    cursor: pointer;
+    padding: 20px;
+    font-size: 16pt;
+    width: 270px;
+    height: fit-content;
+    background-color: #5cb85c;
+    color: white;
+}

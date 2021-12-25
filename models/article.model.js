@@ -2,7 +2,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ArticleSchema = new Schema({
+const CommentSchema = require('./comment.schema');
+
+const PostSchema = new Schema({
     user: {
         type: String,
         required: true
@@ -15,10 +17,15 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: false
+    },
     postedOn: {
         type: Date,
-    }
+    },
+    comments: [CommentSchema]
 })
 
-let Article = mongoose.model('Blog', ArticleSchema);
-module.exports = Article;
+let Post = mongoose.model('Blog', PostSchema);
+module.exports = Post;

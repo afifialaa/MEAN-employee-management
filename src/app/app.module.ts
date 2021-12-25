@@ -3,13 +3,9 @@ import { NgModule, Component } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreateEmployeeComponent } from './employee-management/create-employee/create-employee.component';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EmployeeDetailsComponent } from './employee-management/employee-details/employee-details.component';
 import { HttpClientModule} from '@angular/common/http';
-import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatButtonModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';

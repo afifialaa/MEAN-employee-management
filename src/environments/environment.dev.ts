@@ -43,6 +43,7 @@ export const environment = {
 	sendMessageURL: 'asdj',
 
     /* Blog api */
-    createPost: 'http://localhost:8080/blog/article',
-    fetchPosts: 'http://localhost:8080/blog/articles',
+    createArticle: 'http://localhost:8080/api/v1/blog/article',
+    fetchArticles: 'http://localhost:8080/api/v1/blog/user/articles',
+	postDetails: 'http://localhost:8080/api/v1/blog/article',
 };

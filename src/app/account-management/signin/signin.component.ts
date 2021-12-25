@@ -50,20 +50,19 @@ export class SigninComponent implements OnInit {
 		}
 
 		// Logging user in
-		this.accountSrvc.loginUser(user).subscribe((data) => {
-			if (data['err']) {
-				// Failed to login
-				this.signinForm.reset();
-				this.message = data['err'];
-			} else if (data['token'] && data['role']) {
+		this.accountSrvc.loginUser(user).subscribe(
+			(data) => {
 				// Login successfully
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
 				localStorage.setItem('role', data['role']);
 				// Redirect 
 				this.router.navigate(['/admin/dashboard']);
+			},
+			(error) => {
+				this.signinForm.reset();
+				this.message = "Wrong email or password";
 			}
-		})
-
+		)
 	}
 }

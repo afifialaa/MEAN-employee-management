@@ -36,8 +36,10 @@ export const environment = {
 
 
     /* Blog api */
-    createPost: '/blog/article',
-    fetchPosts: '/blog/articles',
+    createArticle: '/api/v1/blog/article',
+    fetchArticle: '/api/v1/blog/articles',
+    deleteArticle: '/api/v1/blog/articles',
+	postDetails: '/api/v1/blog/artilce',
 
     /* Task api */
     taskURL: '/tasks/tasks',

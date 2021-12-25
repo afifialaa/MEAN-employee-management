@@ -4,20 +4,20 @@
 
 export const environment = {
 	production: false,
-    /* Account api */
+    /* Account api endpoints */
 	signupUrl: 'http://localhost:8080/account/signup',
 	loginUrl: 'http://localhost:8080/account/login',
 	forgotUrl: 'http://localhost:8080/account/forgot',
 	checkResetTokenUrl: 'http://localhost:8080/account/checkResetToken',
 	resetPasswordUrl: 'http://localhost:8080/account/resetPassword',
 
-	/* Dashboard api */
+	/* Dashboard api endpoints */
 	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
 	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
 	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
 	getTasksNumURL: 'http://localhost:8080/tasks/num',
 
-	/* Employee api */
+	/* Employee api endpoints*/
 	createEmpURL: "http://localhost:8080/employee/addEmp",
 	updateEmpURL: "http://localhost:8080/employee/updateEmployee",
 	deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
@@ -32,22 +32,23 @@ export const environment = {
 	searchByCityURL: "http://localhost:8080/employee/searchByCity",
 	searchByUniversityURL: "http://localhost:8080/employee/searchByUniversity",
 
-	// User api
+	// User api endpoints
 	createUserUrl: 'http://localhost:8080/user/createUser',
 	searchUserUrl: 'http://localhost:8080/user/searchUser',
 
-	/* Task api */
+	/* Task api endpoints */
 	taskURL: 'http://localhost:8080/user/tasks',
 
-    /* Inventory api*/
+    /* Inventory api endpoints */
 	createProductURL: 'http://localhost:3000/products',
 
-	/* Chat api */
+	/* Chat api endpoints */
 	sendMessageURL: 'asdj',
 
-	/* Blog api */
-    createPost: 'http://localhost:8080/blog/post',
-    fetchPosts: 'http://localhost:8080/blog/articles',
+	/* Blog api endpoints */
+    createAricle: 'http://localhost:8080/api/v1/blog/article',
+    fetchArticle: 'http://localhost:8080/api/v1/blog/user/articles',
+	postDetails: 'http://localhost:8080/api/v1/blog/article',
 };
 
 /*

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {BlogService} from '../services/blog.service'; 
 
 @Component({
@@ -11,6 +11,7 @@ export class BlogComponent implements OnInit {
     allArticles;
     msg: string;
     errMsg: string;
+    isSticky:boolean = false;
 
     constructor(private blogSrvc: BlogService) { }
 
@@ -24,9 +25,15 @@ export class BlogComponent implements OnInit {
         }, (error)=> {
             this.msg = '';
             this.errMsg = 'Failed to fetch articles';
-            console.log('Failed to fetch articles');
         })
 
+    }
+
+
+    /* Scrolling event */
+    @HostListener('window:scroll', ['$event'])
+    checkScroll() {
+        this.isSticky = window.pageYOffset >= 70
     }
 
 }

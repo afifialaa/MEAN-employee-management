@@ -21,7 +21,7 @@ let debugUser = require('debug')('worker:debugUser');
 function searchByEmail (req, res) {
     User.findOne({ email: req.query.email }, (err, user) => {
         if (err) {
-            return res.json({ err: 'Failed to search for user' });
+            return res.status(404).json({ msg: 'Failed to search for user' });
         }
 
         return res.status(200).json({ user: user });
@@ -36,7 +36,7 @@ function searchByEmail (req, res) {
 function searchByRole (req, res) {
     User.find({ role: req.query.role }, (err, user) => {
         if (err) {
-            return res.json({ err: 'Failed to search for user.' });
+            return res.json({ msg: 'Failed to search for user.' });
         }
         return res.json({ user: user });
     });
@@ -49,46 +49,37 @@ function searchByRole (req, res) {
  * @param {*} res 
  */
 function login (req, res) {
-    debugLogin('user is logging in');
     let userObj = {
         email: req.body.email,
         password: req.body.password
     };
 
-    debugLogin('userObj: ', userObj);
-
     User.findOne({ email: userObj.email }, (err, user) => {
         // Mongoose error
         if (err) {
-            debugLogin('Database error');
-            debugLogin(err);
-            return res.json({ err: 'Database error' });
+            return res.status(500).json({ msg: 'Database error' });
         }
 
         if (!user || user == null) {
             // Wrong email
-            debugLogin('Email does not exist');
-            return res.json({ err: 'Email does not exist' });
+            return res.status(404).json({ msg: 'Email does not exist' });
         } else {
             bcrypt.compare(userObj.password, user.password, (err, result) => {
                 if (err) {
-                    debugLogin('Failed to authenticate user');
-                    return res.json({ err: 'Failed to authenticate user' });
+                    return res.status(404).json({ msg: 'Failed to authenticate user' });
                 }
 
                 if (result == true) {
                     // Generate JWT
                     const jwtoken = jwtAuth.generateToken(user.email, user.role);
-                    debugLogin('User was found, and token was generated');
-                    return res.json({
+                    return res.status(200).json({
                         token: jwtoken,
                         email: user.email,
                         role: user.role
                     });
                 } else {
                     // Passwords do not match
-                    debugLogin('Wrong email or password');
-                    return res.json({ err: 'Wrong password or email.' });
+                    return res.status(401).json({ msg: 'Wrong password or email.' });
                 }
             })
         }
@@ -101,27 +92,19 @@ function login (req, res) {
  * @param {*} res 
  */
 function createUser (req, res) {
-    debugCreateUser('Creating user');
     let userObj = {
         email: req.body.email,
         password: req.body.password,
         role: req.body.role
     };
 
-    debugCreateUser('userObj: ', userObj);
-
     let user = new User(userObj);
 
     user.save((err, user) => {
         if (err && err.code == 11000) {
-            debugCreateUser('User already exists');
-            return res.json({ err: 'User already exists.' });
+            return res.status(409).json({ msg: 'User already exists.' });
         }
-        if (err) {
-            debugCreateUser('Failed to create user');
-            return res.json({ err: 'Failed to create user.' });
-        }
-        debugCreateUser('User was created successfully');
+        if (err) return res.status(500).json({ msg: 'Failed to create user.' });
         return res.status(201).json({ msg: 'User was created successfully.' });
     })
 }

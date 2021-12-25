@@ -28,3 +28,7 @@ nav a:hover{
 .ck-editor__editable_inline {
     min-height: 500px;
 }
+
+.content{
+    margin-top: 20px;
+}

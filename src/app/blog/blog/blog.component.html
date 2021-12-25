@@ -1,9 +1,9 @@
-<div class="container-fluid nav-container">
+<div class="container-fluid nav-container " [ngClass]="{'sticky':isSticky}">
     <div class="container">
         <ul class="nav">
             <li><a routerLink="/admin/blog/create">Create</a></li>
-            <li><a routerLink="/admin/blog/create">My Blog</a></li>
-            <li><a routerLink="/admin/blog/allBlogs">All Blogs</a></li>
+            <li><a routerLink="/admin/blog/myblog">My Posts</a></li>
+            <li><a routerLink="/admin/blog/allBlogs">Blog</a></li>
         </ul>
     </div>
 </div>

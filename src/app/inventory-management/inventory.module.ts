@@ -9,9 +9,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptorService} from '../interceptors/auth-interceptor.service';
+import { InventoryDashboardComponent } from './inventory-dashboard/inventory-dashboard.component';
 
 @NgModule({
-    declarations: [CreateItemComponent, SearchItemComponent, InventoryComponent],
+    declarations: [CreateItemComponent, SearchItemComponent, InventoryComponent, InventoryDashboardComponent],
     imports: [
         CommonModule,
         FormsModule,
