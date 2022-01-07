@@ -49,6 +49,8 @@ export const environment = {
     createAricle: 'http://localhost:8080/api/v1/blog/article',
     fetchArticle: 'http://localhost:8080/api/v1/blog/user/articles',
 	postDetails: 'http://localhost:8080/api/v1/blog/article',
+
+	postComment: 'http://localhost:8080/api/v1/blog/comment'
 };
 
 /*

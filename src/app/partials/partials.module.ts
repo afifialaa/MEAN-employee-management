@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MatSidenavModule } from '@angular/material';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-	declarations: [HeaderComponent],
+	declarations: [HeaderComponent, NavbarComponent],
 	imports: [
 		CommonModule,
-		MatSidenavModule
+		MatSidenavModule,
+		RouterModule
 	],
 	exports:[
-		HeaderComponent
+		HeaderComponent,
+		NavbarComponent,
 	]
 })
 export class PartialsModule { }

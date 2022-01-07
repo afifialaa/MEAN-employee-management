@@ -5,10 +5,16 @@ if(process.env.NODE_ENV == 'development'){
     mongoDB =  process.env.MONGODB_DEV;
 }
 
+if(process.env.NODE_ENV == 'testing'){
+    console.log('\x1b[32m[server] running in test mode');
+    mongoDB =  process.env.MONGODB_TEST;
+}
+
 if(process.env.NODE_ENV == 'production'){
     console.log('[server] running in production mode');
     mongoDB =  process.env.MONGODB_PROD;
 }
+
 const mongoose = require('mongoose');
 
 /**

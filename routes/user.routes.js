@@ -7,7 +7,9 @@ const router = express.Router();
 
 const limiter = require('../security/req.limiter');
 
-router.post('/createUser', limiter.userLimiter, userController.createUser);
+const {verifyToken}  = require('../authentication/token.auth')
+
+router.post('/createUser', verifyToken, limiter.userLimiter, userController.createUser);
 router.post('/checkResetToken', limiter.userLimiter, userController.checkResetToken);
 router.post('/resetPassword', limiter.userLimiter, userController.resetPassword);
 

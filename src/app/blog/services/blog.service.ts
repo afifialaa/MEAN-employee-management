@@ -10,6 +10,18 @@ export class BlogService {
 
     constructor(private http:HttpClient) { }
 
+    /**
+     * Posts a comment
+     * @returns 
+     */
+    postComment(postID:string, body:string){
+        let comment = {
+            body,
+            postID
+        }
+        return this.http.post(environment.postComment, comment);
+    }
+
     getPostDetails(postID:string){
         let params = new HttpParams().set('postID', postID)
         return this.http.get(environment.postDetails, {params})

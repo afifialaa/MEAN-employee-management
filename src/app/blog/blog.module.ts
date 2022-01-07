@@ -10,6 +10,7 @@ import { PostsComponent } from './posts/posts.component';
 import {QuillModule} from 'ngx-quill';
 import { MyBlogComponent } from './my-blog/my-blog.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import {PartialsModule} from '../partials/partials.module'
 
 @NgModule({
     declarations: [BlogComponent, SinglePostComponent, CreatePostComponent, PostsComponent, MyBlogComponent, PostDetailsComponent],
@@ -18,6 +19,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        PartialsModule,
         QuillModule.forRoot()
     ]
 })

@@ -71,6 +71,7 @@ function deleteTask (req, res) {
  * @param {*} res 
  */
 function fetchTasks (req, res) {
+    console.log('fetching tasks')
     Task.find({ user: req.email }, (err, docs) => {
         if (err) {
             debugTask('Failed to fetch tasks');

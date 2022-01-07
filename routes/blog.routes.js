@@ -17,5 +17,7 @@ router.put('/article/{article_id}', blogLimiter, blog.updateArticle);
 router.get('/articles', blog.readAll);
 router.get('/user/articles', blog.readUserArticles);
 
+router.post('/comment', blog.createComment)
+
 
 module.exports = router;

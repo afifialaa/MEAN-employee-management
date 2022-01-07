@@ -7,3 +7,29 @@
     margin-top: 2%;
     text-align: justify;
 }
+
+hr {
+    height: 10px;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+
+.comment-controls{
+    margin-top: 10px;
+    float: right;
+}
+
+.comment{
+    margin-top: 20px;
+    height: fit-content;
+    margin-bottom: 30px;
+}
+
+.comment > h5{
+    font-weight: bold;
+}
+
+.comment > p{
+    font-size: 12px;
+}

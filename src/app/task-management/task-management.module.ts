@@ -8,6 +8,7 @@ import {MatDatepickerModule, MatNativeDateModule} from '@angular/material/';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {PartialsModule} from '../partials/partials.module';
 
 import { TaskComponent } from './task/task.component';
 
@@ -21,7 +22,8 @@ import { TaskComponent } from './task/task.component';
 		MatNativeDateModule,
 		MatDatepickerModule,
 		BrowserModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		PartialsModule
 	],
 	exports: [
 		TaskComponent

@@ -6,13 +6,6 @@ const jwtAuth = require('../authentication/token.auth');
 
 const mailer = require('../mailer/mailer');
 
-/* Debugging */
-let debugLogin = require('debug')('worker:userLogin');
-let debugCreateUser = require('debug')('worker:createUser');
-let debugUpdateUser = require('debug')('worker:updateUser');
-let debugDeleteUser = require('debug')('worker:deleteUser');
-let debugUser = require('debug')('worker:debugUser');
-
 /**
  * Search by email
  * @param {*} req 
@@ -70,6 +63,7 @@ function login (req, res) {
                 }
 
                 if (result == true) {
+
                     // Generate JWT
                     const jwtoken = jwtAuth.generateToken(user.email, user.role);
                     return res.status(200).json({
@@ -115,20 +109,15 @@ function createUser (req, res) {
  * @param {*} res 
  */
 function updateUser (req, res){
-    debugUpdateUser('updating user');
     let user = {
         email: req.body.email,
         password: req.body.password
     }
 
-    debugUpdateUser('user: ', user);
-
     User.updateOne({ email: req.body.email }, user, (err) => {
         if (err) {
-            debugUpdateUser('Failed to update user');
             return res.json({ err: 'Failed to update user' });
         }
-        debugUpdateUser('User was updated successfully');
         return res.json({ msg: 'User was updated' });
     })
 }
@@ -139,13 +128,10 @@ function updateUser (req, res){
  * @param {*} res 
  */
 function deleteUser (req, res) {
-    debugDeleteUser('Deleting user');
     User.findOneAndDelete({ email: req.body.email }, (err) => {
         if (err) {
-            debugDeleteUser('Failed to delete user');
             return res.json({ err: 'Failed to delete user' });
         }
-        debugDeleteUser('User was deleted successfully');
         return res.json({ msg: 'User was deleted successfully' });
     });
 }
@@ -157,7 +143,6 @@ function deleteUser (req, res) {
  * @returns {json}
  */
 async function forgotPassword(req, res) {
-    debugUser('********* Forgot password controller **********');
 
     try {
         let token = await generateResetToken();
@@ -166,11 +151,10 @@ async function forgotPassword(req, res) {
 
         return res.json({ msg: 'Emai was sent' });
     } catch (err) {
-        debugUser(err);
         return res.json({ err: 'Failed to reset password' });
     }
-
 }
+
 
 /**
  * Checks reset token validity

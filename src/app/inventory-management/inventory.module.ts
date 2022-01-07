@@ -11,13 +11,16 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptorService} from '../interceptors/auth-interceptor.service';
 import { InventoryDashboardComponent } from './inventory-dashboard/inventory-dashboard.component';
 
+import {PartialsModule} from '../partials/partials.module'
+
 @NgModule({
     declarations: [CreateItemComponent, SearchItemComponent, InventoryComponent, InventoryDashboardComponent],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        PartialsModule
     ],
     exports: [
         CreateItemComponent,

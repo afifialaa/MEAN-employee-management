@@ -31,3 +31,4 @@ export class AccountService {
 		return this.httpClient.post(environment.resetPasswordUrl, user, {responseType: 'json'});
 	}
 }
+

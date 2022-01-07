@@ -3,7 +3,7 @@ const router = express.Router();
 
 const userController = require('../controllers/user.controller');
 
-const role = require('../middlewares/role.mid');
+const {isGuest} = require('../middlewares/role.mid');
 
 const rateLimit = require('express-rate-limit');
 const accountLimiter = rateLimit({
@@ -11,7 +11,8 @@ const accountLimiter = rateLimit({
     max: 4, // Limit each IP to 4 requests
 })
 
-router.post('/login', role.isGuest, userController.login);
+// At this time, only the guest user is allowed
+router.post('/login', isGuest, userController.login);
 router.post('/signup', accountLimiter, userController.createUser);
 router.post('/forgot', accountLimiter, userController.forgotPassword);
 

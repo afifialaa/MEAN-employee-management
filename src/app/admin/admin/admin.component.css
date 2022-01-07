@@ -45,3 +45,7 @@ router-outlet{
     transition-duration: 0.5s;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}

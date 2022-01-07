@@ -19,6 +19,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import {EmployeeRoutingModule} from './employee-routing.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
+import {PartialsModule} from '../partials/partials.module';
+
 @NgModule({
 	declarations: [
 		CreateEmployeeComponent,
@@ -40,7 +42,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 		MatIconModule,
 		RouterModule,
 		MatProgressSpinnerModule,
-		EmployeeRoutingModule
+		EmployeeRoutingModule,
+		PartialsModule
 	],
 	exports: [
 		EmployeeComponent

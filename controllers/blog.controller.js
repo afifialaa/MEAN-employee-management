@@ -7,19 +7,22 @@ const Post = require('../models/article.model');
  * @param {*} res 
  */
 const createComment = (req, res)=>{
+    console.log('creating comment')
     let commentObj = {
         user: req.email,
         body: req.body.body,
-        article_id: req.body.article_id,
         postedOn: new Date()
     }
 
-    let comment = new Comment(commentObj)
+    console.log(req.body.postID)
+    console.log('comment obj ', commentObj)
 
-    comment.save( (err, comment)=> {
+    Post.findOneAndUpdate( {_id: req.body.postID}, {$push: {comments: commentObj}}, (err, comment)=>{
         if(err){
+            console.log('askdjadjsol')
             return res.json({err: 'Failed to save comment'}).status(403);
         }else{
+            console.log('comment created')
             return res.json({msg: 'Comment was created'}).status(200);
         }
     })

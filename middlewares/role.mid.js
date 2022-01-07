@@ -1,28 +1,47 @@
 const mailer = require('../mailer/mailer');
 
-// guest@gmail.com is the only guest email allowed
+/**
+ * Check if user is a guest
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 function isGuest(req, res, next){
-    if(req.body.email === 'guest@gmail.com' && req.role == 'guest'){
+    console.log('is guest')
+    // A guest is trying to login
+    if(req.body.email === 'guest@email.com'){
+        console.log('guest email')
         // Send email
         mailer.guestLoginEmail()
             .then(info => {
-                next();
+                next()
             }).catch(err => {
-                console.error(err);
+            next()
         });
     }
-    next();
+    console.log('not a guest')
+    next()
 }
 
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
 function isAdmin(req, res, next){
+    console.log('checking is admin')
     if(req.role == 'admin'){
-	next();
+        console.log('yes user is an admin')
+        next();
     }else{
-	return res.status(401).json({msg: 'User is not an admin'});
+        console.log('oh shit, user is no admin')
+        return res.status(401).json({msg: 'User is not an admin'});
     }
 }
 
 module.exports = {
     isGuest,
-    isAdmin
+    isAdmin,
 };

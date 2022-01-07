@@ -41,6 +41,8 @@ export const environment = {
     deleteArticle: '/api/v1/blog/articles',
 	postDetails: '/api/v1/blog/artilce',
 
+	postComment: 'http://localhost:8080/api/v1/blog/comment',
+
     /* Task api */
     taskURL: '/tasks/tasks',
 

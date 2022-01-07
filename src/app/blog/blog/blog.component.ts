@@ -26,9 +26,7 @@ export class BlogComponent implements OnInit {
             this.msg = '';
             this.errMsg = 'Failed to fetch articles';
         })
-
     }
-
 
     /* Scrolling event */
     @HostListener('window:scroll', ['$event'])
