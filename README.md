@@ -6,6 +6,10 @@ A MEAN-stack employee management system.
 * MongoDB 4.4.3
 * Express 4.17.1
 
+This management system in made up of multiple applications, each of which might be written in a different language, but all applications share the same front end design written using Angular framework.
+
+*This is not and will never be a finished product. This project is built for learning purposes and to showcase the skills that I have and still aquiring through constant learning*
+
 ## Installation and Usage
 1. Clone the repo.
 ```bash
@@ -35,13 +39,14 @@ node server.js
 ```
 7. Start angular server in development mode
 ```bash
-ng serve --configuration=devvelopment
+ng serve --configuration=development
 ```
 now visit localhost:4200
 
 ## Features
 * Employee management
 * Task management
-* Blog
+* Knowledge management
 * Inventory management
 * Task management
+* Chat app
