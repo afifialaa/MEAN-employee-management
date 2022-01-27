@@ -9,10 +9,10 @@ export const environment = {
 	resetPasswordUrl: '/account/resetPassword',
 
 	/* Dashboard api */
-	getEmployeesNumURL: '/dashboard/getEmployeesNum',
-	getUsersNumURL: '/dashboard/getUsersNum',
-	getDepartmentsNumURL: '/dashboard/getDepartmentsNum',
-	getTasksNumURL: '/tasks/num',
+	employeesNumURL: '/dashboard/getEmployeesNum',
+	usersNumURL: '/dashboard/getUsersNum',
+	departmentsNumURL: '/dashboard/getDepartmentsNum',
+	tasksNumURL: '/tasks/num',
 
 	createEmpURL: "/employee/addEmp",
 	updateEmpURL: "/employee/updateEmployee",

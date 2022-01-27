@@ -2,9 +2,9 @@ const dashboardController = require('../controllers/dashboard.controller');
 const express = require('express');
 const router = express.Router();
 
-router.get('/getEmployeesNum', dashboardController.getEmployeesNum);
-router.get('/getDepartmentsNum', dashboardController.getDepartmentsNum);
-router.get('/getUsersNum', dashboardController.getUsersNum);
-router.get('/getTasksNum', dashboardController.getTasksNum);
+router.get('/employeesNum', dashboardController.getEmployeesNum);
+router.get('/departmentsNum', dashboardController.getDepartmentsNum);
+router.get('/usersNum', dashboardController.getUsersNum);
+router.get('/tasksNum', dashboardController.getTasksNum);
 
 module.exports = router;

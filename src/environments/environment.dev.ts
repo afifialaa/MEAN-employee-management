@@ -9,38 +9,22 @@ export const environment = {
 	resetPasswordUrl: 'http://localhost:8080/api/v1/account/resetPassword',
 
 	/* Dashboard api */
-	getEmployeesNumURL: 'http://localhost:8080/api/v1/dashboard/getEmployeesNum',
-	getUsersNumURL: 'http://localhost:8080/api/v1/dashboard/getUsersNum',
-	getDepartmentsNumURL: 'http://localhost:8080/api/v1/dashboard/getDepartmentsNum',
-	getTasksNumURL: 'http://localhost:8080/api/v1/dashboard/getTasksNum',
+	employeesNumURL: 'http://localhost:8080/api/v1/dashboard/employeesNum',
+	usersNumURL: 'http://localhost:8080/api/v1/dashboard/usersNum',
+	departmentsNumURL: 'http://localhost:8080/api/v1/dashboard/departmentsNum',
+	tasksNumURL: 'http://localhost:8080/api/v1/dashboard/tasksNum',
 
 	/* Employee api */
-	createEmpURL: "http://localhost:8080/api/v1/employee/addEmp",
-	updateEmpURL: "http://localhost:8080/api/v1/employee/updateEmployee",
-	deleteEmpURL: "http://localhost:8080/api/v1/employee/deleteEmployee",
-
-	searchByFirstNameURL: "http://localhost:8080/api/v1/employee/searchByFirstName",
-	searchByLastNameURL: "http://localhost:8080/api/v1/employee/searchByLastName",
-	searchByGenderURL: "http://localhost:8080/api/v1/employee/searchByGender",
-	searchByEmailURL: "http://localhost:8080/api/v1/employee/searchByEmail",
-	searchByJobTitleURL: "http://localhost:8080/api/v1/employee/searchByJobTitle",
-	searchByDepartmentURL: "http://localhost:8080/api/v1/employee/searchByDepartmentURL",
-	searchByCountryURL: "http://localhost:8080/api/v1/employee/searchByCountry",
-	searchByCityURL: "http://localhost:8080/api/v1/employee/searchByCity",
-	searchByUniversityURL: "http://localhost:8080/api/v1/employee/searchByUniversity",
+	employeeURL: "http://localhost:8080/api/v1/employee",
 
 	// User api
-	createUserUrl: 'http://localhost:8080/api/v1/user/createUser',
-	searchUserUrl: 'http://localhost:8080/api/v1/user/searchUser',
+	user: 'http://localhost:8080/api/v1/user',
 
 	/* Task api */
 	taskURL: 'http://localhost:8080/api/v1/user/tasks',
 
     /* Inventory api*/
 	createProductURL: 'http://localhost:3000/api/v1/products',
-
-	/* Chat api */
-	sendMessageURL: 'asdj',
 
     /* Blog api */
     createArticle: 'http://localhost:8080/api/v1/blog/article',

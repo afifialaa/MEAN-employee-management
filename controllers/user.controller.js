@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const jwtAuth = require('../authentication/token.auth');
 
 const mailer = require('../mailer/mailer');
+const { ConsoleReporter } = require('jasmine');
 
 /**
  * Search by email
@@ -101,6 +102,49 @@ function createUser (req, res) {
         if (err) return res.status(500).json({ msg: 'Failed to create user.' });
         return res.status(201).json({ msg: 'User was created successfully.' });
     })
+}
+
+/**
+ * Create new user
+ * @param {*} req 
+ * @param {*} res 
+ */
+ function signup (req, res) {
+    let userObj = {
+        email: req.body.email,
+        password: req.body.password,
+        role: req.body.role
+    };
+
+    let user = new User(userObj);
+
+    user.save((err, user) => {
+        if (err && err.code == 11000) {
+            return res.status(409).json({ msg: 'User already exists.' });
+        }
+        if (err) {
+            return res.status(500).json({ msg: 'Failed to create user.' });
+        }
+        // Generate JWT
+        const jwtoken = jwtAuth.generateToken(user.email, user.role);
+        return res.status(200).json({
+            token: jwtoken,
+            email: user.email,
+            role: user.role
+        });
+    })
+}
+
+function readUser(req, res){
+    let email = req.params.email
+    User.findOne({ email: email }, (err, user) => {
+        if (err) {
+            return res.status(500).json({ msg: 'Internal server error' });
+        } else {
+            return res.json({ user: user });
+        }
+    })
+
 }
 
 /**
@@ -233,12 +277,14 @@ async function generateResetToken() {
 module.exports = {
     login,
     createUser,
+    readUser,
     updateUser,
     deleteUser,
     searchByEmail,
     searchByEmail,
     forgotPassword,
     checkResetToken,
-    resetPassword
+    resetPassword,
+    signup
 };
 

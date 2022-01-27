@@ -13,7 +13,7 @@ const accountLimiter = rateLimit({
 
 // At this time, only the guest user is allowed
 router.post('/login', isGuest, userController.login);
-router.post('/signup', accountLimiter, userController.createUser);
+router.post('/signup', accountLimiter, userController.signup);
 router.post('/forgot', accountLimiter, userController.forgotPassword);
 
 module.exports = router;

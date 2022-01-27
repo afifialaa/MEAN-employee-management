@@ -5,19 +5,11 @@ const empController = require('../controllers/employees.controller');
 
 const limiter = require('../security/req.limiter');
 
-router.post('/addEmp', limiter.employeeLimiter, empController.addEmp);
-router.put('/updateEmployee', limiter.employeeLimiter, empController.updateEmployee);
-router.post('/deleteEmployee', limiter.employeeLimiter, empController.deleteEmployee);
+router.post('/', limiter.employeeLimiter, empController.createEmployee);
+router.get('/:id', limiter.employeeLimiter, empController.readEmployee);
+router.put('/:id', limiter.employeeLimiter, empController.updateEmployee);
+router.delete('/:id', limiter.employeeLimiter, empController.deleteEmployee);
 
-router.get('/searchById', empController.searchById);
-router.get('/searchByFirstName', empController.searchByFirstName);
-router.get('/searchByLastName', empController.searchByLastName);
-router.get('/searchByEmail', empController.searchByEmail);
-router.get('/searchByGender', empController.searchByGender);
-router.get('/searchByJobTitle', empController.searchByJobTitle);
-router.get('/searchByCountry', empController.searchByCountry);
-router.get('/searchByCity', empController.searchByCity);
-router.get('/searchByDepartment', empController.searchByDepartment);
-router.get('/searchByUniversity', empController.searchByUniversity);
+router.get('/', empController.readEmployees);
 
 module.exports = router;

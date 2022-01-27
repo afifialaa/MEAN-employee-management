@@ -8,7 +8,7 @@ let debugEmp = require('debug')('worker:debugEmp');
  * @param {*} req 
  * @param {*} res 
  */
-function addEmp (req, res) {
+function createEmployee (req, res) {
     debugEmp('Adding employee');
     let employeeObj = {
         first_name: req.body.firstName,
@@ -46,6 +46,29 @@ function addEmp (req, res) {
         debugEmp('Employee was added successfully');
         return res.status(201).json({msg: 'Employee was created'});
     });
+}
+
+/**
+ * Search employees
+ * @param {*} req 
+ * @param {*} res 
+ */
+function readEmployees(req, res) {
+    console.log(req.query)
+    Employee.find(req.query, (err, result)=>{
+        if(err) return res.status(500).json({msg: "Failed to search"})
+
+        return res.status(200).json({employees: result})
+    })
+}
+
+function readEmployee(req, res){
+    let email = req.params.email
+    Employee.findOne({email: email}, (err, result)=>{
+        if(err) return res.status(500).json({msg: "Failed to search"})
+
+        return res.status(200).json({employee: result})
+    })
 }
 
 /**
@@ -127,14 +150,12 @@ function updateEmployee (req, res) {
  * @param {*} res 
  */
 function deleteEmployee (req, res) {
-    debugEmp('Deleting user');
-    Employee.findOneAndDelete({ email: req.body.email }, (err) => {
+    Employee.findOneAndDelete({ _id: req.params.id }, (err) => {
         if (err) {
-            debugEmp('User was updated');
             return res.status(409).json({ msg: 'failed to delete employee' });
+        }else{
+            return res.status(200).json({ msg: 'employee was deleted' });
         }
-        debugEmp('User was updated');
-        return res.status(204).json({ msg: 'employee was deleted' });
     });
 }
 
@@ -143,7 +164,7 @@ function deleteEmployee (req, res) {
  * @param {*} req 
  * @param {*} res 
  */
-function searchById (req, res) {
+function readEmployeeId (req, res) {
     Employee.findOne({ empId: req.query.empId }, (err, emp) => {
         if (err) {
             console.log(err);
@@ -153,168 +174,11 @@ function searchById (req, res) {
     })
 }
 
-/**
- * Search by first name
- * @param {*} req 
- * @param {*} res 
- */
-function searchByFirstName  (req, res) {
-    Employee.find({ first_name: req.query.firstName }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(409).json({ msg: 'Failed to search for employee.' });
-        }
-        return res.status(200).json({ emp });
-    });
-}
-
-/**
- * Search by last name
- * @param {*} req 
- * @param {*} res 
- */
-function searchByLastName(req, res) {
-    Employee.find({ last_name: req.query.lastName }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.json({ msg: 'Failed to search for employee.' });
-        }
-        return res.json({ emp });
-    });
-}
-
-
-/**
- * Search by email
- * @param {*} req 
- * @param {*} res 
- */
-const searchByEmail = (req, res) => {
-    debugEmp('searching by email');
-    Employee.findOne({ email: req.query.email }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(502).json({ msg: "Database is currently offline." });
-        }
-        if (emp == null) {
-            return res.status(404).json({ msg: "No employee found with this email." });
-        }
-        debugEmp(emp);
-        return res.status(200).json({ emp });
-    });
-}
-
-/**
- * Search by gender
- * @param {*} req 
- * @param {*} res 
- */
-function searchByGender (req, res) {
-    debugEmp('Searching by gender');
-    Employee.find({ gender: req.query.gender }, (err, emp) => {
-        if (err) {
-            debugEmp(err);
-            return res.json({ msg: 'Failed to search for employee.' });
-        }
-
-        debugEmp('Return results');
-        return res.json({ emp });
-    });
-}
-
-
-/**
- * Search by job title
- * @param {*} req 
- * @param {*} res 
- */
-function searchByJobTitle (req, res) {
-    Employee.find({ job_title: req.query.jobTitle }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(404).json({ msg: 'Failed to search for empliyee.' });
-        }
-        return res.status(200).json({ emp });
-    });
-}
-
-
-/**
- * Search by country
- * @param {*} req 
- * @param {*} res 
- */
-function searchByCountry (req, res){
-    Employee.find({ country: req.query.country }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(404).json({ msg: 'Failed to search for empliyee.' });
-        }
-        return res.status(200).json({ emp });
-    });
-}
-
-
-/**
- * Search by city
- * @param {*} req 
- * @param {*} res 
- */
-function searchByCity (req, res) {
-    Employee.find({ city: req.query.city }, (err, emp) => {
-        if (err) {
-            return res.status(404).json({ msg: 'Failed to search for employee.' });
-        }
-        return res.json({ emp });
-    });
-}
-
-
-/**
- * Search by department
- * @param {*} req 
- * @param {*} res 
- */
-function searchByDepartment (req, res) {
-    Employee.find({ department: req.query.department }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(404).json({ msg: 'Failed to search for employee.' });
-        }
-        return res.status(200).json({ emp });
-    });
-}
-
-/**
- * Search by university
- * @param {*} req 
- * @param {*} res 
- */
-function searchByUniversity (req, res) {
-    Employee.find({ university: req.query.university }, (err, emp) => {
-        if (err) {
-            console.log(err);
-            return res.status(404).json({ msg: 'Failed to search for employee.' });
-        }
-        return res.status(200).json({ emp });
-    });
-}
-
 module.exports = {
-
-    addEmp,
-    deleteEmployee,
+    createEmployee,
     updateEmployee,
-
-    searchById,
-    searchByFirstName,
-    searchByLastName,
-    searchByEmail,
-    searchByGender,
-    searchByJobTitle,
-    searchByCountry,
-    searchByCity,
-    searchByDepartment,
-    searchByUniversity
+    deleteEmployee,
+    readEmployees,
+    readEmployee
 };
 

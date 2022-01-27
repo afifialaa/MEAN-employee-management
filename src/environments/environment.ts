@@ -12,29 +12,16 @@ export const environment = {
 	resetPasswordUrl: 'http://localhost:8080/account/resetPassword',
 
 	/* Dashboard api endpoints */
-	getEmployeesNumURL: 'http://localhost:8080/dashboard/getEmployeesNum',
-	getUsersNumURL: 'http://localhost:8080/dashboard/getUsersNum',
-	getDepartmentsNumURL: 'http://localhost:8080/dashboard/getDepartmentsNum',
-	getTasksNumURL: 'http://localhost:8080/tasks/num',
+	employeesNumURL: 'http://localhost:8080/dashboard/employeesNum',
+	usersNumURL: 'http://localhost:8080/dashboard/usersNum',
+	departmentsNumURL: 'http://localhost:8080/dashboard/departmentsNum',
+	tasksNumURL: 'http://localhost:8080/tasks/num',
 
 	/* Employee api endpoints*/
-	createEmpURL: "http://localhost:8080/employee/addEmp",
-	updateEmpURL: "http://localhost:8080/employee/updateEmployee",
-	deleteEmpURL: "http://localhost:8080/employee/deleteEmployee",
-
-	searchByFirstNameURL: "http://localhost:8080/employee/searchByFirstName",
-	searchByLastNameURL: "http://localhost:8080/employee/searchByLastName",
-	searchByGenderURL: "http://localhost:8080/employee/searchByGender",
-	searchByEmailURL: "http://localhost:8080/employee/searchByEmail",
-	searchByJobTitleURL: "http://localhost:8080/employee/searchByJobTitle",
-	searchByDepartmentURL: "http://localhost:8080/employee/searchByDepartmentURL",
-	searchByCountryURL: "http://localhost:8080/employee/searchByCountry",
-	searchByCityURL: "http://localhost:8080/employee/searchByCity",
-	searchByUniversityURL: "http://localhost:8080/employee/searchByUniversity",
+	employeeURL: "http://localhost:8080/employee",
 
 	// User api endpoints
-	createUserUrl: 'http://localhost:8080/user/createUser',
-	searchUserUrl: 'http://localhost:8080/user/searchUser',
+	userURL: 'http://localhost:8080/user/user',
 
 	/* Task api endpoints */
 	taskURL: 'http://localhost:8080/user/tasks',
