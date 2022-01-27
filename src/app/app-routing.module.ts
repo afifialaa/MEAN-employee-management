@@ -27,11 +27,11 @@ import {InventoryComponent} from './inventory-management/inventory/inventory.com
 import {InventoryDashboardComponent} from './inventory-management/inventory-dashboard/inventory-dashboard.component';
 
 // Blog
-import {BlogComponent} from './blog/blog/blog.component';
-import {CreatePostComponent} from './blog/create-post/create-post.component';
-import {PostsComponent} from './blog/posts/posts.component';
-import {MyBlogComponent} from './blog/my-blog/my-blog.component';
-import {PostDetailsComponent} from './blog/post-details/post-details.component';
+import {BlogComponent} from './knowledge-management/blog/blog.component';
+import {CreatePostComponent} from './knowledge-management/create-post/create-post.component';
+import {PostsComponent} from './knowledge-management/posts/posts.component';
+import {MyBlogComponent} from './knowledge-management/my-blog/my-blog.component';
+import {PostDetailsComponent} from './knowledge-management/post-details/post-details.component';
 
 const appRoutes: Routes = [
 

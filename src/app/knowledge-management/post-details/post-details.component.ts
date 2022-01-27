@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import {BlogService} from '../services/blog.service'
+import {BlogService} from '../../services/blog.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {BlogPost} from '../../models/iblog';
 

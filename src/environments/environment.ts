@@ -18,13 +18,13 @@ export const environment = {
 	tasksNumURL: 'http://localhost:8080/tasks/num',
 
 	/* Employee api endpoints*/
-	employeeURL: "http://localhost:8080/employee",
+	employeeURL: "http://localhost:8080/api/v1/employee",
 
 	// User api endpoints
-	userURL: 'http://localhost:8080/user/user',
+	userURL: 'http://localhost:8080/api/v1/user',
 
 	/* Task api endpoints */
-	taskURL: 'http://localhost:8080/user/tasks',
+	taskURL: 'http://localhost:8080/api/v1/user/tasks',
 
     /* Inventory api endpoints */
 	createProductURL: 'http://localhost:3000/products',

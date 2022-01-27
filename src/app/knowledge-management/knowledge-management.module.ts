@@ -23,4 +23,4 @@ import {PartialsModule} from '../partials/partials.module'
         QuillModule.forRoot()
     ]
 })
-export class BlogModule { }
+export class KnowledgeManagementModule { }

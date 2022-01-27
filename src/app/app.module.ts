@@ -26,7 +26,7 @@ import {DashboardModule} from './admin/dashboard/dashboard.module';
 import {UserManagementModule} from './user-management/user-management.module';
 import {TaskManagementModule} from './task-management/task-management.module';
 import {InventoryModule} from './inventory-management/inventory.module';
-import {BlogModule} from './blog/blog.module';
+import {KnowledgeManagementModule} from './knowledge-management/knowledge-management.module';
 
 @NgModule({
 	declarations: [
@@ -54,7 +54,7 @@ import {BlogModule} from './blog/blog.module';
 		TaskManagementModule,
 		MatDatepickerModule,
         InventoryModule,
-        BlogModule,
+        KnowledgeManagementModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

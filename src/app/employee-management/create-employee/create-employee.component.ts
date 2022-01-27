@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
+import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { validateEmail } from '../../shared/validator-email';
 
@@ -119,7 +119,7 @@ export class CreateEmployeeComponent implements OnInit {
 			salary: this.createEmployeeForm.value.salary,
 		}
 
-		this.empService.addEmployee(employee).subscribe(
+		this.empService.createEmployee(employee).subscribe(
             (data) => {
                 this.errMsg = '';
                 this.msg = 'Employee was created';

@@ -11,19 +11,19 @@ export class DashboardServices{
 
 	getEmployeesNum(){
 		console.log('get employee number service')
-		return this.httpClient.get(environment.getEmployeesNumURL, {responseType:'json'});
+		return this.httpClient.get(environment.employeesNumURL, {responseType:'json'});
 	}
 	
 	getUsersNum(){
 		console.log('get user number service');
-		return this.httpClient.get(environment.getUsersNumURL, {responseType: 'json'});
+		return this.httpClient.get(environment.usersNumURL, {responseType: 'json'});
 	}
 
 	getDepartmentsNum(){
-		return this.httpClient.get(environment.getDepartmentsNumURL);
+		return this.httpClient.get(environment.departmentsNumURL);
 	}
 
 	getTasksNum(){
-		return this.httpClient.get(environment.getTasksNumURL);
+		return this.httpClient.get(environment.tasksNumURL);
 	}
 }

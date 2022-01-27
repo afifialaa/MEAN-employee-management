@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { EmployeeService } from '../services/employee.service';
+import { EmployeeService } from '../../services/employee.service';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { Iemployee } from '../../models/iemployee';
@@ -59,39 +59,7 @@ export class EmployeeDetailsComponent implements OnInit {
         // Get email
         let email = this.route.snapshot.paramMap.get('email');
         // Get employee 
-        this.empService.searchByEmail(email).subscribe((data) => {
-            this.employee = data['emp'];
-
-            // Populate old object
-            this.oldData = data['emp'];
-
-            // Setting form value with employee data
-            this.editEmployeeForm.controls.firstName.setValue(this.employee.first_name);
-            this.editEmployeeForm.controls.lastName.setValue(data['emp'].last_name);
-            this.editEmployeeForm.controls.email.setValue(data['emp'].email);
-            this.editEmployeeForm.controls.gender.setValue(data['emp'].gender);
-            this.editEmployeeForm.controls.phoneNumber.setValue(data['emp'].phone_number);
-            this.editEmployeeForm.controls.university.setValue(data['emp'].university);
-            this.editEmployeeForm.controls.jobTitle.setValue(data['emp'].job_title);
-
-            this.editEmployeeForm.controls.country.setValue(data['emp'].address.country);
-            this.editEmployeeForm.controls.city.setValue(data['emp'].address.city);
-            this.editEmployeeForm.controls.street.setValue(data['emp'].address.street_address);
-
-            this.editEmployeeForm.controls.hiringDate.setValue(data['emp'].contract.hiringDate);
-            this.editEmployeeForm.controls.terminatingDate.setValue(data['emp'].contract.terminatingDate);
-            this.editEmployeeForm.controls.bank.setValue(data['emp'].contract.bank);
-            this.editEmployeeForm.controls.bankAccount.setValue(data['emp'].contract.bank_account);
-            this.editEmployeeForm.controls.salary.setValue(data['emp'].contract.salary);
-
-        }), error => {
-            // Error
-            console.log(error);
-            if(error.status == 429){
-                this.msg = '';
-                this.errMsg = 'Too many delete requests'
-            }
-        }
+        
     }
 
 

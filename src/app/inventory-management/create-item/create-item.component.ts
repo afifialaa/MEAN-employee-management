@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {InventoryService} from '../services/inventory.service';
+import {InventoryService} from '../../services/inventory.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({

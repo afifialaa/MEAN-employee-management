@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {EmployeeService} from '../services/employee.service';
+import {EmployeeService} from '../../services/employee.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class SearchBarComponent implements OnInit {
 
     search(){
         let email:string = this.searchForm.value.email;
-        this.empSrvc.searchByEmail(email).subscribe( data => {
+        this.empSrvc.readEmployee(email).subscribe( data => {
             this.router.navigate(['/admin/employee/employee-details', { email: email }]);
         },
         error => {

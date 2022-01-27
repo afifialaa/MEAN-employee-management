@@ -18,7 +18,7 @@ export const environment = {
 	employeeURL: "http://localhost:8080/api/v1/employee",
 
 	// User api
-	user: 'http://localhost:8080/api/v1/user',
+	userURL: 'http://localhost:8080/api/v1/user',
 
 	/* Task api */
 	taskURL: 'http://localhost:8080/api/v1/user/tasks',

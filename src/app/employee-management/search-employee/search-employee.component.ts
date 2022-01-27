@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { EmployeeService } from '../services/employee.service';
+import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Iemployee } from '../../models/iemployee';
@@ -58,162 +58,30 @@ export class SearchEmployeeComponent implements OnInit {
 			if (option == 'First Name') {
 				// Search by first name
 				let firstName = this.fieldValue.value;
-				this.empService.searchByFirstName(firstName).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'Last Name') {
 				// Search by last name
 				let lastName = this.fieldValue.value;
-				this.empService.searchByLastName(lastName).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'Email') {
 				// Search by email
 				let email = this.fieldValue.value;
-				this.empService.searchByEmail(email).subscribe(result => {
-					if (result["err"]) {
-						this.singleEmployee = null;
-						this.targetEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.errMsg = "";
-						this.looking = false;
-						this.targetEmployee = null;
-						this.singleEmployee = result['emp'];
-						//avatar-based gender
-						/*if (this.targetEmployee.gender == 'female') {
-							this.img = this.femaleAvatar;
-					  } else {
-							this.img = this.maleAvatar;
-					  }*/
-					}
-				});
 			} else if (option == 'Gender') {
 				// Search by gender
 				let gender = this.fieldValue.value;
-				this.empService.searchByGender(gender).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'Job Title') {
 				// Search by job title
 				let jobTitle = this.fieldValue.value;
-				this.empService.searchByJobTitle(jobTitle).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'Country') {
 				// Search by country
 				let country = this.fieldValue.value;
-				this.empService.searchByCountry(country).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'City') {
 				// Search by city
 				let city = this.fieldValue.value;
-				this.empService.searchByCity(city).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'Department') {
 				// Search by department
 				let department = this.fieldValue.value;
-				this.empService.searchByDepartment(department).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} else if (option == 'University') {
 				// Search by university
 				let university = this.fieldValue.value;
-				this.empService.searchByUniversity(university).subscribe(result => {
-					if (result["err"]) {
-						this.targetEmployee = null;
-						this.singleEmployee = null;
-						this.looking = false;
-						this.errMsg = result["err"];
-						return;
-					} else {
-						this.looking = false;
-						this.errMsg = null;
-						this.singleEmployee = null;
-						this.targetEmployee = result['emp'];
-					}
-				})
 			} 
 
 		} else {

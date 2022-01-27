@@ -12,27 +12,11 @@ export const environment = {
 	employeesNumURL: '/dashboard/getEmployeesNum',
 	usersNumURL: '/dashboard/getUsersNum',
 	departmentsNumURL: '/dashboard/getDepartmentsNum',
-	tasksNumURL: '/tasks/num',
 
-	createEmpURL: "/employee/addEmp",
-	updateEmpURL: "/employee/updateEmployee",
-	deleteEmpURL: "/employee/deleteEmployee",
-
-
-	/* Search employee api */
-	searchByFirstNameURL: "/employee/searchByFirstName",
-	searchByLastNameURL: "/employee/searchByLastName",
-	searchByGenderURL: "/employee/searchByGender",
-	searchByEmailURL: "/employee/searchByEmail",
-	searchByJobTitleURL: "/employee/searchByJobTitle",
-	searchByDepartmentURL: "/employee/searchByDepartmentURL",
-	searchByCountryURL: "/employee/searchByCountry",
-	searchByCityURL: "/employee/searchByCity",
-	searchByUniversityURL: "/employee/searchByUniversity",
+	employeeURL: "/employee",
 
 	// User api
-	createUserUrl: '/user/createUser',
-	searchUserUrl: '/user/searchUser',
+	userURL: '/api/v1/user',
 
 
     /* Blog api */
@@ -41,7 +25,7 @@ export const environment = {
     deleteArticle: '/api/v1/blog/articles',
 	postDetails: '/api/v1/blog/artilce',
 
-	postComment: 'http://localhost:8080/api/v1/blog/comment',
+	postComment: '/api/v1/blog/comment',
 
     /* Task api */
     taskURL: '/tasks/tasks',
