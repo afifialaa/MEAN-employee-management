@@ -17,15 +17,15 @@ function verifyToken(req, res, next){
     const authHeader = req.headers["authorization"]
     const token = authHeader.split(' ')[1];
 
-    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
-		if (err) {
-			return res.status(403).json({err: "Missing or invalid jwt"});
-		}
-		// Setting request variables
-		req.role = decoded.role;
-		req.email = decoded.email;
-		next();
-    });
+	try{
+		let decoded = jwt.verify(token, process.env.SECRET_KEY)
+		req.email = decoded.email
+		req.role = decoded.role
+		next()
+	}catch(err){
+		console.log(err.stack)
+		next(new Error('Failed to decode'))
+	}
 }
 
 module.exports = {

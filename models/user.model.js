@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const bc = require('bcrypt');
+const jwt = require('../authentication/token.auth')
+
+const bcrypt = require('bcrypt');
 let saltRounds = 10;
 
 const Schema = mongoose.Schema;
@@ -37,10 +39,10 @@ const UserSchema = new Schema({
 UserSchema.pre('save', function (next) {
     let user = this;
 
-    bc.genSalt(saltRounds, function (err, salt) {
+    bcrypt.genSalt(saltRounds, function (err, salt) {
         if (err) return next(err);
 
-        bc.hash(user.password, salt, function (err, hash) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
             if (err) return next(err);
 
             user.password = hash;
@@ -49,6 +51,13 @@ UserSchema.pre('save', function (next) {
     })
 })
 
+UserSchema.methods.isValidPassword = async function(password) {
+    const user = this 
+
+    let compare = await bcrypt.compare(password, user.password)
+    return compare
+}
+
 let User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+module.exports = User
