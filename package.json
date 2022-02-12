@@ -10,8 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "lite-server",
-    "debug": "DEBUG=* nodemon server"
+    "dev": "NODE_ENV=development nodemon server",
+    "debug": "DEBUG=* nodemon server",
+    "seed": "NODE_ENV=development node ./database/seeders/user"
   },
   "private": true,
   "dependencies": {

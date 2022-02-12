@@ -3,8 +3,8 @@ const app = express();
 
 const apiv1 = require('./api.v1');
 
-let db = require('./config/db.config');
-db.connect();
+/** Database config */
+require('./database/config');
 
 const bodyParser = require('body-parser');
 
@@ -16,7 +16,15 @@ if (process.env.NODE_ENV == 'development') {
     const morgan = require('morgan')
     const fs = require('fs')
 
-    let logFileStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+    let logFileStream = fs.createWriteStream(path.join(__dirname, 'dev.log'), { flags: 'a' })
+    app.use(morgan('combined', { stream: logFileStream }))
+}
+
+if (process.env.NODE_ENV == 'testing') {
+    const morgan = require('morgan')
+    const fs = require('fs')
+
+    let logFileStream = fs.createWriteStream(path.join(__dirname, 'test.log'), { flags: 'a' })
     app.use(morgan('combined', { stream: logFileStream }))
 }
 
