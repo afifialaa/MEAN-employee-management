@@ -12,6 +12,7 @@ import {AuthInterceptorService} from '../interceptors/auth-interceptor.service';
 import { InventoryDashboardComponent } from './inventory-dashboard/inventory-dashboard.component';
 
 import {PartialsModule} from '../partials/partials.module'
+import {ComponentsModule} from '../components/components.module'
 
 @NgModule({
     declarations: [CreateItemComponent, SearchItemComponent, InventoryComponent, InventoryDashboardComponent],
@@ -20,7 +21,8 @@ import {PartialsModule} from '../partials/partials.module'
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        PartialsModule
+        PartialsModule,
+        ComponentsModule
     ],
     exports: [
         CreateItemComponent,

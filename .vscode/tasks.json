@@ -1,24 +1,16 @@
 {
 	"version": "2.0.0",
+
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "debug",
-			"problemMatcher": [],
-			"label": "debug",
-			"detail": "DEBUG=* nodemon server",
-			"group": "build"
+			"label": "Node Dev",
+			"type": "shell",
+			"command": "NODE_ENV=development nodemon server.js"
 		},
 		{
-			"type": "npm",
-			"script": "dev",
-			"problemMatcher": [],
-			"label": "npm: start",
-			"detail": "NODE_ENV=development node server.js",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
+			"label": "Angular Dev",
+			"type": "shell",
+			"command": "ng serve --configuration=development"
 		}
 	]
 }

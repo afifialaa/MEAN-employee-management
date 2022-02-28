@@ -57,6 +57,6 @@ import {KnowledgeManagementModule} from './knowledge-management/knowledge-manage
         KnowledgeManagementModule,
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule { }

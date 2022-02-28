@@ -19,10 +19,10 @@
 }*/
 
 .flex-container > .card{
+    border:none;
     cursor: pointer;
-    padding: 20px;
     font-size: 16pt;
-    width: 270px;
+    width: 24%;
     height: fit-content;
     background-color: #5cb85c;
     color: white;
