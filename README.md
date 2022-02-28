@@ -10,6 +10,8 @@ This management system in made up of multiple applications, each of which might 
 
 *This is not and will never be a finished product. This project is built for learning purposes and to showcase the skills that I have and still aquiring through constant learning*
 
+Check the wiki for detailed documentation.
+
 ## Installation and Usage
 1. Clone the repo.
 ```bash
@@ -33,9 +35,9 @@ MONGODB_CLOUD=<YOUR_CONNECTION_STRING>
 SECRET_KEY=<YOUR_SECRET_KEY>
 EMAIL_PASSWORD=<YOUR_MAILER_PASSWORD>
 ```
-6. Start the server, server will be running at port 8080.
+6. Start the server in development environment. Server will be running at port 8080.
 ```bash
-node server.js
+NODE_ENV=development node server.js
 ```
 7. Start angular server in development mode
 ```bash
