@@ -14,8 +14,8 @@ export class InventoryCardComponent implements OnInit {
     ngOnInit() {
     }
 
-    @HostListener("click") onClick() {
-        this.router.navigate(['/admin/inventory/dashboard']);
-    }
+    // @HostListener("click") onClick() {
+    //     this.router.navigate(['/admin/inventory/dashboard']);
+    // }
 
 }

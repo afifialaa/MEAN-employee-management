@@ -1,9 +1,25 @@
-require('dotenv').config();
+require('dotenv').config('');
 const db = require('../config')
 
 const User = require('../../models/user.model')
 
-seed()
+
+const createAdmin = async () => {
+
+    let userObj = {
+        email: 'admin@email.com',
+        password: 'admin123',
+        role: 'admin'
+    }
+
+    let user = new User(userObj)
+    let saved = await user.save()
+    if (saved) {
+        console.log('root was inserted ', userObj)
+    }else{
+        console.log('failed to insert root')
+    }
+}
 
 async function seed() {
     for (let i = 0; i < 100; i++) {
@@ -71,3 +87,5 @@ function generateMockEmail() {
 function generateRandomLetter(min = 97, max = 122) {
     return Math.floor(Math.random() * (max - min) + min)
 }
+
+seed()

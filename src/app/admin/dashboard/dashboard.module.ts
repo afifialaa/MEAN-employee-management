@@ -12,12 +12,17 @@ import { TaskCardComponent } from './task-card/task-card.component';
 import { InventoryCardComponent } from './inventory-card/inventory-card.component';
 import { BlogCardComponent } from './blog-card/blog-card.component';
 
+import {ComponentsModule} from '../../components/components.module'
+
+
+
 @NgModule({
-	declarations: [DepartmentCardComponent, UserCardComponent, EmployeeCardComponent, PayrollCardComponent, DashboardComponent, TaskCardComponent, InventoryCardComponent, BlogCardComponent],
+	declarations: [DepartmentCardComponent, UserCardComponent, EmployeeCardComponent, PayrollCardComponent, DashboardComponent, TaskCardComponent, InventoryCardComponent, BlogCardComponent ],
 	imports: [
 		CommonModule,
 		PartialsModule,
-		TaskManagementModule
+		TaskManagementModule,
+		ComponentsModule
 	],
 	exports: [
 		DashboardComponent

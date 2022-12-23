@@ -55,34 +55,46 @@ export class SearchEmployeeComponent implements OnInit {
 			
 			let option = this.searchEmployeeForm.value.field;
 
+			let query:any = {}
+
 			if (option == 'First Name') {
 				// Search by first name
-				let firstName = this.fieldValue.value;
+				query.first_name = this.fieldValue.value
 			} else if (option == 'Last Name') {
 				// Search by last name
-				let lastName = this.fieldValue.value;
+				query.last_name = this.fieldValue.value
 			} else if (option == 'Email') {
 				// Search by email
-				let email = this.fieldValue.value;
+				query.email = this.fieldValue.value;
 			} else if (option == 'Gender') {
 				// Search by gender
-				let gender = this.fieldValue.value;
+				query.gender = this.fieldValue.value
 			} else if (option == 'Job Title') {
 				// Search by job title
-				let jobTitle = this.fieldValue.value;
+				query.job_title = this.fieldValue.value;
 			} else if (option == 'Country') {
 				// Search by country
-				let country = this.fieldValue.value;
+				query.country = this.fieldValue.value;
 			} else if (option == 'City') {
 				// Search by city
-				let city = this.fieldValue.value;
+				query.city = this.fieldValue.value;
 			} else if (option == 'Department') {
 				// Search by department
-				let department = this.fieldValue.value;
+				query.department = this.fieldValue.value;
 			} else if (option == 'University') {
 				// Search by university
-				let university = this.fieldValue.value;
+				query.university = this.fieldValue.value;
 			} 
+
+			this.empService.readEmployees(query).subscribe(
+				data => {
+					this.looking = false
+					this.targetEmployee = data['data']
+				},
+				error => {
+					console.log(error)
+				}
+			)
 
 		} else {
 			return;
@@ -90,8 +102,11 @@ export class SearchEmployeeComponent implements OnInit {
 	}
 
 	// View profile button handler
-	viewProfile(email: string) {
-		this.router.navigate(['/admin/employee/employee-details', { email: email }]);
+	viewProfile(employee) {
+		// Cache employee in LocalStorage
+		localStorage.setItem('cachedEmp', JSON.stringify(employee))
+
+		this.router.navigate(['/admin/employee/employee-details', { email: employee.email }])
 	}
 
 	// Filter controls

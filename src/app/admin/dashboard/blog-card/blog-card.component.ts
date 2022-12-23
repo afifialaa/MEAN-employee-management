@@ -14,8 +14,8 @@ export class BlogCardComponent implements OnInit {
     ngOnInit() {
     }
 
-    @HostListener('click') onClick(){
-        this.router.navigate(['/admin/blog/create']);
-    }
+    // @HostListener('click') onClick(){
+    //     this.router.navigate(['/admin/blog/create']);
+    // }
 
 }

@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
+
 let Database = (() => {
     let connection
     let connectionString
 
     if (process.env.NODE_ENV == 'development') {
         connectionString = process.env.MONGODB_DEV;
+        console.log('trying to connect to ', connectionString)
         connect(connectionString)
     }
 

@@ -9,7 +9,7 @@ const limiter = rateLimit({
     max: 4, // Limit each IP to 4 requests
 })
 
-router.post('/user/login', limiter, authController.login)
+router.post('/user/login', authController.login)
 router.post('/user/signup', limiter, authController.signup)
 
 router.post('/checkResetToken', limiter, authController.checkResetToken);

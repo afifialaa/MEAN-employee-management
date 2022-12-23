@@ -149,9 +149,9 @@
 					<td *ngIf="showGender">{{singleEmployee.gender}}</td>
 					<td *ngIf="showJobTitle">{{singleEmployee.job_title}}</td>
 					<td *ngIf="showDepartment">{{singleEmployee.department}}</td>
-					<td *ngIf="showCountry">{{singleEmployee.country}}</td>
-					<td *ngIf="showCity">{{singleEmployee.city}}</td>
-					<td *ngIf="showAddress">{{singleEmployee.street_address}}</td>
+					<td *ngIf="showCountry">{{singleEmployee.address.country}}</td>
+					<td *ngIf="showCity">{{singleEmployee.address.city}}</td>
+					<td *ngIf="showAddress">{{singleEmployee.address.street_address}}</td>
 					<td *ngIf="showPhoneNumber">{{singleEmployee.phone_number}}</td>
 					<td *ngIf="showUniversity">{{singleEmployee.university}}</td>
 					<td *ngIf="showSalary">{{singleEmployee.salary}}</td>
@@ -165,13 +165,13 @@
 					<td *ngIf="showGender">{{employee.gender}}</td>
 					<td *ngIf="showJobTitle">{{employee.job_title}}</td>
 					<td *ngIf="showDepartment">{{employee.department}}</td>
-					<td *ngIf="showCountry">{{employee.country}}</td>
-					<td *ngIf="showCity">{{employee.city}}</td>
-					<td *ngIf="showAddress">{{employee.street_address}}</td>
+					<td *ngIf="showCountry">{{employee.address.country}}</td>
+					<td *ngIf="showCity">{{employee.address.city}}</td>
+					<td *ngIf="showAddress">{{employee.address.street_address}}</td>
 					<td *ngIf="showPhoneNumber">{{employee.phone_number}}</td>
 					<td *ngIf="showUniversity">{{employee.university}}</td>
 					<td *ngIf="showSalary">{{employee.salary}}</td>
-					<td class="w3-xlarge"><i class="view-icon fa fa-eye" (click)="viewProfile(employee.email)"></i></td>
+					<td class="w3-xlarge"><i class="view-icon fa fa-eye" (click)="viewProfile(employee)"></i></td>
 					<!--<td> <button class="btn btn-primary" (click)="viewProfile(employee.email)">View</button></td>-->
 				</tr>
 			</table>

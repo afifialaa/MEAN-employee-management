@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const jwt = require('../authentication/token.auth')
+const jwt = require('../../authentication/token.auth')
 
 const bcrypt = require('bcrypt');
 let saltRounds = 10;

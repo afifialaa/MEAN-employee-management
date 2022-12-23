@@ -1,64 +1,60 @@
-const User = require('../models/user.model')
-const jwt = require('../authentication/token.auth')
+const repository = require('../database/repository/user-repository')
+const generateToken = require('../shared/jwt-token')
 
-/**
- * Logs user in
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
-async function login(req, res, next) {
+async function login(req, res) {
 
-    try {
-        let user = await User.findOne({ email: req.body.email })
-        if (!user) {
-            let err = new Error('User not found')
-            err.http_code = 404
-            return next(err)
-        }
-        let validPassword = await user.isValidPassword(req.body.password)
-        if (!validPassword) {
-            let err = new Error('Wrong password')
-            err.http_code = 403
-            return next(err)
-        } else {
-            return res.status(200).json({ msg: 'logging user in' })
-        }
-
-    } catch (err) {
-        return next(err)
+    let query = {
+        email: req.body.email,
+        password: req.body.password
     }
-};
 
-/**
- * Create new user
- * @param {*} req 
- * @param {*} res 
- */
-async function signup(req, res, next) {
-    try {
-        let user = new User({
-            email: req.body.email,
-            password: req.body.password,
-            role: req.body.role
-        });
+    let user = await repository.getUser({ email: query.email })
 
-        let savedUser = await user.save(user)
-        if (!savedUser) {
-            let err = new Error('Failed to save user')
-            err.http_code = 500
-            return next(err)
-        }
-
-        const token = jwt.generateToken(user.email, user.role);
-        return res.status(200).json({
-            token: token,
-            email: user.email,
-            role: user.role
-        })
-    } catch (err) {
-        next(err)
+    if (user == null) {
+        // User not found
+        return res.status(404).json({ msg: 'User not found' })
     }
+
+
+    let validPassword = await user.isValidPassword(query.password)
+    if (!validPassword) {
+        return res.status(404).json({ msg: 'Wrong email or password' })
+    } else {
+        const token = generateToken(user.email, user.role)
+        return res.status(200).json({ token: token, role: user.role })
+    }
+
+}
+
+async function register(req, res) {
+    let user = {
+        email: req.body.email,
+        password: req.body.password,
+        role: req.body.role
+    }
+
+    repository.createUser(user).then(
+        (data) => {
+            return res.status(201).json({ msg: 'User is created' })
+        }, (error) => {
+            res.status(400).json({ msg: 'User already exists' })
+        }
+    )
+
+}
+
+
+async function updateUser(req, res) {
+
+}
+
+async function deleteUser(req, res) {
+
+}
+
+// Search by email
+async function getUser(req, res) {
+
 }
 
 /**
@@ -98,7 +94,7 @@ async function generateResetToken() {
  * @param {*} res 
  * @returns {json}
  */
- function checkResetToken (req, res) {
+function checkResetToken(req, res) {
     let resetToken = req.body.resetToken;
     User.findOne({ resetPasswordToken: resetToken }, (err, user) => {
         if (err) {
@@ -116,7 +112,7 @@ async function generateResetToken() {
  * @param {*} req 
  * @param {*} res 
  */
-function resetPassword (req, res){
+function resetPassword(req, res) {
     let userObj = {
         email: req.body.email,
         password: req.body.password
@@ -137,9 +133,6 @@ function resetPassword (req, res){
 }
 
 module.exports = {
-    login,
-    signup,
-    forgotPassword,
-    resetPassword,
-    checkResetToken
+    register,
+    login
 }

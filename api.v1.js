@@ -1,23 +1,20 @@
-const express = require('express');
-const router = express();
+const express = require('express')
+const router = express()
 
-const jwtAuth = require('./authentication/token.auth');
-const {isAdmin} = require('./middlewares/role.mid');
+/* Middlewares */
+const {isAdmin} = require('./middlewares/role.mid')
+const verifyToken = require('./middlewares/jwt-token')
 
-/* Routes */
-const employeeRoute = require('./routes/employee.route');
-const userRoute = require('./routes/user.routes');
-const dashboardRoute = require('./routes/dashboard.route');
-const blogRoutes = require('./routes/blog.routes');
-const taskRoutes = require('./routes/task.route')
-const authRoutes = require('./routes/auth')
-
-router.use('/auth',  authRoutes);
-router.use('/employee', jwtAuth.verifyToken, isAdmin, employeeRoute);
-router.use('/user', jwtAuth.verifyToken, isAdmin, userRoute);
-router.use('/dashboard', jwtAuth.verifyToken, isAdmin,  dashboardRoute);
-router.use('/blog', jwtAuth.verifyToken, blogRoutes);
-router.use('/task', jwtAuth.verifyToken, taskRoutes);
+// /* Routes */
+const employeeRoutes = require('./routes/employee-routes')
+const userRoutes = require('./routes/user-routes')
+const taskRoutes = require('./routes/task-route')
+const blogRoutes = require('./routes/blog-routes')
 
 
-module.exports = router;
+router.use('/account', verifyToken, userRoutes)
+router.use('/employee', verifyToken, employeeRoutes)
+router.use('/blog', verifyToken, taskRoutes)
+router.use('/task', verifyToken, blogRoutes)
+
+module.exports = router

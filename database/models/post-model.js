@@ -1,6 +1,5 @@
-
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const CommentSchema = require('./comment.schema');
 
@@ -27,5 +26,5 @@ const PostSchema = new Schema({
     comments: [CommentSchema]
 })
 
-let Post = mongoose.model('Blog', PostSchema);
-module.exports = Post;
+let Post = mongoose.model('Post', PostSchema);
+module.exports = Post

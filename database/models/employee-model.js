@@ -1,10 +1,11 @@
-const mongoose = require('mongoose');
-const jobs = require('../models/jobs');
-const addressSchema = require('./address.schema');
-const contractSchema = require('./contract.schema');
-const TaskSchema = require('./task.schema');
+const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const jobs = require('./jobs')
+const addressSchema = require('./address.schema')
+const contractSchema = require('./contract.schema')
+const TaskSchema = require('./task.schema')
+
+const Schema = mongoose.Schema
 
 const EmployeeSchema = new Schema({
     first_name: {
@@ -55,8 +56,8 @@ const EmployeeSchema = new Schema({
 
     contract: contractSchema,
 
-});
+})
 
-const Employee = mongoose.model('employees', EmployeeSchema);
+const Employee = mongoose.model('employees', EmployeeSchema)
 
-module.exports = Employee;
+module.exports = Employee

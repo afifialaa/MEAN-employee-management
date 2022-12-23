@@ -10,7 +10,6 @@ export class AccountService {
 	constructor(private httpClient:HttpClient) { }
 
 	signupUser(user) {
-		console.log('creating user');
 		return this.httpClient.post(environment.signupUrl, user, {responseType: 'json'});
 	}
 

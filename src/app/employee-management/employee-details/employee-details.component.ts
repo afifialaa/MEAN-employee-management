@@ -29,37 +29,36 @@ export class EmployeeDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        let emp  = JSON.parse(localStorage.getItem('cachedEmp'))
+
         // Form group
         this.editEmployeeForm = new FormGroup({
             firstName: new FormControl(''),
-            lastName: new FormControl(''),
-            email: new FormControl(''),
-            phoneNumber: new FormControl(''),
-            gender: new FormControl(''),
-            jobTitle: new FormControl(''),
-            department: new FormControl(''),
-            university: new FormControl(''),
+            lastName: new FormControl(emp.last_name),
+            email: new FormControl(emp.email),
+            phoneNumber: new FormControl(emp.phone_number),
+            gender: new FormControl(emp.gender),
+            jobTitle: new FormControl(emp.job_title),
+            department: new FormControl(emp.department),
+            university: new FormControl(emp.university),
 
             // Address controls
-            country: new FormControl(''),
-            city: new FormControl(''),
-            street: new FormControl(''),
+            country: new FormControl(emp.address.country),
+            city: new FormControl(emp.address.city),
+            street: new FormControl(emp.address.street),
 
             // Contract controls
-            hiringDate: new FormControl(''),
-            terminatingDate: new FormControl(''),
-            bank: new FormControl(''),
-            bankAccount: new FormControl(''),
-            salary: new FormControl('')
+            hiringDate: new FormControl(emp.contract.hiring_date),
+            terminatingDate: new FormControl(emp.contract.terminating_date),
+            bank: new FormControl(emp.contract.bank),
+            bankAccount: new FormControl(emp.contract.bank_account),
+            salary: new FormControl(emp.contract.salary)
         });
 
-        // Disable form controls
-        this.editEmployeeForm.disable();
+        this.editEmployeeForm.disable()
 
-        // Get email
-        let email = this.route.snapshot.paramMap.get('email');
-        // Get employee 
-        
+
     }
 
 

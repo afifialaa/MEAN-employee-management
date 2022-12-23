@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const contractSchema = new Schema({
     hiring_date: {
-        type: Date,
+        type: String,
         required: false       
     },
     terminating_date: {
