@@ -12,12 +12,10 @@ export class AdminGuard implements CanActivate {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): boolean {
 			if(localStorage.getItem('role') == null || localStorage.getItem('role') == undefined || localStorage.getItem('role') != 'admin'){
-				console.log('User is not ADMIN');
 				localStorage.clear();
 				this.router.navigate(['/signin']);
 				return false;
 			}else if(localStorage.getItem('role') == 'admin') {
-				console.log('User is admin');
 				return true;
 			}
 	}

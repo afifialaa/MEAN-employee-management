@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RoleService } from '../../services/role.service';
 import { Iuser } from '../../models/iuser';
@@ -16,7 +15,7 @@ export class CreateUserComponent implements OnInit {
 	errMsg: string;
 	msg: string;
 
-	constructor(private httpClient: HttpClient, private roleService: RoleService, private userService: UserService) {
+	constructor(private roleService: RoleService, private userService: UserService) {
 		this.roles = this.roleService.roles;
 	}
 
@@ -41,7 +40,6 @@ export class CreateUserComponent implements OnInit {
 	}
 
 	createUser() {
-		console.log('pressed the button of creating user')
 		let pass1: string = this.createUserForm.value.password;
 		let pass2: string = this.createUserForm.value.confirmPassword;
 		let match: boolean = this.confirmPasswords(pass1, pass2);

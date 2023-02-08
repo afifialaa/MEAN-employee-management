@@ -7,7 +7,6 @@ import { PayrollCardComponent } from './payroll-card/payroll-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {PartialsModule} from '../../partials/partials.module';
-import {TaskManagementModule} from '../../task-management/task-management.module';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { InventoryCardComponent } from './inventory-card/inventory-card.component';
 import { BlogCardComponent } from './blog-card/blog-card.component';
@@ -21,7 +20,6 @@ import {ComponentsModule} from '../../components/components.module'
 	imports: [
 		CommonModule,
 		PartialsModule,
-		TaskManagementModule,
 		ComponentsModule
 	],
 	exports: [

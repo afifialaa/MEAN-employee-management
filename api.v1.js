@@ -5,16 +5,14 @@ const router = express()
 const {isAdmin} = require('./middlewares/role.mid')
 const verifyToken = require('./middlewares/jwt-token')
 
+const limiter = require('./security/req-limiter')
+
 // /* Routes */
 const employeeRoutes = require('./routes/employee-routes')
 const userRoutes = require('./routes/user-routes')
-const taskRoutes = require('./routes/task-route')
-const blogRoutes = require('./routes/blog-routes')
 
 
-router.use('/account', verifyToken, userRoutes)
-router.use('/employee', verifyToken, employeeRoutes)
-router.use('/blog', verifyToken, taskRoutes)
-router.use('/task', verifyToken, blogRoutes)
+router.use('/account', userRoutes)
+router.use('/employee', verifyToken,limiter.employeeLimiter, employeeRoutes)
 
 module.exports = router

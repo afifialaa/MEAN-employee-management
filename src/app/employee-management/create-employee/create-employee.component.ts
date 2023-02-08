@@ -121,15 +121,16 @@ export class CreateEmployeeComponent implements OnInit {
 
 		this.empService.createEmployee(employee).subscribe(
             (data) => {
-                this.errMsg = '';
-                this.msg = 'Employee was created';
+                this.errMsg = ''
+                this.msg = 'Employee was created'
+				this.createEmployeeForm.reset()
             },
             (error) => {
                 this.msg = '';
                 if(error.status == 409){
-                    this.errMsg = 'Email already exists';
+                    this.errMsg = 'Email already exists'
                 }else if(error.status == 500){
-                    this.errMsg = 'Failed to add employee';
+                    this.errMsg = 'Failed to add employee'
                 }else if(error.status == 429){
                     this.errMsg = 'Too many requests'
                 }

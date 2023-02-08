@@ -18,20 +18,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin/admin.component';
 import {ForgotComponent} from './account-management/forgot/forgot.component';
 import {ResetPasswordComponent} from './account-management/reset-password/reset-password.component';
-import {TaskComponent} from './task-management/task/task.component';
-
-// Inventory
-import {CreateItemComponent} from './inventory-management/create-item/create-item.component';
-import {SearchItemComponent} from './inventory-management/search-item/search-item.component';
-import {InventoryComponent} from './inventory-management/inventory/inventory.component';
-import {InventoryDashboardComponent} from './inventory-management/inventory-dashboard/inventory-dashboard.component';
-
-// Blog
-import {BlogComponent} from './knowledge-management/blog/blog.component';
-import {CreatePostComponent} from './knowledge-management/create-post/create-post.component';
-import {PostsComponent} from './knowledge-management/posts/posts.component';
-import {MyBlogComponent} from './knowledge-management/my-blog/my-blog.component';
-import {PostDetailsComponent} from './knowledge-management/post-details/post-details.component';
 
 const appRoutes: Routes = [
 
@@ -56,19 +42,6 @@ const appRoutes: Routes = [
 					{ path: 'search', canActivate: [AuthGuard, AdminGuard], component: SearchUserComponent },
 				]
 			},
-			{ path: 'task', component: TaskComponent},
-            { path: 'inventory', canActivate: [AuthGuard, AdminGuard], component: InventoryComponent, children: [
-                {path: 'dashboard', component: InventoryDashboardComponent},
-                {path: 'create', component: CreateItemComponent},
-                {path: 'search', component: SearchItemComponent},
-            ]},
-            { path: 'blog', canActivate: [AuthGuard, AdminGuard], component: BlogComponent, children: [
-                {path: 'create', component: CreatePostComponent},
-                {path: 'myblog', component: MyBlogComponent},
-                {path: 'allBlogs', component: PostsComponent },
-                {path: 'post/:id', component: PostDetailsComponent },
-            ]}
-
 		]
 	},
 	{ path: '', redirectTo: '/account/signin', pathMatch: 'full' },

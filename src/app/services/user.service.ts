@@ -18,6 +18,6 @@ export class UserService {
 	/* Search by email */
 	searchByEmail(email:string){
 		let params = new HttpParams().set('email', email);
-		return this.http.get(environment.userURL, {params:params});
+		return this.http.get(environment.getUser, {params:params});
 	}
 }

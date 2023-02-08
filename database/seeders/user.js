@@ -1,7 +1,7 @@
 require('dotenv').config('');
 const db = require('../config')
 
-const User = require('../../models/user.model')
+const User = require('../models/user.model')
 
 
 const createAdmin = async () => {
@@ -88,4 +88,4 @@ function generateRandomLetter(min = 97, max = 122) {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-seed()
+createAdmin()

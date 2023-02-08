@@ -15,12 +15,11 @@ export class EmployeeCardComponent implements OnInit {
 	empNum:number;
 
 	ngOnInit() {
-		console.log('emp card init');
-		this.dashServ.getEmployeesNum().subscribe( (data)=>{
-			console.log('employee subscribe callback');
-			console.log(data);
-			this.empNum = data['number']
-		})
+		// this.dashServ.getEmployeesNum().subscribe( (data)=>{
+		// 	console.log('employee subscribe callback');
+		// 	console.log(data);
+		// 	this.empNum = data['number']
+		// })
 	}
 
 	@HostListener("click") onClick(){

@@ -15,13 +15,13 @@ export class TaskCardComponent implements OnInit {
 	taskNum: number;
 
 	ngOnInit() {
-		this.dashServ.getTasksNum().subscribe( (data)=>{
-			this.taskNum = data['number'];
-		},
-        (err)=>{
-			this.taskNum = 0;
-            console.log(err);
-        })
+		// this.dashServ.getTasksNum().subscribe( (data)=>{
+		// 	this.taskNum = data['number'];
+		// },
+        // (err)=>{
+		// 	this.taskNum = 0;
+        //     console.log(err);
+        // })
 	}
 
 	/* @HostListener("click") onClick(){

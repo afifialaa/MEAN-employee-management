@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {UserService} from '../../services/user.service'
 
 @Component({
 	selector: 'app-search-user',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchUserComponent implements OnInit {
 
-	constructor() { }
+	searchUserForm: FormGroup
+
+	constructor(private userSrvc: UserService) { 
+	}
 
 	ngOnInit() {
+		this.searchUserForm = new FormGroup({
+			emai: new FormControl('')
+		})
+	}
+
+	searchUser(){
+		let email: string = this.searchUserForm.value.email
+
+		this.userSrvc.searchByEmail(email).subscribe(
+			data => {
+				console.log(data)
+			},
+			error => {
+				console.log('there was an error')
+				console.log('data ', error)
+			}
+		)
+
+
 	}
 
 }

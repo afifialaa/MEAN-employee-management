@@ -1,4 +1,4 @@
-const PORT = 9000
+const PORT = 8080
 
 export const environment = {
 	production: false,
@@ -22,17 +22,6 @@ export const environment = {
 
 	// User api
 	userURL: `http://localhost:${PORT}/api/v1/user/register`,
+	getUser: `http://localhost:${PORT}/api/v1/user/register`,
 
-	/* Task api */
-	taskURL: `http://localhost:${PORT}/api/v1/user/tasks`,
-
-    /* Inventory api*/
-	createProductURL: `http://localhost:3000/api/v1/products`,
-
-    /* Blog api */
-    createArticle: `http://localhost:${PORT}/api/v1/blog/article`,
-    fetchArticles: `http://localhost:${PORT}/api/v1/blog/user/articles`,
-	postDetails: `http://localhost:${PORT}/api/v1/blog/article`,
-
-	postComment: `http://localhost:${PORT}/api/v1/blog/comment`
-};
+}

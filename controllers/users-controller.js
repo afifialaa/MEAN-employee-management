@@ -26,7 +26,25 @@ async function login(req, res) {
 
 }
 
+
+async function getUser(req, res){
+    let query = {
+        email: req.query.email
+    }
+
+    let user = await repository.getUser({email: query.email})
+
+    if(user == null){
+        return res.status(404).json({msg: 'User not found'})
+    }
+
+    console.log(user)
+
+    return res.status(200).msg({user: user})
+}
+
 async function register(req, res) {
+    console.log('REGISTERING')
     let user = {
         email: req.body.email,
         password: req.body.password,
@@ -37,7 +55,7 @@ async function register(req, res) {
         (data) => {
             return res.status(201).json({ msg: 'User is created' })
         }, (error) => {
-            res.status(400).json({ msg: 'User already exists' })
+            return res.status(400).json({ msg: 'User already exists' })
         }
     )
 
@@ -134,5 +152,6 @@ function resetPassword(req, res) {
 
 module.exports = {
     register,
-    login
+    login,
+    getUser
 }
