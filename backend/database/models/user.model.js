@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const jwt = require('../../authentication/token.auth')
 
-const bcrypt = require('bcrypt');
-let saltRounds = 10;
+const bcrypt = require('bcrypt')
+let saltRounds = 10
 
 const Schema = mongoose.Schema;
-const roles = require('../models/roles');
+const roles = require('../models/roles')
 
-const TaskSchema = require('./task.schema');
+const TaskSchema = require('./task.schema')
 
 const UserSchema = new Schema({
     email: {

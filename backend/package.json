@@ -11,7 +11,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev": "NODE_ENV=development nodemon server",
-    "debug": "DEBUG=* nodemon server",
     "seed": "NODE_ENV=development node ./database/seeders/user"
   },
   "private": true,
@@ -90,6 +89,7 @@
     "nodemon": "^2.0.19",
     "protractor": "~5.4.0",
     "shelljs": "^0.8.5",
+    "supertest": "^6.3.3",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
