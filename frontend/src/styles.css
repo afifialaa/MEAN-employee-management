@@ -10,6 +10,46 @@ html, body {
     height: 100%;
 }
 
+
+legend{
+    font-weight: bold;
+}
+
+.website-location {
+    color: cyan;
+}
+
+.main-content{
+    position: relative;
+    top: 100px;
+	margin-left: 200px;
+}
+
+.curr-location{
+    font-size: 12px;
+    color: #0000EE;
+    position: relative;
+    top: -20px;
+}
+
+.curr-location a {
+    text-decoration: none;
+}
+
 .content{
     margin-top: 50px;
+    position: relative;
+    top: -40px;
+}
+
+.sidebar{
+    float: left;
+    background-color: #333;
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	overflow: auto;
 }

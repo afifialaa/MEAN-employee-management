@@ -25,11 +25,8 @@ export class SearchUserComponent implements OnInit {
 
 		this.userSrvc.searchByEmail(email).subscribe(
 			data => {
-				console.log(data)
 			},
 			error => {
-				console.log('there was an error')
-				console.log('data ', error)
 			}
 		)
 

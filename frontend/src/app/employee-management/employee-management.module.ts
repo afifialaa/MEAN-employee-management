@@ -16,7 +16,6 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { SearchEmployeeComponent } from './search-employee/search-employee.component';
 import { EmployeeComponent } from './employee/employee.component';
 
-import {EmployeeRoutingModule} from './employee-routing.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 import {PartialsModule} from '../partials/partials.module';
@@ -42,7 +41,6 @@ import {PartialsModule} from '../partials/partials.module';
 		MatIconModule,
 		RouterModule,
 		MatProgressSpinnerModule,
-		EmployeeRoutingModule,
 		PartialsModule
 	],
 	exports: [

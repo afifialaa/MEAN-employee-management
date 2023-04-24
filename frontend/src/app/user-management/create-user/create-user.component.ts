@@ -54,7 +54,6 @@ export class CreateUserComponent implements OnInit {
 		}
 		this.userService.create(user).subscribe(
 			data => {
-				console.log('data')
 				this.errMsg = '';
 				this.msg = data['msg'];
 				this.createUserForm.reset();

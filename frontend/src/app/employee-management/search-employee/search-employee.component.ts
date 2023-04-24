@@ -34,7 +34,6 @@ export class SearchEmployeeComponent implements OnInit {
 	}
 
 	onFieldChange(field){
-		console.log(field);
 		if(field === 'Gender'){
 			this.isGenderField = true;
 		}else{

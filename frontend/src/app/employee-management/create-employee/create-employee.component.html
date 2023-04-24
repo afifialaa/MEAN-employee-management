@@ -1,11 +1,17 @@
 <div class="container content">
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <app-search-bar></app-search-bar>
         </div>
-    </div>
+    </div> -->
 	<div class="row">
 		<div class="col-md-12">
+
+			<div class="curr-location">
+				<a routerLink="/admin/dashboard"> Dashboard </a> > <a routerLink="/admin/employee">Employee </a> > <a routerLink="/admin/employee/create"> Create</a>
+			</div>
+
+
 			<form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployee()">
 
 				<legend>Employee info.</legend>
@@ -178,7 +184,7 @@
 				<br>
 
 				<!-- Submit button -->
-				<button class="btn btn-success" type="submit">Save</button>
+				<button class="btn btn-success createBtn" type="submit">Create</button>
 
 			</form>
 		</div>

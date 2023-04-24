@@ -64,10 +64,8 @@ export class SignupComponent implements OnInit {
 
 		this.accountSrvc.signupUser(user).subscribe((data)=>{
 			if(data['token']){
-				console.log('user was created');
 				this.router.navigate(['/admin']);
 			}else if(data['err']){
-				console.log(data['err']);
 				this.errMsg = data['err'];
 				return false;
 			}

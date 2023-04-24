@@ -8,6 +8,10 @@ body{
     background-color: #F3F7F7;
 }
 
+legend{
+    font-weight: bold;
+}
+
 nav{
     padding-top: 10px;
 }
@@ -27,8 +31,4 @@ nav a:hover{
 
 .ck-editor__editable_inline {
     min-height: 500px;
-}
-
-.content{
-    margin-top: 20px;
 }

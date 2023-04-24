@@ -4,9 +4,10 @@ import { HeaderComponent } from './header/header.component';
 import { MatSidenavModule } from '@angular/material';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
-	declarations: [HeaderComponent, NavbarComponent],
+	declarations: [HeaderComponent, NavbarComponent, SidenavComponent],
 	imports: [
 		CommonModule,
 		MatSidenavModule,
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
 	exports:[
 		HeaderComponent,
 		NavbarComponent,
+		SidenavComponent
 	]
 })
 export class PartialsModule { }

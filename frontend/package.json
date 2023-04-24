@@ -48,7 +48,7 @@
     "ngx-editor": "^10.1.0",
     "ngx-quill": "^7.3.12",
     "nodemailer": "^6.4.17",
-    "passport": "^0.5.2",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",

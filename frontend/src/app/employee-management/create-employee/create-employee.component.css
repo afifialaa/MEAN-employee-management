@@ -1,6 +1,4 @@
-.content{
-    margin-top: 50px;
-}
+
 
 legend{
     font-weight: bold;
@@ -17,4 +15,8 @@ legend{
 
 mat-radio-button ~ mat-radio-button {
     margin-left: 16px;
+}
+
+.createBtn{
+    width: 49%;
 }
