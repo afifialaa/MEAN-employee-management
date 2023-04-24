@@ -30,7 +30,6 @@ export class SearchUserComponent implements OnInit {
 			data => {
 				this.isUserFound = true
 				this.targetUser = data['user']
-				console.log(data['user'])
 			},
 			error => {
 				console.log(error)
