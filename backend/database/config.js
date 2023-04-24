@@ -35,8 +35,7 @@ let Database = (() => {
                 console.log('\x1b[34m', '[database]', '\x1b[32m', 'connection to database is terminated \x1b[0m');
             })
 
-            // connection = mongoose.connect(connString, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
-            connection = mongoose.connect('mongodb+srv://admin:cr3ErbzYtnrFB7Qq@employee-management.w2ztr.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
+            connection = mongoose.connect(connString, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
         }catch(err){
             console.log(err)
