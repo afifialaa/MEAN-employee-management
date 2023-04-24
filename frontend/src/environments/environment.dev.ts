@@ -7,6 +7,7 @@ export const environment = {
 	/* Account api */
 	loginUrl: `http://localhost:${PORT}/api/v1/account/login`,
 	signupUrl: `http://localhost:${PORT}/api/v1/account/register`,
+	getUser: `http://localhost:${PORT}/api/v1/account/user`,
 	forgotUrl: `http://localhost:${PORT}/account/forgot`,
 	checkResetTokenUrl: `http://localhost:${PORT}/api/v1/account/checkResetToken`,
 	resetPasswordUrl: `http://localhost:${PORT}/api/v1/account/resetPassword`,
@@ -22,6 +23,5 @@ export const environment = {
 
 	// User api
 	userURL: `http://localhost:${PORT}/api/v1/account/register`,
-	getUser: `http://localhost:${PORT}/api/v1/account/register`,
 
 }

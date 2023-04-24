@@ -11,12 +11,15 @@ export class SearchUserComponent implements OnInit {
 
 	searchUserForm: FormGroup
 
+	targetUser:any
+	isUserFound: boolean = false
+
 	constructor(private userSrvc: UserService) { 
 	}
 
 	ngOnInit() {
 		this.searchUserForm = new FormGroup({
-			emai: new FormControl('')
+			email: new FormControl('')
 		})
 	}
 
@@ -25,8 +28,12 @@ export class SearchUserComponent implements OnInit {
 
 		this.userSrvc.searchByEmail(email).subscribe(
 			data => {
+				this.isUserFound = true
+				this.targetUser = data['user']
+				console.log(data['user'])
 			},
 			error => {
+				console.log(error)
 			}
 		)
 

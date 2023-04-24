@@ -3,7 +3,7 @@ const User = require('../models/user.model')
 function getUser(query) {
 
     return new Promise((resolve, reject)=>{
-        User.findOne(query, (err, user)=> {
+        User.findOne(query, {password: 0}, (err, user)=> {
             if(err) {
                 reject()
             }else{

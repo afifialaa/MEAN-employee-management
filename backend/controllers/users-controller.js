@@ -38,9 +38,7 @@ async function getUser(req, res){
         return res.status(404).json({msg: 'User not found'})
     }
 
-    console.log(user)
-
-    return res.status(200).msg({user: user})
+    return res.status(200).json({user: user})
 }
 
 async function register(req, res) {
@@ -67,11 +65,6 @@ async function updateUser(req, res) {
 }
 
 async function deleteUser(req, res) {
-
-}
-
-// Search by email
-async function getUser(req, res) {
 
 }
 
