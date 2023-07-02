@@ -16,7 +16,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 	exports:[
 		HeaderComponent,
 		NavbarComponent,
-		SidenavComponent
+		SidenavComponent,
 	]
 })
 export class PartialsModule { }

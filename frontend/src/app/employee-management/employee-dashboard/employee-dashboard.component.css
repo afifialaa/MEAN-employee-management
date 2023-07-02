@@ -1,0 +1,28 @@
+.flex-container{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 23px;
+}
+
+.completed-tasks{
+    margin-top: 20px;
+    width: 22%;
+    background-color: #F6FAFB;
+    border-radius: 5px;
+    padding-top: 20px;
+    border: 1px solid lightgrey;
+}
+
+.completed-tasks h4{
+    text-align: center;
+    font-weight: bold;
+}
+
+.completed-tasks .progress-chart{
+    position: relative;
+    left: 30px;
+
+}

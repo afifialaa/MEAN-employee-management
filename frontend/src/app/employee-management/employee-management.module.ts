@@ -19,6 +19,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 import {PartialsModule} from '../partials/partials.module';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import {ComponentsModule} from '../components/components.module'
 
 @NgModule({
 	declarations: [
@@ -27,6 +29,7 @@ import {PartialsModule} from '../partials/partials.module';
 		SearchEmployeeComponent,
 		EmployeeComponent,
 		SearchBarComponent,
+		EmployeeDashboardComponent,
 	],
 	imports: [
 		CommonModule,
@@ -41,10 +44,12 @@ import {PartialsModule} from '../partials/partials.module';
 		MatIconModule,
 		RouterModule,
 		MatProgressSpinnerModule,
-		PartialsModule
+		PartialsModule,
+		ComponentsModule
 	],
 	exports: [
-		EmployeeComponent
+		EmployeeComponent,
+		EmployeeDashboardComponent
 	],
 	providers: [
 		{

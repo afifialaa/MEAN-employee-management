@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminComponent } from './admin/admin/admin.component';
 import {ForgotComponent} from './account-management/forgot/forgot.component';
 import {ResetPasswordComponent} from './account-management/reset-password/reset-password.component';
+import {EmployeeDashboardComponent} from './employee-management/employee-dashboard/employee-dashboard.component'
 
 const appRoutes: Routes = [
 
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
 		path: 'admin', canActivate: [AuthGuard], component: AdminComponent, children: [
 			{
 				path: 'employee', canActivate: [AuthGuard, AdminGuard], component: EmployeeComponent, children: [
+					{ path: 'dashboard',canActivate: [AuthGuard, AdminGuard], component: EmployeeDashboardComponent },
 					{ path: 'create',canActivate: [AuthGuard, AdminGuard], component: CreateEmployeeComponent },
 					{ path: 'search', canActivate: [AuthGuard, AdminGuard], component: SearchEmployeeComponent },
 					{ path: 'employee-details', canActivate: [AuthGuard, AdminGuard], component: EmployeeDetailsComponent }

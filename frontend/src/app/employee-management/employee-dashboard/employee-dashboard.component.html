@@ -1,0 +1,29 @@
+<div class="content">
+    <div class="container">
+
+        <div class="curr-location">
+            <a routerLink="/admin/dashboard"> Dashboard </a> > <a routerLink="/admin/employee/dashboard">Employee </a>
+        </div>
+
+        <legend>Overview</legend>
+        <div class="flex-container">
+            <app-card [title]="card1title" [item1]="varname"></app-card>
+            <app-card [title]="card2title" [item1]="varname"></app-card>
+            <app-card [title]="card3title" [item1]="varname"></app-card>
+            <app-card [title]="card4title" [item1]="varname"></app-card>
+            <app-card [title]="card5title" [item1]="varname"></app-card>
+            <app-card [title]="card6title" [item1]="varname"></app-card>
+        </div>
+
+        <br>
+        <br>
+
+        <legend>Tasks</legend>
+        <div class="completed-tasks">
+            <h4>Completed Tasks</h4>
+            <app-progress-chart class="progress-chart"></app-progress-chart>
+        </div>
+
+
+    </div>
+</div>
