@@ -1,56 +1,49 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatButtonModule } from '@angular/material';
-import { MatRadioModule } from '@angular/material';
-import { MatSelectModule } from '@angular/material';
-import { EmployeeModule } from './employee-management/employee-management.module';
-import { QuillModule } from 'ngx-quill';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {RouterModule} from '@angular/router'
 
-// Components
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AdminComponent } from './admin/admin/admin.component';
+import {AccountModule} from './account/account.module'
+import {AdminModule} from './admin/admin.module';
+import {EmployeeModule} from './employee/employee.module'
+import {UserModule} from './user/user.module'
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MatInputModule} from '@angular/material/input';
+import { MatButtonModule} from '@angular/material/button';
+import { MatTabsModule} from '@angular/material/tabs';
+import { MatCardModule} from '@angular/material/card';
+import { MatIconModule} from '@angular/material/icon';
+import { MatRadioModule} from '@angular/material/radio';
 
-// Modules
-import { AccountModule } from './account-management/account.module';
-import {PartialsModule} from './partials/partials.module';
-import {DashboardModule} from './admin/dashboard/dashboard.module';
-import {UserManagementModule} from './user-management/user-management.module';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		PageNotFoundComponent,
-		AdminComponent,
-	],
-	imports: [
-		AccountModule,
-		BrowserModule,
-		AppRoutingModule,
-		FormsModule,
-		HttpClientModule,
-		ReactiveFormsModule,
-		BrowserAnimationsModule,
-		MatInputModule,
-		MatButtonModule,
-		MatRadioModule,
-		MatSelectModule,
-		EmployeeModule,
-		QuillModule,
-		PartialsModule,
-		DashboardModule,
-		UserManagementModule,
-		MatDatepickerModule,
-	],
-	providers: [],
-	bootstrap: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AccountModule,
+    HttpClientModule,
+    AdminModule,
+    BrowserAnimationsModule,
+    EmployeeModule,
+    MatInputModule,
+    MatTabsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatRadioModule,
+    UserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

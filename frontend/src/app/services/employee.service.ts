@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Iemployee } from '../models/iemployee';
-import {environment} from '../../environments/environment.dev';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
 	providedIn: 'root'
@@ -23,7 +23,7 @@ export class EmployeeService {
 		return this.http.delete(environment.employeeURL, {params:params});
 	}
 
-	readEmployees(obj){
+	readEmployees(obj:any){
 		let params = new HttpParams({fromObject: obj})
 		return this.http.get(environment.employeeURL, {params:params});
 	}

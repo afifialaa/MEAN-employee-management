@@ -1,54 +1,27 @@
-# Employee Management System
+# Frontend
 
-A MEAN-stack employee management system.
-* Node v14.16.0
-* Angular 8.0.6
-* MongoDB 4.4.3
-* Express 4.17.1
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
 
-This management system in made up of multiple applications, each of which might be written in a different language, but all applications share the same front end design written using Angular framework.
+## Development server
 
-*This is not and will never be a finished product. This project is built for learning purposes and to showcase the skills that I have and still aquiring through constant learning*
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Check the wiki for detailed documentation.
+## Code scaffolding
 
-## Installation and Usage
-1. Clone the repo.
-```bash
-git clone https://github.com/afifialaa/MEAN-employee-management.git
-```
-2. Change directory.
-```bash
-cd MEAN-employee-management
-```
-3. Install dependencies.
-```bash
-npm install
-```
-4. Create .env file.
-```bash
-touch .env
-```
-5. Add environment variables to .env file.
-```
-MONGODB_CLOUD=<YOUR_CONNECTION_STRING>
-SECRET_KEY=<YOUR_SECRET_KEY>
-EMAIL_PASSWORD=<YOUR_MAILER_PASSWORD>
-```
-6. Start the server in development environment. Server will be running at port 8080.
-```bash
-NODE_ENV=development node server.js
-```
-7. Start angular server in development mode
-```bash
-ng serve --configuration=development
-```
-now visit localhost:4200
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Features
-* Employee management
-* Task management
-* Knowledge management
-* Inventory management
-* Task management
-* Chat app
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

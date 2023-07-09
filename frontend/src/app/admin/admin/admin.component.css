@@ -2,23 +2,6 @@
     color: red;
 }
 
-.header{
-    position: fixed;
-    top: 0px;
-    height: 50px;
-    background-color: #5cb85c;
-    z-index: 1;
-}
-
-.logo{
-    font-size: 24px;
-    color: white;
-    font-weight: 600;
-    position: relative;
-    left: 50px;
-    top: 5px;
-}
-
 .menu ul{
     margin-top: 20px;
     margin-right: 60px;
@@ -47,4 +30,16 @@
 html, body {
     height: 100%;
     margin: 0;
+}
+
+.sidebar{
+    float: left;
+    background-color: #333;
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	overflow: auto;
 }

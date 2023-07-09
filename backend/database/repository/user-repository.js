@@ -3,8 +3,20 @@ const User = require('../models/user.model')
 function getUser(query) {
 
     return new Promise((resolve, reject)=>{
-        User.findOne(query, {password: 0}, (err, user)=> {
+        User.findOne(query, (err, user)=> {
             if(err) {
+                reject()
+            }else{
+                resolve(user)
+            }
+        })
+    })
+}
+
+function searchUser(query){
+    return new Promise((resolve, reject) => {
+        User.findOne(query, {password: 0}, (err, user)=>{
+            if(err){
                 reject()
             }else{
                 resolve(user)
@@ -43,5 +55,6 @@ function createUser(user){
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    searchUser
 }

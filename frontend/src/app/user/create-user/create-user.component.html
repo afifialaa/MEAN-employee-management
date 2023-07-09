@@ -1,0 +1,47 @@
+<div class="container content">
+    <div class="curr-location">
+        <a routerLink="/admin/dashboard"> Dashboard </a> > <a routerLink="/admin/user">User </a> > <a
+            routerLink="/admin/user/create"> Create </a>
+    </div>
+
+    <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+        <legend>Create User</legend>
+        <br>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" formControlName="email" class="form-control" required>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of roles" [value]="role">
+                    {{role}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" formControlName="password" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" required>
+        </div>
+        <br>
+
+        <!-- Error messages -->
+        <div *ngIf="errMsg" class="alert alert-danger" role="alert">
+            {{errMsg}}
+        </div>
+        <div *ngIf="msg" class="alert alert-success" role="alert">
+            {{msg}}
+        </div>
+
+        <button type="submit" class="btn btn-success createBtn">Create User</button>
+    </form>
+
+</div>
+

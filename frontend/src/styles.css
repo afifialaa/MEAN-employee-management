@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 *{
     box-sizing: border-box;
 }
@@ -24,7 +25,7 @@ legend{
 
 .main-content{
     position: relative;
-    top: 100px;
+    top: 150px;
 	margin-left: 200px;
 }
 
@@ -45,17 +46,7 @@ legend{
     top: -40px;
 }
 
-.sidebar{
-    float: left;
-    background-color: #333;
-	color: white;
-	margin: 0px;
-	padding: 0px;
-	position: fixed;
-	width: 200px;
-	height: 100%;
-	overflow: auto;
-}
+
 
 label {
     font-size: 14px;
@@ -64,3 +55,5 @@ label {
 .form-control {
     height: 30px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

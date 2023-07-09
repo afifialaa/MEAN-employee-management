@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthInterceptorService {
 
 	intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
 		const token = localStorage.getItem("token");
 		token ? console.log('token was found') : console.log('token was not found');
 
+		// Adds token to outgoing request
 		const headers = new HttpHeaders().set("Authorization", "Bearer " + token);
 
 		const clone = req.clone({

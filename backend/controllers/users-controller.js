@@ -8,6 +8,8 @@ async function login(req, res) {
         password: req.body.password
     }
 
+    console.log(query)
+
     let user = await repository.getUser({ email: query.email })
 
     if (user == null) {
@@ -17,6 +19,7 @@ async function login(req, res) {
 
 
     let validPassword = await user.isValidPassword(query.password)
+    console.log(validPassword)
     if (!validPassword) {
         return res.status(404).json({ msg: 'Wrong email or password' })
     } else {
@@ -27,12 +30,12 @@ async function login(req, res) {
 }
 
 
-async function getUser(req, res){
+async function searchUser(req, res){
     let query = {
         email: req.query.email
     }
 
-    let user = await repository.getUser({email: query.email})
+    let user = await repository.searchUser({email: query.email})
 
     if(user == null){
         return res.status(404).json({msg: 'User not found'})
@@ -146,5 +149,5 @@ function resetPassword(req, res) {
 module.exports = {
     register,
     login,
-    getUser
+    searchUser
 }
