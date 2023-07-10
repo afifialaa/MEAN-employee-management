@@ -3,7 +3,7 @@
         "statusBar.background" : "#68227A",
         "activityBar.background": "#68227A"
     },
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false
 }
