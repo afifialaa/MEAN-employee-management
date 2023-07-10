@@ -11,6 +11,7 @@ import { EmployeeDashboardComponent } from './employee/employee-dashboard/employ
 import { UserComponent } from './user/user/user.component'
 import { CreateUserComponent } from './user/create-user/create-user.component'
 import { SearchUserComponent } from './user/search-user/search-user.component'
+import {EmployeeDetailsComponent} from './employee/employee-details/employee-details.component' 
 
 import { AdminGuard } from './guards/admin.guard'
 import { AuthGuard } from './guards/auth.guard'
@@ -29,6 +30,7 @@ const routes: Routes = [
                     { path: 'dashboard', component: EmployeeDashboardComponent },
                     { path: 'create', component: CreateEmployeeComponent },
                     { path: 'search', component: SearchEmployeeComponent },
+                    { path: 'details', component: EmployeeDetailsComponent },
                 ]
             },
             {

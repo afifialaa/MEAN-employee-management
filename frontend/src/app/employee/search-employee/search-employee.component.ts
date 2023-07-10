@@ -108,7 +108,7 @@ export class SearchEmployeeComponent implements OnInit {
 		// Cache employee in LocalStorage
 		localStorage.setItem('cachedEmp', JSON.stringify(employee))
 
-		this.router.navigate(['/admin/employee/employee-details', { email: employee.email }])
+		this.router.navigate(['/admin/employee/details', { email: employee.email }])
 	}
 
 	// Filter controls

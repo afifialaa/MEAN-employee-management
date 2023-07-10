@@ -48,7 +48,8 @@ import {RouterModule} from '@angular/router'
     CreateEmployeeComponent,
     SearchEmployeeComponent,
     EmployeeComponent,
-    EmployeeDashboardComponent
+    EmployeeDashboardComponent,
+    EmployeeDetailsComponent
   ]
 })
 export class EmployeeModule { }
