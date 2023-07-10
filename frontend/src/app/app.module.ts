@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router'
 
 import {AccountModule} from './account/account.module'
@@ -18,6 +18,8 @@ import { MatTabsModule} from '@angular/material/tabs';
 import { MatCardModule} from '@angular/material/card';
 import { MatIconModule} from '@angular/material/icon';
 import { MatRadioModule} from '@angular/material/radio';
+
+import {AuthInterceptorService} from './interceptors/auth-interceptor.service'
 
 
 @NgModule({
@@ -43,7 +45,11 @@ import { MatRadioModule} from '@angular/material/radio';
     MatRadioModule,
     UserModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

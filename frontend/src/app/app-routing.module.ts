@@ -13,19 +13,20 @@ import {CreateUserComponent} from './user/create-user/create-user.component'
 import {SearchUserComponent} from './user/search-user/search-user.component'
 
 import {AdminGuard} from './guards/admin.guard'
+import {AuthGuard} from './guards/auth.guard' 
 
 const routes: Routes = [
   {path: 'account', children: [
     {path: 'login', component: LoginComponent}
   ]},
-  {path: 'admin', canActivate: [AdminGuard], component: AdminComponent, children: [
+  {path: 'admin', canActivate: [AuthGuard, AdminGuard], component: AdminComponent, children: [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'employee', component: EmployeeComponent, children: [
       {path: 'dashboard', component: EmployeeDashboardComponent},
       {path: 'create', component: CreateEmployeeComponent},
       {path: 'search', component: SearchEmployeeComponent},
     ]},
-    {path: 'user', canActivate: [AdminGuard], component: UserComponent, children: [
+    {path: 'user', canActivate: [AuthGuard, AdminGuard], component: UserComponent, children: [
       {path: 'create', component: CreateUserComponent},
       {path: 'search', component: SearchUserComponent}
     ]}
