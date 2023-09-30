@@ -1,153 +1,118 @@
-const repository = require('../database/repository/user-repository')
-const generateToken = require('../shared/jwt-token')
+const User = require('../database/models/user-model')
+const bcrypt = require('bcrypt')
+const crypto = require('crypto')
 
-async function login(req, res) {
+const jwtAuth = require('../authentication/token.auth')
 
-    let query = {
-        email: req.body.email,
-        password: req.body.password
-    }
+const mailer = require('../mailer/mailer')
+const { ConsoleReporter } = require('jasmine')
 
-    console.log(query)
-
-    let user = await repository.getUser({ email: query.email })
-
-    if (user == null) {
-        // User not found
-        return res.status(404).json({ msg: 'User not found' })
-    }
-
-
-    let validPassword = await user.isValidPassword(query.password)
-    console.log(validPassword)
-    if (!validPassword) {
-        return res.status(404).json({ msg: 'Wrong email or password' })
-    } else {
-        const token = generateToken(user.email, user.role)
-        return res.status(200).json({ token: token, role: user.role })
-    }
-
-}
-
-
-async function searchUser(req, res){
-    let query = {
-        email: req.query.email
-    }
-
-    let user = await repository.searchUser({email: query.email})
-
-    if(user == null){
-        return res.status(404).json({msg: 'User not found'})
-    }
-
-    return res.status(200).json({user: user})
-}
-
-async function register(req, res) {
-    console.log('REGISTERING')
-    let user = {
+/**
+ * Create new user
+ * @param {*} req 
+ * @param {*} res 
+ */
+function createUser (req, res) {
+    let userObj = {
         email: req.body.email,
         password: req.body.password,
         role: req.body.role
     }
 
-    repository.createUser(user).then(
-        (data) => {
-            return res.status(201).json({ msg: 'User is created' })
-        }, (error) => {
-            return res.status(400).json({ msg: 'User already exists' })
-        }
-    )
+    User.create(userObj)
+        .then(()=> {return res.status(200).json({msg: 'User was created successfully'})})
+        .catch(
+            (error) => {
+                if(error.code === 11000 ) return res.status(409).json({msg: 'User already exists'})
 
-}
-
-
-async function updateUser(req, res) {
-
-}
-
-async function deleteUser(req, res) {
-
-}
-
-/**
- * Forgot password handler
- * @param {*} req 
- * @param {*} res 
- * @returns {json}
- */
-async function forgotPassword(req, res) {
-
-    try {
-        let token = await generateResetToken();
-        let newUser = await User.findOneAndUpdate({ email: req.body.email }, { resetPasswordToken: token }, { returnOriginal: false });
-        await mailer.resetPasswordEmail(newUser.email, 'Reseting password', token);
-
-        return res.json({ msg: 'Emai was sent' });
-    } catch (err) {
-        return res.json({ err: 'Failed to reset password' });
-    }
-}
-
-async function generateResetToken() {
-    return new Promise((resolve, reject) => {
-        crypto.randomBytes(20, (err, buf) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(buf.toString('hex'));
+                return res.status(500).json({ msg: 'Failed to create user' })
             }
+        )
+}
+
+function queryUser(req, res){
+    let query = req.query
+
+    User.queryMany(query)
+        .then((user)=> {
+            return res.status(200).json({user: user})
         })
-    })
+        .catch(
+            (error) => {
+                if(error === 404) return res.status(404).json({msg: 'User not found'})
+
+                return res.json({msg: 'Inernal server error'})
+            }
+        )
+}
+
+function updateUser(req, res){
+    let query = {
+        email: req.query.email,
+        role: req.query.role
+    }
+
+    User.updateUser({email: req.query.email}, query)
+        .then(
+            (user) => {
+                return res.status(201).json({msg: 'User was updated successfully'})
+            }
+        )
+        .catch(
+            (error)=>{
+                console.log(error)
+                return res.json({msg: 'Failed to update user'})
+            }
+        )
 }
 
 /**
- * Checks reset token validity
+ * Delete user
  * @param {*} req 
  * @param {*} res 
- * @returns {json}
  */
-function checkResetToken(req, res) {
-    let resetToken = req.body.resetToken;
-    User.findOne({ resetPasswordToken: resetToken }, (err, user) => {
-        if (err) {
-            return res.json({ err: 'Failed to validate error' });
-        } else if (user == null) {
-            return res.json({ err: 'Token not valid' });
-        } else {
-            return res.json({ email: user.email });
-        }
-    })
+function deleteUser (req, res) {
+    let query = {email: req.query.email}
+
+    User.delete(query)
+        .then(
+            ()=>{return res.status(200).json({ msg: 'User was deleted successfully' })}
+        )
+        .catch(error => {
+            if(error === 404) return res.status(404).json({msg:'User not found'})
+
+            console.log(error)
+            return res.json({ msg: 'Failed to delete user' })
+        })
 }
 
-/**
- * Updaing password
- * @param {*} req 
- * @param {*} res 
- */
-function resetPassword(req, res) {
-    let userObj = {
+
+
+
+/*function resetPassword(req, res) {
+    let user = {
         email: req.body.email,
         password: req.body.password
     }
 
-    User.findOne({ email: userObj.email }, (err, user) => {
+    User.findOneAndUpdate({ email: user.email }, { password: user.password }, (err, user) => {
         if (err) {
             debugUser(err);
             return res.json({ err: 'Failed to change password' });
         } else {
-            user.password = userObj.password;
-            user.resetPasswordToken = undefined;
-            user.save();
             debugUser('Password is changed');
             return res.json({ msg: 'Password was changed' });
         }
     })
-}
+}*/
+
+
+
 
 module.exports = {
-    register,
-    login,
-    searchUser
+    createUser,
+    queryUser,
+    deleteUser,
+    updateUser
 }
+

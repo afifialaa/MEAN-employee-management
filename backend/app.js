@@ -3,16 +3,16 @@ const app = express()
 
 const apiv1 = require('./api.v1')
 
-require('./database/config')
-
 const bodyParser = require('body-parser')
 
 const cors = require('cors')
 const path = require('path')
 
-/** Logger */
+/** Setting development environment */
 if (process.env.NODE_ENV == 'development') {
     console.log('SETTING DEVELOPMENT ENVIRONMENT')
+
+    require('./database/config')
 
     const morgan = require('morgan')
     const fs = require('fs')
@@ -22,7 +22,12 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 
+/** Setting testing environment */
 if (process.env.NODE_ENV == 'testing') {
+    console.log('SETTING TESTING ENVIRONMENT')
+
+    require('./database/config')
+
     const morgan = require('morgan')
     const fs = require('fs')
 

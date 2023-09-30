@@ -1,8 +1,13 @@
-const repository = require('../database/repository/employee-repository')
+const Employee = require('../database/models/employee-model');
 
-async function createEmployee(req, res) {
 
-    let employee = {
+/**
+ * Creates a new employee
+ * @param {*} req 
+ * @param {*} res 
+ */
+function createEmployee (req, res) {
+    let employeeObj = {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
@@ -10,8 +15,8 @@ async function createEmployee(req, res) {
         gender: req.body.gender,
         university: req.body.university,
         job_title: req.body.jobTitle,
+        department: req.body.department,
         address: {
-            department: req.body.department,
             country: req.body.country,
             city: req.body.city,
             street_address: req.body.address,
@@ -23,42 +28,42 @@ async function createEmployee(req, res) {
             bank_account: req.body.bankAccount,
             salary: req.body.salary
         }
+
     }
 
-    repository.createEmployee(employee).then(
-        (data)=> {
-            return res.status(200).json({msg: 'Employee was created'})
-        }, 
-        (error) => {
-            if(error.code == 11000 && error.keyPattern['email'] == 1){
-                return res.status(400).json({msg: 'Employee already exists'})
+    Employee.create(employeeObj)
+        .then(()=> res.status(201).json({msg: 'Employee was created'}))
+        .catch((error)=> {
+            if(error.code === 11000 && JSON.stringify(error.keyPattern) === JSON.stringify({ email: 1 })) {
+                return res.status(409).json({msg: 'This email is already used'})
+            }else if(error.code === 11000 && JSON.stringify(error.keyPattern) === JSON.stringify({ phone_number: 1 })) {
+                return res.status(409).json({msg: 'This phone number is already used'})
             }
-            if(error.code == 11000 && error.keyPattern['phone_number'] == 1){
-                return res.status(400).json({msg: 'Phone number already exists'})
-            }
-            return res.status(500).json({msg: 'Failed to create employee'})
-        }
-    )
-
+            res.status(409).json({msg: 'Failed to create employee'})
+        })
 }
 
-async function readEmployee(req, res) {
-    let query = {
-        email: req.query.email
-    }
+/**
+ * Search employees
+ * @param {*} req 
+ * @param {*} res 
+ */
+function queryEmployee(req, res) {
+    let query = req.query
 
-    repository.readEmployee(query).then(
-        (data)=>{
-            return res.status(200).json({employee: data})
-        },
-        (error)=> {
-            return res.status(404).json({msg: 'Employee was not found'})
-        }
-    )
+    Employee.query(query)
+        .then(employees => res.status(200).json({employees: employees}))
+        .catch(error => res.status(404).json({msg: 'Failed to fetch employees'}))
 }
 
-async function updateEmployee(req, res) {
-    let employee = {
+/**
+ * Update employee
+ * @param {*} req 
+ * @param {*} res 
+ */
+function updateEmployee (req, res) {
+
+    let employeeObj = {
         first_name: req.body.firstName,
         last_name: req.body.lastName,
         email: req.body.email,
@@ -82,54 +87,37 @@ async function updateEmployee(req, res) {
 
     }
 
-    repository.updateEmployee(employee).then(
-        (data)=> {
-            return res.status(200).json({employee: data})
-        },
-        (error)=>{
-            return res.status(500).json({})
-        }
-    )
+    Employee.updateEmployee(employeeObj)
+        .then(()=>res.status(201).json({msg: 'Employee was updated successfully'}))
+        .catch(()=>res.status(404).json({ msg: 'Failed to update employee' }))
 
 }
 
-async function deleteEmployee(req, res) {
 
-    let query = {
-        email: req.query.email
-    }
+/**
+ * Delete employee
+ * @param {*} req 
+ * @param {*} res 
+ */
+function deleteEmployee (req, res) {
+    let employee = { _id: req.query.id }
 
-    repository.deleteEmployee(query).then(
-        (data)=>{
-            return res.status(200).json({msg: 'Employee was deleted'})
-        },
-        (error) => {
-            if(error == 404){
-                return res.status(404).json({msg: 'Employee not found'})
-            }
-            return res.status(500).json({msg: 'Failed to delete employee'})
-        }
-    )
+    Employee.deleteEmp(employee)
+        .then(()=> {
+            res.status(200).json({msg: 'Employee was deleted successfully'})
+        })
+        .catch((error)=>{
+            if(error == 404) return res.status(404).json({msg: 'Employee not found'})
 
-}
-
-async function readEmployees(req, res){
-    let query = req.query
-
-    repository.query(query).then(
-        (data)=>{
-            return res.status(200).json({data})
-        }, (error)=>{
-            return res.status(200).json({msg: 'Failed to search'})
-        }
-    )
+            return res.status(409).json({msg:'Failed to delete employee'})
+        })
 
 }
 
 module.exports = {
     createEmployee,
-    readEmployee,
     updateEmployee,
     deleteEmployee,
-    readEmployees
+    queryEmployee,
 }
+

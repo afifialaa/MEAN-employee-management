@@ -1,12 +1,14 @@
-const userController = require('../controllers/users-controller')
+const usersController = require('../controllers/users-controller')
 
-const verifyToken = require('../middlewares/jwt-token')
+const role = require('../middlewares/role-mid')
 
 const express = require('express')
 const router = express.Router()
 
-router.post('/login', userController.login)
-router.get('/user', userController.searchUser)
-router.post('/register', verifyToken, userController.register)
+// router.get('/user', usersController.searchUser)
+router.post('/', role.isAdmin, usersController.createUser)
+router.put('/', role.isAdmin, usersController.updateUser)
+router.delete('/', role.isAdmin, usersController.deleteUser)
+router.get('/', role.isAdmin, usersController.queryUser)
 
 module.exports = router

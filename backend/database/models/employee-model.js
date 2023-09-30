@@ -55,8 +55,51 @@ const EmployeeSchema = new Schema({
     },
 
     contract: contractSchema,
-
 })
+
+EmployeeSchema.statics.create = (employeeObj) => {
+    return new Promise((resolve, reject)=> {
+        let employee = new Employee(employeeObj);
+        employee.save((err, result)=>{
+            if(err) reject(err)
+
+            resolve()
+        })
+    })
+}
+
+EmployeeSchema.statics.query = (query)=>{
+    return new Promise( (resolve, reject)=>{
+        Employee.find(query, (err, employees)=>{
+            if(err) reject(err)
+
+            resolve(employees)
+        })
+    })
+}
+
+EmployeeSchema.statics.updateEmployee = (employee) => {
+    return new Promise((resolve, reject)=>{
+        Employee.updateOne({email: employee.email}, employee, (err)=>{
+            if(err) reject(err)
+
+            resolve()
+        })
+    })
+}
+
+EmployeeSchema.statics.deleteEmp = (employee) => {
+    return new Promise((resolve, reject)=>{
+        Employee.deleteOne(employee, (err, result)=>{
+            if(err) {
+                reject(err)
+            } else if(result.deletedCount == 0){reject(404)}
+            
+            resolve()
+        })
+
+    })
+}
 
 const Employee = mongoose.model('employees', EmployeeSchema)
 

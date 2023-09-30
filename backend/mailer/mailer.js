@@ -5,8 +5,8 @@ let mailerDebug = require('debug')('worker:debugMailer');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'alaaahmedafifi@gmail.com',
-        pass: process.env.EMAIL_PASSWORD
+        user: process.env.SENDER_EMAIL_ADDRESS,
+        pass: process.env.SENDER_EMAIL_PASSWORD
     }
 });
 
@@ -57,7 +57,7 @@ function guestLoginEmail() {
     mailerDebug('Guest login email');
     const mailOptions = {
         from: 'Employee Management System MEAN crud',
-        to: 'alaa9620101@hotmail.com',
+        to: process.env.RECIEVER_EMAIL_ADDRESS,
         subject: 'Guest Logged in',
         html: `
             <html>
