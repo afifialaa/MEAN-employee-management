@@ -8,6 +8,7 @@ function validatePassword(password){
 	return validator.isAlphanumeric(password);
 }
 
+
 module.exports = {
 	validateEmail,
 	validatePassword
