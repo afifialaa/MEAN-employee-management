@@ -40,3 +40,54 @@
     color: black;
     transition-duration: 0.5s;
 }
+
+/* USER MENU  */
+svg{
+    color: white;
+    font-weight: 600;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 50px;
+    top: 5px;
+    cursor: pointer;
+}
+
+.button-container{
+    background-color: #333;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    color: white;
+}
+
+.button-container ul {
+    width: fit-content;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.button-container li {
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.button-container li:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+.button-container li a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.not-shown{
+    display: none;
+}
+
+.shown{
+    display: block;
+}

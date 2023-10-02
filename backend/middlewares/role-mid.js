@@ -7,16 +7,16 @@ function isGuest(req, res, next){
                 next()
             }).catch(err => {
             next()
-        });
+        })
     }
     next()
 }
 
 function isAdmin(req, res, next){
     if(req.role == 'admin'){
-        next();
+        next()
     }else{
-        return res.status(401).json({msg: 'User is not an admin'});
+        return res.status(401).json({msg: 'User is not an admin'})
     }
 }
 

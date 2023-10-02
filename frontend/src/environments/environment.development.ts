@@ -22,6 +22,7 @@ export const environment = {
 	employeeURL: `http://localhost:${PORT}/api/v1/employee`,
 
 	// User api
-	userURL: `http://localhost:${PORT}/api/v1/account/register`,
+	// userURL: `http://localhost:${PORT}/api/v1/account/register`,
+	userURL: `http://localhost:${PORT}/api/v1/user/`,
 
 }

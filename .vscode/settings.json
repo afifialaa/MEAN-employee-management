@@ -1,7 +1,5 @@
 {
     "workbench.colorCustomizations": {
-        "statusBar.background" : "#68227A",
-        "activityBar.background": "#68227A"
     },
     "editor.tabSize": 4,
     "editor.insertSpaces": true,

@@ -91,7 +91,7 @@ export class SearchEmployeeComponent implements OnInit {
 			this.empService.readEmployees(query).subscribe(
 				(data: any) => {
 					this.looking = false
-					this.targetEmployee = data['data']
+					this.targetEmployee = data['employees']
 				},
 				error => {
 					console.log(error)

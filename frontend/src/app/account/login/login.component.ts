@@ -75,14 +75,17 @@ export class LoginComponent implements OnInit {
 		// Logging user in
 		this.accountSrvc.loginUser(user).subscribe(
 			(data: any) => {
+
 				// Login successfully
 				localStorage.setItem('token', data['token']);
 				localStorage.setItem('email', data['email']);
 				localStorage.setItem('role', data['role']);
+
 				// Redirect 
 				this.router.navigate(['/admin/dashboard']);
 			},
 			(error) => {
+                console.log(error)
 				this.signinForm.reset();
 				this.message = "Wrong email or password";
 			}
