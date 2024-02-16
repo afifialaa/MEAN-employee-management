@@ -31,6 +31,8 @@ function createEmployee (req, res) {
 
     }
 
+    global.logger.info(employeeObj)
+
     Employee.create(employeeObj)
         .then(()=> res.status(201).json({msg: 'Employee was created'}))
         .catch((error)=> {
@@ -50,6 +52,8 @@ function createEmployee (req, res) {
  */
 function queryEmployee(req, res) {
     let query = req.query
+
+    global.logger.info(query)
 
     Employee.query(query)
         .then(employees => res.status(200).json({employees: employees}))
@@ -87,6 +91,8 @@ function updateEmployee (req, res) {
 
     }
 
+    global.logger.info(employeeObj)
+
     Employee.updateEmployee(employeeObj)
         .then(()=>res.status(201).json({msg: 'Employee was updated successfully'}))
         .catch(()=>res.status(404).json({ msg: 'Failed to update employee' }))
@@ -102,12 +108,18 @@ function updateEmployee (req, res) {
 function deleteEmployee (req, res) {
     let employee = { _id: req.query.id }
 
+    global.logger.info(employee)
+
     Employee.deleteEmp(employee)
         .then(()=> {
+            global.logger.info('employee was delete')
             res.status(200).json({msg: 'Employee was deleted successfully'})
         })
         .catch((error)=>{
-            if(error == 404) return res.status(404).json({msg: 'Employee not found'})
+            if(error == 404) {
+                global.logger.error('employee was not found')
+                return res.status(404).json({msg: 'Employee not found'})
+            }
 
             return res.status(409).json({msg:'Failed to delete employee'})
         })

@@ -8,6 +8,20 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const path = require('path')
 
+/** Setting console logs */
+const winston = require('winston')
+global.logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports: [
+        new winston.transports.File({ filename: 'logs/app.log' }),
+        new winston.transports.Console()
+    ],
+})
+
 /** Setting development environment */
 if (process.env.NODE_ENV == 'development') {
     console.log('SETTING DEVELOPMENT ENVIRONMENT')

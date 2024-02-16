@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
 
 				// Login successfully
 				localStorage.setItem('token', data['token']);
-				localStorage.setItem('email', data['email']);
+				localStorage.setItem('email', user.email);
 				localStorage.setItem('role', data['role']);
 
 				// Redirect 

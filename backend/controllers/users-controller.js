@@ -7,6 +7,7 @@ const jwtAuth = require('../authentication/token.auth')
 const mailer = require('../mailer/mailer')
 const { ConsoleReporter } = require('jasmine')
 
+
 /**
  * Create new user
  * @param {*} req 
@@ -32,6 +33,7 @@ function createUser (req, res) {
 
 function queryUser(req, res){
     let query = req.query
+
 
     User.queryMany(query)
         .then((user)=> {
