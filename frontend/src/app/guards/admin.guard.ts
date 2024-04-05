@@ -12,6 +12,7 @@ export class AdminGuard {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): boolean {
 		if (localStorage.getItem('role') == 'admin') {
+            console.log('user is admin')
 			return true
 		}
 

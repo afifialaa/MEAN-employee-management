@@ -19,9 +19,9 @@ export const environment = {
 	tasksNumURL: `http://localhost:${PORT}/api/v1/dashboard/tasksNum`,
 
 	/* Employee api */
-	employeeURL: `http://localhost:${PORT}/api/v1/employee`,
+	employeeURL: `http://localhost:${PORT}/api/v1/employee/`,
 
-	// User api
+	/* User api */
 	// userURL: `http://localhost:${PORT}/api/v1/account/register`,
 	userURL: `http://localhost:${PORT}/api/v1/user/`,
 

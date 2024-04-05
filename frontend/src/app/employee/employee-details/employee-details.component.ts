@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { EmployeeService } from '../../services/employee.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import { EmployeeService } from '../../services/employee.service'
+import { FormGroup, FormControl } from '@angular/forms'
 
-import { Iemployee } from '../../models/iemployee';
+import { Iemployee } from '../../models/iemployee'
 
 @Component({
     selector: 'app-employee-details',
@@ -12,12 +12,12 @@ import { Iemployee } from '../../models/iemployee';
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-    employee = ''
+    employee: string = ''
 
     // Employee form
-    editEmployeeForm: FormGroup;
+    editEmployeeForm: FormGroup
 
-    isShown: boolean = false;
+    isShown: boolean = false
     fetchedData
     newEmpData: Iemployee
 
@@ -46,7 +46,7 @@ export class EmployeeDetailsComponent implements OnInit {
         }
 
 
-        let cachedEmp = localStorage.getItem('cachedEmp') 
+        let cachedEmp = localStorage.getItem('cachedEmp')
 
         // Variable to store fetched data
         this.fetchedData = {
@@ -113,8 +113,8 @@ export class EmployeeDetailsComponent implements OnInit {
      * Edit button handler
      */
     editEmployee() {
-        this.isShown = true;
-        this.editEmployeeForm.enable();
+        this.isShown = true
+        this.editEmployeeForm.enable()
     }
 
 
@@ -123,7 +123,7 @@ export class EmployeeDetailsComponent implements OnInit {
      */
     saveBtn() {
 
-        this.isShown = false;
+        this.isShown = false
         this.editEmployeeForm.disable()
 
         // Populate new data array
@@ -148,22 +148,22 @@ export class EmployeeDetailsComponent implements OnInit {
             salary: this.editEmployeeForm.value.salary,
         }
 
-        this.updateEmployee(this.newEmpData);
+        this.updateEmployee(this.newEmpData)
 
     }
 
     /**
-     * 
-     * @param {Employee} targetEmp 
+     *
+     * @param {Employee} targetEmp
      */
     updateEmployee(targetEmp: Iemployee) {
         this.empService.updateEmployee(targetEmp).subscribe((data)=>{
-            this.errMsg = '';
-            this.msg = 'Employee was updated';
+            this.errMsg = ''
+            this.msg = 'Employee was updated'
         },
         (error)=>{
-            this.msg = '';
-            this.errMsg = 'Failed to update employee';
+            this.msg = ''
+            this.errMsg = 'Failed to update employee'
 
         })
     }
@@ -174,45 +174,49 @@ export class EmployeeDetailsComponent implements OnInit {
     cancelEdit() {
 
         // Reset form to old data
-        this.editEmployeeForm.controls.firstName.setValue(this.fetchedData.first_name);
-        this.editEmployeeForm.controls.lastName.setValue(this.fetchedData.last_name);
-        this.editEmployeeForm.controls.email.setValue(this.fetchedData.email);
-        this.editEmployeeForm.controls.gender.setValue(this.fetchedData.gender);
-        this.editEmployeeForm.controls.phoneNumber.setValue(this.fetchedData.phone_number);
-        this.editEmployeeForm.controls.university.setValue(this.fetchedData.university);
-        this.editEmployeeForm.controls.jobTitle.setValue(this.fetchedData.job_title);
+        this.editEmployeeForm.controls.firstName.setValue(this.fetchedData.first_name)
+        this.editEmployeeForm.controls.lastName.setValue(this.fetchedData.last_name)
+        this.editEmployeeForm.controls.email.setValue(this.fetchedData.email)
+        this.editEmployeeForm.controls.gender.setValue(this.fetchedData.gender)
+        this.editEmployeeForm.controls.phoneNumber.setValue(this.fetchedData.phone_number)
+        this.editEmployeeForm.controls.university.setValue(this.fetchedData.university)
+        this.editEmployeeForm.controls.jobTitle.setValue(this.fetchedData.job_title)
 
-        this.editEmployeeForm.controls.country.setValue(this.fetchedData.address.country);
-        this.editEmployeeForm.controls.city.setValue(this.fetchedData.address.city);
-        this.editEmployeeForm.controls.street.setValue(this.fetchedData.address.street);
+        this.editEmployeeForm.controls.country.setValue(this.fetchedData.address.country)
+        this.editEmployeeForm.controls.city.setValue(this.fetchedData.address.city)
+        this.editEmployeeForm.controls.street.setValue(this.fetchedData.address.street)
 
-        this.editEmployeeForm.controls.hiringDate.setValue(this.fetchedData.contract.hiring_date);
-        this.editEmployeeForm.controls.terminatingDate.setValue(this.fetchedData.contract.terminating_date);
-        this.editEmployeeForm.controls.bank.setValue(this.fetchedData.contract.bank);
-        this.editEmployeeForm.controls.bankAccount.setValue(this.fetchedData.contract.bank_account);
-        this.editEmployeeForm.controls.salary.setValue(this.fetchedData.contract.salary);
+        this.editEmployeeForm.controls.hiringDate.setValue(this.fetchedData.contract.hiring_date)
+        this.editEmployeeForm.controls.terminatingDate.setValue(this.fetchedData.contract.terminating_date)
+        this.editEmployeeForm.controls.bank.setValue(this.fetchedData.contract.bank)
+        this.editEmployeeForm.controls.bankAccount.setValue(this.fetchedData.contract.bank_account)
+        this.editEmployeeForm.controls.salary.setValue(this.fetchedData.contract.salary)
 
-        this.editEmployeeForm.disable();
-        this.isShown = false;
+        this.editEmployeeForm.disable()
+        this.isShown = false
     }
 
     /**
      * Delete button handler
      */
     deleteEmployee() {
-        let employee = this.employee;
-        this.empService.deleteEmployee(employee).subscribe(
+        console.log('deleting employee')
+
+        let employeeID:string = this.fetchedData._id
+
+        this.empService.deleteEmployee(employeeID).subscribe(
             data => {
-                this.errMsg = '';
-                this.msg = 'Employee was deleted';
+                this.errMsg = ''
+                this.msg = 'Employee was deleted'
 
             },
             error => {
-                this.msg = '';
+                this.msg = ''
                 if(error.status == 429){
-                    this.errMsg = 'Too many delete requests, try again in a few minutes';
+                    this.errMsg = 'Too many delete requests, try again in a few minutes'
                 }else{
-                    this.errMsg = 'Failed to delete employee';
+                    console.log(error)
+                    this.errMsg = 'Failed to delete employee'
                 }
             }
         )

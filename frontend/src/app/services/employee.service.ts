@@ -19,7 +19,8 @@ export class EmployeeService {
 	}
 
 	deleteEmployee(id:string) {
-		let params = new HttpParams().set('id', id)
+        let obj = {id: id}
+		let params = new HttpParams({fromObject: obj})
 		return this.http.delete(environment.employeeURL, {params:params});
 	}
 
