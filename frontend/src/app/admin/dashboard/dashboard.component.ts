@@ -8,15 +8,15 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
 
     employeeTitle = 'Employee'
-    employeeData = 100
+    employeeData = '100'
     employeeUrl = '/admin/employee/dashboard'
 
     userTitle = 'User'
-    userData = 100
+    userData = '100'
     userURL = '/admin/user'
 
 
     inventoryTitle = 'Inventory'
-    inventoryData = 100
+    inventoryData = '100'
     inventoryUrl = '/admin/inventory'
 }

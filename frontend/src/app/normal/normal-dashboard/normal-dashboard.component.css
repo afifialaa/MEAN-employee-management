@@ -1,0 +1,16 @@
+.flex-container{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.flex-container > .card{
+    width: 300px;
+    cursor: pointer;
+    font-size: 20pt;
+    height: fit-content;
+}
+

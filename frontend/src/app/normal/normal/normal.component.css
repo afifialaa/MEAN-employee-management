@@ -1,0 +1,45 @@
+.active{
+    color: red;
+}
+
+.menu ul{
+    margin-top: 20px;
+    margin-right: 60px;
+}
+
+.menu ul li{
+    display: inline;
+}
+
+.menu ul li:not(:last-child){
+    margin-right: 20px;
+}
+
+.menu ul li a{
+    text-transform: capitalize;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.menu ul li a:hover{
+    color: black;
+    transition-duration: 0.5s;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.sidebar{
+    float: left;
+    background-color: #333;
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	overflow: auto;
+}

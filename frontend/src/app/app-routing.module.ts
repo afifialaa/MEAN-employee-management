@@ -11,10 +11,17 @@ import { EmployeeDashboardComponent } from './employee/employee-dashboard/employ
 import { UserComponent } from './user/user/user.component'
 import { CreateUserComponent } from './user/create-user/create-user.component'
 import { SearchUserComponent } from './user/search-user/search-user.component'
-import {EmployeeDetailsComponent} from './employee/employee-details/employee-details.component' 
+import {EmployeeDetailsComponent} from './employee/employee-details/employee-details.component'
+
+/* Normal Module */
+import {NormalComponent} from './normal/normal/normal.component'
+import {NormalDashboardComponent} from './normal/normal-dashboard/normal-dashboard.component'
+
+
 
 import { AdminGuard } from './guards/admin.guard'
 import { AuthGuard } from './guards/auth.guard'
+import {normalGuard} from './guards/normal.guard'
 
 const routes: Routes = [
     {
@@ -39,6 +46,11 @@ const routes: Routes = [
                     { path: 'search', component: SearchUserComponent }
                 ]
             }
+        ],
+    },
+    {
+        path: 'normal', canActivate: [normalGuard], component: NormalComponent, children: [
+            {path: 'dashboard', component: NormalDashboardComponent}
         ]
     },
     { path: '', redirectTo: '/account/login', pathMatch: 'full' },

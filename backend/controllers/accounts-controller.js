@@ -29,7 +29,7 @@ function login(req, res) {
             (jwtoken) => {
                 return res.json({
                     token: jwtoken,
-                    role: 'admin'
+                    role: targetUser.role
                 })
             }
         )

@@ -10,14 +10,15 @@ import { AccountModule } from './account/account.module'
 import { AdminModule } from './admin/admin.module';
 import { EmployeeModule } from './employee/employee.module'
 import { UserModule } from './user/user.module'
+import { NormalModule } from './normal/normal.module'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatCardModule } from '@angular/material/card'
+import { MatIconModule } from '@angular/material/icon'
+import { MatRadioModule } from '@angular/material/radio'
 
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
 import { UnauthInterceptor } from './interceptors/unauth.interceptor'
@@ -44,7 +45,8 @@ import { UnauthInterceptor } from './interceptors/unauth.interceptor'
         MatIconModule,
         MatButtonModule,
         MatRadioModule,
-        UserModule
+        UserModule,
+        NormalModule,
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
