@@ -1,8 +1,7 @@
 {
     "workbench.colorCustomizations": {
-        "tab.activeBorder": "#FF007ACC",
-
-        "statusBar.background" : "#FF007ACC",
+        "tab.activeBorder": "#FFFFFF",
+        "tab.activeBorderTop": "#FFFFFF",
 
         "editorIndentGuide.activeBackground1": "#c1c1c1",
         "editorIndentGuide.activeBackground2": "#c1c1c1",
@@ -16,7 +15,8 @@
         "editorIndentGuide.background4": "#c1c1c1",
         "editorIndentGuide.background5": "#c1c1c1",
     },
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": false
+    "editor.detectIndentation": false,
+    "vim.vimrc.enable": true
 }

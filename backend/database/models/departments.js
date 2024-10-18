@@ -1,0 +1,23 @@
+module.exports = [
+    'IT',
+    'Marketing',
+    'Finance',
+    'Production',
+    'Security',
+    'R&D',
+    'HR',
+    'Operations',
+    'Sales',
+    'Customer Service',
+    'Purchasing',
+    'Design',
+    'Logistics',
+    'Quality',
+    'Accounting',
+    'Inspection',
+    'Media',
+    'Engineering',
+    'Legal',
+    'Export/Import',
+    'Project Management'
+]

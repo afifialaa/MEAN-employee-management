@@ -19,4 +19,12 @@ export class DashboardComponent {
     inventoryTitle = 'Inventory'
     inventoryData = '100'
     inventoryUrl = '/admin/inventory'
+
+    eRequestsTitle = 'E-Requests'
+    eRequestsData = '10'
+    eRequestsURL = '/admin/inventory'
+
+    departmentsTitle = 'Departments'
+    departmentsData = '10'
+    departmentsURL = '/admin/department/create'
 }

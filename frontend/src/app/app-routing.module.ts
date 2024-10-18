@@ -12,6 +12,8 @@ import { UserComponent } from './user/user/user.component'
 import { CreateUserComponent } from './user/create-user/create-user.component'
 import { SearchUserComponent } from './user/search-user/search-user.component'
 import {EmployeeDetailsComponent} from './employee/employee-details/employee-details.component'
+import {CreateDepartmentComponent} from './department/create-department/create-department.component'
+import {DepartmentComponent} from './department/department/department.component'
 
 /* Normal Module */
 import {NormalComponent} from './normal/normal/normal.component'
@@ -44,6 +46,11 @@ const routes: Routes = [
                 path: 'user', canActivate: [AuthGuard, AdminGuard], component: UserComponent, children: [
                     { path: 'create', component: CreateUserComponent },
                     { path: 'search', component: SearchUserComponent }
+                ]
+            },
+            {
+                path: 'department', canActivate: [AuthGuard, AdminGuard], component: DepartmentComponent, children: [
+                    {path: 'create', component: CreateDepartmentComponent}
                 ]
             }
         ],

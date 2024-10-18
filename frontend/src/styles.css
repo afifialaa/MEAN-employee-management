@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
-*{
+* {
     box-sizing: border-box;
 }
 
-html, body { 
+html,
+body {
     height: 100%;
     padding: 0px;
     /* background-color: #F6FAFB; */
@@ -13,9 +14,9 @@ html, body {
 }
 
 
-legend{
+legend {
     font-weight: bold;
-    margin-top: 20px;
+    font-size: 22pt;
     margin-bottom: 20px;
 }
 
@@ -23,13 +24,13 @@ legend{
     color: cyan;
 }
 
-.main-content{
+.main-content {
     position: relative;
-    top: 150px;
-	margin-left: 200px;
+    top: 100px;
+    margin-left: 200px;
 }
 
-.curr-location{
+.curr-location {
     font-size: 12px;
     color: #0000EE;
     position: relative;
@@ -40,7 +41,7 @@ legend{
     text-decoration: none;
 }
 
-.content{
+.content {
     margin-top: 50px;
     position: relative;
     top: -40px;
@@ -55,5 +56,13 @@ label {
 .form-control {
     height: 30px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

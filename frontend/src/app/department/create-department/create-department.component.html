@@ -1,0 +1,174 @@
+<div class="container content">
+  <div class="curr-location">
+    <a routerLink="/admin/dashboard"> Dashboard </a> >
+    <a routerLink="/department/create">Department </a> >
+    <a routerLink="/admin/department/create"> Create </a>
+  </div>
+
+  <legend>Departments</legend>
+  <form [formGroup]="createDepartmentForm" (ngSubmit)="createDepartment()">
+    <table>
+      <tr>
+        <th>Department Name</th>
+        <th>Department Head</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let department of DEPARTMENT_DATA; index as ind">
+        <td>{{ department.department_name }}</td>
+        <td>{{ department.department_head }}</td>
+        <td>
+          <button type="button" class="btn btn-danger delete-btn" (click)="deleteDepartment(department._id)">
+            Delete
+          </button>
+          <button type="button" class="btn btn-info view-btn" (click)="
+                            editDepartment(
+                                department._id,
+                                department.name,
+                                department.head
+                            )
+                        ">
+            Edit
+          </button>
+          <button type="button" class="btn btn-info view-btn" (click)="viewDepartment(ind, department._id)">
+            View
+          </button>
+        </td>
+      </tr>
+
+      <tr id="last-row">
+        <td>
+          <input type="text" class="form-control" formControlName="departmentName" placeholder="Department Name" />
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="departmentHead" placeholder="Department Head" />
+        </td>
+        <td>
+          <button *ngIf="!isEdit" type="submit" class="btn btn-success createBtn">
+            Create Department
+          </button>
+          <button *ngIf="isEdit" type="button" class="btn btn-success" (click)="updateDepartment()">
+            Update Department
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div class="error-msg">
+    <div *ngIf="deptErrMsg" class="alert alert-danger">
+      {{ deptErrMsg }}
+    </div>
+    <div *ngIf="deptMsg" class="alert alert-success" role="alert">
+      {{ deptMsg }}
+    </div>
+  </div>
+
+  <!-- Selected Department div  -->
+  <div class="selected-department" *ngIf="selectedDepartment">
+    <legend>{{ selectedDepartment.department_name }} Department</legend>
+
+    <table class="team-table">
+      <tr>
+        <th>Team</th>
+        <th>Head</th>
+        <th>Positions</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let team of selectedDepartmentTeams; index as ind">
+        <td class="team-cell">{{ team.team_name }}</td>
+        <td class="head-cell">{{ team.team_leader }}</td>
+        <td class="position-cell">
+          <span class="position-item" *ngFor="let position of team.positions">{{ position }}</span>
+        </td>
+        <td class="action-cell">
+          <button type="button" class="btn btn-danger delete-btn" (click)="deleteTeam(team._id)">
+            Delete
+          </button>
+          <button type="button" class="btn btn-info view-btn">
+            Edit
+          </button>
+          <button type="button" class="btn btn-info view-btn" (click)="viewTeam(ind, team._id)">
+            View
+          </button>
+        </td>
+      </tr>
+    </table>
+
+    <form [formGroup]="createTeamForm">
+      <div class="form-group" class="teamControls-container">
+        <input type="text" class="form-control" formControlName="teamName" placeholder="Team Name" />
+        <input type="text" class="form-control" formControlName="teamLeader" placeholder="Team Leader" />
+        <button class="btn btn-success" type="button" (click)="createTeam(selectedDepartment._id)">
+          Add team
+        </button>
+      </div>
+    </form>
+
+    <div >
+      <div *ngIf="teamErrMsg" class="alert alert-danger">
+        {{ teamErrMsg }}
+      </div>
+      <div *ngIf="teamMsg" class="alert alert-success" role="alert">
+        {{ teamMsg }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Add position form -->
+  <form id="pos-form" *ngIf="selectedTeam" [formGroup]="createPosForm" (ngSubmit)="createPosition()">
+    <legend *ngIf="selectedTeam">{{ selectedTeam.team_name }} Team</legend>
+    <div class="positions-list">
+      <span (click)="selectPosition(position)" *ngFor="let position of selectedTeam.positions">
+        {{ position }}
+      </span>
+    </div>
+
+    <div id="position-controls" class="form-group">
+      <label>Position </label>
+      <input type="text" class="form-control position-input" formControlName="positionName" />
+    </div>
+
+    <button id="pos-add-btn" type="submit" class="btn btn-success">
+      Add
+    </button>
+    <button id="pos-add-btn" type="button" class="btn btn-info" (click)="editPosition()">
+      Edit
+    </button>
+    <button id="pos-add-btn" type="button" class="btn btn-danger" (click)="removePosition()">
+      Remove
+    </button>
+
+    <div *ngIf="posErrMsg" class="alert alert-danger">
+      {{ posErrMsg }}
+    </div>
+    <div *ngIf="posMsg" class="alert alert-success" role="alert">
+      {{ posMsg }}
+    </div>
+  </form>
+  <!-- <div class="form-group">
+            <mat-form-field>
+                <mat-label><span class="text-danger"> </span> Departments</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let position of positions" [value]="position">
+                        {{position}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> -->
+
+  <!-- <form class="example-form">
+        <input type="text"
+            placeholder="Search for a position"
+            [formControl]="control"
+            [matAutocomplete]="auto"
+            class="example-input">
+
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option [value]="">a</mat-option>
+            <mat-option [value]="">b</mat-option>
+            <mat-option [value]="">c</mat-option>
+            <mat-option [value]="">d</mat-option>
+            <mat-option [value]="">e</mat-option>
+        </mat-autocomplete>
+    </form> -->
+</div>

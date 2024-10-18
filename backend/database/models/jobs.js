@@ -6,5 +6,5 @@ module.exports = [
     'recruiter',
     'design engineer',
     'project manager',
-    'editor'
+    'editor',
 ];

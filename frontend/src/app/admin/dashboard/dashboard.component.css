@@ -7,7 +7,7 @@
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
     gap: 20px;
 }
 

@@ -11,6 +11,7 @@ import { AdminModule } from './admin/admin.module';
 import { EmployeeModule } from './employee/employee.module'
 import { UserModule } from './user/user.module'
 import { NormalModule } from './normal/normal.module'
+import { DepartmentModule } from './department/department.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatInputModule } from '@angular/material/input'
@@ -47,6 +48,7 @@ import { UnauthInterceptor } from './interceptors/unauth.interceptor'
         MatRadioModule,
         UserModule,
         NormalModule,
+        DepartmentModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

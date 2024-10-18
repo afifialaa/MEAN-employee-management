@@ -8,16 +8,16 @@ import {environment} from '../../environments/environment.development';
 })
 export class UserService {
 
-	constructor(private http:HttpClient) { }
+	constructor(private httpClient:HttpClient) { }
 
 	/* Create user */
 	create(user:Iuser){
-		return this.http.post(environment.userURL, user);
+		return this.httpClient.post(environment.userURL, user);
 	}
 
 	/* Search by email */
 	searchByEmail(email:string){
 		let params = new HttpParams().set('email', email);
-		return this.http.get(environment.getUser, {params:params});
+		return this.httpClient.get(environment.getUser, {params:params});
 	}
 }
